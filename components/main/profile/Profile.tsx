@@ -1,24 +1,38 @@
-import type { NextPage } from "next";
-import * as StyledProfile from "./StyledProfile"
-const Profile: NextPage = () =>
-{
-    return <StyledProfile.ContainerProfile>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <StyledProfile.MainProfile>
-            <StyledProfile.HeaderProfile>
-                <StyledProfile.SectionCoverImage>
-                    <StyledProfile.ImgCoverProfile src="https://www.isep.ipp.pt/img/Departments/DMA_770.png">
-                    </StyledProfile.ImgCoverProfile>
-                    <StyledProfile.SectionAvatar>
-                        <StyledProfile.ImgAvatarProfile src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="avatar-profile" />
-                </StyledProfile.SectionAvatar>
-                </StyledProfile.SectionCoverImage>
-                <StyledProfile.SectionDescription>
-                        <StyledProfile.NameUser>LMD</StyledProfile.NameUser>
-                        <StyledProfile.DescriptionUser>
-                            If your central character has a quirky name or a title you can definitely incorporate t
-                        </StyledProfile.DescriptionUser>
-                        <StyledProfile.BtnEditProfile>
+
+import {ContainerProfile
+    ,MainProfile
+    ,HeaderProfile
+    ,SectionCoverImage
+    ,ImgCoverProfile
+    ,SectionAvatar
+    ,ImgAvatarProfile
+    ,SectionDescription
+    ,NameUser
+    ,DescriptionUser
+    ,BtnEditProfile
+    ,BodyProfile} from "@/components/main/profile/ProfileStyled"
+interface PropsProfile {
+    dataUser: any
+}
+const Profile = ({dataUser}:PropsProfile) =>
+{    
+    return <ContainerProfile>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
+        <MainProfile>
+            <HeaderProfile>
+                <SectionCoverImage>
+                    <ImgCoverProfile src={dataUser.pathCoverImage}>
+                    </ImgCoverProfile>
+                    <SectionAvatar>
+                        <ImgAvatarProfile src={dataUser.pathAvatar} alt="avatar-profile" />
+                </SectionAvatar>
+                </SectionCoverImage>
+                <SectionDescription>
+                        <NameUser>{dataUser.nameUser}</NameUser>
+                        <DescriptionUser>
+                            {dataUser.description}
+                        </DescriptionUser>
+                        <BtnEditProfile>
                         <i className="fa-solid fa-pen icon-edit-profile"></i>
                         <style jsx>
                                 {
@@ -26,19 +40,20 @@ const Profile: NextPage = () =>
                                     {
                                         border-bottom: 2px solid black;
                                         padding: 4px; 
+                                        margin-right:10px;
                                     }`
                                 }
                             </style>
                             Edit Profile
-                        </StyledProfile.BtnEditProfile>
-                </StyledProfile.SectionDescription>
-            </StyledProfile.HeaderProfile>
-            <StyledProfile.BodyProfile>
+                        </BtnEditProfile>
+                </SectionDescription>
+            </HeaderProfile>
+            <BodyProfile>
 
-            </StyledProfile.BodyProfile>
-        </StyledProfile.MainProfile>
+            </BodyProfile>
+        </MainProfile>
 
-    </StyledProfile.ContainerProfile>;
+    </ContainerProfile>;
 }
 
 export default Profile;

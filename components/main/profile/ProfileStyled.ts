@@ -66,6 +66,6 @@ position: absolute;
 right:38px;
 bottom:22px;
 background: #E1E7ED;
-padding:8px;
+padding: 6px 30px;
 border-radius: 10px;
 `
