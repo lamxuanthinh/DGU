@@ -1,1 +1,1 @@
-export * from "./common/loadLayout";
+export * from "@/model/common/loadLayout";
