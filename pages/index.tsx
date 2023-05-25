@@ -1,18 +1,16 @@
 import type { NextPage } from "next";
 
-import Header from "./Layout/header";
+import { MainLayout } from "@/components/layout/MainLayout";
 
 
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
-    <div className="">
-      <Header />
-      <div className="text-red-500">Bootstrap DGU</div>
-
-    
-    </div>
+    <div>Hello ae</div>
   )
 };
 
 export default Home;
+
+
+Home.Layout = MainLayout;
