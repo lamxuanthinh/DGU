@@ -182,6 +182,7 @@ export default function Login() {
                         {inform.map((item, index1) => {
                           return (
                             <li
+                              key={index1}
                               className={`${
                                 item.key == select ? "bg-[#D9D9D9]" : ""
                               } w-[20px] h-[20px] rounded-xl flex items-center justify-center`}
