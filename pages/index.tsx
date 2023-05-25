@@ -1,7 +1,13 @@
 import type { NextPage } from "next";
 
-const Home: NextPage = () => {
-  return <div className="text-red-500">Bootstrap DGU</div>;
+import { MainLayout } from "@/components/layout/MainLayout";
+
+
+
+const Home = () => {
+  return (
+    <div>Hello ae</div>
+  )
 };
 
 export default Home;
