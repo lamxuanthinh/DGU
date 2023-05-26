@@ -9,10 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/cookies": "^0.7.7",
-    "@types/http-proxy": "^1.17.11",
-    "cookies": "^0.8.0",
-    "http-proxy": "^1.18.1",
     "next": "13.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
