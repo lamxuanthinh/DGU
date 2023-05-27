@@ -23,7 +23,7 @@ export const MainLayout = (props : LayoutProps) => {
                     <Header />
 
                     <ContentStyle>
-                        <div className="p-[10px]">
+                        <div className="p-[10px] flex justify-center items-center">
                             {props.children}
                         </div>
                     </ContentStyle>

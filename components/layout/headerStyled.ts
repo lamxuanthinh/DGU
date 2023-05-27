@@ -55,6 +55,12 @@ export const SectionLogin = styled.div`
     justify-content: center;
     align-items: center;
 `
-
+export const SectionProfile = styled.div`
+    width: 176px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 

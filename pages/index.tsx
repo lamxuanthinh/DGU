@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 
 import { MainLayout } from "@/components/layout/MainLayout";
 

@@ -3,14 +3,16 @@ import {
   HeaderInput,
   SectionIcon,
   SectionLogin,
+  SectionProfile,
   SectionCreateVideo,
 } from "./headerStyled";
 
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsFillBoxSeamFill } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiMessageRounded, BiVideoPlus } from "react-icons/bi";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -46,6 +48,19 @@ const Header = () => {
         </SectionCreateVideo>
 
         <SectionLogin>
+          <Link href={'/login'} className="w-[100%] h-[50px] bg-[#A9DEF9] rounded-[15px] flex justify-center items-center">
+            <div className="w-[120px] h-[100%] flex justify-center items-center">
+              <p className=" font-bold text-[18px]">Sign in now</p>
+            </div>
+            <div className="w-[50px] h-[100%] flex justify-start items-center">
+              <div className="w-[25px] h-[25px] flex justify-center items-start  overflow-hidden">
+                <BsFillBoxSeamFill color="#000000" fontSize={"25px"}  />
+              </div>
+            </div>
+          </Link>
+        </SectionLogin>
+
+        {/* <SectionProfile>
           <div className="w-[75px] h-[100%] flex justify-center items-center">
             <div className="w-[50px] h-[50px] rounded-[50%] flex justify-center items-center bg-[#F6F6F6] overflow-hidden">
               <Image
@@ -60,7 +75,8 @@ const Header = () => {
             <p className="w-[100%] font-bold text-[16px]">Tung Kenny</p>
             <p className="w-[100%] font-thin text-[11px]">Professcor</p>
           </div>
-        </SectionLogin>
+        </SectionProfile> */}
+
       </div>
     </HeaderStyle>
   );

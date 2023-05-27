@@ -10,10 +10,13 @@ import {ContainerProfile
     ,NameUser
     ,DescriptionUser
     ,BtnEditProfile
-    ,BodyProfile} from "@/components/main/profile/ProfileStyled"
+    ,BodyProfile} from "@/Views/main/Profile/ProfileStyled"
+
 interface PropsProfile {
     dataUser: any
 }
+
+
 const Profile = ({dataUser}:PropsProfile) =>
 {    
     return <ContainerProfile>
@@ -33,8 +36,8 @@ const Profile = ({dataUser}:PropsProfile) =>
                             {dataUser.description}
                         </DescriptionUser>
                         <BtnEditProfile>
-                        <i className="fa-solid fa-pen icon-edit-profile"></i>
-                        <style jsx>
+                            <i className="fa-solid fa-pen icon-edit-profile"></i>
+                            <style jsx>
                                 {
                                     `.icon-edit-profile
                                     {
