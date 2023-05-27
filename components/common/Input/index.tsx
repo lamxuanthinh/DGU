@@ -25,7 +25,7 @@ export default function Input({
     <div className={className}>
       <input
         type={type}
-        className="text-[14px] px-5 py-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm rounded-xl"
+        className="text-[14px] px-5 py-3 w-full outline-none border border-gray-300 focus:border-gray-500 focus:shadow-sm rounded-xl"
         placeholder={placeholder}
         {...register(name, rules)}
         autoComplete={autoComplete}
