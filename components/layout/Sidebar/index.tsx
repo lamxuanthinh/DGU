@@ -67,7 +67,7 @@ const Sidebar = () => {
             <div className="w-[100%] h-[70px]  flex flex-nowrap items-center relative">
                 <div className="w-[60px] h-[60px] flex justify-center items-center left-[35px] absolute">
                     <Image
-                        src={require("@/public/Images/Layout/sidebar/logo.png")}
+                        src={require("@/public/Images/Layout/Sidebar/logo.png")}
                         width={60}
                         height={60}
                         alt="logo"
