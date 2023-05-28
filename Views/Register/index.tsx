@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
@@ -7,12 +7,14 @@ import { useState } from "react";
 import DatePicker from "@/components/common/DatePicker.tsx";
 import moment from "moment";
 import { FaTransgender } from "react-icons/fa";
-import styled from "styled-components";
+import Link from "next/link";
+import Select from "react-select";
 
 type FormData = Pick<
   Schema,
   "email" | "password" | "confirm_password" | "birthday" | "gender"
 >;
+
 const registerSchema = schema.pick([
   "email",
   "password",
@@ -20,8 +22,6 @@ const registerSchema = schema.pick([
   "birthday",
   "gender",
 ]);
-
-export const abc = styled.div``;
 
 export default function Register() {
   const {
@@ -41,7 +41,11 @@ export default function Register() {
     setValue("birthday", formattedValue);
   };
 
-  const onSubmit = handleSubmit((data) => {
+  const handleGender = (value: any) => {
+    setValue("gender", value.value);
+  };
+
+  const onSubmit = handleSubmit((data: FormData) => {
     console.log(data);
   });
 
@@ -185,21 +189,28 @@ export default function Register() {
                   <div className="flex justify-between">
                     <div className="bg-white px-3 flex justify-start items-center h-[45px] rounded-xl text-[14px]">
                       <FaTransgender className="text-2xl" />
-                      <select
-                        className="py-[12px] px-5 focus-visible:outline-none rounded-xl"
-                        {...register("gender")}
-                        defaultValue=""
-                      >
-                        <option className="m-5" value="Male">
-                          Male
-                        </option>
-                        <option className="m-5" value="Female">
-                          Female
-                        </option>
-                        <option className="m-5" value="Others">
-                          Others
-                        </option>
-                      </select>
+                      <Select
+                        styles={{
+                          control: (base) => ({
+                            ...base,
+                            border: 0,
+                            boxShadow: "none",
+                          }),
+                          option: (base) => ({
+                            ...base,
+                            backgroundColor: "white",
+                            color: "black",
+                          }),
+                        }}
+                        className=""
+                        defaultValue={{ value: "male", label: "Male" }}
+                        onChange={(value) => handleGender(value)}
+                        options={[
+                          { value: "male", label: "Male" },
+                          { value: "female", label: "Female" },
+                          { value: "others", label: "Others" },
+                        ]}
+                      />
                     </div>
                     <DatePicker
                       name="birthday"
@@ -245,7 +256,9 @@ export default function Register() {
                 <p className="font-medium pr-2 text-[#888585] text-[13px]">
                   Already have an account?
                 </p>
-                <p className="font-bold pr-2 text-[13px]">Sign in</p>
+                <Link href="login" className="font-bold pr-2 text-[13px]">
+                  Sign in
+                </Link>
               </div>
             </div>
           </div>

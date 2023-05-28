@@ -4,6 +4,7 @@ import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
@@ -63,13 +64,13 @@ export default function Login() {
                 alt="logo"
               />
             </div>
-            <div className="pt-5 pb-10">
+            <div className="">
               <h1 className="font-bold text-[32px] pb-5">Welcome Back!</h1>
               <p className="pb-5 text-[14px] font-semibold">
                 Please enter log in detail below
               </p>
             </div>
-            <div>
+            <div className="pb-5">
               <form onSubmit={onSubmit} className="w-full">
                 <div className="">
                   <Input
@@ -99,13 +100,13 @@ export default function Login() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full font-bold text-[20px] bg-primary mt-5 text-white bg-black px-5 py-3 rounded-xl"
+                  className="w-full font-bold text-[20px] bg-primary text-white bg-black px-5 py-3 rounded-xl"
                 >
                   Sign in
                 </button>
               </form>
             </div>
-            <div className="py-5">
+            <div className="">
               <div className="flex items-center justify-around pb-5">
                 <div className="bg-[#C5BCBC] h-[1px] w-[30%]"></div>
                 <div className="text-[#888585]">or continute </div>
@@ -129,7 +130,9 @@ export default function Login() {
                 <p className="font-medium pr-2 text-[#888585] text-[13px]">
                   Don’t have on account?{" "}
                 </p>
-                <p className="font-bold pr-2 text-[13px]">Sign up</p>
+                <Link href="register" className="font-bold pr-2 text-[13px]">
+                  Sign up
+                </Link>
               </div>
             </div>
           </div>
