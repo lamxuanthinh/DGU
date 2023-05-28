@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 export const HeaderStyle = styled.div`
     position: absolute;
     top: 10px;
@@ -16,7 +14,6 @@ export const HeaderStyle = styled.div`
     background-color: white;
 `;
 
-
 export const HeaderInput = styled.input`
     width: 100%;
     height: 40px;
@@ -24,13 +21,10 @@ export const HeaderInput = styled.input`
     border: none;
     outline: none;
 
-
-
     &::placeholder {
         color: #00000085; /* Set the desired color for the placeholder text */
     }
 `;
-
 
 export const SectionIcon = styled.div`
     width: 112px;
@@ -38,7 +32,7 @@ export const SectionIcon = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-`
+`;
 
 export const SectionCreateVideo = styled.div`
     width: 182px;
@@ -46,7 +40,7 @@ export const SectionCreateVideo = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
 
 export const SectionLogin = styled.div`
     width: 176px;
@@ -54,13 +48,11 @@ export const SectionLogin = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
 export const SectionProfile = styled.div`
     width: 176px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-`
-
-
+`;

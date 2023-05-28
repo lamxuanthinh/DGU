@@ -15,7 +15,6 @@ const MainLayout = (props : LayoutProps) => {
                 </div>
                 <div className="w-[1135px]  flex flex-col relative">
                     <Header />
-
                     <ContentStyle>
                         <div className="p-[10px] flex justify-center items-center">
                             {props.children}
