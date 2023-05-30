@@ -42,7 +42,7 @@ export default function Input({
         )}
         <label
           htmlFor={name}
-          className="text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-3 transition duration-300 input-text"
+          className="text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-3.5 transition duration-300 input-text"
         >
           {labelInput}
         </label>

@@ -61,8 +61,8 @@ export default function Login() {
     <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
       <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pl-10">
         <div
-          data-aos="fade-right"
-          data-aos-offset="500"
+          data-aos="fade-left"
+          data-aos-duration="2000"
           className="w-[469px] flex items-center bg-[#fff] rounded-2xl"
         >
           <div className="w-[100%]">
@@ -114,7 +114,7 @@ export default function Login() {
                   type="submit"
                   className="w-full font-bold text-[20px] bg-primary text-white bg-black px-5 py-3 rounded-xl"
                 >
-                  Sign in
+                  Login
                 </button>
               </form>
             </div>
@@ -134,9 +134,7 @@ export default function Login() {
                   height={24}
                   src={require("@/public/Images/Login/google.png")}
                 />
-                <p className="font-bold text-[20px] px-5">
-                  Sign in with Google
-                </p>
+                <p className="font-bold text-[20px] px-5">Login with Google</p>
               </button>
               <div className="flex justify-center py-3">
                 <p className="font-medium pr-2 text-[#888585] text-[13px]">
@@ -150,7 +148,8 @@ export default function Login() {
           </div>
         </div>
         <div
-          data-aos="fade-left"
+          data-aos="fade-right"
+          data-aos-duration="2000"
           className="w-[469px] bg-[#000000] rounded-xl rounded-bl-[50px]"
         >
           {inform.map((item, index) => {

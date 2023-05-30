@@ -1,5 +1,5 @@
 import { MdEditCalendar } from "react-icons/md";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
@@ -55,7 +55,10 @@ export default function DatePicker({
         }
         className="focus-visible:outline-none py-3 text-[14px] w-full"
       />
-      <IoMdArrowDropdown className="text-2xl mx-4" onClick={handleIconClick} />
+      <IoIosArrowDown
+        className="text-[27px] mx-4 font-extrabold text-[#38383844]"
+        onClick={handleIconClick}
+      />
     </div>
   );
 

@@ -7,10 +7,12 @@ import { useState } from "react";
 import DatePicker from "@/components/common/DatePicker.tsx";
 import moment from "moment";
 import { FaTransgender } from "react-icons/fa";
+import { ImCheckboxChecked } from "react-icons/im";
 import Link from "next/link";
 import Select from "react-select";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CheckboxInput from "@/components/common/CheckboxInput";
 
 type FormData = Pick<
   Schema,
@@ -89,7 +91,8 @@ export default function SignUp() {
     <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
       <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10">
         <div
-          data-aos="fade-right"
+          data-aos="fade-left"
+          data-aos-duration="2000"
           className="w-[469px] bg-[#000000] rounded-xl rounded-br-[50px]"
         >
           {inform.map((item, index) => {
@@ -170,8 +173,9 @@ export default function SignUp() {
           })}
         </div>
         <div
-          data-aos="fade-left"
-          className="w-[469px] flex items-center bg-[#fff] rounded-2xl"
+          data-aos="fade-right"
+          data-aos-duration="2000"
+          className="w-[469px] flex items-center"
         >
           <div className="w-[100%]">
             <div className="pb-8 pt-4">
@@ -253,8 +257,8 @@ export default function SignUp() {
                               className="flex items-center"
                               onClick={handleMenu}
                             >
-                              <FaTransgender className="text-xl mx-2" />{" "}
-                              <span className="">{data.label}</span>{" "}
+                              <FaTransgender className="text-xl mx-2" />
+                              <span className="">{data.label}</span>
                             </div>
                           ),
                         }}
@@ -291,9 +295,8 @@ export default function SignUp() {
                   />
                 </div>
                 <div className="flex justify-start">
-                  <div className="flex justify-center">
-                    <input type="checkbox" />
-
+                  <div className="flex justify-center items-center">
+                    <CheckboxInput />
                     <p className="px-2">Do you agree to the terms of DGU?</p>
                   </div>
                 </div>
@@ -311,7 +314,7 @@ export default function SignUp() {
                   Already have an account?
                 </p>
                 <Link href="login" className="font-bold pr-2 text-[13px]">
-                  Sign in
+                  Login
                 </Link>
               </div>
             </div>
