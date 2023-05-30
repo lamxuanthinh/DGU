@@ -208,7 +208,6 @@ export default function SignUp() {
                   <Input
                     name="email"
                     register={register}
-                    className="text-xl pb-1"
                     type="text"
                     autoComplete="on"
                     placeholder="Email"
