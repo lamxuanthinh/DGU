@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="text"]:focus ~ .input-text,
+input[type="password"]:focus ~ .input-text,
+input[type="password"]:not(:placeholder-shown) ~ .input-text,
+input[type="email"]:focus ~ .input-text,
+input[type="email"]:not(:placeholder-shown) ~ .input-text,
+input[type="text"]:not(:placeholder-shown) ~ .input-text {
+  @apply text-[#848484] transform -translate-y-7 -translate-x-0 scale-90;
+}
