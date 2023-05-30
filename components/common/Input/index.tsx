@@ -40,7 +40,9 @@ export default function Input({
                 : "password"
               : type
           }
-          className="bg-[#fff] shadow-inset-white text-[14px] px-5 py-3 w-full text-black border-[#52525233] border-2 rounded-md border-opacity-50 outline-none focus:border-black placeholder-gray-300 placeholder-opacity-0 transition duration-200"
+          className={`${
+            type == "password" ? "font-bold" : ""
+          } bg-[#fff] shadow-inset-white text-[14px] px-5 py-3 w-full text-black border-[#52525233] border-2 rounded-md border-opacity-50 outline-none focus:border-black placeholder-gray-300 placeholder-opacity-0 transition duration-200`}
           placeholder={placeholder}
           {...register(name, rules)}
           autoComplete={autoComplete}

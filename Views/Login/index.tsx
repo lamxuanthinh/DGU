@@ -62,7 +62,7 @@ export default function Login() {
     <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
       <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pl-10">
         <div
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-duration="2000"
           className="w-[469px] flex items-center bg-[#fff] rounded-2xl"
         >
@@ -144,7 +144,7 @@ export default function Login() {
         </div>
         <div
           data-aos="fade-right"
-          data-aos-duration="2000"
+          data-aos-duration="1500"
           className="w-[469px] bg-[#000000] rounded-xl rounded-bl-[50px]"
         >
           {inform.map((item, index) => {
