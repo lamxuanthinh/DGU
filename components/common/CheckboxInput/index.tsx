@@ -12,7 +12,7 @@ export default function CheckboxInput({ checked = false }: Props) {
         id="my-checkbox"
         className="absolute inset-0 opacity-0"
       />
-      <div className="bg-gray-200 h-4 w-4 flex items-center justify-center">
+      <div className="bg-gray-200 h-4 rounded-sm w-4 flex items-center justify-center">
         <svg
           className="h-3 w-3 text-white fill-current hidden"
           viewBox="0 0 20 20"

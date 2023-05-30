@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { FcGoogle } from "react-icons/fc";
 
 type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
@@ -68,8 +69,7 @@ export default function Login() {
           <div className="w-[100%]">
             <div className="pb-5">
               <Image
-                width={86}
-                height={55}
+                width={60}
                 src={require("@/public/Images/Login/logo.png")}
                 alt="logo"
               />
@@ -112,7 +112,7 @@ export default function Login() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full font-bold text-[20px] bg-primary text-white bg-black px-5 py-3 rounded-xl"
+                  className="w-full font-bold text-[20px] bg-primary text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
                 >
                   Login
                 </button>
@@ -126,14 +126,9 @@ export default function Login() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary bg-white px-5 py-3 rounded-xl flex flex-row justify-center items-center"
+                className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
               >
-                <Image
-                  alt="image google"
-                  width={24}
-                  height={24}
-                  src={require("@/public/Images/Login/google.png")}
-                />
+                <FcGoogle className="text-2xl" />
                 <p className="font-bold text-[20px] px-5">Login with Google</p>
               </button>
               <div className="flex justify-center py-3">

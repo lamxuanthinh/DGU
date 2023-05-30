@@ -17,3 +17,4 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 #my-checkbox:checked + .bg-gray-200 svg {
   display: block;
 }
+

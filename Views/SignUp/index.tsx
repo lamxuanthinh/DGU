@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DatePicker from "@/components/common/DatePicker.tsx";
 import moment from "moment";
 import { FaTransgender } from "react-icons/fa";
@@ -87,13 +87,29 @@ export default function SignUp() {
 
   const [select, setSelect] = useState(0);
 
+  const selectRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleMouseDown = (event: any) => {
+      if (!selectRef.current?.contains(event.target)) {
+        setMenuIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleMouseDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, []);
+
   return (
     <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
       <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10">
         <div
           data-aos="fade-left"
-          data-aos-duration="2000"
-          className="w-[469px] bg-[#000000] rounded-xl rounded-br-[50px]"
+          data-aos-duration="1500"
+          className="w-[469px] bg-[#000000] rounded-xl rounded-br-[50px] z-3"
         >
           {inform.map((item, index) => {
             return (
@@ -173,9 +189,9 @@ export default function SignUp() {
           })}
         </div>
         <div
-          data-aos="fade-right"
+          data-aos="fade-up"
           data-aos-duration="2000"
-          className="w-[469px] flex items-center"
+          className="w-[469px] flex items-center z-2"
         >
           <div className="w-[100%]">
             <div className="pb-8 pt-4">
@@ -210,7 +226,10 @@ export default function SignUp() {
                   />
 
                   <div className="flex justify-between">
-                    <div className="bg-white w-[35%] flex justify-start items-center h-[48px] rounded-md text-[14px] border-[#52525233] border-2">
+                    <div
+                      ref={selectRef}
+                      className="bg-white w-[35%] flex justify-start items-center h-[48px] rounded-md text-[14px] border-[#52525233] border-2"
+                    >
                       <Select
                         styles={{
                           container: (base) => ({
@@ -233,9 +252,13 @@ export default function SignUp() {
                             backgroundColor: "white",
                             color: "black",
                           }),
-                          input: (base) => ({
+                          input: (base, { selectProps }) => ({
                             ...base,
                             display: "none", // Ẩn thẻ input gây ra sự cố
+                            opacity: selectProps.menuIsOpen ? 0 : 1,
+                            pointerEvents: selectProps.menuIsOpen
+                              ? "none"
+                              : "auto",
                           }),
                         }}
                         className=""
@@ -297,12 +320,12 @@ export default function SignUp() {
                 <div className="flex justify-start">
                   <div className="flex justify-center items-center">
                     <CheckboxInput />
-                    <p className="px-2">Do you agree to the terms of DGU?</p>
+                    <p className="px-2">Do you want to save the password?</p>
                   </div>
                 </div>
                 <button
                   type="submit"
-                  className="w-full font-bold text-[20px] bg-primary mt-4 text-white bg-black px-5 py-3 rounded-xl"
+                  className="w-full font-bold text-[20px] bg-primary mt-4 text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
                 >
                   Sign up
                 </button>
