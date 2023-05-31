@@ -3,8 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { FcGoogle } from "react-icons/fc";
 
 type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
@@ -18,6 +21,10 @@ export default function Login() {
     resolver: yupResolver(loginSchema),
   });
 
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
@@ -25,25 +32,25 @@ export default function Login() {
   const [inform, setInform] = useState([
     {
       key: 0,
-      title: "Knowledge is power.",
+      title: "Knowledge is power 1.",
       feature:
         "10 beautiful compliments are not as good as one genuine compliment.",
     },
     {
       key: 1,
-      title: "Knowledge is power.",
+      title: "Knowledge is power 2.",
       feature:
         "10 beautiful compliments are not as good as one genuine compliment.",
     },
     {
       key: 2,
-      title: "Knowledge is power.",
+      title: "Knowledge is power 3.",
       feature:
         "10 beautiful compliments are not as good as one genuine compliment.",
     },
     {
       key: 3,
-      title: "Knowledge is power.",
+      title: "Knowledge is power 4.",
       feature:
         "10 beautiful compliments are not as good as one genuine compliment.",
     },
@@ -52,21 +59,24 @@ export default function Login() {
   const [select, setSelect] = useState(0);
 
   return (
-    <div className="h-screen w-screen bg-[#717171f5] flex justify-center items-center">
-      <div className="w-[1056px] h-[700px] rounded-2xl bg-[#f7f4f4d1] flex justify-between p-5 pl-10">
-        <div className="w-[469px] flex items-center">
+    <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
+      <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pl-10 overflow-hidden">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          className="w-[469px] flex items-center bg-[#fff] rounded-2xl"
+        >
           <div className="w-[100%]">
             <div className="pb-5">
               <Image
-                width={86}
-                height={55}
+                width={60}
                 src={require("@/public/Images/Login/logo.png")}
                 alt="logo"
               />
             </div>
             <div className="">
               <h1 className="font-bold text-[32px] pb-5">Welcome Back!</h1>
-              <p className="pb-5 text-[14px] font-semibold">
+              <p className="pb-7 text-[14px] font-semibold">
                 Please enter log in detail below
               </p>
             </div>
@@ -76,10 +86,11 @@ export default function Login() {
                   <Input
                     name="email"
                     register={register}
+                    className="text-xl pb-1"
                     type="text"
                     autoComplete="on"
                     placeholder="Email"
-                    className="text-xl pb-1"
+                    labelInput="Email"
                     errorMessage={errors.email?.message}
                   />
 
@@ -90,6 +101,7 @@ export default function Login() {
                     autoComplete="on"
                     className="text-xl pb-1"
                     placeholder="Password"
+                    labelInput="Password"
                     errorMessage={errors.password?.message}
                   />
                 </div>
@@ -100,9 +112,9 @@ export default function Login() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full font-bold text-[20px] bg-primary text-white bg-black px-5 py-3 rounded-xl"
+                  className="w-full font-bold text-[20px] bg-primary text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
                 >
-                  Sign in
+                  Login
                 </button>
               </form>
             </div>
@@ -114,30 +126,27 @@ export default function Login() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary bg-white px-5 py-3 rounded-xl flex flex-row justify-center items-center"
+                className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
               >
-                <Image
-                  alt="image google"
-                  width={24}
-                  height={24}
-                  src={require("@/public/Images/Login/google.png")}
-                />
-                <p className="font-bold text-[20px] px-5">
-                  Sign in with Google
-                </p>
+                <FcGoogle className="text-2xl" />
+                <p className="font-bold text-[20px] px-5">Login with Google</p>
               </button>
-              <div className="flex justify-center py-5">
+              <div className="flex justify-center py-3">
                 <p className="font-medium pr-2 text-[#888585] text-[13px]">
                   Don’t have on account?{" "}
                 </p>
-                <Link href="register" className="font-bold pr-2 text-[13px]">
+                <Link href="signup" className="font-bold pr-2 text-[13px]">
                   Sign up
                 </Link>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-[469px] bg-[#000000] rounded-xl rounded-bl-[50px]">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          className="w-[469px] bg-[#000000] rounded-xl rounded-bl-[50px]"
+        >
           {inform.map((item, index) => {
             return (
               index == select && (
@@ -192,7 +201,10 @@ export default function Login() {
                               key={index1}
                               className={`${
                                 item.key == select ? "bg-[#D9D9D9]" : ""
-                              } w-[20px] h-[20px] rounded-xl flex items-center justify-center`}
+                              } w-[20px] h-[20px] rounded-xl flex items-center justify-center hover:cursor-pointer`}
+                              onClick={() => {
+                                setSelect(index1);
+                              }}
                             >
                               <div
                                 className={`${

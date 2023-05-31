@@ -3,21 +3,21 @@ import * as yup from "yup";
 export const schema = yup.object({
   email: yup
     .string()
-    .required("Email là bắt buộc")
-    .email("Email không đúng định dạng")
-    .min(5, "Độ dài từ 5-160 ký tự")
-    .max(160, "Độ dài từ 5-160 ký tự"),
+    .required("Email is required !")
+    .email("Email invalidate !")
+    .min(5, "Length from 5-160 characters !")
+    .max(160, "Length from 5-160 characters !"),
   password: yup
     .string()
-    .required("Password là bắt buộc")
-    .min(6, "Độ dài từ 6 - 160 ký tự")
-    .max(160, "Độ dài từ 6 - 160 ký tự"),
+    .required("Password is required !")
+    .min(6, "Length from 6-160 characters !")
+    .max(160, "Length from 6-160 characters !"),
   confirm_password: yup
     .string()
-    .required("Nhập lại password là bắt buộc")
-    .min(6, "Độ dài từ 6 - 160 ký tự")
-    .max(160, "Độ dài từ 6 - 160 ký tự")
-    .oneOf([yup.ref("password")], "Nhập lại password không khớp"),
+    .required("Re-entering password is required")
+    .min(6, "Length from 6-160 characters")
+    .max(160, "Length from 6-160 characters")
+    .oneOf([yup.ref("password")], "Password does not match"),
   birthday: yup.string(),
   gender: yup.string(),
 });

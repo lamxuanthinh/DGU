@@ -1,9 +1,9 @@
 import { MdEditCalendar } from "react-icons/md";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Props {
   className?: string;
@@ -11,15 +11,18 @@ interface Props {
   value: any;
   onChange: (value: string) => void;
   name: string;
+  classBirthday?: string;
 }
 
 export default function DatePicker({
   className,
   errorMessage,
+  classBirthday,
   value,
   name,
   onChange,
 }: Props) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [internalValue, setInternalValue] = useState(value);
 
   useEffect(() => {
@@ -32,22 +35,44 @@ export default function DatePicker({
     onChange(formattedValue);
   };
 
+  const handleIconClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
+  const renderInput = (props: any) => (
+    <div className="flex justify-center items-center">
+      <MdEditCalendar className="text-3xl mx-4" onClick={handleIconClick} />
+      <input
+        {...props}
+        ref={inputRef}
+        readOnly
+        value={
+          internalValue
+            ? moment(internalValue).format("YYYY-MM-DD")
+            : "Enter date of birth"
+        }
+        className="focus-visible:outline-none py-3 text-[14px] w-full"
+      />
+      <IoIosArrowDown
+        className="text-[27px] mx-4 font-extrabold text-[#38383844]"
+        onClick={handleIconClick}
+      />
+    </div>
+  );
+
   return (
     <div className={className}>
-      <div className="flex justify-center rounded-xl items-center bg-white">
-        <MdEditCalendar className="text-2xl mx-4" />
+      <div
+        className={`${classBirthday} flex justify-center rounded-md items-center bg-white`}
+      >
         <Datetime
-          className="rounded text-gray focus-visible:outline-none"
-          inputProps={{
-            readOnly: true,
-            value: internalValue
-              ? moment(internalValue).format("YYYY-MM-DD")
-              : "",
-            className: "focus-visible:outline-none py-3 text-[14px]",
-          }}
+          className="rounded text-gray focus-visible:outline-none w-full"
+          renderInput={renderInput}
+          value={internalValue}
           onChange={handleDateChange}
         />
-        <IoMdArrowDropdown className="text-2xl mx-4" />
       </div>
       <div className="mt-1 px-5 text-red-600 min-h-[1.5rem] text-sm">
         {errorMessage}
