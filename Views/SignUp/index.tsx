@@ -105,7 +105,7 @@ export default function SignUp() {
 
   return (
     <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
-      <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10">
+      <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
         <div
           data-aos="fade-left"
           data-aos-duration="1500"
