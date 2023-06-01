@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { BsFillEyeFill } from "react-icons/bs";
 
 export default function Details() {
