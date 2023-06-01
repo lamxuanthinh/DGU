@@ -4,42 +4,42 @@ import { BsFillEyeFill } from "react-icons/bs";
 export default function MyCourse() {
   const dataCardDetail = [
     {
-      id: "1",
+      id: 1,
       image: "",
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
       title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
     },
     {
-      id: "2",
+      id: 2,
       image: "",
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
       title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
     },
     {
-      id: "3",
+      id: 3,
       image: "",
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
       title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
     },
     {
-      id: "4",
+      id: 4,
       image: "",
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
       title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
     },
     {
-      id: "5",
+      id: 5,
       image: "",
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
       title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
     },
     {
-      id: "6",
+      id: 6,
       image: "",
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
@@ -48,7 +48,6 @@ export default function MyCourse() {
   ];
 
   const CardDetail = ({ data }: any) => {
-    console.log(data);
     return (
       <div className="flex justify-start h-[140px] pb-4">
         <div className="h-full flex items-center p-2">
@@ -124,7 +123,7 @@ export default function MyCourse() {
       </div>
       <div className="rounded-xl w-[66%]">
         {dataCardDetail.map((item, index) => {
-          return <CardDetail data={item} />;
+          return <CardDetail key={item.id} data={item} />;
         })}
       </div>
     </div>

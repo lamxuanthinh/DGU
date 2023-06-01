@@ -86,7 +86,7 @@ const Sidebar = () => {
                     router.pathname === link
                       ? "text-[#000000] bg-[white]"
                       : "text-[#00000085]"
-                  }  `}
+                  }`}
                 >
                   <div className="px-3">{icon}</div>
                   <div className="px-3">
