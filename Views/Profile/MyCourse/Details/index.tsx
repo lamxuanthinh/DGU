@@ -6,45 +6,81 @@ export default function Details() {
   const dataCardDetail = [
     {
       id: 1,
-      image: "",
+      image: (
+        <Image
+          className="h-full w-full rounded-xl"
+          alt=""
+          src={require("@/public/Images/Layout/Profile/detail1.png")}
+        />
+      ),
       title1:
         "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
       title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
     },
     {
       id: 2,
-      image: "",
+      image: (
+        <Image
+          className="h-full w-full rounded-xl"
+          alt=""
+          src={require("@/public/Images/Layout/Profile/detail2.png")}
+        />
+      ),
       title1:
-        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
-      title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
+        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 2: Chăm chỉ chưa chắc đã thành công | Tùng Tâm Lý",
+      title2: "Tùng Tâm Lý  • 31.103 lượt xem • 10 tháng trước",
     },
     {
       id: 3,
-      image: "",
+      image: (
+        <Image
+          className="h-full w-full rounded-xl"
+          alt=""
+          src={require("@/public/Images/Layout/Profile/detail3.png")}
+        />
+      ),
       title1:
-        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
-      title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
+        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 3: Cố gắng để làm gì ?  | Tùng Tâm Lý",
+      title2: "Tùng Tâm Lý  • 42.103 lượt xem • 9 tháng trước",
     },
     {
       id: 4,
-      image: "",
+      image: (
+        <Image
+          className="h-full w-full rounded-xl"
+          alt=""
+          src={require("@/public/Images/Layout/Profile/detail4.png")}
+        />
+      ),
       title1:
-        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
-      title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
+        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 4: Team work hiệu quả ?  | Tùng Tâm Lý",
+      title2: "Tùng Tâm Lý  • 12.103 lượt xem • 5 tháng trước",
     },
     {
       id: 5,
-      image: "",
+      image: (
+        <Image
+          className="h-full w-full rounded-xl"
+          alt=""
+          src={require("@/public/Images/Layout/Profile/detail5.png")}
+        />
+      ),
       title1:
-        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
-      title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
+        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 5: Học nhiều ngôn ngữ để làm gì? | Tùng Tâm Lý",
+      title2: "Tùng Tâm Lý  • 2.103 lượt xem • 3 tháng trước",
     },
     {
       id: 6,
-      image: "",
+      image: (
+        <Image
+          className="h-full w-full rounded-xl"
+          alt=""
+          src={require("@/public/Images/Layout/Profile/detail6.png")}
+        />
+      ),
       title1:
-        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 1: Tha thứ lỗi lầm | Tùng Tâm Lý",
-      title2: "Tùng Tâm Lý • 312.103 lượt xem • 1 năm trước",
+        "CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ? - BÀI 6: Học cho đến bao giờ ? | Tùng Tâm Lý",
+      title2: "Tùng Tâm Lý  • 103 lượt xem • 1 tuần trước",
     },
   ];
 
@@ -54,14 +90,8 @@ export default function Details() {
         <div className="h-full flex items-center p-3">
           <p className="font-bold text-[15px]">{data.id}</p>
         </div>
-        <div>
-          <Image
-            className="h-full rounded-xl"
-            alt=""
-            src={require("@/public/Images/Layout/Profile/detail1.png")}
-          />
-        </div>
-        <div className="flex flex-col px-2">
+        <div className="w-[200px]">{data.image}</div>
+        <div className="flex flex-col px-2 w-[70%]">
           <h1 className="font-bold text-[18px]">{data.title1}</h1>
           <p className="font-medium text-[16px]">{data.title2}</p>
         </div>
