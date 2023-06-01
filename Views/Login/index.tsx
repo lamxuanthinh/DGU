@@ -70,7 +70,7 @@ export default function Login() {
             <div className="pb-5">
               <Image
                 width={60}
-                src={require("@/public/Images/Login/logo.png")}
+                src={require("@/public/Images/logo.png")}
                 alt="logo"
               />
             </div>
