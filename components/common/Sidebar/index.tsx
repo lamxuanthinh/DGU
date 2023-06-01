@@ -78,8 +78,8 @@ const Sidebar = () => {
       </div>
       <div className="h-[76%] w-[100%] flex justify-center items-center mt-[20px]">
         <Navigation>
-          {navLink.map(({ name, link, icon }) => (
-            <div className="w-[100%]">
+          {navLink.map(({ name, link, icon }, index) => (
+            <div className="w-[100%]" key={index}>
               <Link key={name} href={link}>
                 <NavigationItem
                   className={`flex items-center flex-wrap p-3 ${

@@ -22,7 +22,7 @@ export default function NavigationProfile() {
       <div className="flex justify-center">
         {navPathProfile.map((item, index) => {
           return (
-            <div className="p-2">
+            <div className="p-2" key={index}>
               <Link
                 href={item.path}
                 className={`p-1 ${
