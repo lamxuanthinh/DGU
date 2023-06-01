@@ -5,4 +5,8 @@ export const auth = {
   signUp: (payload: signUpPayload) => {
     return axiosClient.post("/api/signup", payload);
   },
+  
+  login: (payload: loginPayload) => {
+    return axiosClient.post("/api/login", payload);
+  },
 };
