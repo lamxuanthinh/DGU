@@ -1,17 +1,10 @@
+import MainLayout from "@/components/layout/MainLayout";
+import Home from "@/Views/Home";
 
-
-import  MainLayout  from "@/components/layout/MainLayout";
-
-
-const Home  = () => {
-  return (
-    <>
-      <div>Hello ae DGU</div>
-    </>
-  )
+const index = () => {
+  return <Home />;
 };
 
-Home.Layout = MainLayout;
+index.Layout = MainLayout;
 
-
-export default Home;
+export default index;

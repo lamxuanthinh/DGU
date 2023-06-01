@@ -1,30 +1,21 @@
-import Header from "@/components/layout/Header";
-import  Sidebar from "@/components/layout/Sidebar";
-
-import  React, { ReactNode } from 'react';
-
-import { ContentStyle } from '@/components/layout/MainLayout/mainLayoutStyled';
+import Header from "@/components/common/Header";
+import Sidebar from "@/components/common/Sidebar";
 import { LayoutProps } from "@/model";
 
-const MainLayout = (props : LayoutProps) => {
-    return (
-        <div className="w-[100%] h-[100vh] bg-[#DBDBDB] flex justify-center">
-            <div className="w-[1440px] h-[100%] flex flex-nowrap">
-                <div className="w-[305px] flex relative">
-                    <Sidebar />
-                </div>
-                <div className="w-[1135px]  flex flex-col relative">
-                    <Header />
-                    <ContentStyle>
-                        <div className="p-[10px] flex justify-center items-center">
-                            {props.children}
-                        </div>
-                    </ContentStyle>
-                </div>
-            </div>
-            
+const MainLayout = (props: LayoutProps) => {
+  return (
+    <div className="w-screen h-screen bg-[#DBDBDB] flex justify-between p-3">
+      <Sidebar />
+      <div className="flex flex-col w-[80%]">
+        <Header />
+        <div className="mt-2 p-[10px] h-[90%] bg-[#fff] rounded-[20px]">
+          <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[20px]">
+            <div className="h-full flex justify-center">{props.children}</div>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default MainLayout;
