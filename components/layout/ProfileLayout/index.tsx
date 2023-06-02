@@ -42,10 +42,13 @@ export default function ProfileLayout(props: LayoutProps) {
           </SectionDescription>
         </div>
       </div>
+      <div className="bg-[#eef3f9] w-full rounded-[20px]">
       <div className="m-3">
         <NavigationProfile />
       </div>
       {props.children}
+
+      </div>
     </div>
   );
 }

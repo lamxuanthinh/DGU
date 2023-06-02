@@ -37,8 +37,8 @@ export default function NavigationProfile() {
           );
         })}
       </div>
-      <div className="w-[200px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl ml-[13px] p-2">
-        <div className="px-3 flex justify-center items-center ">
+      <div className="w-[200px] flex flex-nowrap bg-[#ffffff] rounded-2xl ml-[13px] p-2">
+        <div className="px-3 flex justify-center items-center  ">
           <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
         </div>
         <div className="w-[410px] flex justify-center items-center">
