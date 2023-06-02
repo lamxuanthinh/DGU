@@ -4,10 +4,8 @@ import Studying from "@/Views/Profile/Studying";
 
 export default function index() {
   return (
-    <ProfileLayout>
       <Studying />
-    </ProfileLayout>
   );
 }
 
-index.Layout = MainLayout;
+index.Layout = ProfileLayout;

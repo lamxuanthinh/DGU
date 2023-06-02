@@ -269,8 +269,8 @@ export default function Studying() {
                 </p>
               </div>
               <div className="w-[136px] h-[30px]  flex items-center justify-center">
-                <div className="w-[126px] h-[10px] border border-solid border-[#000000] bg-[#BEBEBE] rounded-[30px] flex items-center justify-center ">
-                  <div className="w-[122px] h-[6px] flex justify-start items-center">
+                <div className="w-[126px] h-[10px]  bg-[#BEBEBE] rounded-[30px] flex items-center justify-center ">
+                  <div className="w-[126px] h-[10px] flex justify-start items-center">
                     <div className={` h-[100%] rounded-[30px]  `} style={{backgroundColor: color, width: `${process}%`}}></div>
                   </div>
                 </div>
@@ -288,7 +288,7 @@ export default function Studying() {
   }
 
   return (
-    <div className="w-[100%] h-[100%]  flex flex-col">
+    <div className="w-[100%] h-[100%]  flex flex-col overflow-hidden">
       <div className="w-full m-[10px] h-[100%] grid grid-cols-4 gap-4 ">
         {courseData.map(
           (
@@ -323,8 +323,9 @@ export default function Studying() {
                 </div>
                 <div className="w-[250px] h-[155px] ">
                   <div className="w-[240px] h-[145px] m-[5px]  flex flex-col">
-                    <div className="w-[100%] h-[25px] ">
+                    <div className="w-[100%] h-[35px] flex flex-nowrap justify-between items-center">
                       <p className="font-bold text-[16px] ">{title}</p>
+                      {value}
                     </div>
                     <div className="w-[100%] h-[30px] flex justify-between">
                       <div className="w-[120px] h-full  flex justify-start items-center">
@@ -341,9 +342,8 @@ export default function Studying() {
                         </p>
                       </div>
                     </div>
-                    <div className="w-[100%] h-[55px]  flex flex-nowrap items-center">
+                    <div className="w-[100%] h-[45px]  flex flex-nowrap items-center">
                       <p className="font-thin text-[10px] ">{description}</p>
-                      {value}
                     </div>
 
                     {formatTheme(process)}

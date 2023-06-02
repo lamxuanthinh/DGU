@@ -121,7 +121,7 @@ export default function MyCourse() {
 
 
   return( 
-    <div className="w-[100%] h-[100%]  flex flex-col">
+    <div className="w-[100%] h-[100%]  flex flex-col overflow-hidden">
       <div className="w-full m-[10px] h-[100%] grid grid-cols-4 gap-4 ">
 
         {courseData.map(({ title, description, sessionTotal, value, commentCounts, viewCounts, link, themenails  }, index) => (
@@ -143,16 +143,17 @@ export default function MyCourse() {
               </div>
               <div className="w-[250px] h-[125px] " >
                 <div className="w-[240px] h-[115px] m-[5px]  flex flex-col">
-                  <div className="w-[100%] h-[25px] ">
+                  <div className="w-[100%] h-[35px] flex flex-nowrap justify-between items-center">
                     <p className="font-bold text-[16px] ">
                       {title}
                     </p>
+                    {value}
                   </div>
-                  <div className="w-[100%] h-[55px]  flex flex-nowrap items-center">
+                  <div className="w-[100%] h-[45px]  flex flex-nowrap items-center">
                     <p className="font-thin text-[10px] ">
                       {description}
                     </p>
-                    {value}
+                    
                   </div>
                   <div className="w-[100%] h-[35px]  flex flex-nowrap items-center justify-between ">
                     <div className="w-[45px] h-[100%]  flex flex-nowrap items-center justify-between">

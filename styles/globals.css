@@ -18,3 +18,22 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   display: block;
 }
 
+
+
+
+
+
+/* The effect after change link */
+.choose-link {
+  z-index: 2;
+}
+#action {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 3px solid #333;
+  z-index: 1;
+  transition: 1s;
+}
+
+
