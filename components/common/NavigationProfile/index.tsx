@@ -9,7 +9,7 @@ export default function NavigationProfile() {
   const navPathProfile = [
     {
       value: "My Course",
-      path: "/profile/mycourse",
+      path: "/profile/mycourse/details",
     },
     {
       value: "Studying",
@@ -46,6 +46,7 @@ export default function NavigationProfile() {
   return (
     <div className="pt-6 pb-3 flex justify-between items-center w-full">
       <div className=" flex justify-center w-[200px] relative ">
+
         {navPathProfile.map((item, index) => {
           return (
             <div className="w-[100px] h-[40px] flex justify-center items-center choose-link" key={index} get-link={index} >
