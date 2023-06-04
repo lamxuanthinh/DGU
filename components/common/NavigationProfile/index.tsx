@@ -9,7 +9,7 @@ export default function NavigationProfile() {
   const navPathProfile = [
     {
       value: "My Course",
-      path: "/profile/mycourse/details",
+      path: "/profile/mycourse",
     },
     {
       value: "Studying",
