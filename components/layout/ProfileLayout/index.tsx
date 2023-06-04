@@ -20,7 +20,7 @@ export default function ProfileLayout(props: LayoutProps) {
             <div className="w-full h-[50%] relative ">
               <div className="w-full h-[100%] relative overflow-hidden">
                 <Image
-                  src={require("@/public/Images/Profile/Infomation/nam1.jpg")}
+                  src={require("@/public/Images/Profile/Infomation/cool_green.jpg")}
                   className="w-full h-full rounded-t-[20px]"
                   style={{
                     overflow: "hidden",

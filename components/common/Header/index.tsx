@@ -10,9 +10,11 @@ import {
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiMessageRounded, BiVideoPlus, BiLogIn } from "react-icons/bi";
+
 import Link from "next/link";
 
 const Header = () => {
+
   return (
     <div className="flex items-center justify-between bg-[#fff] rounded-[20px] py-3">
       <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl ml-[13px] p-2">
@@ -40,14 +42,20 @@ const Header = () => {
         </div>
 
         <SectionCreateVideo>
-          <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center">
-            <div className="flex justify-center items-center pr-3">
-              <BiVideoPlus color="#000000" fontSize={"25px"} />
+          <Link
+            href="/upload"
+            className="cursor-pointer"
+          >
+            <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center">
+              <div className="flex justify-center items-center pr-3">
+                <BiVideoPlus color="#000000" fontSize={"25px"} />
+              </div>
+              <div className="flex justify-center items-center">
+                <p className="font-bold">Create Video</p>
+              </div>
             </div>
-            <div className="flex justify-center items-center">
-              <p className="font-bold">Create Video</p>
-            </div>
-          </div>
+          </Link>
+
         </SectionCreateVideo>
 
         <SectionLogin>
