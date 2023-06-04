@@ -40,14 +40,17 @@ const Header = () => {
         </div>
 
         <SectionCreateVideo>
-          <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center">
-            <div className="flex justify-center items-center pr-3">
-              <BiVideoPlus color="#000000" fontSize={"25px"} />
-            </div>
-            <div className="flex justify-center items-center">
-              <p className="font-bold">Create Video</p>
-            </div>
-          </div>
+            <Link
+              href={"/upload"}
+              className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center"
+            >
+              <div className="flex justify-center items-center pr-3">
+                <BiVideoPlus color="#000000" fontSize={"25px"} />
+              </div>
+              <div className="flex justify-center items-center">
+                <p className="font-bold">Create Video</p>
+              </div>
+            </Link>
         </SectionCreateVideo>
 
         <SectionLogin>
