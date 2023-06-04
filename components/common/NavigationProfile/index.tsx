@@ -9,33 +9,13 @@ export default function NavigationProfile() {
   const navPathProfile = [
     {
       value: "My Course",
-      path: "/profile/mycourse",
+      path: "/profile/mycourse/details",
     },
     {
       value: "Studying",
       path: "/profile/studying",
     },
   ];
-
-  // function choose time
-  // if (typeof window !== "undefined") {
-  //   const chooseLink =
-  //     document.querySelectorAll<HTMLDivElement>(".choose-link");
-  //   chooseLink.forEach((item) => {
-  //     item.addEventListener("click", (e) => {
-  //       const actionElement = document.getElementById("action");
-  //       if (actionElement) {
-  //         const target = e.target as HTMLDivElement; // Ép kiểu e.target thành HTMLDivElement
-  //         if (item.getAttribute("get-link") == "0") {
-  //           actionElement.style.left = "0px";
-  //         } else {
-  //           console.log(item.getAttribute("get-link"));
-  //           actionElement.style.left = "100px";
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
 
   return (
     <div className="pt-6 pb-3 flex justify-between items-center w-full">

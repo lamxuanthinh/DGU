@@ -1,3 +1,4 @@
+import Router from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
@@ -13,6 +14,8 @@ import Select from "react-select";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CheckboxInput from "@/components/common/CheckboxInput";
+import { auth } from "@/apis/auth";
+const router = Router;
 
 type FormData = Pick<
   Schema,
@@ -54,8 +57,25 @@ export default function SignUp() {
     setValue("gender", value.value);
   };
 
-  const onSubmit = handleSubmit((data: FormData) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data: FormData) => {
+    // handler API
+    console.log("[P]::SignUP::", data);
+    const payload = {
+      email: data.email,
+      name: "thinh333",
+      password: data.confirm_password,
+    };
+    console.log("[P]::payload::", payload);
+    try {
+      const holderSignUp: any = await auth.signUp(payload);
+      console.log("[P]::SignLog", holderSignUp);
+      // handler loading
+      if (holderSignUp.message !== "ErrorData") {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const [inform, setInform] = useState([
