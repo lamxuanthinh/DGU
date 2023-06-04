@@ -9,7 +9,7 @@ export default function NavigationProfile() {
   const navPathProfile = [
     {
       value: "My Course",
-      path: "/profile/mycourse/details",
+      path: "/profile/mycourse",
     },
     {
       value: "Studying",
@@ -18,27 +18,34 @@ export default function NavigationProfile() {
   ];
 
   return (
-    <div className="py-6 flex justify-between items-center w-full">
-      <div className="flex justify-center">
+    <div className="pt-6 pb-3 flex justify-between items-center w-full">
+      <div className=" flex justify-center w-[200px] relative ">
         {navPathProfile.map((item, index) => {
           return (
-            <div className="p-2" key={index}>
+            <div
+              className="w-[100px] h-[40px] flex justify-center items-center choose-link"
+              key={index}
+              get-link={index}
+            >
               <Link
                 href={item.path}
-                className={`p-1 ${
-                  router.pathname == item.path
-                    ? "font-bold border-b-[3px] border-[#333]"
-                    : ""
-                } text-[15px]`}
+                className={` flex justify-center items-center  text-[15px]
+                            ${router.pathname == item.path ? "font-bold " : ""}
+                          `}
               >
                 {item.value}
               </Link>
             </div>
           );
         })}
+        <div
+          id="action"
+          className={`w-[100px] h-[40px] 
+          ${router.pathname == "/profile/mycourse" ? "left-[0px]" : "left-[100px]"}`}
+        ></div>
       </div>
-      <div className="w-[200px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl ml-[13px] p-2">
-        <div className="px-3 flex justify-center items-center ">
+      <div className="w-[200px] flex flex-nowrap bg-[#ffffff] rounded-2xl ml-[13px] p-2">
+        <div className="px-3 flex justify-center items-center  ">
           <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
         </div>
         <div className="w-[410px] flex justify-center items-center">
