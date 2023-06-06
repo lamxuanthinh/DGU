@@ -2,12 +2,15 @@ import styled from "styled-components";
 
 export const BtnEditProfile = styled.div`
   display: flex;
+  justify-items: center;
+  align-items: center;
   position: absolute;
   right: 38px;
   bottom: 22px;
   background: #e1e7ed;
   padding: 6px 30px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const SectionDescription = styled.div`

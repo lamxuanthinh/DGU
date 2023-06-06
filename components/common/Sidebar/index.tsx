@@ -30,7 +30,7 @@ const Sidebar = () => {
     },
     {
       name: "Profile",
-      link: "/profile/mycourse/details",
+      link: "/profile/mycourse",
       icon: <BsPerson fontSize={"25px"} strokeWidth={"0.5px"} />,
     },
     {

@@ -10,9 +10,11 @@ import {
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiMessageRounded, BiVideoPlus, BiLogIn } from "react-icons/bi";
+
 import Link from "next/link";
 
 const Header = () => {
+
   return (
     <div className="flex items-center justify-between bg-[#fff] rounded-[20px] py-3">
       <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl ml-[13px] p-2">
