@@ -1,10 +1,20 @@
+import videoApi from "@/apis/video";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
 
-const index = () => {
-  return <Home />;
+const Index = ({ posts }: any) => {
+  return <Home data={posts} />;
 };
 
-index.Layout = MainLayout;
+Index.Layout = MainLayout;
 
-export default index;
+export default Index;
+
+export async function getStaticProps() {
+  const posts = await videoApi.getAllVideo();
+  return {
+    props: {
+      posts,
+    },
+  };
+}
