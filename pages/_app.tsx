@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
+  console.log(3);
 
   return (
     <Layout>
