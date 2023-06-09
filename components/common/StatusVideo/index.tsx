@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { useElementOnScreen } from "@/pages/_app";
+import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import useVdocipher from "@/hooks/use-vdocipher";
 
-export default function VideoStatusUsingAPI({ data }) {
+export default function VideoStatusUsingAPI({ data }: any) {
   const [status, setStatus] = useState("Ready");
-  const [player, setPlayer] = useState(null);
+  const [player, setPlayer] = useState<any>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const { loadVideo, isAPIReady } = useVdocipher();
   const [videoTag, setVideoTag] = useState(null);
@@ -20,11 +20,11 @@ export default function VideoStatusUsingAPI({ data }) {
   const isVisibile = useElementOnScreen(options, videoRef);
 
   useEffect(() => {
-    const container = videoRef.current;
+    const container: any = videoRef.current;
     const iframe = container.querySelector("iframe");
     const isIframeExist = iframe !== null;
     if (!isIframeExist) {
-      const video = loadVideo({
+      const video: any = loadVideo({
         pathVideo: data.pathVideo,
         configuration: { loop: true },
         container: container,
@@ -39,13 +39,13 @@ export default function VideoStatusUsingAPI({ data }) {
       setPlayer(null);
       return;
     }
-    const player = new window.VdoPlayer(videoTag);
-    window.player = player;
+    const player = new (window as any).VdoPlayer(videoTag);
+    (window as any).player = player;
     setPlayer(player);
     player.video.addEventListener("play", () => setStatus("Playing"));
     player.video.addEventListener("pause", () => setStatus("Paused"));
     player.video.addEventListener("canplay", () => setStatus("Ready"));
-    window.player = player;
+    (window as any).player = player;
   }, [isAPIReady, videoTag]);
 
   useEffect(() => {

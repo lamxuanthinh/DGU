@@ -1,7 +1,6 @@
 import videoApi from "@/apis/video";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
-import axios from "axios";
 
 const Index = ({ posts }: any) => {
   return <Home data={posts} />;
