@@ -8,6 +8,8 @@ async function handleSubmitFile(file: File, title: string) {
         };
 
         const dataCloud = await vdo.getDataCloud(dataCloudPayload);
+        
+        
         const uploadCloudPayload = {
             dataCloud: dataCloud.clientPayload,
             file: file,
@@ -18,7 +20,7 @@ async function handleSubmitFile(file: File, title: string) {
         console.log(error);
     }
 }
-export default function index() {
+export default function Index() {
     const inputRef = useRef<HTMLInputElement>(null);
 
     return (

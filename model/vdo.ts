@@ -4,5 +4,5 @@ export interface uploadVdoPayload {
 }
 
 export interface dataCloudVdoPayload {
-    titleVideo: String;
+    titleVideo: string;
 }
