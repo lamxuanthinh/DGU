@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 
-
-
 import { FaCloudUploadAlt } from "react-icons/fa";
 
 
@@ -30,8 +28,10 @@ function handleFileSelect(videoFile: File) : boolean {
 // handle check viruss video file.  
 async function checkFileForViruses(file: File): Promise<boolean> {
 
+    console.log(file);
+
     // upload file on VirussTotal
-    const url = `https://www.virustotal.com/api/v3/files`;
+    const url = `http://localhost:3000/api`;
     const formData = new FormData();
     formData.append('file', file)
     const response = await axios.post(url, formData, {
@@ -44,7 +44,6 @@ async function checkFileForViruses(file: File): Promise<boolean> {
     const data = response.data;
     console.log(data);
     console.log(data.data.links.self);
-
     
     
     // get md5 analysis file on VirusTotal
