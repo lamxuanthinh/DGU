@@ -78,7 +78,7 @@ export default function Input({
           ))}
         <label
           htmlFor={name}
-          className={`text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-[14px] transition duration-300 input-text h-7 z-10 `}
+          className={`text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-[14px] transition duration-300 input-text h-7 z-2`}
         >
           {labelInput}
         </label>
