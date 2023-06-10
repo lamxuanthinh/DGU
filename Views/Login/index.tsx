@@ -101,29 +101,28 @@ export default function Login() {
             </div>
             <div className="pb-5">
               <form onSubmit={onSubmit} className="w-full">
-                <div className="">
-                  <Input
-                    name="email"
-                    register={register}
-                    className="text-xl pb-1"
-                    type="text"
-                    autoComplete="on"
-                    placeholder="Email"
-                    labelInput="Email"
-                    errorMessage={errors.email?.message}
-                  />
+                <Input
+                  name="email"
+                  register={register}
+                  type="text"
+                  autoComplete="on"
+                  placeholder="Email"
+                  labelInput="Email"
+                  animationBorder
+                  errorMessage={errors.email?.message}
+                />
 
-                  <Input
-                    name="password"
-                    register={register}
-                    type="password"
-                    autoComplete="on"
-                    className="text-xl pb-1"
-                    placeholder="Password"
-                    labelInput="Password"
-                    errorMessage={errors.password?.message}
-                  />
-                </div>
+                <Input
+                  name="password"
+                  register={register}
+                  type="password"
+                  autoComplete="on"
+                  className="text-xl pb-1"
+                  placeholder="Password"
+                  labelInput="Password"
+                  animationBorder
+                  errorMessage={errors.password?.message}
+                />
                 <div>
                   <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium">
                     Forget password?
@@ -218,19 +217,17 @@ export default function Login() {
                           return (
                             <li
                               key={index1}
-                              className={`${
-                                item.key == select ? "bg-[#D9D9D9]" : ""
-                              } w-[20px] h-[20px] rounded-xl flex items-center justify-center hover:cursor-pointer`}
+                              className={`${item.key == select ? "bg-[#D9D9D9]" : ""
+                                } w-[20px] h-[20px] rounded-xl flex items-center justify-center hover:cursor-pointer`}
                               onClick={() => {
                                 setSelect(index1);
                               }}
                             >
                               <div
-                                className={`${
-                                  item.key == select
+                                className={`${item.key == select
                                     ? "bg-[#00FF85]"
                                     : "bg-[#D9D9D9]"
-                                } w-[10px] h-[10px] rounded-xl`}
+                                  } w-[10px] h-[10px] rounded-xl`}
                               ></div>
                             </li>
                           );

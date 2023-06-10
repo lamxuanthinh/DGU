@@ -233,6 +233,7 @@ export default function SignUp() {
                     placeholder="Email"
                     labelInput="Email"
                     errorMessage={errors.email?.message}
+                    animationBorder
                   />
 
                   <Input
@@ -242,6 +243,7 @@ export default function SignUp() {
                     type="text"
                     autoComplete="on"
                     placeholder="full name"
+                    animationBorder
                   />
 
                   <div className="flex justify-between">
@@ -323,6 +325,7 @@ export default function SignUp() {
                     labelInput="Password"
                     isShowPassword={true}
                     errorMessage={errors.password?.message}
+                    animationBorder
                   />
 
                   <Input
@@ -334,6 +337,7 @@ export default function SignUp() {
                     labelInput="Confirm password"
                     isShowPassword={true}
                     errorMessage={errors.confirm_password?.message}
+                    animationBorder
                   />
                 </div>
                 <div className="flex justify-start">

@@ -13,6 +13,7 @@ interface Props {
   errorMessage?: string;
   labelInput?: string;
   isShowPassword?: boolean;
+  animationBorder?: boolean;
 }
 
 export default function Input({
@@ -26,12 +27,23 @@ export default function Input({
   rules,
   labelInput,
   isShowPassword = false,
+  animationBorder
 }: Props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
+  const handleFocus = () => {
+    setIsFocus(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocus(false);
+  };
   return (
-    <div className={`relative cursor-pointer ${className}`}>
-      <div>
+    <div className={`relative cursor-pointer mb-8`}>
+      <div className={`flex items-center h-[52px] border-2 border-opacity-50 border-[#52525233] rounded-md overflow-hidden p-1
+      ${isFocus && animationBorder ? "box-animation " : "focus-within:border-black"}`}>
+        {animationBorder && <span className="absolute w-16 h-2 top-0 left-[20px] bg-[#fff] "></span>}
         <input
           type={
             type == "password"
@@ -40,13 +52,17 @@ export default function Input({
                 : "password"
               : type
           }
-          className={`${
-            type == "password" ? "font-bold" : ""
-          } bg-[#fff] shadow-inset-white text-[14px] px-5 py-3 w-full text-black border-[#52525233] border-2 rounded-md border-opacity-50 outline-none focus:border-black placeholder-gray-300 placeholder-opacity-0 transition duration-200`}
+          className={`
+             bg-[#fff] shadow-inset-white text-[14px] px-5 py-3 w-full text-black rounded-md outline-none placeholder-gray-300 placeholder-opacity-0 transition duration-200
+             ${type == "password" ? "font-bold" : ""}
+             ${animationBorder ? "py-[6px] " : ""}
+             ${className}`}
           placeholder={placeholder}
           {...register(name, rules)}
           autoComplete={autoComplete}
           id={name}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
         />
         {isShowPassword == true &&
           (isPasswordVisible ? (
@@ -62,14 +78,16 @@ export default function Input({
           ))}
         <label
           htmlFor={name}
-          className="text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-3.5 transition duration-300 input-text"
+          className={`text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-[14px] transition duration-300 input-text h-7 z-10 `}
         >
           {labelInput}
         </label>
       </div>
-      <div className="mt-1 px-5 text-red-600 min-h-[1.5rem] text-sm text-right">
-        {errorMessage}
-      </div>
-    </div>
+      {
+        <div className="absolute bottom-[-30px] right-0 text-red-600 min-h-[1.5rem] text-sm text-right">
+          {errorMessage}
+        </div>
+      }
+    </div >
   );
 }
