@@ -41,7 +41,7 @@ export default function Input({
   };
   return (
     <div className={`relative cursor-pointer mb-8`}>
-      <div className={`flex items-center h-[52px] border-2 border-opacity-50 border-[#52525233] rounded-md overflow-hidden p-1
+      <div className={`flex items-center h-[52px] border-2 border-opacity-50 border-[#52525233] rounded-xl overflow-hidden p-1
       ${isFocus && animationBorder ? "box-animation " : "focus-within:border-black"}`}>
         {animationBorder && <span className="absolute w-16 h-2 top-0 left-[20px] bg-[#fff] "></span>}
         <input

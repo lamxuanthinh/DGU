@@ -33,37 +33,53 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 @layer components {
   .box-animation {
     background-repeat: no-repeat;
-    background-image: linear-gradient(to right, #5d26c1, #a17fe0, #59c173),
-      linear-gradient(to bottom, #5d26c1, #a17fe0, #59c173),
-      linear-gradient(to right, #5d26c1, #a17fe0, #59c173),
-      linear-gradient(to bottom, #5d26c1, #a17fe0, #59c173);
-    animation: bg-spin 1s forwards 1;
+    background-image: linear-gradient(to right, #66ff00, #66ff00),
+      linear-gradient(to bottom, #29fb65, #77a7fa),
+      linear-gradient(to right, #22ff00, #22ff00),
+      linear-gradient(to bottom, #74ff9b, #9bc0ff);
+    animation: bg-spin 2s ease-in-out forwards 1;
   }
   @keyframes bg-spin {
     0% {
       background-size: 0% 3px, 3px 0, 0 3px, 3px 0;
-      background-position: 70px -2px, 100% 2px, 100% 100%, -2px 100%;
+      background-position: 70px -3px, calc(100% + 3px) -1px, 100% 100%,
+        -3px 100%;
     }
-    25% {
+    20% {
       background-size: 90% 3px, 3px 0, 0 3px, 3px 0;
-      background-position: 70px -2px, calc(100% + 1px) -1px, 100% 100% -2px 100%;
+      background-position: 70px -3px, calc(100% + 3px) -1px,
+        calc(100% + 1px) calc(100% + 3px), -3px 100%;
     }
-    50% {
+    40% {
       background-size: 90% 3px, 3px calc(100% + 2px), 0 3px, 3px 0;
-      background-position: 70px -2px, calc(100% + 1px) -1px,
-        calc(100% + 1px) calc(100% + 2px), -2px 100%;
+      background-position: 70px -3px, calc(100% + 3px) -1px,
+        calc(100% + 1px) calc(100% + 3px), -3px 100%;
     }
-    75% {
+    58% {
+      border-top-color: rgba(130, 192, 254, 0.9);
+      border-right-color: rgba(130, 192, 254, 0.9);
+    }
+    60% {
       background-size: 90% 3px, 3px calc(100% + 2px), calc(100% + 2px) 3px,
         3px 0;
-      background-position: 70px -2px, calc(100% + 1px) -1px,
-        calc(100% + 1px) calc(100% + 2px), -2px 100%;
+      background-position: 70px -3px, calc(100% + 3px) -1px,
+        calc(100% + 1px) calc(100% + 3px), -3px 100%;
+    }
+    80% {
+      background-size: 90% 3px, 3px calc(100% + 2px), calc(100% + 2px) 3px,
+        3px calc(100% + 2px);
+      background-position: 70px -3px, calc(100% + 3px) -1px,
+        calc(100% + 1px) calc(100% + 3px), -3px 100%;
+    }
+    98% {
+      border-bottom-color: rgba(130, 192, 254, 0.8);
     }
     100% {
       background-size: 100% 3px, 3px calc(100% + 2px), calc(100% + 2px) 3px,
         3px calc(100% + 2px);
-      background-position: 0 -2px, calc(100% + 1px) -1px,
-        calc(100% + 1px) calc(100% + 2px), -2px 100%;
+      background-position: 0 -3px, calc(100% + 3px) -1px,
+        calc(100% + 1px) calc(100% + 3px), -3px 100%;
+      border: 2px solid rgba(130, 192, 254, 0.8);
     }
   }
 }
