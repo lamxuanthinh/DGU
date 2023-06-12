@@ -29,7 +29,6 @@ function handleFileSelect(videoFile: File) : boolean {
 // handle check viruss video file.  
 async function checkFileForViruses(file: File): Promise<boolean> {
 
-    console.log(file);
 
     // upload file on VirussTotal
     const formData = new FormData();
@@ -50,6 +49,9 @@ async function checkFileForViruses(file: File): Promise<boolean> {
     const responeDetect = await upload.getResult(md5File);
     const hasViruss : number = responeDetect.data.attributes.last_analysis_stats.malicious;
     
+    console.log("Successful ScanViruss! ");
+    
+
     if(hasViruss > 0)
     {
         return true; // This mean has the viruss in this file.
@@ -101,7 +103,6 @@ export default function Upload() {
             inputRef.current.files = event.dataTransfer.files;
 
             if (inputRef.current.files.length > 0) {
-                console.log('Đã chọn một file' + inputRef.current.files[0].name);
 
                 if(handleFileSelect(inputRef.current.files[0]) === true)
                 {
@@ -140,15 +141,12 @@ export default function Upload() {
                 console.log('Không có file được chọn');
             }
         }
-
-        console.log('Dropped video file: ', videoFile.name);
     };
 
     const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if(files != null)
         {
-            console.log('Have files: ', files[0].name);
             if(handleFileSelect(files[0]) === true)
             {
                 alert('This is video file.');
