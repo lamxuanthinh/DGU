@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 
 import { FaCloudUploadAlt } from "react-icons/fa";
 
+import { upload } from "@/apis/upload";
 
 // handle if file is not a video file.
 function handleFileSelect(videoFile: File) : boolean {
@@ -26,51 +27,90 @@ function handleFileSelect(videoFile: File) : boolean {
 }
 
 // handle check viruss video file.  
+// async function checkFileForViruses(file: File): Promise<boolean> {
+
+//     console.log(file);
+
+//     // upload file on VirussTotal
+//     const url = `http://localhost:3000/api/v3/files`;
+//     const formData = new FormData();
+//     formData.append('file', file)
+//     const response = await axios.post(url, formData, {
+//         headers: {
+//             'accept': 'application/json',
+//             'x-apikey': '50d5e74f6630f739b2c71da3d34baab3b4e9a1dbf748a9721d60014f3ef2b4ef',
+//             'Content-Type': 'multipart/form-data',
+//         }
+//     });
+//     const data = response.data;
+//     const videoId = data.data.id;
+//     console.log(data);
+//     console.log(data.data.links.self);
+    
+    
+//     // get md5 analysis file on VirusTotal
+//     // const urlAnalysis : string = data.data.links.self; // apive/v3/analysis/id
+//     const urlAnalysis : string = 'http://localhost:3000/api/v3/analyses/' + videoId; 
+//     const responeAnalysis = await axios.get(urlAnalysis, {
+//         headers: {
+//             'x-apikey': '50d5e74f6630f739b2c71da3d34baab3b4e9a1dbf748a9721d60014f3ef2b4ef',
+//         }
+//     });
+//     console.log(responeAnalysis);
+//     console.log(responeAnalysis.data.meta.file_info.md5);
+
+    
+//     const md5File = responeAnalysis.data.meta.file_info.md5;
+
+
+
+//     // get result file on VirusTotal
+//     // const urlDetect = url + '/' + md5File; // http://localhost:3000/api/v3/files/{id}
+//     const urlDetect : string = 'http://localhost:3000/api/v3/files/' + md5File; 
+
+//     const responeDetect = await axios.get(urlDetect, { 
+//         headers: {
+//             'x-apikey': '50d5e74f6630f739b2c71da3d34baab3b4e9a1dbf748a9721d60014f3ef2b4ef',
+//         }
+//     });
+//     console.log(responeDetect.data.data.attributes.last_analysis_stats.malicious);
+
+//     const hasViruss : number = responeDetect.data.data.attributes.last_analysis_stats.malicious;
+    
+//     if(hasViruss > 0)
+//     {
+//         return true; // This mean has the viruss in this file.
+//     }   
+//     else
+//     {
+//         return false; // This mean hasn't the viruss in this file.
+//     }
+// }
+
 async function checkFileForViruses(file: File): Promise<boolean> {
 
     console.log(file);
 
     // upload file on VirussTotal
-    const url = `http://localhost:3000/api`;
     const formData = new FormData();
     formData.append('file', file)
-    const response = await axios.post(url, formData, {
-        headers: {
-            'accept': 'application/json',
-            'x-apikey': '50d5e74f6630f739b2c71da3d34baab3b4e9a1dbf748a9721d60014f3ef2b4ef',
-            'Content-Type': 'multipart/form-data',
-        }
-    });
-    const data = response.data;
-    console.log(data);
-    console.log(data.data.links.self);
+
+    const response: any = await upload.uploadFile(formData);
+
+    const data = response;
+    const videoId = data.data.id;
     
     
     // get md5 analysis file on VirusTotal
-    const urlAnalysis : string = data.data.links.self;
-    const responeAnalysis = await axios.get(urlAnalysis, {
-        headers: {
-            'x-apikey': '50d5e74f6630f739b2c71da3d34baab3b4e9a1dbf748a9721d60014f3ef2b4ef',
-        }
-    });
-    console.log(responeAnalysis);
-    console.log(responeAnalysis.data.meta.file_info.md5);
+    const responeAnalysis: any = await upload.getMd5(videoId);
+    const md5File = responeAnalysis.meta.file_info.md5;
 
-    
-    const md5File = responeAnalysis.data.meta.file_info.md5;
 
 
 
     // get result file on VirusTotal
-    const urlDetect = url + '/' + md5File;
-    const responeDetect = await axios.get(urlDetect, { 
-        headers: {
-            'x-apikey': '50d5e74f6630f739b2c71da3d34baab3b4e9a1dbf748a9721d60014f3ef2b4ef',
-        }
-    });
-    console.log(responeDetect.data.data.attributes.last_analysis_stats.malicious);
-
-    const hasViruss : number = responeDetect.data.data.attributes.last_analysis_stats.malicious;
+    const responeDetect = await upload.getResult(md5File);
+    const hasViruss : number = responeDetect.data.attributes.last_analysis_stats.malicious;
     
     if(hasViruss > 0)
     {
@@ -85,21 +125,17 @@ async function checkFileForViruses(file: File): Promise<boolean> {
 
 
 
-export default function index() {
+export default function Upload() {
 
     // IMPORT
         // create reference variable.
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const  inputRef = useRef<HTMLInputElement>(null);
 
         // create files to drag and drop.
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [isDragging, setIsDragging] = useState(false);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
 
         // import auseUsestate  variable to loading when checking viruss through API.
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [loading, setLoading] = useState(false);
 
 
