@@ -1,0 +1,20 @@
+/* override date picker  */
+.rdtPicker {
+  margin-top: 8px !important;
+  right: -2px;
+  width: 469px;
+  height: 310px;
+  border-radius: 6px;
+}
+
+.rdtPicker table thead {
+  height: 73px;
+}
+
+.rdtPicker table tbody {
+  height: 216px;
+}
+
+.rdtPicker table tfoot tr {
+  display: none;
+}

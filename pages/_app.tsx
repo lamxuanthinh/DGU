@@ -1,6 +1,7 @@
 import { EmptyLayout, GlobalStyled } from "../components";
 import { AppPropsWithLayout } from "../model";
 import "@/styles/globals.css";
+import "@/styles/common/override.css";
 import AOSInitializer from "../components/AOSInitializer";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
