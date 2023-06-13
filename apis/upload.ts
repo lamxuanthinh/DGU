@@ -1,7 +1,9 @@
 import axiosClient from "./axiosClient";
 
 export const upload = {
-    uploadFile: async (formData: FormData) => {
+    uploadFile: async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file)
 
         axiosClient.interceptors.request.use((config) => {
             config.headers["Content-Type"] = "multipart/form-data;";

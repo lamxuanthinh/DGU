@@ -31,10 +31,7 @@ async function checkFileForViruses(file: File): Promise<boolean> {
 
 
     // upload file on VirussTotal
-    const formData = new FormData();
-    formData.append('file', file)
-
-    const response: any = await upload.uploadFile(formData);
+    const response: any = await upload.uploadFile(file);
 
     const data = response;
     const videoId = data.data.id;
@@ -207,28 +204,30 @@ export default function Upload() {
                     <div className="w-[100%] h-[100px]  flex justify-start items-center  ">
                         <p className="font-bold text-[25px]  ">Upload your file below</p>
                     </div>
-                    <div className="w-[100%] h-[500px]  flex justify-center items-center">
+                    <div className="w-[100%] h-[90%]  flex justify-center items-center">
                         <div 
-                            className={`w-[100%] h-[400px] border-dashed border-2 border-black flex justify-center items-center drag-drop-area ${isDragging ? 'dragging' : ''}`}
+                            className={`w-[100%] h-[90%] border-dashed border-2 border-black flex justify-center items-center drag-drop-area ${isDragging ? 'dragging' : ''}`}
                             onDragOver={handleDragOver}
                             onDragLeave={handleDragLeave}
                             onDrop={handleDrop}
                         >
-                            <div className="w-[50%] h-[360px]  flex flex-col justify-start items-center ">
-                                <div className="w-[100px] h-[100px] ">
-                                    <FaCloudUploadAlt fontSize={"100px"} />
+                            <div className="w-[50%] h-[90%]  flex flex-col justify-center items-center ">
+                                <div className="w-[100%] h-1/3 flex flex-col justify-center items-center">
+                                    <FaCloudUploadAlt className="h-full w-full flex items-center justify-center " size={100}/>
                                 </div>
-                                <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-end">
-                                    <p className="font-bold text-[25px] ">
-                                        Drag your file here
-                                    </p>
+                                <div className="w-[100%] h-1/3 my-[10px] flex flex-col justify-center items-center">
+                                    <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-end">
+                                        <p className="font-bold  text-2xl ">
+                                            Drag your file here
+                                        </p>
+                                    </div>
+                                    <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-start">
+                                        <p className="font-bold  text-2xl ">
+                                            Or
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-start">
-                                    <p className="font-bold text-[25px] ">
-                                        Or
-                                    </p>
-                                </div>
-                                <div className="w-[100%] h-[70px] my-[10px]  flex justify-center items-center">
+                                <div className="w-[100%] h-1/3 my-[10px]  flex justify-center items-center">
                                     <input className="hidden" type="file" accept="video/*" ref={inputRef} onChange={handleInputChange} />
                                     
                                     <div onClick={handleButtonClick} className="w-[180px] h-[70px] border-2 border-solid boder-[#000000] flex justify-center items-center cursor-pointer">
