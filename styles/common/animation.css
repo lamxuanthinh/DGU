@@ -1,0 +1,116 @@
+/* animation slider login and sign up */
+.animate-wiggle {
+  left: 20%;
+  top: 10%;
+  animation: wiggle 1s ease-in-out forwards;
+}
+.animate-wiggleModal3 {
+  left: 20%;
+  top: 20%;
+  animation: wiggle 1s ease-in-out forwards;
+}
+.animate-spinLeft {
+  top: 15%;
+  animation: spinLeft 1s ease-in-out forwards;
+}
+.animate-spinLeftModel2 {
+  top: 8%;
+  animation: spinLeft 1s ease-in-out forwards;
+}
+.animate-spinLeftModal3 {
+  top: 10%;
+  animation: spinLeft 1s ease-in-out forwards;
+}
+.animate-slideToRight {
+  left: 15%;
+  top: 10%;
+  animation: slideToRight 1s ease-in-out forwards;
+}
+.animate-slideToRightModal3 {
+  left: 15%;
+  top: 15%;
+  animation: slideToRight 1s ease-in-out forwards;
+}
+.animate-spinRight {
+  top: 50%;
+  left: 5%;
+  animation: spinRight 1s ease-in-out forwards;
+}
+.animate-spinLeftBottom {
+  top: 45%;
+  animation: spinLeftBottom 1s ease-in-out forwards;
+}
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+@keyframes wiggle {
+  0% {
+    opacity: 0;
+    transform: rotate(15deg);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes spinLeft {
+  0% {
+    transform: rotate(45deg);
+    left: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0);
+    left: 60%;
+  }
+}
+@keyframes slideToRight {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    left: 15%;
+  }
+}
+@keyframes spinRight {
+  0% {
+    transform: rotate(-90deg);
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0);
+    left: 5%;
+  }
+}
+@keyframes spinLeftBottom {
+  0% {
+    transform: rotate(-90deg);
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0);
+    left: 70%;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
