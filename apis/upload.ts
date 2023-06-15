@@ -12,9 +12,6 @@ export const upload = {
         });
         
         return await axiosClient.post("/api/v3/files", formData); 
-
-
-        
     },
 
     getMd5: async (id: string) => {

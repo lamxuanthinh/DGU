@@ -33,7 +33,7 @@ async function checkFileForViruses(file: File): Promise<boolean> {
     // upload file on VirussTotal
     const response: any = await upload.uploadFile(file);
 
-    const data = response.data;
+    const data = response;
     const videoId = data.data.id;
     
     
