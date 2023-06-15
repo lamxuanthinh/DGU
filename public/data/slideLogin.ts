@@ -1,13 +1,13 @@
 export const dataSlideLogin = [
   {
-    key: 0,
+    key: 3,
     title: "Knowledge is power 1.",
     subtitle:
       "10 beautiful compliments are not as good as one genuine compliment.",
     images: [
       {
         animation: "animate-wiggle",
-        width: 290,
+        width: 350,
         height: 285,
         src: require("@/public/Images/Login/model1/frame.png"),
         alt: "frame",
@@ -27,10 +27,46 @@ export const dataSlideLogin = [
         alt: "effect Book Shadow",
       },
       {
-        animation: "animate-slideToRight",
+        animation: "animate-slideToRightModel3",
         width: 350,
         height: 350,
         src: require("@/public/Images/Login/model1/person.png"),
+        alt: "person",
+      },
+    ],
+  },
+  {
+    key: 2,
+    title: "Knowledge is power 4.",
+    subtitle:
+      "10 beautiful compliments are not as good as one genuine compliment.",
+    images: [
+      {
+        animation: "animate-wiggleModel4",
+        width: 350,
+        height: 285,
+        src: require("@/public/Images/Login/model4/frame.png"),
+        alt: "frame",
+      },
+      {
+        animation: "animate-spinLeft2",
+        width: 85,
+        height: 85,
+        src: require("@/public/Images/Login/model4/support_1.png"),
+        alt: "book",
+      },
+      {
+        animation: "animate-spinRight2",
+        width: 150,
+        height: 154,
+        src: require("@/public/Images/Login/model4/support_2.png"),
+        alt: "book shadow",
+      },
+      {
+        animation: "animate-slideToRightModel2",
+        width: 350,
+        height: 350,
+        src: require("@/public/Images/Login/model4/person.png"),
         alt: "person",
       },
     ],
@@ -43,111 +79,67 @@ export const dataSlideLogin = [
     images: [
       {
         animation: "animate-wiggle",
-        width: 290,
+        width: 330,
         height: 285,
         src: require("@/public/Images/Login/model2/frame.png"),
         alt: "frame",
       },
       {
-        animation: "animate-spinLeftModel2",
+        animation: "animate-spinLeft-Model2-earth",
         width: 65,
         height: 85,
         src: require("@/public/Images/Login/model2/support_1.png"),
         alt: "earth",
       },
       {
-        animation: "animate-spinRight",
+        animation: "animate-spinLeft-Model2-battery",
         width: 150,
         height: 154,
         src: require("@/public/Images/Login/model2/support_2.png"),
-        alt: "box",
+        alt: "battery",
       },
       {
-        animation: "animate-slideToRight",
+        animation: "animate-slideToRightModel1",
         width: 350,
         height: 350,
         src: require("@/public/Images/Login/model2/person.png"),
-        alt: "frame",
+        alt: "person",
       },
     ],
   },
   {
-    key: 2,
+    key: 4,
     title: "Knowledge is power 3.",
     subtitle:
       "10 beautiful compliments are not as good as one genuine compliment.",
     images: [
       {
-        animation: "animate-wiggleModal3",
-        width: 290,
+        animation: "animate-wiggleModel3",
+        width: 350,
         height: 285,
         src: require("@/public/Images/Login/model3/frame.png"),
         alt: "frame",
       },
       {
         animation: "animate-spinLeftModal3",
-        width: 65,
+        width: 150,
         height: 85,
         src: require("@/public/Images/Login/model3/support_1.png"),
         alt: "rainbow",
       },
-
       {
-        animation: "animate-spinRight",
-        width: 150,
-        height: 154,
-        src: require("@/public/Images/Login/model3/support_2.png"),
-        alt: "al",
-      },
-      {
-        animation: "animate-spinLeftBottom",
+        animation: "animate-spinLeftBottomModel3",
         width: 65,
         height: 85,
         src: require("@/public/Images/Login/model3/support_3.png"),
         alt: "calender",
       },
       {
-        animation: "rotate-12 animate-slideToRight",
+        animation: "animate-slideToRightModel4",
         width: 350,
         height: 350,
         src: require("@/public/Images/Login/model3/person.png"),
-        alt: "frame",
-      },
-    ],
-  },
-  {
-    key: 3,
-    title: "Knowledge is power 4.",
-    subtitle:
-      "10 beautiful compliments are not as good as one genuine compliment.",
-    images: [
-      {
-        animation: "animate-wiggleModal3",
-        width: 290,
-        height: 285,
-        src: require("@/public/Images/Login/model4/frame.png"),
-        alt: "frame",
-      },
-      {
-        animation: "animate-spinLeft",
-        width: 65,
-        height: 85,
-        src: require("@/public/Images/Login/model4/support_1.png"),
-        alt: "book",
-      },
-      {
-        animation: "animate-spinRight",
-        width: 150,
-        height: 154,
-        src: require("@/public/Images/Login/model4/support_2.png"),
-        alt: "book shadow",
-      },
-      {
-        animation: "animate-slideToRight",
-        width: 350,
-        height: 350,
-        src: require("@/public/Images/Login/model4/person.png"),
-        alt: "frame",
+        alt: "person",
       },
     ],
   },

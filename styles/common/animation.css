@@ -1,44 +1,76 @@
-/* animation slider login and sign up */
 .animate-wiggle {
-  left: 20%;
+  left: 15%;
   top: 10%;
   animation: wiggle 1s ease-in-out forwards;
 }
-.animate-wiggleModal3 {
-  left: 20%;
+.animate-wiggleModel4 {
+  left: 15%;
   top: 20%;
+  transform: rotate(0deg);
+  animation: wiggle 1s ease-in-out forwards;
+}
+.animate-wiggleModel3 {
+  left: 12%;
+  top: 20%;
+  transform: rotate(0deg);
   animation: wiggle 1s ease-in-out forwards;
 }
 .animate-spinLeft {
   top: 15%;
   animation: spinLeft 1s ease-in-out forwards;
 }
-.animate-spinLeftModel2 {
-  top: 8%;
-  animation: spinLeft 1s ease-in-out forwards;
+.animate-spinLeft2 {
+  top: 60%;
+  animation: spinLeft2 1s ease-in-out forwards;
 }
-.animate-spinLeftModal3 {
+.animate-spinLeft-Model2-earth {
+  top: 48%;
+  animation: spinLeftRotate 1s ease-in-out forwards;
+}
+.animate-spinLeft-Model2-battery {
+  animation: spinLeftRotate1 1s ease-in-out forwards;
+}
+.animate-spinLeftBottomModel3 {
   top: 10%;
-  animation: spinLeft 1s ease-in-out forwards;
+  animation: spinLeftBottomModel3 1s ease-in-out forwards;
 }
-.animate-slideToRight {
+.animate-slideToRightModel1 {
   left: 15%;
-  top: 10%;
+  top: 19%;
+  animation: slideToRight1 1s ease-in-out forwards;
+}
+.animate-slideToRightModel2 {
+  left: 15%;
+  top: 19%;
   animation: slideToRight 1s ease-in-out forwards;
 }
-.animate-slideToRightModal3 {
+.animate-slideToRightModel3 {
   left: 15%;
-  top: 15%;
-  animation: slideToRight 1s ease-in-out forwards;
+  top: 19%;
+  animation: slideToRightModel3 1s ease-in-out forwards;
+}
+.animate-slideToRightModel4 {
+  left: 15%;
+  top: 18%;
+  animation: slideToRightModel4 1s ease-in-out forwards;
 }
 .animate-spinRight {
   top: 50%;
   left: 5%;
   animation: spinRight 1s ease-in-out forwards;
 }
+.animate-spinRight2 {
+  top: 10%;
+  left: 5%;
+  animation: spinRight2 1s ease-in-out forwards;
+}
 .animate-spinLeftBottom {
   top: 45%;
   animation: spinLeftBottom 1s ease-in-out forwards;
+}
+.animate-spinLeftModal3 {
+  top: 10%;
+  animation: spinLeftModal3 1s ease-in-out forwards;
 }
 .animate-fadeIn {
   animation: fadeIn 1s ease-in-out forwards;
@@ -52,6 +84,68 @@
     opacity: 1;
   }
 }
+@keyframes spinLeftRotate {
+  0% {
+    transform: rotate(45deg);
+    left: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(25deg);
+    left: 84%;
+  }
+}
+@keyframes spinLeftRotate1 {
+  0% {
+    transform: rotate(0deg);
+    left: -10%;
+    top: 40%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-30deg);
+    left: 5%;
+    top: 5%;
+  }
+}
+@keyframes spinLeftModal3 {
+  0% {
+    transform: rotate(-70deg);
+    left: -20%;
+    opacity: 0;
+    top: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    top: 12%;
+    transform: rotate(-15deg);
+    left: 5%;
+  }
+}
+@keyframes spinLeftBottomModel3 {
+  0% {
+    transform: rotate(-20deg);
+    left: -20%;
+    opacity: 0;
+    top: 70%;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    top: 58%;
+    transform: rotate(10deg);
+    left: 70%;
+  }
+}
 @keyframes spinLeft {
   0% {
     transform: rotate(45deg);
@@ -62,8 +156,34 @@
     opacity: 1;
   }
   100% {
-    transform: rotate(0);
+    transform: rotate(20deg);
     left: 60%;
+  }
+}
+@keyframes spinLeft2 {
+  0% {
+    transform: rotate(45deg);
+    left: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0);
+    left: 70%;
+  }
+}
+@keyframes slideToRight1 {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    left: 7%;
   }
 }
 @keyframes slideToRight {
@@ -78,6 +198,32 @@
     left: 15%;
   }
 }
+@keyframes slideToRightModel3 {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    left: 21%;
+    transform: rotate(-6deg);
+  }
+}
+@keyframes slideToRightModel4 {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    left: 5%;
+    transform: rotate(11deg);
+  }
+}
 @keyframes spinRight {
   0% {
     transform: rotate(-90deg);
@@ -89,6 +235,20 @@
   }
   100% {
     transform: rotate(0);
+    left: 5%;
+  }
+}
+@keyframes spinRight2 {
+  0% {
+    transform: rotate(-90deg);
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-20deg);
     left: 5%;
   }
 }
