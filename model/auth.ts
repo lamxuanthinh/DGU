@@ -8,3 +8,4 @@ export interface loginPayload {
   email: String;
   password: String;
 }
+
