@@ -3,7 +3,7 @@ import Image from "next/image";
 import { dataSlideLogin } from "@/public/data/slideLogin";
 
 export default function SlideLogin() {
-     const [currentSlide, setCurrentSlide] = useState(0);
+     const [currentSlide, setCurrentSlide] = useState(dataSlideLogin[0].key);
      return <div
           data-aos="fade-left"
           data-aos-duration="1500"
