@@ -16,6 +16,10 @@ module.exports = {
       transitionProperty: {
         "stroke-dashoffset": "stroke-dashoffset",
       },
+      backgroundImage: {
+        "modal-gradient":
+          "linear-gradient(180deg, rgba(0, 0, 0, 0.74) 7.29%, rgba(0, 0, 0, 0.9) 99.99%, rgba(0, 0, 0, 0) 100%)",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")],
