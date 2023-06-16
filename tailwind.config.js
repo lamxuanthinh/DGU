@@ -12,6 +12,14 @@ module.exports = {
     extend: {
       boxShadow: {
         "inset-white": "0 0 0px 1000px white inset",
+        "menu": "0px 4px 16px rgba(0, 0, 0, 0.12)"
+      },
+      transitionProperty: {
+        "stroke-dashoffset": "stroke-dashoffset",
+      },
+      backgroundImage: {
+        "modal-gradient":
+          "linear-gradient(180deg, rgba(0, 0, 0, 0.74) 7.29%, rgba(0, 0, 0, 0.9) 99.99%, rgba(0, 0, 0, 0) 100%)",
       },
     },
   },

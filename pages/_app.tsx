@@ -1,8 +1,8 @@
 import { EmptyLayout, GlobalStyled } from "../components";
 import { AppPropsWithLayout } from "../model";
-import "@/styles/globals.css";
 import AOSInitializer from "../components/AOSInitializer";
-import { useEffect } from "react";
+import "@/styles/globals.css";
+import "@/styles/common/animation.css"
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
