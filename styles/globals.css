@@ -8,7 +8,7 @@ input[type="password"]:not(:placeholder-shown) ~ .input-text,
 input[type="email"]:focus ~ .input-text,
 input[type="email"]:not(:placeholder-shown) ~ .input-text,
 input[type="text"]:not(:placeholder-shown) ~ .input-text {
-  @apply text-[#848484] transform -translate-y-7 -translate-x-0 scale-90;
+  @apply text-[#848484] transform -translate-y-7 -translate-x-[-4px] scale-90;
 }
 
 #my-checkbox:checked + .bg-gray-200 {
@@ -17,11 +17,6 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 #my-checkbox:checked + .bg-gray-200 svg {
   display: block;
 }
-
-
-
-
-
 
 /* The effect after change link */
 .choose-link {
@@ -34,5 +29,6 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   z-index: 1;
   transition: 1s;
 }
-
-
+.stroke-dashoffset-0 {
+  stroke-dashoffset: 0;
+}
