@@ -4,7 +4,7 @@ import { LayoutProps } from "@/model";
 
 const MainLayout = (props: LayoutProps) => {
   return (
-    <div className="w-screen h-screen bg-[#DBDBDB] flex justify-between p-3 relative">
+    <div className="w-screen h-screen bg-[#DBDBDB] flex justify-between p-3">
       <Sidebar />
       <div className="flex flex-col w-[80%]">
         <Header />
