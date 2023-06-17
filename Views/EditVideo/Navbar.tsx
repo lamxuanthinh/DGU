@@ -28,7 +28,7 @@ export default function Navbar({ onUndo, onRedu }: INavbar) {
         </div>
         <div>
           <div className="flex">
-            <Menu menuItems={dataMenuNav} theme="black" className="top-[47px] !right-[-164px]">
+            <Menu menuItems={dataMenuNav} theme="black" className="!top-[47px] !right-[-164px]">
               <Image
                 src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
                 width={34}
