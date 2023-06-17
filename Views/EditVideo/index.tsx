@@ -103,8 +103,10 @@ export default function EditVideo() {
       </div>
       <div className="w-full h-screen bg-[#121212] p-3 flex flex-col">
         <Navbar />
-        <Video />
-        <Toolbar />
+        <div className="flex my-3 h-full gap-3">
+          <Toolbar />
+          <Video />
+        </div>
       </div>
     </>
   );
