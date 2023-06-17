@@ -101,8 +101,7 @@ export default function EditVideo() {
         Video Export:{" "}
         {outputVideo && <video controls src={outputVideo} width={600} />}
       </div>
-      <div>
-        <h1>Continue coding here</h1>
+      <div className="w-full h-screen bg-[#121212] p-3 flex flex-col">
         <Navbar />
         <Video />
         <Toolbar />
