@@ -32,3 +32,11 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 .stroke-dashoffset-0 {
   stroke-dashoffset: 0;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
