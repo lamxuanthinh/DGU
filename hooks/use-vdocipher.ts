@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-
 /**
  *
  * @param {String} VdocipherAPIScriptUrl
  */
+
 export default function () {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 

@@ -1,7 +1,9 @@
 import videoApi from "@/apis/video";
+import MainLayout from "@/components/layout/MainLayout";
+import DetailsVideo from "@/Views/DetailsVideo";
 
 export default function Post({ post }: any) {
-  return <div>{post.video_id}</div>;
+  return <DetailsVideo data={post} />;
 }
 
 export const getStaticPaths = async () => {
@@ -31,10 +33,8 @@ export const getStaticProps = async (context: any) => {
   let posts: any, post: any;
 
   try {
-    posts = await videoApi.getAllVideo();
-    post = posts.metaData.find((item: any) => {
-      return item.video_id == postId;
-    });
+    post = await videoApi.getVideoById(postId);
+    post = post.metaData;
   } catch (error) {
     console.error("Error fetching posts:", error);
     post = {};
@@ -46,3 +46,5 @@ export const getStaticProps = async (context: any) => {
     },
   };
 };
+
+Post.Layout = MainLayout;

@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { FaCommentAlt, FaShare } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { TiPlus } from "react-icons/ti";
+import { FaRegCopy } from "react-icons/fa";
 
 interface IReactVideo {
   pathAvatar: string;
@@ -21,6 +22,11 @@ export default function ReactVideo({
   const [heart, setHeart] = useState(false);
   const [comment, setComment] = useState(false);
   const [share, setShare] = useState(false);
+  const [currentURL, setCurrentURL] = useState("");
+
+  useEffect(() => {
+    setCurrentURL(window.location.href);
+  }, []);
 
   return (
     <div className="absolute top-[25%] right-6 flex flex-col">
@@ -62,7 +68,12 @@ export default function ReactVideo({
         </div>
         <p className="text-center select-none">{commentCount}</p>
       </div>
-      <div className="mb-5">
+      <div
+        className="mb-5 relative"
+        onClick={() => {
+          setShare(!share);
+        }}
+      >
         <div className="flex justify-center">
           <FaShare
             className="hover:cursor-pointer"
@@ -74,6 +85,12 @@ export default function ReactVideo({
           />
         </div>
         <p className="text-center select-none">{shareCount}</p>
+        {/* <div className="text-black p-2 rounded-md w-[250px] absolute bg-[#f1f3f4] left-[-300px] flex justify-between items-center">
+          <p className="text-[]">{currentURL}</p>
+          <div className="hover:bg-[#f1f3f4] hover:cursor-pointer">
+            <FaRegCopy fontSize={20} />
+          </div>
+        </div> */}
       </div>
       <div className="mb-5">
         <div className="flex justify-center">

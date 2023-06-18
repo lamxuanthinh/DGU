@@ -18,11 +18,6 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   display: block;
 }
 
-
-
-
-
-
 /* The effect after change link */
 .choose-link {
   z-index: 2;
@@ -35,4 +30,6 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   transition: 1s;
 }
 
-
+.Player {
+  display: grid !important;
+}

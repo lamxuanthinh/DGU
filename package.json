@@ -25,6 +25,7 @@
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-modal": "^3.16.1",
+    "react-router-dom": "^6.13.0",
     "react-select": "^5.7.3",
     "styled-components": "^5.1.26",
     "tailwind-scrollbar": "^3.0.4",

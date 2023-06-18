@@ -1,16 +1,5 @@
 import Image from "next/image";
 import { useState } from "react";
-
-import {
-  FaExternalLinkAlt,
-  FaSwatchbook,
-  FaCommentAlt,
-  FaShare,
-} from "react-icons/fa";
-import { TiPlus } from "react-icons/ti";
-import { IoIosArrowDown } from "react-icons/io";
-import { AiTwotoneHeart } from "react-icons/ai";
-import { HiSparkles } from "react-icons/hi";
 import VideoStatusUsingAPI from "@/components/common/StatusVideo";
 
 export default function Home({ data }: any) {

@@ -6,7 +6,11 @@ import { CgClose } from "react-icons/cg";
 import InformVideo from "./InformVideo";
 import ReactVideo from "./ReactVideo";
 
-export default function VideoStatusUsingAPI({ data }: any) {
+interface IVideoStatusUsingAPI {
+  data: any;
+}
+
+export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   const [status, setStatus] = useState("NA");
   const [statusModal, setStatusModal] = useState("NA");
   const [player, setPlayer] = useState<any>(null);
@@ -74,6 +78,7 @@ export default function VideoStatusUsingAPI({ data }: any) {
     player.video.addEventListener("timeupdate", () => {
       setCurrentTime(player.video.currentTime);
     });
+
     (window as any).player = player;
 
     //-------------Modal---------------------//
@@ -117,13 +122,18 @@ export default function VideoStatusUsingAPI({ data }: any) {
   //----------------Modal-----------------------//
   const handleOpenModal = () => {
     setOpenModalVideo(!openModalVideo);
-    window.history.pushState(null, "", `video/${data.video_id}`);
+    const currentPathname = window.location.pathname;
+    if (!currentPathname.includes("video/")) {
+      window.history.pushState(null, "", `video/${data.video_id}`);
+    }
     playerModal.video.currentTime = currentTime;
   };
 
   const handleCloseModal = () => {
     setOpenModalVideo(false);
-    window.history.back();
+    if (window.history.length > 2) {
+      window.history.back();
+    }
     player.video.currentTime = currentTime;
   };
 
@@ -167,10 +177,10 @@ export default function VideoStatusUsingAPI({ data }: any) {
       >
         <div className="h-full w-full relative" ref={videoModalRef}>
           <div
-            className="p-3 absolute top-5 right-5 bg-[#a8a8a8] hover:cursor-pointer"
+            className="p-[10px] rounded-[50%] absolute top-5 left-5 bg-[#92929280] hover:cursor-pointer hover:bg-[#b7b7b7]"
             onClick={handleCloseModal}
           >
-            <CgClose fontSize={24} />
+            <CgClose fontSize={20} />
           </div>
 
           <InformVideo
