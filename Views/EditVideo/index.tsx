@@ -77,7 +77,7 @@ export default function EditVideo() {
   };
 
   return (
-    <>
+    <div>
       <div className="flex">
         <h3>Input Source Video:</h3>
         <input type="file" accept="video/*" onChange={handleVideoChange} />
@@ -85,7 +85,6 @@ export default function EditVideo() {
         <input type="file" accept="audio/*" onChange={handleAudioChange} />
         <button onClick={handleEditVideo}>Export Video</button>
       </div>
-      <Navbar />
       <div>
         <h3>Video Input:</h3>
         {selectedVideo && (
@@ -108,6 +107,6 @@ export default function EditVideo() {
           <Video />
         </div>
       </div>
-    </>
+    </div>
   );
 }
