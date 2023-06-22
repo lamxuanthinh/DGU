@@ -3,11 +3,16 @@ import ffmpeg from "@ffmpeg/ffmpeg";
 import Navbar from "./Navbar";
 import Video from "./Video";
 import Toolbar from "./Toolbar";
+import Progressbar from "./Progressbar";
 
 export default function EditVideo() {
   const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
   const [selectedAudio, setSelectedAudio] = useState<File | null>(null);
   const [outputVideo, setOutputVideo] = useState<string>("");
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [moveVideo, setMoveVideo] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
 
   const handleVideoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -77,7 +82,7 @@ export default function EditVideo() {
   };
 
   return (
-    <>
+    <div>
       <div className="flex">
         <h3>Input Source Video:</h3>
         <input type="file" accept="video/*" onChange={handleVideoChange} />
@@ -85,7 +90,6 @@ export default function EditVideo() {
         <input type="file" accept="audio/*" onChange={handleAudioChange} />
         <button onClick={handleEditVideo}>Export Video</button>
       </div>
-      <Navbar />
       <div>
         <h3>Video Input:</h3>
         {selectedVideo && (
@@ -102,12 +106,14 @@ export default function EditVideo() {
         {outputVideo && <video controls src={outputVideo} width={600} />}
       </div>
       <div className="w-full h-screen bg-[#121212] p-3 flex flex-col">
+        <button className="fixed top-0">Slipt</button>
         <Navbar />
-        <div className="flex my-3 h-full gap-3">
+        <div className="flex my-3 flex-grow-[1] gap-3 overflow-hidden">
           <Toolbar />
-          <Video />
+          <Video currentTime={currentTime} setCurrentTime={setCurrentTime} isPlaying={isPlaying} setIsPlaying={setIsPlaying} moveVideo={moveVideo} setDuration={setDuration} duration={duration} />
         </div>
+        <Progressbar currentTime={currentTime} setCurrentTime={setCurrentTime} duration={duration} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setMoveVideo={setMoveVideo}></Progressbar>
       </div>
-    </>
+    </div>
   );
 }
