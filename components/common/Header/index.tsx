@@ -76,15 +76,11 @@ const Header = () => {
           <div className="flex gap-3 ml-1 cursor-pointer">
             <Image
               src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
-              width={48}
-              height={48}
+              width={40}
+              height={40}
               className="rounded-full"
               alt="logo"
             />
-            <div className="flex flex-col ">
-              <h4 className="text-lg font-bold">Dung Dev</h4>
-              <i className="text-xs">Provider</i>
-            </div>
           </div>
         </Menu>
       </div>

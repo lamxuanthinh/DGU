@@ -134,12 +134,12 @@ export default function MyCourse() {
 
 
   return( 
-    <div className="w-[100%] h-[100%]  flex flex-col overflow-hidden">
-      <div className="w-full m-[10px] h-[100%] grid grid-cols-4 gap-4 ">
+    <div className="w-[100%] h-[100%]  flex flex-col overflow-hidden p-[10px] ">
+      <div className="w-full m-[10px] h-[100%] flex flex-wrap justify-center items-center">
 
         {courseData.map(({ title, description, lessonTotal, commentTotal, followersTotal, value, commentCounts, viewCounts, link, themenails  }, index) => (
           <Link key={title} href={link}>
-            <div className="group w-[250px] h-[275px] bg-white  flex flex-col rounded-[20px] overflow-hidden hover:cursor-pointer">
+            <div className="group w-[250px] h-[275px] bg-white  flex flex-col rounded-[20px] m-[10px] overflow-hidden hover:cursor-pointer">
               <div className="w-[250px] h-[150px] relative overflow-hidden ">
                 {themenails}
                 <div className="w-[50px] h-[150px] absolute top-0 right-0 bg-[#000000b1] grid grid-cols-1  items-center  transition-all duration-1000 ease-in-out group-hover:w-[100%] ">
@@ -238,7 +238,6 @@ export default function MyCourse() {
             </div>
           </Link>
         ))}
-
 
       </div>
 
