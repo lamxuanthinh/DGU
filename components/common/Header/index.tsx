@@ -35,10 +35,10 @@ const Header = () => {
 
       <div className="flex flex-nowrap items-center">
         <div className="flex items-center">
-          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center">
+          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
             <IoMdNotificationsOutline color="#000000" fontSize={"25px"} />
           </div>
-          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center">
+          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
             <BiMessageRounded color="#000000" fontSize={"25px"} />
           </div>
         </div>

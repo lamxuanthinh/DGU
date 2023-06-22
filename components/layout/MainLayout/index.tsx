@@ -32,7 +32,7 @@ const MainLayout = (props: LayoutProps) => {
     <>
       <div className="w-screen h-screen bg-[#DBDBDB] flex justify-center items-center">
         <BigLayout>
-          <div className="w-full h-full bg-[#DBDBDB] flex justify-between p-3 rounded-[20px] backgroud-shadow ">
+          <div className="w-full h-full bg-[#DBDBDB] flex justify-between p-[10px] rounded-[20px] backgroud-shadow ">
             <Sidebar />
             <Content>
               <Header />

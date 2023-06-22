@@ -17,8 +17,8 @@ import { BiLogOut } from "react-icons/bi";
 import { BsHearts, BsFillPersonFill, BsFillPeopleFill } from "react-icons/bs";
 import { MdOutlineHistory } from "react-icons/md";
 import { RiHome3Line, RiBarChart2Line } from "react-icons/ri";
-import { HiOutlineHeart } from "react-icons/hi";
-import { AiFillSetting } from "react-icons/ai";
+import { HiHome } from "react-icons/hi";
+import { AiFillSetting, AiFillHome} from "react-icons/ai";
 
 
 const Sidebar = () => {
@@ -28,7 +28,7 @@ const Sidebar = () => {
     {
       name: "Home",
       link: "/",
-      icon: <RiHome3Line fontSize={"25px"} />,
+      icon: <AiFillHome fontSize={"25px"} />,
     },
     {
       name: "Server Ranking",
