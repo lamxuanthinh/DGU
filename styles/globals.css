@@ -30,6 +30,32 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   transition: 1s;
 }
 
-.Player {
-  display: grid !important;
+/* control progress bar video */
+
+.videoModal_container:hover .control_bar {
+  transform: translateY(0);
 }
+
+.videoModal_container:hover .informVideo {
+  opacity: 100%;
+}
+
+.videoModal_container:hover .reactVideo {
+  opacity: 100%;
+}
+
+.videoModal_container:hover .closeButton {
+  opacity: 100%;
+}
+
+/* .video-list:hover .control_bar {
+  transform: translateY(0);
+}
+
+.video-list .informVideo {
+  opacity: 100%;
+}
+
+.video-list .reactVideo {
+  opacity: 100%;
+} */

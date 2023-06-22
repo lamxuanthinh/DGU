@@ -32,7 +32,7 @@ export default function InformVideo({
 
   return (
     <div
-      className={`flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
+      className={`informVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
     >
       <div className={`${isClose ? "hidden" : "w-[420px] py-3 px-4"}`}>
         <div className="flex items-center">
