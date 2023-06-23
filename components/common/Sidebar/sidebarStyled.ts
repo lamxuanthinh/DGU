@@ -19,6 +19,9 @@ export const BaseNavigationItem = styled.div`
 
 export const NavigationItem = styled(BaseNavigationItem)`
   width: 100%;
+  transition: 0.3s; 
+
+
   &:hover {
     background-color: white;
     color: black;
