@@ -4,6 +4,7 @@ import {
   BaseNavigationItem,
 } from "@/components/common/Sidebar/sidebarStyled";
 
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -60,12 +61,17 @@ const Sidebar = () => {
   return (
     <div className="w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[20px]">
       <div className="h-[76px] w-[100%] p-[13px] flex justify-between items-center">
-        <Image
-          className="ml-[26px]"
+        <Link
+          href={'/'}
+        >
+          <Image
+          className="ml-[26px] cursor-pointer dgu-logo"
           src={require("@/public/Images/logo.png")}
           width={50}
           alt="logo"
         />
+        </Link>
+        
         <AiOutlineDoubleLeft
           className="mr-[13px]"
           color="#000000"
