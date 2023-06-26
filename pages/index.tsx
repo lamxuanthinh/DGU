@@ -12,17 +12,16 @@ export default Index;
 
 export async function getStaticProps() {
   let posts: any;
-  let parent: any;
 
   try {
     posts = await videoApi.getAllVideo();
-    parent = await videoApi.getVideoByParentId(
-      "181d0bfc8c5d474b8190cd1b8b6ef89b"
-    );
 
-    posts.metaData.map((item: any) => {
-      item.fullVideoInfo = parent.metaData;
-    });
+    for (let i = 0; i < posts.metaData.length; i++) {
+      const parentId = posts.metaData[i].parent_id;
+      const parentResponse: any = await videoApi.getVideoByParentId(parentId);
+      posts.metaData[i].fullVideoInfo = parentResponse.metaData;
+    }
+
   } catch (error) {
     console.error("Error fetching posts:", error);
     posts = [];
