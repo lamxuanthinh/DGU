@@ -1,13 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import useVdocipher from "@/hooks/use-vdocipher";
-import { IoIosArrowDown } from "react-icons/io";
 import InformVideo from "./InformVideo";
 import ReactVideo from "./ReactVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
-import axiosClient from "@/apis/axiosClient";
-import videoApi from "@/apis/video";
 
 interface IVideoStatusUsingAPI {
   data: any;

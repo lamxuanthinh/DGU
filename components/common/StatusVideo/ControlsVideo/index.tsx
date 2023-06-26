@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
@@ -81,9 +80,7 @@ export default function ControlsVideo({
                     key={index}
                     className="flex-1 h-1 overflow-hidden"
                     style={{
-                      flexBasis: `${
-                        (item.hashtags[0].name / totalTime) * 100
-                      }%`,
+                      flexBasis: `${(item.duration / totalTime) * 100}%`,
                     }}
                   >
                     <div className="h-full flex">

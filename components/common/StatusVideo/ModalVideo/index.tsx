@@ -1,4 +1,3 @@
-import { IVideoPayload } from "@/model/video";
 import { MutableRefObject, useEffect } from "react";
 import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";

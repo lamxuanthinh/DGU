@@ -18,7 +18,7 @@ export async function getStaticProps() {
 
     for (let i = 0; i < posts.metaData.length; i++) {
       const parentId = posts.metaData[i].parent_id;
-      const parentResponse: any = await videoApi.getVideoByParentId(parentId);
+      const parentResponse: any = await videoApi.getVideoById(parentId);
       posts.metaData[i].fullVideoInfo = parentResponse.metaData;
     }
 
