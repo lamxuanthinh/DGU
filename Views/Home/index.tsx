@@ -7,7 +7,7 @@ export default function Home({ data }: any) {
 
   const VideoSection = ({ data }: any) => {
     return (
-      <div className="snap-start flex-shrink-0 mb-3 w-full h-full text-[#fff]">
+      <div className="snap-start flex-shrink-0 mb-3 w-full h-full text-[#fff] overflow-hidden">
         <div className="mb-4 relative h-full">
           <VideoStatusUsingAPI data={data} />
         </div>

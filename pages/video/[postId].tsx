@@ -2,49 +2,53 @@ import videoApi from "@/apis/video";
 import MainLayout from "@/components/layout/MainLayout";
 import DetailsVideo from "@/Views/DetailsVideo";
 
-export default function Post({ post }: any) {
-  return <DetailsVideo data={post} />;
+export default function Post() {
+  return <div>123</div>;
 }
 
-export const getStaticPaths = async () => {
-  let posts: any;
+// export default function Post({ post }: any) {
+//   return <DetailsVideo data={post} />;
+// }
 
-  try {
-    posts = await videoApi.getAllVideo();
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    posts = [];
-  }
+// export const getStaticPaths = async () => {
+//   let posts: any;
 
-  const paths = posts.metaData.map((item: any) => {
-    return {
-      params: { postId: item.video_id },
-    };
-  });
+//   try {
+//     posts = await videoApi.getAllVideo();
+//   } catch (error) {
+//     console.error("Error fetching posts:", error);
+//     posts = [];
+//   }
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   const paths = posts.metaData.map((item: any) => {
+//     return {
+//       params: { postId: item.video_id },
+//     };
+//   });
 
-export const getStaticProps = async (context: any) => {
-  const postId = context.params.postId;
-  let posts: any, post: any;
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-  try {
-    post = await videoApi.getVideoById(postId);
-    post = post.metaData;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    post = {};
-  }
+// export const getStaticProps = async (context: any) => {
+//   const postId = context.params.postId;
+//   let posts: any, post: any;
 
-  return {
-    props: {
-      post,
-    },
-  };
-};
+//   try {
+//     post = await videoApi.getVideoByParentId(postId);
+//     post = post.metaData;
+//   } catch (error) {
+//     console.error("Error fetching posts:", error);
+//     post = {};
+//   }
 
-Post.Layout = MainLayout;
+//   return {
+//     props: {
+//       post,
+//     },
+//   };
+// };
+
+// Post.Layout = MainLayout;

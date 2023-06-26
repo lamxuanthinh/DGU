@@ -1,52 +1,34 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
 interface IControlsVideo {
+  dataVideo: any;
+  totalTime: any;
   statusVideo: string;
   currentTime: any;
   setCurrentTime: any;
-  totalTime: any;
   handlePlayByPlayer: () => void;
   handlePauseByPlayer: () => void;
   setTimePlayerModal: (value: any) => void;
+  isOpenModalVideo: boolean;
+  handleCloseModal: () => void;
+  handleOpenModal: () => void;
 }
 
 export default function ControlsVideo({
+  dataVideo,
+  totalTime,
   statusVideo,
   currentTime,
   setCurrentTime,
-  totalTime,
   handlePlayByPlayer,
   handlePauseByPlayer,
   setTimePlayerModal,
+  isOpenModalVideo,
+  handleCloseModal,
+  handleOpenModal,
 }: IControlsVideo) {
-  const progressBarRef: any = useRef(null);
-
-  const splitPoints = {
-    inFormVideoParent: {
-      lengthVideo: 193,
-    },
-    inFormVideoChild: [
-      {
-        length: 70,
-        splitPoint: 70,
-      },
-      {
-        length: 30,
-        splitPoint: 100,
-      },
-      {
-        length: 43,
-        splitPoint: 143,
-      },
-      {
-        length: 50,
-        splitPoint: 193,
-      },
-    ],
-  };
-
   const calcPercentProgress = (event: React.MouseEvent<HTMLDivElement>) => {
     const progressBarElement = event.currentTarget;
     const widthProgressBar = progressBarElement.offsetWidth;
@@ -76,7 +58,6 @@ export default function ControlsVideo({
       <div className="py-1 px-4">
         <div
           className="hover:cursor-pointer"
-          ref={progressBarRef}
           onClick={(e) => handleProgressBarClick(e)}
         >
           <div className="relative bg-opacity-50 flex items-center justify-between">
@@ -93,31 +74,35 @@ export default function ControlsVideo({
               className="absolute bg-[#fff] h-[10px] w-[10px] rounded-full hover:cursor-pointer translate-x-[-50%]"
             ></div>
 
-            {splitPoints.inFormVideoChild.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex-1 h-1 overflow-hidden"
-                  style={{
-                    flexBasis: `${
-                      (item.length /
-                        splitPoints.inFormVideoParent.lengthVideo) *
-                      100
-                    }%`,
-                  }}
-                >
-                  <div className="h-full flex">
-                    <div
-                      style={{
-                        width: `calc(100% - 5px)`,
-                      }}
-                      className="h-full bg-white rounded-xl"
-                    ></div>
-                    <div className="w-[5px] h-full"></div>
+            {Array.isArray(dataVideo) ? (
+              dataVideo.map((item: any, index: any) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex-1 h-1 overflow-hidden"
+                    style={{
+                      flexBasis: `${
+                        (item.hashtags[0].name / totalTime) * 100
+                      }%`,
+                    }}
+                  >
+                    <div className="h-full flex">
+                      <div
+                        style={{
+                          width: `calc(100% - 5px)`,
+                        }}
+                        className="h-full bg-white rounded-xl"
+                      ></div>
+                      <div className="w-[5px] h-full"></div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="h-1 w-full">
+                <div className="h-full w-full bg-white rounded-xl"></div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -134,7 +119,10 @@ export default function ControlsVideo({
         >
           {statusVideo == "Playing" ? <FaPause /> : <FaPlay />}
         </div>
-        <div className="p-2 hover:cursor-pointer">
+        <div
+          className="p-2 hover:cursor-pointer"
+          onClick={isOpenModalVideo ? handleCloseModal : handleOpenModal}
+        >
           <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
         </div>
       </div>

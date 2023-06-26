@@ -6,6 +6,8 @@ import InformVideo from "./InformVideo";
 import ReactVideo from "./ReactVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
+import axiosClient from "@/apis/axiosClient";
+import videoApi from "@/apis/video";
 
 interface IVideoStatusUsingAPI {
   data: any;
@@ -20,8 +22,10 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   const [videoTagModal, setVideoTagModal] = useState(null);
   const [isOpenModalVideo, setOpenModalVideo] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [currentTimeModal, setCurrentTimeModal] = useState(0);
   const [videoModalLength, setVideoModalLength] = useState(0);
   const { loadVideo, isAPIReady } = useVdocipher();
+  const dataFullVideo = data.fullVideoInfo;
   const videoRef = useRef(null);
   const modalVideoRef = useRef(null);
   const options = {
@@ -53,7 +57,7 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
       const isIframeExist_modal = iframe_modal !== null;
       if (!isIframeExist_modal) {
         const videoModal: any = loadVideo({
-          pathVideo: data.pathVideo,
+          pathVideo: data.fullVideoInfo.pathVideo,
           configuration: { loop: true },
           container: container_modal,
         });
@@ -76,7 +80,9 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     setPlayer(player);
 
     player.video.addEventListener("play", () => setStatus("Playing"));
-    player.video.addEventListener("pause", () => setStatus("Paused"));
+    player.video.addEventListener("timeupdate", () => {
+      setCurrentTime(player.video.currentTime);
+    });
 
     (window as any).player = player;
 
@@ -94,7 +100,7 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
       setVideoModalLength(playerModal.video.duration);
     });
     playerModal.video.addEventListener("timeupdate", () => {
-      setCurrentTime(playerModal.video.currentTime);
+      setCurrentTimeModal(playerModal.video.currentTime);
     });
 
     (window as any).playerModal = playerModal;
@@ -134,6 +140,10 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     playerModal.video.currentTime = value;
   };
 
+  const setTimePlayer = (value: any) => {
+    player.video.currentTime = value;
+  };
+
   const handleOpenModal = () => {
     setOpenModalVideo(!isOpenModalVideo);
     const currentPathname = window.location.pathname;
@@ -148,7 +158,9 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     if (window.history.length > 2) {
       window.history.back();
     }
-    player.video.currentTime = currentTime;
+    if (player && player.video) {
+      player.video.currentTime = currentTime;
+    }
   };
 
   //-------------Handle Home Scroll---------------------//
@@ -172,7 +184,7 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   }, [isOpenModalVideo]);
 
   return (
-    <div ref={videoRef} className="w-full h-full video-list">
+    <div ref={videoRef} className="videoModal_container w-full h-full">
       {status != "NA" && (
         <div
           onClick={handleOpenModal}
@@ -180,21 +192,27 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
         ></div>
       )}
 
-      {/* <ControlsVideo
+      <ControlsVideo
+        dataVideo={data}
+        totalTime={data.duration}
         statusVideo={status}
         currentTime={currentTime}
         setCurrentTime={setCurrentTime}
-        totalTime={videoModalLength}
-        handlePlayByPlayer={handlePlayByPlayerModal}
-        handlePauseByPlayer={handlePauseByPlayerModal}
-        setTimePlayerModal={setTimePlayerModal}
-      /> */}
+        handlePlayByPlayer={handlePlayByPlayer}
+        handlePauseByPlayer={handlePauseByPlayer}
+        setTimePlayerModal={setTimePlayer}
+        isOpenModalVideo={isOpenModalVideo}
+        handleCloseModal={handleCloseModal}
+        handleOpenModal={handleOpenModal}
+      />
+
       <InformVideo
         key={data.video_id}
         title={data.title}
         caption={data.caption}
         hashtags={data.hashtags}
       />
+
       <ReactVideo
         pathAvatar={data.author.pathAvatar}
         heartCount={100}
@@ -203,17 +221,17 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
       />
 
       <ModalVideo
-        isOpenModalVideo={isOpenModalVideo}
+        dataVideo={dataFullVideo}
         modalVideoRef={modalVideoRef}
-        handleCloseModal={handleCloseModal}
-        data={data}
         statusModal={statusModal}
         handlePlayByPlayerModal={handlePlayByPlayerModal}
         handlePauseByPlayerModal={handlePauseByPlayerModal}
-        currentTime={currentTime}
-        setCurrentTime={setCurrentTime}
-        totalTimeVideo={videoModalLength}
+        currentTime={currentTimeModal}
+        setCurrentTime={setCurrentTimeModal}
         setTimePlayerModal={setTimePlayerModal}
+        isOpenModalVideo={isOpenModalVideo}
+        handleCloseModal={handleCloseModal}
+        handleOpenModal={handleOpenModal}
       />
     </div>
   );

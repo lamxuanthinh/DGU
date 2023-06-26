@@ -6,47 +6,46 @@ import InformVideo from "../InformVideo";
 import ReactVideo from "../ReactVideo";
 
 interface IModalVideo {
-  isOpenModalVideo: boolean;
+  dataVideo: any;
   modalVideoRef: MutableRefObject<null>;
-  handleCloseModal: () => void;
-  data: IVideoPayload;
   statusModal: string;
   handlePlayByPlayerModal: () => void;
   handlePauseByPlayerModal: () => void;
   currentTime: any;
   setCurrentTime: any;
-  totalTimeVideo: any;
   setTimePlayerModal: (value: any) => void;
+  isOpenModalVideo: boolean;
+  handleCloseModal: () => void;
+  handleOpenModal: () => void;
 }
 
 export default function ModalVideo({
-  isOpenModalVideo,
+  dataVideo,
   modalVideoRef,
-  handleCloseModal,
-  data,
   statusModal,
   handlePlayByPlayerModal,
   handlePauseByPlayerModal,
   currentTime,
   setCurrentTime,
-  totalTimeVideo,
   setTimePlayerModal,
+  isOpenModalVideo,
+  handleCloseModal,
+  handleOpenModal,
 }: IModalVideo) {
-  // useEffect(() => {
-  //   function handleKeyPress(event: any) {
-  //     if (event.key === " ") {
-  //       if (statusModal == "Playing") {
-  //         handlePauseByPlayerModal();
-  //       } else if (statusModal == "Paused") {
-  //         handlePlayByPlayerModal();
-  //       }
-  //     }
-  //   }
-  //   window.addEventListener("keydown", handleKeyPress);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyPress);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <div
       className={`videoModal_container fixed top-0 right-0 left-0 bottom-0 ${
@@ -62,26 +61,30 @@ export default function ModalVideo({
         </div>
 
         <InformVideo
-          key={data.video_id}
-          title={data.title}
-          caption={data.caption}
-          hashtags={data.hashtags}
+          key={dataVideo.video_id}
+          title={dataVideo.title}
+          caption={dataVideo.caption}
+          hashtags={dataVideo.hashtags}
         />
         <ReactVideo
-          pathAvatar={data.author.pathAvatar}
+          pathAvatar={dataVideo.author.pathAvatar}
           heartCount={100}
           commentCount={93}
           shareCount={57}
         />
 
         <ControlsVideo
+          dataVideo={dataVideo.video_id_children}
+          totalTime={dataVideo.duration}
           statusVideo={statusModal}
           currentTime={currentTime}
           setCurrentTime={setCurrentTime}
-          totalTime={totalTimeVideo}
           handlePlayByPlayer={handlePlayByPlayerModal}
           handlePauseByPlayer={handlePauseByPlayerModal}
           setTimePlayerModal={setTimePlayerModal}
+          isOpenModalVideo={isOpenModalVideo}
+          handleCloseModal={handleCloseModal}
+          handleOpenModal={handleOpenModal}
         />
       </div>
     </div>

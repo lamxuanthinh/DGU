@@ -35,9 +35,11 @@ export default function InformVideo({
       className={`informVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
     >
       <div className={`${isClose ? "hidden" : "w-[420px] py-3 px-4"}`}>
-        <div className="flex items-center">
-          <FaSwatchbook fontSize={"15px"} />
-          <h2 className="px-2 text-[24px] font-bold">{title}</h2>
+        <div className="flex items-center mb-2">
+          <div>
+            <FaSwatchbook fontSize={"20px"} />
+          </div>
+          <h2 className="px-2 text-[23px] font-bold">{title}</h2>
         </div>
         <div>
           <p className="text-[14px] font-medium pb-2">
@@ -59,9 +61,13 @@ export default function InformVideo({
           </p>
         </div>
         <div className="flex items-center pb-2">
-          <p className="text-[15px] font-semibold pr-2">Chi tiết khóa học:</p>
+          <div className="text-[15px] font-semibold pr-2">
+            Chi tiết khóa học:
+          </div>
           <div className="flex items-center">
-            <FaExternalLinkAlt fontSize={"12px"} />
+            <div>
+              <FaExternalLinkAlt fontSize={"12px"} />
+            </div>
             <p className="px-2 text-[15px] font-semibold">{title}</p>
           </div>
         </div>
