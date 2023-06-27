@@ -44,8 +44,6 @@ export const getStaticProps = async (context: any) => {
     post = {};
   }
 
-  console.log(post);
-
   return {
     props: {
       post,
