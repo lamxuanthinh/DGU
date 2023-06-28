@@ -1,18 +1,19 @@
-import { MutableRefObject, useEffect } from "react";
+import { IVideoPayload } from "@/model/video";
+import { Dispatch, MutableRefObject, SetStateAction, useEffect } from "react";
 import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";
 import InformVideo from "../InformVideo";
 import ReactVideo from "../ReactVideo";
 
 interface IModalVideo {
-  dataVideo: any;
+  dataVideo: IVideoPayload;
   modalVideoRef: MutableRefObject<null>;
   statusModal: string;
   handlePlayByPlayerModal: () => void;
   handlePauseByPlayerModal: () => void;
-  currentTime: any;
-  setCurrentTime: any;
-  setTimePlayerModal: (value: any) => void;
+  currentTime: number;
+  setCurrentTime: Dispatch<SetStateAction<number>>;
+  setTimePlayerModal: (value: string | number) => void;
   isOpenModalVideo: boolean;
   handleCloseModal: () => void;
   handleOpenModal: () => void;

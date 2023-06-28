@@ -5,9 +5,10 @@ import InformVideo from "./InformVideo";
 import ReactVideo from "./ReactVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
+import { IVideoShortPayload } from "@/model/video";
 
 interface IVideoStatusUsingAPI {
-  data: any;
+  data: IVideoShortPayload;
 }
 
 export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
@@ -20,7 +21,6 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   const [isOpenModalVideo, setOpenModalVideo] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [currentTimeModal, setCurrentTimeModal] = useState(0);
-  const [videoModalLength, setVideoModalLength] = useState(0);
   const { loadVideo, isAPIReady } = useVdocipher();
   const dataFullVideo = data.fullVideoInfo;
   const videoRef = useRef(null);
@@ -34,7 +34,6 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   const isVisibile = useElementOnScreen(options, videoRef);
 
   useEffect(() => {
-    //------------list Video home---------------//
     const container: any = videoRef.current;
     const iframe = container.querySelector("iframe");
     const isIframeExist = iframe !== null;
@@ -47,7 +46,6 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
       setVideoTag(video);
     }
 
-    //------------Modal---------------//
     const container_modal: any = modalVideoRef.current;
     if (container_modal) {
       const iframe_modal = container_modal.querySelector("iframe");
@@ -66,7 +64,6 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   useEffect(() => {
     if (!isAPIReady) return;
 
-    //------------list Video home---------------//
     if (!videoTag) {
       setPlayer(null);
       setPlayerModal(null);
@@ -83,7 +80,6 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
 
     (window as any).player = player;
 
-    //-------------Modal---------------------//
     if (!videoTagModal) {
       setPlayer(null);
       setPlayerModal(null);
@@ -93,17 +89,12 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     (window as any).playerModal = playerModal;
     setPlayerModal(playerModal);
 
-    playerModal.video.addEventListener("loadeddata", () => {
-      setVideoModalLength(playerModal.video.duration);
-    });
     playerModal.video.addEventListener("timeupdate", () => {
       setCurrentTimeModal(playerModal.video.currentTime);
     });
 
     (window as any).playerModal = playerModal;
-  }, [isAPIReady, videoTag]);
-
-  //-------------function handle statusVideo------------//
+  }, [isAPIReady, videoTag, videoTagModal]);
 
   const handlePlayByPlayerModal = () => {
     if (playerModal) {
@@ -134,11 +125,15 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   };
 
   const setTimePlayerModal = (value: any) => {
-    playerModal.video.currentTime = value;
+    if (player && playerModal.video) {
+      playerModal.video.currentTime = value;
+    }
   };
 
   const setTimePlayer = (value: any) => {
-    player.video.currentTime = value;
+    if (player && player.video) {
+      player.video.currentTime = value;
+    }
   };
 
   const handleOpenModal = () => {
@@ -147,7 +142,7 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     if (!currentPathname.includes("video/")) {
       window.history.pushState(null, "", `video/${data.video_id}`);
     }
-    playerModal.video.currentTime = currentTime;
+    setTimePlayerModal(currentTime + data.break_point);
   };
 
   const handleCloseModal = () => {
@@ -155,12 +150,10 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     if (window.history.length > 2) {
       window.history.back();
     }
-    if (player && player.video) {
-      player.video.currentTime = currentTime;
-    }
+    setTimePlayer(currentTime - data.break_point);
   };
 
-  //-------------Handle Home Scroll---------------------//
+  //------------
   useEffect(() => {
     if (isVisibile && status != "NA") {
       handlePlayByPlayer();
@@ -169,7 +162,6 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     }
   }, [isVisibile]);
 
-  //-------------Handle modal open---------------------//
   useEffect(() => {
     if (isOpenModalVideo) {
       handlePlayByPlayerModal();

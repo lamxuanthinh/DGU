@@ -1,13 +1,13 @@
-import { duration } from "moment";
+import { Dispatch, SetStateAction } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
 interface IControlsVideo {
   dataVideo: any;
-  totalTime: any;
+  totalTime: number;
   statusVideo: string;
-  currentTime: any;
-  setCurrentTime: any;
+  currentTime: number;
+  setCurrentTime: Dispatch<SetStateAction<number>>;
   handlePlayByPlayer: () => void;
   handlePauseByPlayer: () => void;
   setTimePlayerModal: (value: any) => void;
@@ -29,9 +29,6 @@ export default function ControlsVideo({
   handleCloseModal,
   handleOpenModal,
 }: IControlsVideo) {
-
-  
-
   const currentTimeByPercent = (currentTime / totalTime) * 100;
 
   const calcPercentProgress = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -41,15 +38,6 @@ export default function ControlsVideo({
       event.clientX - progressBarElement.getBoundingClientRect().left;
     const positionFlowPercent = (clickPositionX / widthProgressBar) * 100;
     return positionFlowPercent;
-  };
-
-  const calcPxProgress = (event: React.MouseEvent<HTMLDivElement>) => {
-    const progressBarElement = event.currentTarget;
-    const widthProgressBar = progressBarElement.offsetWidth;
-    const positionFlowPx =
-      (calcPercentProgress(event) * widthProgressBar) / 100;
-
-    return positionFlowPx;
   };
 
   const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
