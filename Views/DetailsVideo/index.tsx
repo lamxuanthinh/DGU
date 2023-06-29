@@ -1,7 +1,8 @@
 import VideoStatusUsingAPI from "@/components/common/StatusVideo";
+import { IVideoShortPayload } from "@/model/video";
 
 interface IDetailsVideo {
-  data: any;
+  data: IVideoShortPayload;
 }
 
 export default function DetailsVideo({ data }: IDetailsVideo) {

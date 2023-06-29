@@ -59,7 +59,7 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
         setVideoTagModal(videoModal);
       }
     }
-  }, []);
+  }, [data, loadVideo]);
 
   useEffect(() => {
     if (!isAPIReady) return;
@@ -155,12 +155,12 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
 
   //------------
   useEffect(() => {
-    if (isVisibile && status != "NA") {
+    if (isVisibile) {
       handlePlayByPlayer();
-    } else if (!isVisibile && status != "NA") {
+    } else if (!isVisibile) {
       handlePauseByPlayer();
     }
-  }, [isVisibile]);
+  }, [isVisibile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (isOpenModalVideo) {
@@ -170,7 +170,7 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
       handlePauseByPlayerModal();
       handlePlayByPlayer();
     }
-  }, [isOpenModalVideo]);
+  }, [isOpenModalVideo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div ref={videoRef} className="videoModal_container w-full h-full">
