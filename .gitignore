@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# develop
+.idea
+
 # next.js
 /.next/
 /out/
