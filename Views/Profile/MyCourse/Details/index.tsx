@@ -100,7 +100,7 @@ export default function Details() {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full h-full flex justify-center p-[10px]">
       <div className="h-[916px] w-[33%] flex justify-center rounded-xl mr-2 bg-gradient-to-b from-[#B0997A] via-[rgba(206, 188, 161, 0.7)] to-[rgba(176, 153, 122, 0)]">
         <div className="w-[99%] p-3 rounded-md">
           <div className="mb-4">
