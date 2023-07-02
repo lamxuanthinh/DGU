@@ -8,9 +8,6 @@
 # testing
 /coverage
 
-# develop
-.idea
-
 # next.js
 /.next/
 /out/
@@ -38,3 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .vscode
+.idea
