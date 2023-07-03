@@ -3,12 +3,6 @@ interface IAuthor {
 }
 
 export interface IVideoPayload {
-    message: string;
-    status: number;
-    metaData: IDataVideo | Array<IDataVideoShort>;
-}
-
-export interface IDataVideo {
     author: IAuthor;
     video_id: string;
     title: string;
@@ -18,14 +12,14 @@ export interface IDataVideo {
     hashtags: Array<string>;
     comments: Array<string>;
     likers: number | string;
-    video_id_children: Array<IDataVideoShort>;
+    video_id_children: Array<IVideoShortPayload>;
     parent_id: number | string;
     duration: number;
     break_point: number;
     pathVideo: string;
 }
 
-export interface IDataVideoShort {
+export interface IVideoShortPayload {
     author: IAuthor;
     video_id: string;
     title: string;
@@ -35,6 +29,7 @@ export interface IDataVideoShort {
     hashtags: Array<string>;
     comments: Array<string>;
     likers: number | string;
+    video_id_children: Array<IVideoShortPayload>;
     parent_id: string;
     duration: number;
     break_point: number;

@@ -1,8 +1,8 @@
 import Video from "@/components/common/Video";
-import { IDataVideoShort } from "@/model/video";
+import { IVideoShortPayload } from "@/model/video";
 
 interface IDetailsVideo {
-    data: IDataVideoShort;
+    data: IVideoShortPayload;
 }
 
 export default function DetailsVideo({ data }: IDetailsVideo) {

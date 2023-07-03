@@ -5,10 +5,10 @@ import DescriptionVideo from "./DescriptionVideo";
 import ActionVideo from "./ActionVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
-import { IDataVideoShort } from "@/model/video";
+import { IVideoShortPayload } from "@/model/video";
 
 interface IVideo {
-  data: IDataVideoShort;
+  data: IVideoShortPayload;
 }
 
 export default function Video({ data }: IVideo) {

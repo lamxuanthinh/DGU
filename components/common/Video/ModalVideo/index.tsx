@@ -1,4 +1,4 @@
-import { IDataVideo } from "@/model/video";
+import { IVideoPayload } from "@/model/video";
 import { Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";
@@ -6,7 +6,7 @@ import DescriptionVideo from "../DescriptionVideo";
 import ActionVideo from "../ActionVideo";
 
 interface IModalVideo {
-    dataVideo: IDataVideo;
+    dataVideo: IVideoPayload;
     modalVideoRef: MutableRefObject<null>;
     statusModal: string;
     handlePlayByPlayerModal: () => void;
