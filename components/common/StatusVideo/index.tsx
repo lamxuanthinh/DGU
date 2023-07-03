@@ -173,41 +173,43 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
   }, [isOpenModalVideo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div ref={videoRef} className="videoModal_container w-full h-full">
-      {status != "NA" && (
-        <div
-          onClick={handleOpenModal}
-          className="absolute top-0 w-[100%] h-[100%] hover:cursor-pointer"
-        ></div>
-      )}
+    <div ref={videoRef} className="w-full h-full">
+      <div className="video_container">
+        {status != "NA" && (
+          <div
+            onClick={handleOpenModal}
+            className="absolute top-0 w-[100%] h-[100%] hover:cursor-pointer"
+          ></div>
+        )}
 
-      <ControlsVideo
-        dataVideo={data}
-        totalTime={data.duration}
-        statusVideo={status}
-        currentTime={currentTime}
-        setCurrentTime={setCurrentTime}
-        handlePlayByPlayer={handlePlayByPlayer}
-        handlePauseByPlayer={handlePauseByPlayer}
-        setTimePlayerModal={setTimePlayer}
-        isOpenModalVideo={isOpenModalVideo}
-        handleCloseModal={handleCloseModal}
-        handleOpenModal={handleOpenModal}
-      />
+        <ControlsVideo
+          dataVideo={data}
+          totalTime={data.duration}
+          statusVideo={status}
+          currentTime={currentTime}
+          setCurrentTime={setCurrentTime}
+          handlePlayByPlayer={handlePlayByPlayer}
+          handlePauseByPlayer={handlePauseByPlayer}
+          setTimePlayerModal={setTimePlayer}
+          isOpenModalVideo={isOpenModalVideo}
+          handleCloseModal={handleCloseModal}
+          handleOpenModal={handleOpenModal}
+        />
 
-      <InformVideo
-        key={data.video_id}
-        title={data.title}
-        caption={data.caption}
-        hashtags={data.hashtags}
-      />
+        <InformVideo
+          key={data.video_id}
+          title={data.title}
+          caption={data.caption}
+          hashtags={data.hashtags}
+        />
 
-      <ReactVideo
-        pathAvatar={data.author.pathAvatar}
-        heartCount={100}
-        commentCount={93}
-        shareCount={57}
-      />
+        <ReactVideo
+          pathAvatar={data.author.pathAvatar}
+          heartCount={100}
+          commentCount={93}
+          shareCount={57}
+        />
+      </div>
 
       <ModalVideo
         dataVideo={dataFullVideo}
