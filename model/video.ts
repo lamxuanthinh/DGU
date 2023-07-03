@@ -1,7 +1,9 @@
+interface IAuthor {
+  pathAvatar: string;
+}
+
 export interface IVideoPayload {
-  author: {
-    pathAvatar: string;
-  };
+  author: IAuthor;
   video_id: string;
   title: string;
   caption: string;
@@ -10,7 +12,7 @@ export interface IVideoPayload {
   hashtags: Array<string>;
   comments: Array<string>;
   likers: number | string;
-  video_id_children?: Array<IVideoShortPayload> | string;
+  video_id_children: Array<IVideoShortPayload>;
   parent_id: number | string;
   duration: number;
   break_point: number;
@@ -18,9 +20,7 @@ export interface IVideoPayload {
 }
 
 export interface IVideoShortPayload {
-  author: {
-    pathAvatar: string;
-  };
+  author: IAuthor;
   video_id: string;
   title: string;
   caption: string;
@@ -29,10 +29,10 @@ export interface IVideoShortPayload {
   hashtags: Array<string>;
   comments: Array<string>;
   likers: number | string;
-  video_id_children: string;
+  video_id_children: Array<IVideoShortPayload>;
   parent_id: string;
   duration: number;
   break_point: number;
   pathVideo: string;
-  fullVideoInfo?: any;
+  fullVideoInfo: IVideoPayload;
 }

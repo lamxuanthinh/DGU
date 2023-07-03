@@ -4,7 +4,7 @@ const videoApi = {
   getAllVideo: () => {
     return axiosClient.get("/api/video/");
   },
-  getVideoById: (id: any) => {
+  getVideoById: (id: number | string) => {
     return axiosClient.get(`/api/video/${id}`);
   },
 };

@@ -2,17 +2,17 @@ import { useState } from "react";
 import { FaExternalLinkAlt, FaSwatchbook } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
-interface IInformVideo {
+interface IDescriptionVideo {
   title: string;
   caption: string;
   hashtags: Array<string>;
 }
 
-export default function InformVideo({
+export default function DescriptionVideo({
   title,
   caption,
   hashtags,
-}: IInformVideo) {
+}: IDescriptionVideo) {
   const [isClose, setClose] = useState(false);
   const [showFullCaption, setShowFullCaption] = useState(false);
 
@@ -32,7 +32,7 @@ export default function InformVideo({
 
   return (
     <div
-      className={`informVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
+      className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
     >
       <div className={`${isClose ? "hidden" : "w-[420px] py-3 px-4"}`}>
         <div className="flex items-center mb-2">

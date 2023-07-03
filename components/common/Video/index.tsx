@@ -1,17 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import useVdocipher from "@/hooks/use-vdocipher";
-import InformVideo from "./InformVideo";
-import ReactVideo from "./ReactVideo";
+import DescriptionVideo from "./DescriptionVideo";
+import ActionVideo from "./ActionVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
 import { IVideoShortPayload } from "@/model/video";
 
-interface IVideoStatusUsingAPI {
+interface IVideo {
   data: IVideoShortPayload;
 }
 
-export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
+export default function Video({ data }: IVideo) {
   const [status, setStatus] = useState("NA");
   const [statusModal, setStatusModal] = useState("NA");
   const [player, setPlayer] = useState<any>(null);
@@ -96,6 +96,24 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     (window as any).playerModal = playerModal;
   }, [isAPIReady, videoTag, videoTagModal]);
 
+  useEffect(() => {
+    if (isVisibile) {
+      handlePlayByPlayer();
+    } else if (!isVisibile) {
+      handlePauseByPlayer();
+    }
+  }, [isVisibile]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (isOpenModalVideo) {
+      handlePlayByPlayerModal();
+      handlePauseByPlayer();
+    } else if (!isOpenModalVideo) {
+      handlePauseByPlayerModal();
+      handlePlayByPlayer();
+    }
+  }, [isOpenModalVideo]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handlePlayByPlayerModal = () => {
     if (playerModal) {
       playerModal.video.play();
@@ -153,29 +171,10 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
     setTimePlayer(currentTime - data.break_point);
   };
 
-  //------------
-  useEffect(() => {
-    if (isVisibile) {
-      handlePlayByPlayer();
-    } else if (!isVisibile) {
-      handlePauseByPlayer();
-    }
-  }, [isVisibile]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (isOpenModalVideo) {
-      handlePlayByPlayerModal();
-      handlePauseByPlayer();
-    } else if (!isOpenModalVideo) {
-      handlePauseByPlayerModal();
-      handlePlayByPlayer();
-    }
-  }, [isOpenModalVideo]); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div ref={videoRef} className="w-full h-full">
       <div className="video_container">
-        {status != "NA" && (
+        {status !== "NA" && (
           <div
             onClick={handleOpenModal}
             className="absolute top-0 w-[100%] h-[100%] hover:cursor-pointer"
@@ -196,14 +195,14 @@ export default function VideoStatusUsingAPI({ data }: IVideoStatusUsingAPI) {
           handleOpenModal={handleOpenModal}
         />
 
-        <InformVideo
+        <DescriptionVideo
           key={data.video_id}
           title={data.title}
           caption={data.caption}
           hashtags={data.hashtags}
         />
 
-        <ReactVideo
+        <ActionVideo
           pathAvatar={data.author.pathAvatar}
           heartCount={100}
           commentCount={93}

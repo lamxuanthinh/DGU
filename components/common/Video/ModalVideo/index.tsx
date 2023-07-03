@@ -9,8 +9,8 @@ import {
 } from "react";
 import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";
-import InformVideo from "../InformVideo";
-import ReactVideo from "../ReactVideo";
+import DescriptionVideo from "../DescriptionVideo";
+import ActionVideo from "../ActionVideo";
 
 interface IModalVideo {
   dataVideo: IVideoPayload;
@@ -103,13 +103,13 @@ export default function ModalVideo({
           <CgClose fontSize={20} />
         </div>
 
-        <InformVideo
+        <DescriptionVideo
           key={dataVideo.video_id}
           title={dataVideo.title}
           caption={dataVideo.caption}
           hashtags={dataVideo.hashtags}
         />
-        <ReactVideo
+        <ActionVideo
           pathAvatar={dataVideo.author.pathAvatar}
           heartCount={100}
           commentCount={93}

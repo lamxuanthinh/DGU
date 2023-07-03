@@ -1,4 +1,4 @@
-import VideoStatusUsingAPI from "@/components/common/StatusVideo";
+import Video from "@/components/common/Video";
 import { IVideoShortPayload } from "@/model/video";
 
 interface IDetailsVideo {
@@ -9,7 +9,7 @@ export default function DetailsVideo({ data }: IDetailsVideo) {
   return (
     <div className="snap-y w-full h-full overflow-auto snap-mandatory scrollbar-none">
       <div className="relative h-full text-white">
-        <VideoStatusUsingAPI data={data} />
+        <Video data={data} />
       </div>
     </div>
   );

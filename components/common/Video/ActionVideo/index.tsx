@@ -5,25 +5,25 @@ import { FaCommentAlt, FaShare } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { TiPlus } from "react-icons/ti";
 
-interface IReactVideo {
+interface IActionVideoProps {
   pathAvatar: string;
   heartCount: string | number;
   commentCount: string | number;
   shareCount: string | number;
 }
 
-export default function ReactVideo({
+export default function ActionVideo({
   pathAvatar,
   heartCount = 100,
   commentCount = 93,
   shareCount = 52,
-}: IReactVideo) {
+}: IActionVideoProps) {
   const [heart, setHeart] = useState(false);
   const [comment, setComment] = useState(false);
   const [share, setShare] = useState(false);
 
   return (
-    <div className="reactVideo opacity-0 transition duration-500 ease-in-out absolute top-[25%] right-6 flex flex-col">
+    <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[25%] right-6 flex flex-col">
       <div className="mb-5 flex justify-center relative">
         <div className="w-[40px] h-[40px] rounded-[50%] overflow-hidden flex justify-center bg-[#b7b7b7]">
           <Image width={40} height={40} alt="" src={pathAvatar} />

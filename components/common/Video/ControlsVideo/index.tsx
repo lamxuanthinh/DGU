@@ -1,16 +1,17 @@
+import { IVideoPayload, IVideoShortPayload } from "@/model/video";
 import { Dispatch, SetStateAction } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
 interface IControlsVideo {
-  dataVideo: any;
+  dataVideo: IVideoPayload | Array<IVideoShortPayload>;
   totalTime: number;
   statusVideo: string;
   currentTime: number;
   setCurrentTime: Dispatch<SetStateAction<number>>;
   handlePlayByPlayer: () => void;
   handlePauseByPlayer: () => void;
-  setTimePlayerModal: (value: any) => void;
+  setTimePlayerModal: (value: string | number) => void;
   isOpenModalVideo: boolean;
   handleCloseModal: () => void;
   handleOpenModal: () => void;
@@ -55,7 +56,7 @@ export default function ControlsVideo({
         >
           <div className="relative bg-opacity-50 flex items-center justify-between">
             {Array.isArray(dataVideo) ? (
-              dataVideo.map((item: any, index: any) => {
+              dataVideo.map((item: IVideoShortPayload) => {
                 const breakPointToPercent =
                   (item.break_point / totalTime) * 100;
                 const breakEndPointToPercent =
@@ -79,7 +80,7 @@ export default function ControlsVideo({
                 const value = CalcPercentWidthOfControlItemToColor();
                 return (
                   <div
-                    key={index}
+                    key={item.video_id}
                     className="flex-1 h-1 overflow-hidden"
                     style={{
                       flexBasis: `${(item.duration / totalTime) * 100}%`,
@@ -123,14 +124,14 @@ export default function ControlsVideo({
         <div
           className="p-2 hover:cursor-pointer"
           onClick={() => {
-            if (statusVideo == "Playing") {
+            if (statusVideo === "Playing") {
               handlePauseByPlayer();
-            } else if (statusVideo == "Paused") {
+            } else if (statusVideo === "Paused") {
               handlePlayByPlayer();
             }
           }}
         >
-          {statusVideo == "Playing" ? <FaPause /> : <FaPlay />}
+          {statusVideo === "Playing" ? <FaPause /> : <FaPlay />}
         </div>
         <div
           className="p-2 hover:cursor-pointer"

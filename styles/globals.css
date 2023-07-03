@@ -36,11 +36,11 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   transform: translateY(0);
 }
 
-.video_container:hover .informVideo {
+.video_container:hover .descriptionVideo {
   opacity: 100%;
 }
 
-.video_container:hover .reactVideo {
+.video_container:hover .actionVideo {
   opacity: 100%;
 }
 
