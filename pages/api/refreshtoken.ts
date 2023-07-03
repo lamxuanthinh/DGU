@@ -59,8 +59,8 @@ export default function handleRefreshToken(req: NextApiRequest, res: NextApiResp
                             sameSite: "lax",
                             expires: new Date(Date.now() + TIME_EXPIRED_REFRESH_TOKEN),
                         });
-                        resolve(true);
                         (res as NextApiResponse).status(200).json({ message: "Refresh Token successfully" });
+                        resolve(true);
                     }
                 } catch (error) {
                     (res as NextApiResponse).json(error);
