@@ -9,15 +9,17 @@ import {
 
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { BiMessageRounded, BiVideoPlus, BiLogIn } from "react-icons/bi";
-
+import { BiMessageRounded, BiVideoPlus } from "react-icons/bi";
+import Image from "next/image";
 import Link from "next/link";
+import Menu from "../Menu";
+import { dataMenuNav } from "@/public/data/menuNavigation";
 
 const Header = () => {
 
   return (
-    <div className="flex items-center justify-between bg-[#fff] rounded-[20px] py-3">
-      <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl ml-[13px] p-2">
+    <div className="flex items-center justify-between bg-[#fff] rounded-[20px] py-3 px-3 h-[65px]">
+      <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
         <div className="w-[50px] flex justify-center items-center ">
           <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
         </div>
@@ -31,12 +33,12 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="mr-[13px] flex flex-nowrap items-center">
+      <div className="flex flex-nowrap items-center">
         <div className="flex items-center">
-          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center">
+          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
             <IoMdNotificationsOutline color="#000000" fontSize={"25px"} />
           </div>
-          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center">
+          <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
             <BiMessageRounded color="#000000" fontSize={"25px"} />
           </div>
         </div>
@@ -57,8 +59,7 @@ const Header = () => {
           </Link>
 
         </SectionCreateVideo>
-
-        <SectionLogin>
+        {/* <SectionLogin>
           <Link
             href={"/login"}
             className="bg-[#A9DEF9] rounded-[15px] flex justify-center items-cente py-2 px-4"
@@ -70,7 +71,18 @@ const Header = () => {
               <BiLogIn color="#000000" fontSize={"25px"} />
             </div>
           </Link>
-        </SectionLogin>
+        </SectionLogin> */}
+        <Menu menuItems={dataMenuNav}>
+          <div className="flex gap-3 ml-1 cursor-pointer">
+            <Image
+              src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
+              width={40}
+              height={40}
+              className="rounded-full"
+              alt="logo"
+            />
+          </div>
+        </Menu>
       </div>
     </div>
   );

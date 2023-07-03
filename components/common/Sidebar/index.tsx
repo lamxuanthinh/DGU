@@ -4,6 +4,7 @@ import {
   BaseNavigationItem,
 } from "@/components/common/Sidebar/sidebarStyled";
 
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -13,11 +14,13 @@ import {
   AiOutlineHeart,
   AiOutlineHistory,
 } from "react-icons/ai";
-import { FaHome } from "react-icons/fa";
-import { BiHome, BiLogOut } from "react-icons/bi";
-import { BsPerson, BsFire, BsFillPeopleFill } from "react-icons/bs";
-import { TbSettings2 } from "react-icons/tb";
-import { FiSettings } from "react-icons/fi";
+import { BiLogOut } from "react-icons/bi";
+import { BsHearts, BsFillPersonFill, BsFillPeopleFill } from "react-icons/bs";
+import { MdOutlineHistory } from "react-icons/md";
+import { RiHome3Line, RiBarChart2Line } from "react-icons/ri";
+import { HiHome } from "react-icons/hi";
+import { AiFillSetting, AiFillHome} from "react-icons/ai";
+
 
 const Sidebar = () => {
   const router = useRouter();
@@ -26,32 +29,27 @@ const Sidebar = () => {
     {
       name: "Home",
       link: "/",
-      icon: <FaHome fontSize={"25px"} />,
-    },
-    {
-      name: "Profile",
-      link: "/profile/mycourse",
-      icon: <BsPerson fontSize={"25px"} strokeWidth={"0.5px"} />,
+      icon: <AiFillHome fontSize={"25px"} />,
     },
     {
       name: "Server Ranking",
       link: "/serveranking",
-      icon: <BsFire fontSize={"25px"} />,
+      icon: <RiBarChart2Line fontSize={"25px"} />,
     },
     {
       name: "Setting",
       link: "/setting",
-      icon: <FiSettings fontSize={"25px"} />,
+      icon: <AiFillSetting fontSize={"25px"} />,
     },
     {
-      name: "Like",
-      link: "/like",
-      icon: <AiOutlineHeart fontSize={"25px"} />,
+      name: "Favorites",
+      link: "/favorites",
+      icon: <BsHearts fontSize={"25px"} />,
     },
     {
       name: "History",
       link: "/history",
-      icon: <AiOutlineHistory fontSize={"25px"} />,
+      icon: <MdOutlineHistory fontSize={"25px"} />,
     },
     {
       name: "Follow",
@@ -61,14 +59,19 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-[19%] flex items-center flex-col bg-[#fffcfca8] rounded-[20px]">
+    <div className="w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[20px]">
       <div className="h-[76px] w-[100%] p-[13px] flex justify-between items-center">
-        <Image
-          className="ml-[26px]"
+        <Link
+          href={'/'}
+        >
+          <Image
+          className="ml-[26px] cursor-pointer dgu-logo"
           src={require("@/public/Images/logo.png")}
           width={50}
           alt="logo"
         />
+        </Link>
+        
         <AiOutlineDoubleLeft
           className="mr-[13px]"
           color="#000000"
@@ -90,7 +93,7 @@ const Sidebar = () => {
                 >
                   <div className="px-3">{icon}</div>
                   <div className="px-3">
-                    <p className="font-bold text-[18px]">{name}</p>
+                    <p className="font-bold text-[16px]">{name}</p>
                   </div>
                 </NavigationItem>
               </Link>
@@ -99,20 +102,7 @@ const Sidebar = () => {
         </Navigation>
       </div>
 
-      <div className="w-[100%]">
-        <Link href="/" className="flex justify-center">
-          <BaseNavigationItem
-            className={`text-[#00000085] flex items-center flex-wrap p-3`}
-          >
-            <div className="px-3">
-              <BiLogOut fontSize={"25px"} />
-            </div>
-            <div className="px-3">
-              <p className="font-bold text-[18px]">Log out</p>
-            </div>
-          </BaseNavigationItem>
-        </Link>
-      </div>
+      
     </div>
   );
 };

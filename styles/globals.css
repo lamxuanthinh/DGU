@@ -8,7 +8,7 @@ input[type="password"]:not(:placeholder-shown) ~ .input-text,
 input[type="email"]:focus ~ .input-text,
 input[type="email"]:not(:placeholder-shown) ~ .input-text,
 input[type="text"]:not(:placeholder-shown) ~ .input-text {
-  @apply text-[#848484] transform -translate-y-7 -translate-x-0 scale-90;
+  @apply text-[#848484] transform -translate-y-7 -translate-x-[-4px] scale-90;
 }
 
 #my-checkbox:checked + .bg-gray-200 {
@@ -29,6 +29,17 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
   z-index: 1;
   transition: 1s;
 }
+.stroke-dashoffset-0 {
+  stroke-dashoffset: 0;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 /* control progress bar modal video */
 
@@ -46,4 +57,17 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 
 .video_container:hover .closeButton {
   opacity: 100%;
+}
+.backgroud-shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+  /* box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px; */
+}
+
+.dgu-logo {
+  transition:  0.3s all;
+}
+
+.dgu-logo:hover {
+  transform: rotate(10deg);
 }
