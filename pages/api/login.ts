@@ -29,8 +29,13 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<an
             proxyRes.on("end", function () {
                 let check;
                 try {
-                    const { metaData } = JSON.parse(body);
-                    let check = metaData(res as NextApiResponse).json({ metaData });
+                    const metaData = JSON.parse(body);
+                    // const {
+                    //     metaData: { user, tokens },
+                    // } = JSON.parse(body);
+                    let check = metaData;
+                    console.log("object");
+                    (res as NextApiResponse).json(metaData);
                     // : { user, tokens },
                     // if (!tokens.accessToken) {
                     //     (res as NextApiResponse).json({ message: metaData });
@@ -59,7 +64,7 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<an
                     // }
                     resolve(true);
                 } catch (error) {
-                    (res as NextApiResponse).json({ check });
+                    (res as NextApiResponse).json({ message: "Bug" });
                 }
             });
         };
