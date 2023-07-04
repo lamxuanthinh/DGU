@@ -10,5 +10,5 @@ export interface loginPayload {
 }
 
 export interface dataResponse {
-    message: any;
+    message: string;
 }

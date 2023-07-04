@@ -58,7 +58,7 @@ export default function handleSignUp(req: NextApiRequest, res: NextApiResponse<d
                         resolve(true);
                     }
                 } catch (error) {
-                    (res as NextApiResponse).json({ message: "ErrorData" });
+                    (res as NextApiResponse).json({ message: "ErrorServer" });
                 }
             });
         };
