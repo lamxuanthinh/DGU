@@ -34,7 +34,6 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<an
                     //     metaData: { user, tokens },
                     // } = JSON.parse(body);
                     let check = metaData;
-                    console.log("object");
                     (res as NextApiResponse).json(metaData);
                     // : { user, tokens },
                     // if (!tokens.accessToken) {
