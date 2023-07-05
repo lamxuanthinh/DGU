@@ -1,72 +1,72 @@
 /* override date picker  */
 .rdtPicker {
-  margin-top: 8px !important;
-  right: -2px;
-  width: 469px;
-  height: 310px;
-  border-radius: 6px;
+    margin-top: 8px !important;
+    right: -2px;
+    width: 469px;
+    height: 325px;
+    border-radius: 6px;
 }
 
 .rdtPicker table thead {
-  height: 73px;
+    height: 73px;
 }
 
 .rdtPicker table tbody {
-  height: 216px;
+    height: 235px;
 }
 
 .rdtPicker table tfoot tr {
-  display: none;
+    display: none;
 }
 
 /* day  */
 
 .rdtPicker .rdtDay:hover {
-  background-color: #1c8bea !important;
-  color: white !important;
-  border-radius: 30px;
+    background-color: #1c8bea !important;
+    color: white !important;
+    border-radius: 30px;
 }
 
 /* month  */
 
 .rdtPicker .rdtMonth:hover {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 .rdtPicker .rdtMonths table thead {
-  height: 37px !important;
+    height: 37px !important;
 }
 
 .rdtPicker .rdtMonths table:nth-child(2) {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .rdtPicker .rdtMonths .rdtPrev,
 .rdtPicker .rdtMonths .rdtNext {
-  height: 40px;
-  width: 65px;
+    height: 40px;
+    width: 65px;
 }
 
 /* years  */
 
 .rdtPicker .rdtYear:hover {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 .rdtPicker .rdtYears table thead {
-  height: 37px !important;
+    height: 37px !important;
 }
 
 .rdtPicker .rdtYears table:nth-child(2) {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .rdtPicker .rdtYears .rdtPrev,
 .rdtPicker .rdtYears .rdtNext {
-  height: 40px;
-  width: 65px;
+    height: 40px;
+    width: 65px;
 }
 
 .rdtPicker .rdtYears .rdtSwitch {
-  width: 330px;
+    width: 330px;
 }
