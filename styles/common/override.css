@@ -22,10 +22,14 @@
 
 /* day  */
 
-.rdtPicker .rdtDay:hover {
-    background-color: #1c8bea !important;
-    color: white !important;
+.rdtPicker .rdtDay {
     border-radius: 30px;
+}
+
+.rdtPicker .rdtDay:hover {
+    color: white !important;
+    transition-duration: 0.2s;
+    background-color: #1c8bea !important;
 }
 
 /* month  */
