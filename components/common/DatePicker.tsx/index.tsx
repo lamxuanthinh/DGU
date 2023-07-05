@@ -65,7 +65,7 @@ export default function DatePicker({
   return (
     <div className={className}>
       <div
-        className={`${classBirthday} flex justify-center rounded-md items-center bg-white`}
+        className={`${classBirthday} flex justify-center rounded-xl items-center bg-white`}
       >
         <Datetime
           className="rounded text-gray focus-visible:outline-none w-full"

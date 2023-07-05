@@ -3,6 +3,8 @@ import { AppPropsWithLayout } from "../model";
 import "@/styles/globals.css";
 import "@/styles/common/override.css";
 import AOSInitializer from "../components/AOSInitializer";
+import "@/styles/globals.css";
+import "@/styles/common/animation.css"
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
