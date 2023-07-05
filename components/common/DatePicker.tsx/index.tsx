@@ -58,6 +58,7 @@ export default function DatePicker({ className, errorMessage, classBirthday, val
                     renderInput={renderInput}
                     value={internalValue}
                     onChange={handleDateChange}
+                    closeOnSelect
                 />
             </div>
             <div className="mt-1 px-5 text-red-600 min-h-[1.5rem] text-sm">{errorMessage}</div>
