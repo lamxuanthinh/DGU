@@ -46,3 +46,24 @@ export const DetailCourseItem = styled.div`
     z-index: 5;
   }
 `;
+
+export const StudyingCourseItem = styled.div`
+  width: calc(100% - 60px);
+
+`;
+
+export const StudyingCourseItemTitle = styled.div`
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+`;
+
+export const StudyingCourseItemDescription = styled.div`
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+`

@@ -46,7 +46,7 @@ export default function ProfileLayout(props: LayoutProps) {
                   </p>
                   <BsFillPatchCheckFill
                     fontFamily="30"
-                    color="#00ff1a"
+                    color="#7FCFFC"
                     style={{ marginLeft: "2rem" }}
                   />
                 </div>

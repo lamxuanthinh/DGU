@@ -1,50 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
-
-import { BiCommentDetail } from "react-icons/bi";
+import { BsListCheck, BsPeople } from "react-icons/bs";
+import { BiComment, BiCommentDetail } from "react-icons/bi";
+import { GiOpenBook } from "react-icons/gi";
+import { FaRegCommentAlt } from "react-icons/fa";
+import { CourseCardInfo } from "../ProfileStyled";
 
 export default function MyCourse() {
 
   const courseData = [
+    
     {
-      title: "Khóa học Web cơ bản Cho nguoi moi bat dau",
+      title: "Khóa học tiếng Nhật cơ bản Cho nguoi moi bat dau",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
-          src={require("@/public/Images/Profile/Studying/course (3).png")}
-          
-          style={{ 
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-
-          }}
-          alt="logo"
-        />
-      ),
-      userAvt: (
-        <Image
-          src={require("@/public/Images/Profile/Studying/boy_be_boi.png")}
-          style={{
-            width: "30px",
-            height: "30px",
-            objectFit: "cover",
-            borderRadius: "50%",
-            border: "1px solid #95959552",
-          }}
-          alt="course user avt"
-        />
-      ),
-      nameUser: "Tung Dev",
-    },
-    {
-      title: "Khóa học Python chi voi 50$",
-      link: "/profile/mycourse/details",
-      themenails: (
-        <Image
-          src={require("@/public/Images/Profile/Studying/course (5).png")}
+          src={require("@/public/Images/Profile/Mycourse/course2.jpg")}
           
           style={{ 
             width: "100%",
@@ -71,11 +43,41 @@ export default function MyCourse() {
       nameUser: "Tung AI",
     },
     {
+      title: "Khóa học tiếng Hàn cơ bản Cho nguoi moi bat dau",
+      link: "/profile/mycourse/details",
+      themenails: (
+        <Image
+          src={require("@/public/Images/Profile/Mycourse/course1.png")}
+
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+          alt="logo"
+        />
+      ),
+      userAvt: (
+        <Image
+          src={require("@/public/Images/Profile/Studying/boy_be_boi.png")}
+          style={{
+            width: "30px",
+            height: "30px",
+            objectFit: "cover",
+            borderRadius: "50%",
+            border: "1px solid #95959552",
+          }}
+          alt="course user avt"
+        />
+      ),
+      nameUser: "Tung Dev",
+    },
+    {
       title: "Khóa học Nhiếp ảnh Gianh cho photograper tu hoc",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
-          src={require("@/public/Images/Profile/Studying/course (1).png")}
+          src={require("@/public/Images/Profile/Mycourse/course3.jpg")}
           
           style={{ 
             width: "100%",
@@ -102,11 +104,11 @@ export default function MyCourse() {
       nameUser: "Tung Photographer",
     },
     {
-      title: "Chờ đợi liệu có đáng sợ",
+      title: "Khóa học tiếng Nhật cơ bản Cho nguoi moi bat dau",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
-          src={require("@/public/Images/Profile/Studying/course (6).png")}
+          src={require("@/public/Images/Profile/Mycourse/course4.jpg")}
           
           style={{ 
             width: "100%",
@@ -133,11 +135,11 @@ export default function MyCourse() {
       nameUser: "Tung Tam Li",
     },
     {
-      title: "Khóa học machine learning ",
+      title: "Khóa học NodeJS cơ bản Cho nguoi moi bat dau ",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
-          src={require("@/public/Images/Profile/Studying/course (2).png")}
+          src={require("@/public/Images/Profile/Mycourse/course5.jpg")}
           
           style={{ 
             width: "100%",
@@ -164,11 +166,11 @@ export default function MyCourse() {
       nameUser: "Tung AI",
     },
     {
-      title: "Digital Marketing ",
+      title: "Khóa học Digital Marketing  cơ bản Cho nguoi moi bat dau",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
-          src={require("@/public/Images/Profile/Studying/course (4).png")}
+          src={require("@/public/Images/Profile/Mycourse/course6.jpg")}
           
           style={{ 
             width: "100%",
@@ -313,9 +315,7 @@ export default function MyCourse() {
             </Link>
           ))}
         </div>
-
       </div>
-
     </div>
   );
 }
