@@ -20,6 +20,7 @@ export const schema = yup.object({
     .oneOf([yup.ref("password")], "Password does not match"),
   birthday: yup.string(),
   gender: yup.string(),
+  fullName: yup.string().required('FullName is required'),
 });
 
 export type Schema = yup.InferType<typeof schema>;

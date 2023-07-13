@@ -4,6 +4,7 @@ import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
 import ActionVideo from "../ActionVideo";
+import Comments from "../../Comments/Comments";
 
 interface IModalVideo {
     dataVideo: IVideoPayload;
@@ -34,9 +35,12 @@ export default function ModalVideo({
 }: IModalVideo) {
     const [isHovered, setIsHovered] = useState(false);
     const hoverTimeoutRef: any = useRef<NodeJS.Timeout | null>(null);
+    const [comment, setComment] = useState(false);
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            event.preventDefault();
+            if (event.code === "Space") {
+                event.preventDefault();
+            }
             if (event.key === "Escape") {
                 handleCloseModal();
             }
@@ -83,24 +87,31 @@ export default function ModalVideo({
                         } else if (statusModal == "Paused") {
                             handlePlayByPlayerModal();
                         }
+                        setComment(false);
                     }}
                     className={`absolute top-0 w-[100%] h-[100%]`}
                 ></div>
 
                 <div
                     className="closeButton opacity-0 transition duration-500 ease-in-out p-[10px] rounded-[50%] absolute top-5 left-5 bg-[#92929280] hover:cursor-pointer hover:bg-[#b7b7b7]"
-                    onClick={handleCloseModal}
+                    onClick={() => {
+                        setComment(false);
+                        handleCloseModal();
+                    }}
                 >
                     <CgClose fontSize={20} />
                 </div>
 
                 <DescriptionVideo
+                    setComment={setComment}
                     key={dataVideo.video_id}
                     title={dataVideo.title}
                     caption={dataVideo.caption}
                     hashtags={dataVideo.hashtags}
                 />
                 <ActionVideo
+                    comment={comment}
+                    setComment={setComment}
                     pathAvatar={dataVideo.author.pathAvatar}
                     heartCount={100}
                     commentCount={93}
@@ -108,6 +119,7 @@ export default function ModalVideo({
                 />
 
                 <ControlsVideo
+                    setComment={setComment}
                     dataVideo={dataVideo.video_id_children}
                     totalTime={dataVideo.duration}
                     statusVideo={statusModal}
@@ -120,6 +132,7 @@ export default function ModalVideo({
                     handleCloseModal={handleCloseModal}
                     handleOpenModal={handleOpenModal}
                 />
+                {comment && <Comments isComment={comment} setComment={setComment} currentUserId="1" />}
             </div>
         </div>
     );

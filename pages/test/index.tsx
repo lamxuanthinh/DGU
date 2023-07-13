@@ -6,9 +6,5 @@ const Profile = dynamic((): any => import("@/Views/Test/profile"), {
 });
 
 export default function ProfilePage() {
-    return (
-        <div>
-            <Profile />
-        </div>
-    );
+    return <div className="h-screen w-screen bg-[#333] ">{/* <Comments currentUserId="1" />; */}</div>;
 }
