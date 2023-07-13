@@ -11,10 +11,17 @@ Index.Layout = MainLayout;
 export default Index;
 
 export async function getStaticProps() {
-  let posts;
+  let posts: any;
 
   try {
     posts = await videoApi.getAllVideo();
+
+    for (let i = 0; i < posts.metaData.length; i++) {
+      const parentId = posts.metaData[i].parent_id;
+      const parentResponse: any = await videoApi.getVideoById(parentId);
+      posts.metaData[i].fullVideoInfo = parentResponse.metaData;
+    }
+
   } catch (error) {
     console.error("Error fetching posts:", error);
     posts = [];
