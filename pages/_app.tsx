@@ -4,6 +4,7 @@ import AOSInitializer from "../components/AOSInitializer";
 import "@/styles/globals.css";
 import "@/styles/common/override.css";
 import "@/styles/common/animation.css";
+import "@/styles/common/comments.css";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const Layout = Component.Layout ?? EmptyLayout;
