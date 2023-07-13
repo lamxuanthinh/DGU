@@ -20,7 +20,7 @@ import { MdOutlineHistory, MdOutlineFavoriteBorder } from "react-icons/md";
 import { RiHome3Line, RiBarChart2Line } from "react-icons/ri";
 import { HiHome } from "react-icons/hi";
 import { AiFillSetting, AiFillHome} from "react-icons/ai";
-import { GrFavorite } from "react-icons/gi";
+
 
 const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
   const router = useRouter();
