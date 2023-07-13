@@ -15,7 +15,7 @@ import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 const router = Router;
 
-type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender">;
+type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
 const signUpSchema = schema.pick(["email", "password", "confirm_password", "birthday", "gender"]);
 
@@ -51,7 +51,7 @@ export default function SignUp() {
         console.log("[P]::SignUP::", data);
         const payload = {
             email: data.email,
-            name: "thinh333",
+            name: data.fullName,
             password: data.confirm_password,
         };
         console.log("[P]::payload::", payload);
@@ -60,6 +60,7 @@ export default function SignUp() {
             console.log("[P]::SignLog", holderSignUp);
             // handler loading
             if (holderSignUp.message !== "ErrorData") {
+                localStorage.setItem("auth", "true");
                 router.push("/");
             }
         } catch (error) {
@@ -110,8 +111,8 @@ export default function SignUp() {
                                     />
 
                                     <Input
-                                        name="fullname"
-                                        labelInput="Fullname"
+                                        name="fullName"
+                                        labelInput="fullName"
                                         register={register}
                                         type="text"
                                         autoComplete="on"

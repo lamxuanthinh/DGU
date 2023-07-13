@@ -22,15 +22,20 @@ axiosClient.interceptors.response.use(
         return response.data;
     },
     async (error) => {
-        let refreshTokenRequest = null;
+        // let refreshTokenRequest = null;
         const response = error.response;
+        console.log("::status::", response.status);
+        console.log("::message::", response.data.message);
         const originalRequest = error.config;
+        console.log("::check::", !originalRequest._retry);
         if (response.status === 401 && response.data.message === "TokenExpired" && !originalRequest._retry) {
             originalRequest._retry = true;
-            refreshTokenRequest = refreshTokenRequest ? refreshTokenRequest : auth.refreshToken();
+            // refreshTokenRequest = refreshTokenRequest ? refreshTokenRequest : auth.refreshToken();
             try {
-                const holdRefreshToken = await refreshTokenRequest;
-                refreshTokenRequest = null;
+                // const holdRefreshToken = await refreshTokenRequest;
+                const holdRefreshToken = await auth.refreshToken();
+                console.log("holdRefreshToken", holdRefreshToken);
+                // refreshTokenRequest = null;
             } catch (error) {
                 console.log("::[ERROR REFRESH TOKEN]::", error);
             }
