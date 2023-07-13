@@ -23,7 +23,7 @@ export const NavigationItem = styled(BaseNavigationItem)`
 
 
   &:hover {
-    background-color: #7FCFFC;
+    /* background-color: #7FCFFC; */
     color: black;
   }
 `;
@@ -32,7 +32,7 @@ export const SideNav = styled.div`
   transition: 0.3s all;
 
 
-  @media (max-width: 1280px) {
+  @media (max-width: 1024px) {
     display: none;
 
     

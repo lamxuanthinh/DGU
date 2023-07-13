@@ -20,7 +20,7 @@ const MainLayout = (props: LayoutProps) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTabletLayout(window.innerWidth <= 1280);
+      setIsTabletLayout(window.innerWidth <= 1024);
     } 
 
     handleResize(); 

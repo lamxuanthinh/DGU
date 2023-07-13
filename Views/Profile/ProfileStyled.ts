@@ -24,3 +24,25 @@ export const SectionDescription = styled.div`
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 `;
+
+
+export const CourseContent = styled.div`
+
+`;
+
+export const CourseCardInfo = styled.div`
+  width: calc(100% - 3rem);
+  height: calc(100% - 10px);
+`;
+
+
+export const DetailCourseItem = styled.div`
+  cursor: pointer;
+  transition:  0.2s all;
+
+  &:hover {
+    transform:  scale(1.03);
+    /* background-color: white; */
+    z-index: 5;
+  }
+`;

@@ -7,7 +7,8 @@ import {
     MenuItem,
     MenuBottom,
     MenuListBottom,
-    LogoutBtn
+    LogoutBtn,
+    ScrollContainer
 } from '@/components/common/MenuTablet/menuTabletStyled';
 
 import { FiMoreVertical } from 'react-icons/fi'; 
@@ -73,7 +74,7 @@ const MenuTablet = () => {
 
     return (
         <>
-            <div className='w-full h-full bg-[#747474] absolute top-0 left-0 z-10 overflow-y-scroll ' >
+            <ScrollContainer className='w-full h-full bg-[#DBDBDB] absolute top-0 left-0 z-10 overflow-y-scroll ' >
                 <div className='w-full h-[230px] rounded-[10px] bg-[#ffffff] flex flex-col justify-center items-center '>
                     <div className='w-full h-[150px] border-b border-[#0000001d] border-[1px] flex justify-center items-center ' >
                         <div className=' w-[150px] h-full  flex justify-center items-center   ' >
@@ -180,7 +181,7 @@ const MenuTablet = () => {
                 </MenuBottom>
 
                 
-            </div>
+            </ScrollContainer>
         </>
     )
 }

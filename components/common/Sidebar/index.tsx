@@ -16,11 +16,11 @@ import {
 } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { BsHearts, BsFillPersonFill, BsFillPeopleFill } from "react-icons/bs";
-import { MdOutlineHistory } from "react-icons/md";
+import { MdOutlineHistory, MdOutlineFavoriteBorder } from "react-icons/md";
 import { RiHome3Line, RiBarChart2Line } from "react-icons/ri";
 import { HiHome } from "react-icons/hi";
 import { AiFillSetting, AiFillHome} from "react-icons/ai";
-
+import { GrFavorite } from "react-icons/gi";
 
 const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
   const router = useRouter();
@@ -44,7 +44,7 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
     {
       name: "Favorites",
       link: "/favorites",
-      icon: <BsHearts fontSize={"25px"} />,
+      icon: <MdOutlineFavoriteBorder fontSize={"25px"} />,
     },
     {
       name: "History",

@@ -24,6 +24,12 @@ export const LogoutBtn = styled.div`
     width: calc(100% - 20px);
 `;
 
+export const ScrollContainer = styled.div`
+    overflow-y: scroll;
 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;
 
 

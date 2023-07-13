@@ -23,8 +23,8 @@ const SidebarHeader: React.FC<{active: boolean}> = ({ active }) => {
 
     return (
         <>
-            <div className="w-full h-[65px] flex items-center justify-center  " >
-                <MenuButton className={` ${active ? 'active' : ''} w-[125px] h-full flex items-center justify-start `}>
+            <div className="w-full h-[65px] flex flex-wrap items-center justify-between  " >
+                <MenuButton className={` ${active ? 'active' : ''} w-[115px] h-full flex items-center justify-center `}>
                     <div className="w-[115px] h-full bg-[#fff] flex items-center justify-center cursor-pointer " > 
                         <Image
                             width={60}

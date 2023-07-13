@@ -56,13 +56,17 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 }
 
 .dgu-course-card {
-  transition:  0.3s all;
+  transition:  0.2s all;
+  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  /* min-width: 340px; */
 }
 
 .dgu-course-card:hover {
-  transform:  scale(1.1);
-  margin: 0px 10px;
+  transform:  scale(1.03);
+  /* margin: 0px 10px; */
   background-color: white;
   z-index: 5;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }

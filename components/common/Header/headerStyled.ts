@@ -54,7 +54,7 @@ export const SectionProfile = styled.div`
 `;
 
 export const HeaderTablet = styled.div`
-  width: calc(100% - 125px);
+  width: calc(100% - 120px);
 
   &.active {
     width: 100%;
