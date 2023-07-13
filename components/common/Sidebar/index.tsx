@@ -14,14 +14,14 @@ import {
   AiOutlineHeart,
   AiOutlineHistory,
 } from "react-icons/ai";
-import { BiLogOut } from "react-icons/bi";
-import { BsHearts, BsFillPersonFill, BsFillPeopleFill } from "react-icons/bs";
+import { BsHearts, BsFillPersonFill, BsFillPeopleFill, BsHouse, BsFire } from "react-icons/bs";
 import { MdOutlineHistory, MdOutlineFavoriteBorder } from "react-icons/md";
 import { RiHome3Line, RiBarChart2Line } from "react-icons/ri";
 import { HiHome } from "react-icons/hi";
-import { AiFillSetting, AiFillHome} from "react-icons/ai";
+import { FaGripfire} from "react-icons/fa";
+import { SlSettings, SlPeople } from "react-icons/sl";
 
-
+import {AiOutlineHome} from 'react-icons/ai';
 const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
   const router = useRouter();
 
@@ -29,17 +29,17 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
     {
       name: "Home",
       link: "/",
-      icon: <AiFillHome fontSize={"25px"} />,
+      icon: <AiOutlineHome fontSize={"27px"} />,
     },
     {
       name: "Server Ranking",
       link: "/serveranking",
-      icon: <RiBarChart2Line fontSize={"25px"} />,
+      icon: <FaGripfire fontSize={"27px"} />,
     },
     {
       name: "Setting",
       link: "/setting",
-      icon: <AiFillSetting fontSize={"25px"} />,
+      icon: <SlSettings fontSize={"25px"} />,
     },
     {
       name: "Favorites",
@@ -54,7 +54,7 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
     {
       name: "Follow",
       link: "/follow",
-      icon: <BsFillPeopleFill fontSize={"25px"} />,
+      icon: <SlPeople fontSize={"25px"} />,
     },
   ];
 
