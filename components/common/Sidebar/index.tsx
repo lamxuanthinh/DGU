@@ -65,11 +65,11 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
           href={'/'}
         >
           <Image
-          className="ml-[26px] cursor-pointer dgu-logo"
-          src={require("@/public/Images/logo.png")}
-          width={50}
-          alt="logo"
-        />
+            className="ml-[26px] cursor-pointer"
+            src={require("@/public/Images/logo.png")}
+            width={50}
+            alt="logo"
+          />
         </Link>
         
       </div>
