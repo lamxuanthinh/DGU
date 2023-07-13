@@ -70,7 +70,7 @@ const Header = () => {
                                 src={require("@/public/Images/Profile/Infomation/boy_thoi_trang.png")}
                                 width={40}
                                 height={40}
-                                className="rounded-full"
+                                className="rounded-full bg-[#727272dd] "
                                 alt="logo"
                             />
                         </div>
