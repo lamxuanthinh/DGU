@@ -60,7 +60,7 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
 
   return (
     <SideNav className={`${active ? 'active' : ''} w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[5px]`}>
-      <div className="h-[76px] w-[100%] p-[13px] flex justify-between items-center">
+      <div className="h-[76px] w-[100%] p-[13px] flex justify-start items-center">
         <Link
           href={'/'}
         >
@@ -72,12 +72,6 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
         />
         </Link>
         
-        <AiOutlineDoubleLeft
-          className="mr-[13px]"
-          color="#000000"
-          fontSize={"20px"}
-          style={{ cursor: "pointer" }}
-        />
       </div>
       <div className="h-[76%] w-[100%] flex justify-center items-center mt-[20px]">
         <Navigation>
