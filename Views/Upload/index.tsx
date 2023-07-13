@@ -1,26 +1,27 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-
+import Link from "next/link";
+import { useRouter } from 'next/router'
+import Modal from "../Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { useAppContext } from "@/Context";
 
 
 // handle if file is not a video file.
-function handleFileSelect(videoFile: File) : boolean {
+function handleFileSelect(videoFile: File): boolean {
     const file = videoFile;
 
     const fileName = file.name;
     const fileType = file.type;
 
     // Check extend section of file.
-    const fileExtension : string = fileName.split('.').pop()!.toLocaleLowerCase();
-    const allowedExtensions : string[] = ['mp4', 'avi', 'mov']; 
+    const fileExtension: string = fileName.split('.').pop()!.toLocaleLowerCase();
+    const allowedExtensions: string[] = ['mp4', 'avi', 'mov'];
 
-    if(allowedExtensions.includes(fileExtension)) 
-    {
+    if (allowedExtensions.includes(fileExtension)) {
         return true;
     }
-    else 
-    {
+    else {
         return false;
     }
 }
@@ -29,18 +30,39 @@ function handleFileSelect(videoFile: File) : boolean {
 
 
 export default function Upload() {
+    const { setDataEditVideo, setDataImage } = useAppContext();
+
+    const { push } = useRouter();
+    const [isModal, setIsModal] = useState<boolean>(false);
+
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const videoRef = useRef<HTMLVideoElement>(null)
 
     // IMPORT
-        // create reference variable.
-    const  inputRef = useRef<HTMLInputElement>(null);
+    // create reference variable.
+    const inputRef = useRef<HTMLInputElement>(null);
 
-        // create files to drag and drop.
+    // create files to drag and drop.
     const [isDragging, setIsDragging] = useState(false);
-    const [selectedVideo, setSelectedVideo] = useState<File | null>(null);
+    const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
 
 
     // HANDLE
+    const onOk = () => {
+        if (canvasRef.current) {
+            let ctx = canvasRef.current.getContext("2d");
+            if (ctx && videoRef.current) {
+                ctx.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
+                setDataImage(canvasRef.current.toDataURL())
+            }
+        }
+
+        push("/editvideo")
+    }
+    const onCancel = () => {
+        setIsModal(false)
+    }
     // handle drag and drop file
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -54,25 +76,20 @@ export default function Upload() {
     const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         setIsDragging(false);
-    
         const files = event.dataTransfer.files;
-        const videoFile = files[0];
-        setSelectedVideo(videoFile);
-        
-        if(inputRef.current) {
+        if (inputRef.current) {
             inputRef.current.files = event.dataTransfer.files;
 
             if (inputRef.current.files.length > 0) {
 
-                if(handleFileSelect(inputRef.current.files[0]) === true)
-                {
-                    alert('This is video file.');
-                    
-                
-                    
+                if (handleFileSelect(inputRef.current.files[0]) === true) {
+                    setIsModal(true);
+                    const blob = new Blob([files[0]], { type: 'image/png' })
+                    const url = URL.createObjectURL(blob);
+                    setDataEditVideo(url);
+
                 }
-                else
-                {
+                else {
                     alert('This is not video file.');
                     inputRef.current.value = ''; // delete value of input file
                 }
@@ -84,15 +101,24 @@ export default function Upload() {
 
     const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
-        if(files != null)
-        {
-            if(handleFileSelect(files[0]) === true)
-            {
-                alert('This is video file.');
-                
+        if (files != null) {
+            if (handleFileSelect(files[0]) === true) {
+                const blob = new Blob([files[0]], { type: 'image/png' })
+                const url = URL.createObjectURL(blob);
+                if (videoRef.current) {
+                    videoRef.current.src = URL.createObjectURL(blob);
+                    videoRef.current.load();
+                    videoRef.current.onloadeddata = () => {
+                        if (canvasRef.current && videoRef.current) {
+                            canvasRef.current.width = videoRef.current.videoWidth;
+                            canvasRef.current.height = videoRef.current.videoHeight;
+                        }
+                    };
+                }
+                setDataEditVideo(url);
+                setIsModal(true);
             }
-            else
-            {
+            else {
                 alert('This is not video file.');
                 event.target.value = ''; // delete value of input file
             }
@@ -105,7 +131,6 @@ export default function Upload() {
             inputRef.current.click();
         }
     }
-    
 
 
 
@@ -117,7 +142,7 @@ export default function Upload() {
                         <p className="font-bold text-[25px]  ">Upload your file below</p>
                     </div>
                     <div className="w-[100%] h-[90%]  flex justify-center items-center">
-                        <div 
+                        <div
                             className={`w-[100%] h-[90%] border-dashed border-2 border-black flex justify-center items-center drag-drop-area ${isDragging ? 'dragging' : ''}`}
                             onDragOver={handleDragOver}
                             onDragLeave={handleDragLeave}
@@ -125,7 +150,7 @@ export default function Upload() {
                         >
                             <div className="w-[50%] h-[90%]  flex flex-col justify-center items-center ">
                                 <div className="w-[100%] h-1/3 flex flex-col justify-center items-center">
-                                    <FaCloudUploadAlt className="h-full w-full flex items-center justify-center " size={100}/>
+                                    <FaCloudUploadAlt className="h-full w-full flex items-center justify-center " size={100} />
                                 </div>
                                 <div className="w-[100%] h-1/3 my-[10px] flex flex-col justify-center items-center">
                                     <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-end">
@@ -141,7 +166,7 @@ export default function Upload() {
                                 </div>
                                 <div className="w-[100%] h-1/3 my-[10px]  flex justify-center items-center">
                                     <input className="hidden" type="file" accept="video/*" ref={inputRef} onChange={handleInputChange} />
-                                    
+
                                     <div onClick={handleButtonClick} className="w-[180px] h-[70px] border-2 border-solid boder-[#000000] flex justify-center items-center cursor-pointer">
                                         <p className="font-bold text-[25px]">Browser</p>
                                     </div>
@@ -152,6 +177,9 @@ export default function Upload() {
                     </div>
                 </div>
             </div>
+            {isModal && <Modal title="Do you want to go to the video editing step?" onOk={onOk} onCancel={onCancel} />}
+            <canvas ref={canvasRef} className="fixed z-[-10] opacity-0"></canvas>
+            <video ref={videoRef} className="fixed z-[-10] opacity-0"></video>
         </>
     )
 }
