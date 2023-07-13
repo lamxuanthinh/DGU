@@ -5,7 +5,6 @@ import {
   SectionLogin,
   SectionProfile,
   SectionCreateVideo,
-  HeaderTablet,
 } from "@/components/common/Header/headerStyled";
 
 import { BsSearch } from "react-icons/bs";

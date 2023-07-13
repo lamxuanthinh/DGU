@@ -42,7 +42,7 @@ export default function ProfileLayout(props: LayoutProps) {
               <div className="flex flex-col items-start justify-center" >
                 <div className="w-full h-[40px]   flex flex-nowrap items-center ">
                   <p className="text-[35px] font-bold  " > 
-                    KENNY TRUONG
+                    DGU TEAM
                   </p>
                   <BsFillPatchCheckFill
                     fontFamily="30"
@@ -51,7 +51,7 @@ export default function ProfileLayout(props: LayoutProps) {
                   />
                 </div>
                 <div className="w-full h-[22px]  flex items-center ">
-                  <p className="text-[20px] font-bold ">@kennytruong3118</p>
+                  <p className="text-[20px] font-bold ">dgu@gmail.com</p>
                 </div>
               </div>
               
