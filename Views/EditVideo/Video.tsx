@@ -14,10 +14,9 @@ interface IVideoProps {
     pre: string,
     current: string,
   }>>,
-  isStartVideo: boolean,
   duration: number,
 }
-function Video({ isPlaying, moveVideo, duration, setDuration, setCurrentTime, valueVolume, isStartVideo }: IVideoProps) {
+function Video({ isPlaying, moveVideo, duration, setDuration, setCurrentTime, valueVolume }: IVideoProps) {
 
   const { dataEditVideo } = useAppContext();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -34,12 +33,6 @@ function Video({ isPlaying, moveVideo, duration, setDuration, setCurrentTime, va
       videoRef.current.currentTime = moveVideo;
     }
   }, [moveVideo]);
-
-  useEffect(() => {
-    if (isStartVideo && videoRef.current) {
-      videoRef.current.currentTime = 0
-    }
-  }, [isStartVideo]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -65,7 +58,7 @@ function Video({ isPlaying, moveVideo, duration, setDuration, setCurrentTime, va
           onLoadedMetadata={handleGetDuration}
           ref={videoRef}
           src={dataEditVideo}
-
+          controls
           className="h-full w-full"
         >
         </video>

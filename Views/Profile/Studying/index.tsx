@@ -110,7 +110,7 @@ export default function Studying() {
       ),
       userAvt: (
         <Image
-          src={require("@/public/Images/Profile/Studying/boy_thanh_lich.png")}
+          src={require("@/public/Images/Profile/Mycourse/boy_thoi_trang.png")}
           style={{
             width: "30px",
             height: "30px",

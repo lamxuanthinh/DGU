@@ -42,7 +42,6 @@ export default function EditVideo() {
     current: "100",
     pre: "0"
   });
-  const [isStartVideo, setIsStartVideo] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -80,14 +79,7 @@ export default function EditVideo() {
         setIsPlaying(false);
       }
     }
-    if (valueCounter === 0) {
-      startTimestampRef.current = 0;
-      setIsStartVideo(true);
-    } else {
-      setIsStartVideo(false)
-    }
   }, [valueCounter]);
-
 
   useEffect(() => {
     if (!isPlaying) {
@@ -162,13 +154,17 @@ export default function EditVideo() {
   }
 
   const handleSplit = () => {
+    setIsPlaying(false);
+    
+    
     const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === currentProgress.id);
     let startNewElement = 0;
     for (let index = 0; index < indexCurrentProgress; index++) {
       startNewElement = startNewElement + dataSplit[index].width * widthProgress / 100
     }
     startNewElement = startNewElement + indexCurrentProgress * VALUE_SPACING_PROGRESS;
-    const valuePointerProgress = onCalcValuePointerInnerProgress(valuePointer, startNewElement);
+    let valuePointerProgress = onCalcValuePointerInnerProgress(valuePointer+ valueCounter, startNewElement);
+  
     const widthCurrentProgress = onCalcWidthInnerProgress()
     const widthPxNewElement = widthCurrentProgress - valuePointerProgress + VALUE_BORDER_PROGRESS * 2;
     const widthPercentNewElement = widthPxNewElement / widthProgress * 100;
@@ -234,7 +230,7 @@ export default function EditVideo() {
         <Navbar setIsModal={setIsModal} />
         <div className="flex flex-grow-[1] gap-[5px] overflow-hidden items-center mb-[5px]">
           <Toolbar onClick={handleSplit} />
-          <Video isPlaying={isPlaying} moveVideo={moveVideo} setDuration={setDuration} duration={duration} setCurrentTime={setCurrentTime} valueVolume={valueVolume} setValueVolume={setValueVolume} isStartVideo={isStartVideo} />
+          <Video isPlaying={isPlaying} moveVideo={moveVideo} setDuration={setDuration} duration={duration} setCurrentTime={setCurrentTime} valueVolume={valueVolume} setValueVolume={setValueVolume} />
         </div>
         <Progressbar dataSplit={dataSplit} valuePointer={valuePointer} widthProgress={widthProgress} setWidthProgress={setWidthProgress} duration={duration} isPlaying={isPlaying} setIsPlaying={setIsPlaying} valueCounter={valueCounter} onProgressBarClick={onProgressBarClick} valueVolume={valueVolume} setValueVolume={setValueVolume} setValuePointer={setValuePointer} currentTime={currentTime} setMoveVideo={setMoveVideo} setValueCounter={setValueCounter} ></Progressbar>
       </div>

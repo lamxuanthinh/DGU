@@ -74,5 +74,4 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 .input-vertical {
   writing-mode: bt-lr; /* IE */
   -webkit-appearance: slider-vertical; /* Chromium */
-  padding: 0 20px;
 }

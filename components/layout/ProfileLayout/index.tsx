@@ -10,10 +10,15 @@ import {
 import React from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import MainLayout from "../MainLayout";
+import { useAppContext } from "@/Context";
+import Loading from "@/components/common/Loading";
 
 export default function ProfileLayout(props: LayoutProps) {
+  const { isLoading } = useAppContext();
+
   return (
     <MainLayout>
+      {isLoading && <Loading />}
       <div className="w-full rounded-[20px]">
         <div className="rounded-[20px]">
           <div className="h-[300px]">
@@ -31,7 +36,7 @@ export default function ProfileLayout(props: LayoutProps) {
               </div>
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-10 bg-blue-200 rounded-full p-1">
                 <Image  
-                  src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
+                  src={require("@/public/Images/Profile/Mycourse/boy_thoi_trang.png")}
                   style={{
                     width: "120px",
                     height: "120px",

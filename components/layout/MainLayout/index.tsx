@@ -1,10 +1,15 @@
+import { useAppContext } from "@/Context";
 import Header from "@/components/common/Header";
+import Loading from "@/components/common/Loading";
 import Sidebar from "@/components/common/Sidebar";
 import { LayoutProps } from "@/model";
 
 const MainLayout = (props: LayoutProps) => {
+  const { isLoading } = useAppContext();
+
   return (
     <div className="w-screen h-screen bg-[#DBDBDB] flex justify-between p-3">
+      {isLoading && <Loading />}
       <Sidebar />
       <div className="flex flex-col w-[80%]">
         <Header />

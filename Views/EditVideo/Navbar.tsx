@@ -23,7 +23,7 @@ function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
     <div className="h-[54px] px-[15px] py-[10px] font-semibold  text-white rounded-[5px] bg-[#121212] mb-[5px]">
       <nav className="flex items-center justify-between h-full">
         <div className="flex">
-          <Button href="/back" className="!p-1 " type='text' leftIcon={<IoIosArrowBack className="text-2xl"></IoIosArrowBack>}>
+          <Button href="/upload" className="!p-1 " type='text' leftIcon={<IoIosArrowBack className="text-2xl"></IoIosArrowBack>}>
             Back
           </Button>
           <div className="text-2xl flex items-center">
@@ -40,8 +40,8 @@ function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
             <Menu menuItems={dataMenuNav} theme="black" className="!top-[47px] !right-[-164px]">
               <div className='rounded-[50%] border-[#fff] border-solid border-[4px] '>
                 <Image
-                  src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
-                  width={34}
+                  src={require("@/public/Images/Profile/Mycourse/boy_thoi_trang.png")}
+                  width={34} 
                   height={34}
                   className="rounded-full cursor-pointer"
                   alt="logo"

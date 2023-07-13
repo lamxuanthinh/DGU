@@ -13,6 +13,8 @@ import "aos/dist/aos.css";
 import CheckboxInput from "@/components/common/CheckboxInput";
 import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
+import { useAppContext } from "@/Context";
+import Loading from "@/components/common/Loading";
 const router = Router;
 
 type FormData = Pick<
@@ -29,6 +31,7 @@ const signUpSchema = schema.pick([
 ]);
 
 export default function SignUp() {
+  const { setIsLoading } = useAppContext();
   const {
     register,
     handleSubmit,
@@ -57,6 +60,7 @@ export default function SignUp() {
 
   const onSubmit = handleSubmit(async (data: FormData) => {
     // handler API
+    setIsLoading(true)
     console.log("[P]::SignUP::", data);
     const payload = {
       email: data.email,
@@ -69,6 +73,7 @@ export default function SignUp() {
       console.log("[P]::SignLog", holderSignUp);
       // handler loading
       if (holderSignUp.message !== "ErrorData") {
+        setIsLoading(false)
         router.push("/");
       }
     } catch (error) {

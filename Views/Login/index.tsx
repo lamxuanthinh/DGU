@@ -11,12 +11,16 @@ import { FcGoogle } from "react-icons/fc";
 import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 import Input from "@/components/common/Input";
+import { useAppContext } from "@/Context";
+import Loading from "@/components/common/Loading";
 const router = Router;
 
 type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
 
 export default function Login() {
+  const { setIsLoading } = useAppContext();
+
   const {
     register,
     handleSubmit,
@@ -31,6 +35,7 @@ export default function Login() {
 
   const onSubmit = handleSubmit(async (data) => {
     // handler API
+    setIsLoading(true);
     console.log("[P]::SignUP::", data);
     const payload = {
       email: data.email,
@@ -42,6 +47,7 @@ export default function Login() {
       console.log("[P]::Login", holderLogin);
       // handler loading
       if (holderLogin.message !== "ErrorData") {
+        setIsLoading(false);
         router.push("/");
       }
     } catch (error) {

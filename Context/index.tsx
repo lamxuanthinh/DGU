@@ -5,6 +5,8 @@ interface AppContextType {
      setDataEditVideo: Dispatch<SetStateAction<string | undefined>>,
      dataImage: string | undefined;
      setDataImage: Dispatch<SetStateAction<string | undefined>>,
+     isLoading: boolean;
+     setIsLoading: Dispatch<SetStateAction<boolean>>,
 }
 interface IAppProviderProps {
      children: React.ReactNode
@@ -15,9 +17,10 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider = ({ children }: IAppProviderProps) => {
      const [dataEditVideo, setDataEditVideo] = useState<string | undefined>(undefined);
      const [dataImage, setDataImage] = useState<string | undefined>(undefined);
+     const [isLoading, setIsLoading] = useState < boolean>(false);
 
      return (
-          <AppContext.Provider value={{ dataEditVideo, setDataEditVideo, dataImage, setDataImage }}>
+          <AppContext.Provider value={{ dataEditVideo, setDataEditVideo, dataImage, setDataImage, isLoading, setIsLoading }}>
                {children}
           </AppContext.Provider>
      );

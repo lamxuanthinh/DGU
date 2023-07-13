@@ -211,7 +211,7 @@ export default function MyCourse() {
                           }}
                         />
                         <Image 
-                          src={require("@/public/Images/Profile/Mycourse/boy_thanh_lich.png")}
+                          src={require("@/public/Images/Profile/Mycourse/boy_thoi_trang.png")}
                           alt=""
                           style={{
                             width: '15px',

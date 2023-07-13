@@ -214,7 +214,7 @@ function Progressbar({ dataSplit, valuePointer, setValuePointer, widthProgress, 
                     <div className='text-[25px] flex items-center gap-x-2'>
                          <button className='mr-4 relative group' onClick={handleToggleVolume}>
                               <span className='bg-transparent w-[30px] h-[30px] absolute top-[-20px] left-[-2px]'></span>
-                              <input type="range" className="input-vertical absolute top-[-135px] left-[-8px] dark:bg-gray-700 bg-gray-200 cursor-pointer hidden w-3 group-hover:block z-50"
+                              <input type="range" className="input-vertical absolute top-[-135px] left-[10px] dark:bg-gray-700 bg-gray-200 cursor-pointer hidden  group-hover:block z-50 w-[5px]"
                                    onClick={(event: React.MouseEvent<HTMLInputElement>) => {
                                         event.stopPropagation();
                                    }}
@@ -223,7 +223,7 @@ function Progressbar({ dataSplit, valuePointer, setValuePointer, widthProgress, 
                               {isMute ? <VscMute></VscMute> :  <AiOutlineSound></AiOutlineSound>}
                          </button>
                          <button> <AiOutlineZoomOut></AiOutlineZoomOut></button>
-                         <input type="range" className='cursor-pointer ' defaultValue={100}></input>
+                         <input type="range" className='cursor-pointer h-[5px]' defaultValue={100}></input>
                          <button><AiOutlineZoomIn></AiOutlineZoomIn></button>
                     </div>
                </div>
