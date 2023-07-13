@@ -26,7 +26,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-between bg-[#fff] rounded-[20px] py-3 px-3 h-[65px]">
+        <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
             <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
                 <div className="w-[50px] flex justify-center items-center ">
                     <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
@@ -67,10 +67,10 @@ const Header = () => {
                     <Menu menuItems={dataMenuNav}>
                         <div className="flex gap-3 ml-1 cursor-pointer">
                             <Image
-                                src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
+                                src={require("@/public/Images/Profile/Infomation/boy_thoi_trang.png")}
                                 width={40}
                                 height={40}
-                                className="rounded-full"
+                                className="rounded-full bg-[#727272dd] "
                                 alt="logo"
                             />
                         </div>

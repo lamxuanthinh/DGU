@@ -2,6 +2,8 @@ import Image from "next/image";
 
 import { BsFillEyeFill } from "react-icons/bs";
 
+import { DetailCourseItem } from "@/Views/Profile/ProfileStyled";
+
 export default function Details() {
   const dataCardDetail = [
     {
@@ -86,7 +88,7 @@ export default function Details() {
 
   const CardDetail = ({ data }: any) => {
     return (
-      <div className="flex justify-start h-[140px] pb-4">
+      <DetailCourseItem className="flex justify-start h-[140px] pb-4">
         <div className="h-full flex items-center p-3">
           <p className="font-bold text-[15px]">{data.id}</p>
         </div>
@@ -95,7 +97,7 @@ export default function Details() {
           <h1 className="font-bold text-[18px]">{data.title1}</h1>
           <p className="font-medium text-[16px]">{data.title2}</p>
         </div>
-      </div>
+      </DetailCourseItem>
     );
   };
 

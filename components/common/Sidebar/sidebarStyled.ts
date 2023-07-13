@@ -12,7 +12,7 @@ export const BaseNavigationItem = styled.div`
   width: calc(100% - 26px);
   height: 53px;
   display: flex;
-  border-radius: 10px;
+  border-radius: 5px;
   flex-wrap: nowrap;
   cursor: pointer;
 `;
@@ -23,7 +23,21 @@ export const NavigationItem = styled(BaseNavigationItem)`
 
 
   &:hover {
-    background-color: white;
+    /* background-color: #7FCFFC; */
     color: black;
+  }
+`;
+
+export const SideNav = styled.div`
+  transition: 0.3s all;
+
+
+  @media (max-width: 1024px) {
+    display: none;
+
+    
+    &.active {
+        display: flex;
+    }
   }
 `;

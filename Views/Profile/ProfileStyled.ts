@@ -24,3 +24,46 @@ export const SectionDescription = styled.div`
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 `;
+
+
+export const CourseContent = styled.div`
+
+`;
+
+export const CourseCardInfo = styled.div`
+  width: calc(100% - 3rem);
+  height: calc(100% - 10px);
+`;
+
+
+export const DetailCourseItem = styled.div`
+  cursor: pointer;
+  transition:  0.2s all;
+
+  &:hover {
+    transform:  scale(1.03);
+    /* background-color: white; */
+    z-index: 5;
+  }
+`;
+
+export const StudyingCourseItem = styled.div`
+  width: calc(100% - 60px);
+
+`;
+
+export const StudyingCourseItemTitle = styled.div`
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+`;
+
+export const StudyingCourseItemDescription = styled.div`
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+`
