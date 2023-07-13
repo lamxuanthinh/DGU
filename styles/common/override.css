@@ -1,0 +1,77 @@
+/* override date picker  */
+.rdtPicker {
+    margin-top: 8px !important;
+    right: -2px;
+    width: 469px;
+    height: 325px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
+}
+
+.rdtPicker table thead {
+    height: 73px;
+}
+
+.rdtPicker table tbody {
+    height: 235px;
+}
+
+.rdtPicker table tfoot tr {
+    display: none;
+}
+
+/* day  */
+
+.rdtPicker .rdtDay {
+    border-radius: 30px;
+}
+
+.rdtPicker .rdtDay:hover {
+    color: white !important;
+    transition-duration: 0.2s;
+    background-color: #1c8bea !important;
+}
+
+/* month  */
+
+.rdtPicker .rdtMonth:hover {
+    border-radius: 10px;
+}
+
+.rdtPicker .rdtMonths table thead {
+    height: 37px !important;
+}
+
+.rdtPicker .rdtMonths table:nth-child(2) {
+    margin-top: 10px;
+}
+
+.rdtPicker .rdtMonths .rdtPrev,
+.rdtPicker .rdtMonths .rdtNext {
+    height: 40px;
+    width: 65px;
+}
+
+/* years  */
+
+.rdtPicker .rdtYear:hover {
+    border-radius: 10px;
+}
+
+.rdtPicker .rdtYears table thead {
+    height: 37px !important;
+}
+
+.rdtPicker .rdtYears table:nth-child(2) {
+    margin-top: 10px;
+}
+
+.rdtPicker .rdtYears .rdtPrev,
+.rdtPicker .rdtYears .rdtNext {
+    height: 40px;
+    width: 65px;
+}
+
+.rdtPicker .rdtYears .rdtSwitch {
+    width: 330px;
+}

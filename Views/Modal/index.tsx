@@ -1,10 +1,10 @@
 import Button from "@/components/common/Button";
-interface IModalProps {
+interface IModalVideoProps {
   title: string;
   onOk: () => void;
   onCancel: () => void;
 }
-export default function Modal({ title, onOk, onCancel }: IModalProps) {
+export default function Modal({ title, onOk, onCancel }: IModalVideoProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center transition-opacity z-50 bg-modal-gradient backdrop-blur-sm font-semibold select-none">
       <div className="">
