@@ -2,8 +2,8 @@ import {
   Navigation,
   NavigationItem,
   BaseNavigationItem,
+  SideNav
 } from "@/components/common/Sidebar/sidebarStyled";
-
 
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +22,7 @@ import { HiHome } from "react-icons/hi";
 import { AiFillSetting, AiFillHome} from "react-icons/ai";
 
 
-const Sidebar = () => {
+const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
   const router = useRouter();
 
   const navLink = [
@@ -59,7 +59,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[20px]">
+    <SideNav className={`${active ? 'active' : ''} w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[5px]`}>
       <div className="h-[76px] w-[100%] p-[13px] flex justify-between items-center">
         <Link
           href={'/'}
@@ -81,13 +81,13 @@ const Sidebar = () => {
       </div>
       <div className="h-[76%] w-[100%] flex justify-center items-center mt-[20px]">
         <Navigation>
-          {navLink.map(({ name, link, icon }, index) => (
+        {navLink.map(({ name, link, icon }, index) => (
             <div className="w-[100%]" key={index}>
               <Link key={name} href={link}>
                 <NavigationItem
                   className={`flex items-center flex-wrap p-3 ${
                     router.pathname === link
-                      ? "text-[#000000] bg-[white]"
+                      ? "text-[#000000] bg-[#7FCFFC]"
                       : "text-[#00000085]"
                   }`}
                 >
@@ -101,9 +101,7 @@ const Sidebar = () => {
           ))}
         </Navigation>
       </div>
-
-      
-    </div>
+    </SideNav>
   );
 };
 

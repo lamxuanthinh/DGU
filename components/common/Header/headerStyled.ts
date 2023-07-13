@@ -52,3 +52,18 @@ export const SectionProfile = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const HeaderTablet = styled.div`
+  width: calc(100% - 125px);
+
+  &.active {
+    width: 100%;
+  }
+`;
+
+export const MenuButton = styled.div`
+  
+  &.active {
+    display: none;
+  }
+`;

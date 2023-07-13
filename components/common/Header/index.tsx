@@ -5,6 +5,7 @@ import {
   SectionLogin,
   SectionProfile,
   SectionCreateVideo,
+  HeaderTablet,
 } from "@/components/common/Header/headerStyled";
 
 import { BsSearch } from "react-icons/bs";
@@ -18,7 +19,7 @@ import { dataMenuNav } from "@/public/data/menuNavigation";
 const Header = () => {
 
   return (
-    <div className="flex items-center justify-between bg-[#fff] rounded-[20px] py-3 px-3 h-[65px]">
+    <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
       <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
         <div className="w-[50px] flex justify-center items-center ">
           <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />

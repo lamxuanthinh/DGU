@@ -1,5 +1,6 @@
 import index from "@/pages/login";
 import Link from "next/link";
+import styled from "styled-components";
 import { useRouter } from "next/router";
 import { BsSearch } from "react-icons/bs";
 
@@ -16,6 +17,11 @@ export default function NavigationProfile() {
       path: "/profile/studying",
     },
   ];
+
+  const SearchElement = styled.div`
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
+  `;
 
   return (
     <div className="pt-6 pb-3 flex justify-between items-center w-full">
@@ -44,7 +50,7 @@ export default function NavigationProfile() {
           ${router.pathname == "/profile/mycourse" ? "left-[0px]" : "left-[100px]"}`}
         ></div>
       </div>
-      <div className="w-[200px] flex flex-nowrap bg-[#ffffff] rounded-2xl ml-[13px] p-2">
+      <SearchElement className="w-[200px] flex flex-nowrap  rounded-2xl ml-[13px] p-2 ">
         <div className="px-3 flex justify-center items-center  ">
           <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
         </div>
@@ -56,7 +62,7 @@ export default function NavigationProfile() {
             className="w-[100%] bg-transparent border-none outline-none"
           />
         </div>
-      </div>
+      </SearchElement>
     </div>
   );
 }
