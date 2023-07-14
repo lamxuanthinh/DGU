@@ -11,7 +11,7 @@ export const dataMenuNav = [
   {
     key: 1,
     name: "Profile",
-    href: "/profile",
+    href: "/profile/mycourse",
     icon: CgProfile,
   },
   {

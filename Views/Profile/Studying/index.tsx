@@ -2,31 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { BsListCheck, BsPeople } from "react-icons/bs";
-import { BiComment } from "react-icons/bi";
+import { BiChevronRight, BiCommentDetail } from "react-icons/bi";
 import { GiOpenBook } from "react-icons/gi";
 import { FaRegCommentAlt } from "react-icons/fa";
+
+
+import { CourseCardInfo, StudyingCourseItem, StudyingCourseItemTitle, StudyingCourseItemDescription } from "../ProfileStyled";
+
+
 
 export default function Studying() {
   const courseData = [
     {
-      title: "Khóa học Web cơ bản",
-      description:
-        "Eliminate distractions, set goals, prioritize tasks, practice mindfulness...",
-      lessonTotal: "17",
-      commentTotal: "1K",
-      followersTotal: "17K",
-      value: (
-        <p className="w-[60px] h-[35px] text-[#007621] font-bold text-[16px] flex justify-center items-center">
-          FREE
-        </p>
-      ),
+      title: "Khóa học Web cơ bản Cho nguoi moi bat dau",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
           src={require("@/public/Images/Profile/Studying/course (3).png")}
-          layout="responsive"
-          width={100}
-          height={100}
+          
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+
+          }}
           alt="logo"
         />
       ),
@@ -43,29 +42,21 @@ export default function Studying() {
           alt="course user avt"
         />
       ),
-      nameUser: "Dung Dev",
-      process: 55,
-      createdAt: "5 months ago",
+      nameUser: "Tung Dev",
     },
     {
-      title: "Khóa học Python",
-      description:
-        "Eliminate distractions, set goals, prioritize tasks, practice mindfulness...",
-      lessonTotal: "27",
-      commentTotal: "1K",
-      followersTotal: "17K",
-      value: (
-        <p className="w-[60px] h-[35px] text-[#A07D01] font-bold text-[16px] flex justify-center items-center">
-          $80
-        </p>
-      ),
+      title: "Khóa học Python chi voi 50$",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
           src={require("@/public/Images/Profile/Studying/course (5).png")}
-          layout="responsive"
-          width={100}
-          height={100}
+          
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+
+          }}
           alt="logo"
         />
       ),
@@ -82,29 +73,21 @@ export default function Studying() {
           alt="course user avt"
         />
       ),
-      nameUser: "Thinh Dev",
-      process: 93,
-      createdAt: "5 months ago",
+      nameUser: "Tung AI",
     },
     {
-      title: "Khóa học Nhiếp ảnh",
-      description:
-        "Eliminate distractions, set goals, prioritize tasks, practice mindfulness...",
-      lessonTotal: "27",
-      commentTotal: "1K",
-      followersTotal: "17K",
-      value: (
-        <p className="w-[60px] h-[35px] text-[#007621] font-bold text-[16px] flex justify-center items-center">
-          FREE
-        </p>
-      ),
+      title: "Khóa học Nhiếp ảnh Gianh cho photograper tu hoc",
       link: "/profile/mycourse/details",
       themenails: (
         <Image
           src={require("@/public/Images/Profile/Studying/course (1).png")}
-          layout="responsive"
-          width={100}
-          height={100}
+          
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+
+          }}
           alt="logo"
         />
       ),
@@ -121,29 +104,21 @@ export default function Studying() {
           alt="course user avt"
         />
       ),
-      nameUser: "Join",
-      process: 85,
-      createdAt: "5 months ago",
+      nameUser: "Tung Photographer",
     },
     {
       title: "Chờ đợi liệu có đáng sợ",
-      description:
-        "Eliminate distractions, set goals, prioritize tasks, practice mindfulness...",
-      lessonTotal: "27",
-      commentTotal: "1K",
-      followersTotal: "17K",
-      value: (
-        <p className="w-[60px] h-[35px] text-[#007621] font-bold text-[16px] flex justify-center items-center">
-          FREE
-        </p>
-      ),
       link: "/profile/mycourse/details",
       themenails: (
         <Image
           src={require("@/public/Images/Profile/Studying/course (6).png")}
-          layout="responsive"
-          width={100}
-          height={100}
+          
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+
+          }}
           alt="logo"
         />
       ),
@@ -160,29 +135,21 @@ export default function Studying() {
           alt="course user avt"
         />
       ),
-      nameUser: "Tung mood",
-      process: 15,
-      createdAt: "5 months ago",
+      nameUser: "Tung Tam Li",
     },
     {
       title: "Khóa học machine learning ",
-      description:
-        "Eliminate distractions, set goals, prioritize tasks, practice mindfulness...",
-      lessonTotal: "27",
-      commentTotal: "1K",
-      followersTotal: "17K",
-      value: (
-        <p className="w-[60px] h-[35px] text-[#007621] font-bold text-[16px] flex justify-center items-center">
-          FREE
-        </p>
-      ),
       link: "/profile/mycourse/details",
       themenails: (
         <Image
           src={require("@/public/Images/Profile/Studying/course (2).png")}
-          layout="responsive"
-          width={100}
-          height={100}
+          
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+
+          }}
           alt="logo"
         />
       ),
@@ -199,29 +166,21 @@ export default function Studying() {
           alt="course user avt"
         />
       ),
-      nameUser: "Jully",
-      process: 35,
-      createdAt: "5 months ago",
+      nameUser: "Tung AI",
     },
     {
       title: "Digital Marketing ",
-      description:
-        "Eliminate distractions, set goals, prioritize tasks, practice mindfulness...",
-      lessonTotal: "27",
-      commentTotal: "1K",
-      followersTotal: "17K",
-      value: (
-        <p className="w-[60px] h-[35px] text-[#007621] font-bold text-[16px] flex justify-center items-center">
-          FREE
-        </p>
-      ),
       link: "/profile/mycourse/details",
       themenails: (
         <Image
           src={require("@/public/Images/Profile/Studying/course (4).png")}
-          layout="responsive"
-          width={100}
-          height={100}
+          
+          style={{ 
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+
+          }}
           alt="logo"
         />
       ),
@@ -238,150 +197,104 @@ export default function Studying() {
           alt="course user avt"
         />
       ),
-      nameUser: "MaiLan",
-      process: 60,
-      createdAt: "5 months ago",
+      nameUser: "Dung Market",
     },
   ];
-
-  const checkArray = [
-    {
-      min: 0,
-      max: 20,
-      color: "#9F0000",
-    },
-    {
-      min: 21,
-      max: 50,
-      color: "#9F8F00",
-    },
-    {
-      min: 51,
-      max: 80,
-      color: "#5D82E2",
-    },
-    {
-      min: 81,
-      max: 100,
-      color: "#009A22",
-    },
-  ];
-
-  function formatTheme(process: number) {
-    return checkArray.map(({ min, max, color }, index) => {
-      if (process >= min && process <= max) {
-        return (
-          <>
-            <div className="w-[100%] h-[30px]  flex flex-nowrap items-center justify-between ">
-              <div className="w-[60px] h-[30px]  flex items-center justify-center">
-                <p className={`font-bold text-[12px]  `} style={{ color: color }}>
-                  Process:
-                </p>
-              </div>
-              <div className="w-[136px] h-[30px]  flex items-center justify-center">
-                <div className="w-[126px] h-[10px]  bg-[#BEBEBE] rounded-[30px] flex items-center justify-center ">
-                  <div className="w-[126px] h-[10px] flex justify-start items-center">
-                    <div className={` h-[100%] rounded-[30px]  `} style={{backgroundColor: color, width: `${process}%`}}></div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-[44px] h-[30px]  flex items-center justify-center">
-                <p className={`font-bold text-[15px]  `} style={{ color: color }}>
-                  {process}%
-                </p>
-              </div>
-            </div>
-          </>
-        );
-      }
-    });
-  }
 
   return (
-    <div className="w-[100%] h-[100%]  flex flex-col overflow-hidden">
-      <div className="w-full m-[10px] h-[100%] grid grid-cols-4 gap-4 ">
-        {courseData.map(
-          (
-            {
-              title,
-              description,
-              lessonTotal,
-              commentTotal,
-              followersTotal,
-              value,
-              userAvt,
-              nameUser,
-              link,
-              themenails,
-              process,
-              createdAt,
-            },
-            index
-          ) => (
-            <Link key={title} href={link}>
-              <div className="group w-[250px] h-[305px] bg-white  flex flex-col rounded-[20px] overflow-hidden hover:cursor-pointer ">
-                <div className="w-[250px] h-[150px] relative overflow-hidden ">
-                  {themenails}
-                  <div className="w-[50px] h-[150px] absolute top-0 right-0 bg-[#000000b1] grid grid-cols-1  items-center  transition-all duration-1000 ease-in-out group-hover:w-[100%] ">
-                    <div className="h-[40px] w-[50px] flex flex-col justify-center items-center ">
-                      <div className="w-[20px] h-[20px] flex justify-center items-center">
-                        <GiOpenBook color="#ffffff" fontSize={"20px"} />
-                      </div>
-                      <p className="font-bold h-[20px]  text-[12px] text-[#ffffff] flex items-center">
-                        {lessonTotal}
-                      </p>
-                    </div>
-                    <div className="h-[40px] w-[50px] flex flex-col justify-center items-center ">
-                      <div className="w-[20px] h-[20px] flex justify-center items-center">
-                        <FaRegCommentAlt color="#ffffff" fontSize={"20px"} />
-                      </div>
-                      <p className="font-bold h-[20px]  text-[12px] text-[#ffffff] flex items-center">
-                        {commentTotal}
-                      </p>
-                    </div>
-                    <div className="h-[40px] w-[50px] flex flex-col justify-center items-center ">
-                      <div className="w-[20px] h-[20px] flex justify-center items-center">
-                        <BsPeople color="#ffffff" fontSize={"20px"} />
-                      </div>
-                      <p className="font-bold h-[20px]  text-[12px] text-[#ffffff] flex items-center">
-                        {followersTotal}
-                      </p>
+    <div className="w-full h-[100%]   flex flex-col justify-center items-center  ">
+      <div className="w-full m-[10px] h-[100%] flex justify-center items-center overflow-hidden p-[10px]">
+        <div className="  w-full  flex flex-col justify-center items-center   ">
+          {courseData.map(({ title,  link, userAvt, themenails, nameUser  }, index) => (
+            <Link key={title} href={link} className={` w-[92%] `}> 
+              <div className=" dgu-course-card w-full h-[140px] flex flex-wrap justify-between items-center  rounded-[10px] mb-[10px] overflow-hidden hover:cursor-pointer  ">
+                <StudyingCourseItem className=" flex flex-wrap justify-start items-center   ">
+                  <div className="w-[140px] h-[140px] flex justify-center items-center">
+                    <div className="w-[120px] h-[120px] border-[3px] border-[#828282] overflow-hidden rounded-[10px]  flex justify-center items-center">
+                      {themenails}
                     </div>
                   </div>
-                </div>
-                <div className="w-[250px] h-[155px] ">
-                  <div className="w-[240px] h-[145px] m-[5px]  flex flex-col">
-                    <div className="w-[100%] h-[35px] flex flex-nowrap justify-between items-center">
-                      <p className="font-bold text-[16px] ">{title}</p>
-                      {value}
-                    </div>
-                    <div className="w-[100%] h-[30px] flex justify-between">
-                      <div className="w-[120px] h-full  flex justify-start items-center">
-                        <div className="w-[30px] h-[30px] flex justify-center items-center">
-                          {userAvt}
-                        </div>
-                        <p className="font-bold text-[12px] ml-[0.5rem]">
-                          {nameUser}
-                        </p>
-                      </div>
-                      <div className="w-[100px] h-full flex justify-center items-center ">
-                        <p className="font-bold text-[12px] text-[#87878794] ">
-                          {createdAt}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="w-[100%] h-[45px]  flex flex-nowrap items-center">
-                      <p className="font-thin text-[10px] ">{description}</p>
-                    </div>
-
-                    {formatTheme(process)}
-
+                  <div className="w-[250px] ml-[1rem] flex flex-col justify-evenly items-center ">
+                    <StudyingCourseItemTitle className="" >
+                      <p className="text-[16px] font-bold  "> 
+                        {title}
+                      </p>
+                    </StudyingCourseItemTitle>
+                    <StudyingCourseItemDescription className=" " >
+                      <p className="text-[12px] font-bold text-[#878787]  "> 
+                        {title}
+                      </p>
+                    </StudyingCourseItemDescription>
                   </div>
+                  <div className="flex flex-wrap justify-start items-center w-[85px]  m-[2rem] " >
+                    <div className="flex flex-wrap justify-start items-center h-[25px] ">
+                      <Image
+                        src={require("@/public/Images/Profile/Studying/course (1).png")}
+                        style={{ 
+                          width: "25px",
+                          height: "25px",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                        }}
+                        alt="avt"
+                      />
+                      <Image
+                        src={require("@/public/Images/Profile/Studying/course (2).png")}
+                        style={{ 
+                          width: "25px",
+                          height: "25px",
+                          marginLeft: "-10px",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                        }}
+                        alt="avt"
+                      />
+                      <Image
+                        src={require("@/public/Images/Profile/Studying/course (3).png")}
+                        style={{ 
+                          width: "25px",
+                          height: "25px",
+                          marginLeft: "-10px",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                        }}
+                        alt="avt"
+                      />
+                      <Image
+                        src={require("@/public/Images/Profile/Studying/course (4).png")}
+                        style={{ 
+                          width: "25px",
+                          height: "25px",
+                          marginLeft: "-10px",
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                        }}
+                        alt="avt"
+                      />
+                      <div className=" ml-[-10px] flex justify-center items-center h-[25px] w-[25px] bg-[#7D7979] text-[8px] text-[#ffffff]   rounded-[50%]  ">
+                        4k+
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap justify-start items-center w-[150px] h-[20px] bg-[#f1f1f1] rounded-[20px] " >
+                    <div className="flex flex-wrap justify-end items-center w-[75px] h-[20px] bg-[#85daff] text-[#448ab3] font-bold text-[15px] rounded-[20px] ">
+                      50%
+                    </div>
+                  </div>
+
+
+                </StudyingCourseItem>
+                
+                
+
+                <div className="w-[60px] h-full flex justify-center items-center" >
+                  <BiChevronRight fontSize={'24px'} />
                 </div>
+                
               </div>
             </Link>
-          )
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );
