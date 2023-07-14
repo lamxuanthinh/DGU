@@ -1,4 +1,6 @@
+import { useAppContext } from "@/Context";
 import Header from "@/components/common/Header";
+import Loading from "@/components/common/Loading";
 import SidebarHeader from "@/components/common/SidebarHeader";
 import Sidebar from "@/components/common/Sidebar";
 import NavigationTablet from "@/components/common/NavigationTablet"; 
@@ -17,7 +19,7 @@ import { useEffect, useState } from "react";
 
 const MainLayout = (props: LayoutProps) => {
   const [isTabletLayout, setIsTabletLayout] = useState(false);
-
+  const { isLoading } = useAppContext();
   useEffect(() => {
     const handleResize = () => {
       setIsTabletLayout(window.innerWidth <= 1024);
@@ -36,6 +38,7 @@ const MainLayout = (props: LayoutProps) => {
 
   return (
     <>
+      {isLoading && <Loading/> }
       {isTabletLayout ? (
         <div className="w-screen h-screen bg-[#DBDBDB] flex justify-center items-center ">
           <BigLayout>

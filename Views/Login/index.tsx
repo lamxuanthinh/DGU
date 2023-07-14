@@ -11,44 +11,50 @@ import { FcGoogle } from "react-icons/fc";
 import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 import Input from "@/components/common/Input";
+import { useAppContext } from "@/Context";
+import Loading from "@/components/common/Loading";
 const router = Router;
 
 type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
 
 export default function Login() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<FormData>({
-        resolver: yupResolver(loginSchema),
-    });
+  const { setIsLoading } = useAppContext();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(loginSchema),
+  });
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, []);
 
-    const onSubmit = handleSubmit(async (data) => {
-        // handler API
-        console.log("[P]::SignUP::", data);
-        const payload = {
-            email: data.email,
-            password: data.password,
-        };
-        console.log("[P]::payload::", payload);
-        try {
-            const holderLogin: any = await auth.login(payload);
-            console.log("[P]::Login", holderLogin);
-            // handler loading
-            if (holderLogin.message !== "ErrorData") {
-                localStorage.setItem("auth", "true");
-                router.push("/");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    });
+  const onSubmit = handleSubmit(async (data) => {
+    // handler API
+    setIsLoading(true);
+    console.log("[P]::SignUP::", data);
+    const payload = {
+      email: data.email,
+      password: data.password,
+    };
+    console.log("[P]::payload::", payload);
+    try {
+      const holderLogin: any = await auth.login(payload);
+      console.log("[P]::Login", holderLogin);
+      // handler loading
+        if (holderLogin.message !== "ErrorData") {
+        localStorage.setItem("auth", "true");
+        setIsLoading(false);
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
     return (
         <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">

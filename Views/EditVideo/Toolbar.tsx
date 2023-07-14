@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEventHandler, memo } from 'react'
 import { IoMdCopy } from "react-icons/io"
 import { BiCut } from "react-icons/bi"
 import { TfiPencil } from "react-icons/tfi"
@@ -7,14 +7,14 @@ import { BsCursorText } from "react-icons/bs"
 import { GiMusicalNotes } from "react-icons/gi"
 import { MdOutlineInsertEmoticon } from "react-icons/md"
 
-export default function Toolbar() {
+function Toolbar({ onClick }: { onClick: MouseEventHandler<HTMLButtonElement> }) {
   return (
-    <div className="grid grid-cols-2 grid-rows-6 grid-flow-row-dense   place-items-center gap-3 px-11 py-9 min-w-[230px] bg-[#1F1F1F] rounded-[15px]">
+    <div className="grid grid-cols-2 grid-rows-3 grid-flow-row-dense place-items-center gap-y-3 px-11 py-9 min-w-[280px] bg-[#121212] rounded-[5px] h-full">
       <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
         <IoMdCopy className="text-3xl"></IoMdCopy>
         <span>Copy</span>
       </button>
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60" onClick={onClick}>
         <BiCut className="text-3xl"></BiCut>
         <span>Split</span>
       </button>
@@ -40,3 +40,5 @@ export default function Toolbar() {
     </div>
   )
 }
+
+export default memo(Toolbar)
