@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 
 interface CommentFormProps {
-    handleSubmit: any;
+    handleSubmit: (text: string, parentId?: any) => void;
     submitLabel: string;
     hasCancelButton?: boolean;
     isEditing?: boolean;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import CommentForm from "@/components/common/Comments/CommentForm";
 import Image from "next/image";
 import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
@@ -6,9 +6,9 @@ import { IComment } from "@/model/comment";
 
 interface CommentProps {
     comment: IComment;
-    replies: any;
-    setActiveComment: any;
-    activeComment: any;
+    replies: IComment[];
+    setActiveComment: Dispatch<SetStateAction<any | null>>;
+    activeComment: Comment | null;
     updateComment: (text: string, commentId: string) => void;
     deleteComment: (commentId: string) => void;
     addComment: (text: string, parentId: string | null) => void;
