@@ -1,108 +1,90 @@
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import ffmpeg from "@ffmpeg/ffmpeg";
+import { useAppContext } from "@/Context";
+import Modal from "../Modal";
+import Loading from "@/components/common/Loading";
 import Navbar from "./Navbar";
 import Video from "./Video";
 import Toolbar from "./Toolbar";
 import Progressbar from "./Progressbar";
-import Modal from "../Modal";
-import Loading from "@/components/common/Loading";
-import { useAppContext } from "@/Context";
-import Link from "next/link";
+import MenuSuccess from "@/components/common/ModalSuccess";
+import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/EditVideo";
 
-type TDataSplit = {
-  id: number,
-  width: number,
-  start: number,
-  end: number,
-  startTime: number,
-  endTime: number
-}
-const VALUE_SPACING_PROGRESS = 8;
-const VALUE_BORDER_PROGRESS = 0;
-const VALUE_SUB_POINTER = 0;
+import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 
 export default function EditVideo() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [moveVideo, setMoveVideo] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [dataSplit, setDataSplit] = useState<Array<TDataSplit>>([{
-    id: 1,
-    width: 100,
-    start: 0,
-    end: 100,
-    startTime: 0,
-    endTime: duration,
-  }]);
-  const [currentProgress, setCurrentProgress] = useState<TDataSplit>(dataSplit[0]);
-  const [valuePointer, setValuePointer] = useState<number>(0);
-  const [valueCounter, setValueCounter] = useState<number>(0);
-  const [widthProgress, setWidthProgress] = useState<number>(0);
-  const [currentTime, setCurrentTime] = useState<number>(0)
-  const [valueVolume, setValueVolume] = useState({
-    current: "100",
-    pre: "0"
-  });
-  const [isModal, setIsModal] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const { dataEditVideo } = useAppContext();
+  const { srcVideoEdit, isLoading, setIsLoading } = useAppContext();
 
   const runCursorRef = useRef<number | null>(null);
   const startTimestampRef = useRef<number | null>(0);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [moveVideo, setMoveVideo] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [valuePointer, setValuePointer] = useState<number>(0);
+  const [valueCounterPointer, setValueCounterPointer] = useState<number>(0);
+  const [currentWidthProgress, setCurrentWidthProgress] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [dataSplit, setDataSplit] = useState<IListDataSplitVideo>([{
+    id: 1,
+    width: 100,
+    startTime: 0,
+    endTime: duration,
+  }]);
+  const [currentProgress, setCurrentProgress] = useState<IDataSplitVideo>(dataSplit[0]);
+  const [valueVolume, setValueVolume] = useState<IValueVolumeVideo>({
+    current: "100",
+    pre: "0"
+  });
+
   useEffect(() => {
     dataSplit[0].endTime = duration;
     setDataSplit(dataSplit);
   }, [duration]);
 
   useEffect(() => {
-    const currentValuePointer = valueCounter + valuePointer;
+    const currentValuePointer = valueCounterPointer + valuePointer;
+    const indexCurrentProgress = onFindIndexCurrentProgress(currentProgress.id);
     let endPointProgress = 0;
     if (dataSplit.length > 1) {
-      const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === currentProgress.id);
-      for (let index = 0; index < indexCurrentProgress; index++) {
-        endPointProgress = endPointProgress + dataSplit[index].width * widthProgress / 100
-      }
-      endPointProgress = endPointProgress + indexCurrentProgress * VALUE_SPACING_PROGRESS + currentProgress.width * widthProgress / 100 - VALUE_BORDER_PROGRESS * 2 - VALUE_SUB_POINTER;
+      const startPointProgress = onCalcStartPointProgress(indexCurrentProgress);
+      endPointProgress = startPointProgress + currentProgress.width * currentWidthProgress / 100;
     } else {
-      endPointProgress = widthProgress - VALUE_BORDER_PROGRESS * 2 - VALUE_SUB_POINTER;
+      endPointProgress = currentWidthProgress;
     }
 
     if (currentValuePointer >= endPointProgress && endPointProgress !== 0) {
-      const index = dataSplit.findIndex((itemSlipt) => itemSlipt.id === currentProgress.id);
-      if (index < dataSplit.length - 1) {
-        setCurrentProgress(dataSplit[index + 1]);
-        const newPointer = valuePointer + VALUE_BORDER_PROGRESS * 2 + VALUE_SPACING_PROGRESS;
+      if (indexCurrentProgress < dataSplit.length - 1) {
+        const newPointer = valuePointer + VALUE_SPACING_PROGRESS;
         setValuePointer(newPointer);
+        setCurrentProgress(dataSplit[indexCurrentProgress + 1]);
       } else {
         setMoveVideo(duration);
         setValuePointer(endPointProgress);
         setIsPlaying(false);
       }
     }
-  }, [valueCounter]);
+  }, [valueCounterPointer]);
 
   useEffect(() => {
-    if (!isPlaying) {
-      startTimestampRef.current = 0;
-    }
-  }, [valuePointer]);
-  useEffect(() => {
-    const animationDuration = (duration / (widthProgress - VALUE_BORDER_PROGRESS * 2 - VALUE_SUB_POINTER)) * 1000;
+    const animationDuration = (duration / (currentWidthProgress)) * 1000;
     const step = (timestamp: number) => {
-
       if (!startTimestampRef.current) {
         startTimestampRef.current = timestamp;
       }
       const elapsedTime = timestamp - startTimestampRef.current;
       const progress = elapsedTime / animationDuration;
-      setValueCounter(progress);
+      setValueCounterPointer(progress);
       runCursorRef.current = window.requestAnimationFrame(step);
     };
     if (isPlaying) {
       runCursorRef.current = window.requestAnimationFrame(step);
     } else {
-      setValuePointer(valuePointer + valueCounter)
-      setValueCounter(0);
+      setValuePointer(valuePointer + valueCounterPointer)
+      setValueCounterPointer(0);
     }
     return () => {
       if (runCursorRef.current) {
@@ -110,97 +92,101 @@ export default function EditVideo() {
       }
     };
   }, [isPlaying]);
-  // edit
+
+
+  useEffect(() => {
+    if (!isPlaying) {
+      startTimestampRef.current = 0;
+    }
+  }, [valuePointer]);
+  const onFindIndexCurrentProgress = (id: number) => {
+    const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === id);
+    return indexCurrentProgress
+  }
+
+  const onCalcStartPointProgress = (indexCurrentProgress: number) => {
+    let accumulatedWidth = 0;
+    for (let index = 0; index < indexCurrentProgress; index++) {
+      accumulatedWidth += dataSplit[index].width * currentWidthProgress / 100
+    }
+    const startPointProgress = accumulatedWidth + indexCurrentProgress * VALUE_SPACING_PROGRESS;
+    return startPointProgress;
+  }
 
   const onCalcValuePointerInnerProgress = (valuePointer: number, valueStart: number) => {
     let valuePointerProgress = valuePointer - valueStart
     return valuePointerProgress
   }
 
-  const onCalcWidthInnerProgress = () => {
-    let widthInnerProgress = 0;
-    if (dataSplit.length > 1) {
-      widthInnerProgress = currentProgress.width * widthProgress / 100 - VALUE_BORDER_PROGRESS * 2
-    } else {
-      widthInnerProgress = widthProgress - VALUE_BORDER_PROGRESS * 2;
-    }
-    return widthInnerProgress
+  const onCalcWidthProgress = (widthPercentProgress: number) => {
+    const widthProgress = widthPercentProgress * currentWidthProgress / 100;
+    return widthProgress;
   }
-  const onProgressBarClick = (dataItem: TDataSplit, valuePositionCursor: number) => {
 
-    const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === dataItem.id);
-    let startNewElement = 0;
-    for (let index = 0; index < indexCurrentProgress; index++) {
-      startNewElement = startNewElement + dataSplit[index].width * widthProgress / 100
-    }
-    startNewElement = startNewElement + indexCurrentProgress * VALUE_SPACING_PROGRESS;
-    const valuePointerProgress = onCalcValuePointerInnerProgress(valuePositionCursor, startNewElement);
+  const onCalcSeparateTime = (startTime: number, endTime: number, positionSplit: number, widthCurrentProgress: number) => {
+    const totalTimeProgress = endTime - startTime;
+    const valuePercentTime = positionSplit / widthCurrentProgress * 100;
+    const separateTime = startTime + valuePercentTime * totalTimeProgress / 100;
+    return separateTime;
+  }
 
-    const widthCurrentProgress = dataItem.width * widthProgress / 100 - VALUE_BORDER_PROGRESS * 2;
+  const onProgressBarClick = (dataItem: IDataSplitVideo, valuePositionCursor: number) => {
+    const indexCurrentProgress = onFindIndexCurrentProgress(dataItem.id);
+    let startPointProgress = onCalcStartPointProgress(indexCurrentProgress);
+    const positionSplit = onCalcValuePointerInnerProgress(valuePositionCursor, startPointProgress);
+    const widthCurrentProgress = onCalcWidthProgress(dataItem.width);
 
-    const totalTimeProgress = dataItem.endTime - dataItem.startTime;
-    const valuePercentTime = valuePointerProgress / widthCurrentProgress * 100;
-
-    const separateTime = dataItem.startTime + valuePercentTime * totalTimeProgress / 100;
+    const separateTime = onCalcSeparateTime(dataItem.startTime, dataItem.endTime, positionSplit, widthCurrentProgress)
 
     if (isPlaying) {
       setIsPlaying(false);
     }
-
-    setValueCounter(0);
+    setValueCounterPointer(0);
     setMoveVideo(separateTime);
     setValuePointer(valuePositionCursor);
     setCurrentProgress(dataItem);
   }
 
+  const onProgressBarMove = (valuePointerMove: number, itemSlipt: IDataSplitVideo) => {
+    const indexCurrentProgress = onFindIndexCurrentProgress(itemSlipt.id);
+    const startPointProgress = onCalcStartPointProgress(indexCurrentProgress);
+    const positionSplit = onCalcValuePointerInnerProgress(valuePointerMove, startPointProgress);
+    const widthCurrentProgress = onCalcWidthProgress(itemSlipt.width);
+    const separateTime = onCalcSeparateTime(itemSlipt.startTime, itemSlipt.endTime, positionSplit, widthCurrentProgress);
+    return separateTime;
+  }
+
   const handleSplit = () => {
     setIsPlaying(false);
-    
-    
-    const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === currentProgress.id);
-    let startNewElement = 0;
-    for (let index = 0; index < indexCurrentProgress; index++) {
-      startNewElement = startNewElement + dataSplit[index].width * widthProgress / 100
-    }
-    startNewElement = startNewElement + indexCurrentProgress * VALUE_SPACING_PROGRESS;
-    let valuePointerProgress = onCalcValuePointerInnerProgress(valuePointer+ valueCounter, startNewElement);
-  
-    const widthCurrentProgress = onCalcWidthInnerProgress()
-    const widthPxNewElement = widthCurrentProgress - valuePointerProgress + VALUE_BORDER_PROGRESS * 2;
-    const widthPercentNewElement = widthPxNewElement / widthProgress * 100;
-    const newWidthElement = (valuePointerProgress + VALUE_BORDER_PROGRESS * 2) / widthProgress * 100;
+    const indexCurrentProgress = onFindIndexCurrentProgress(currentProgress.id);
+    let startPointProgress = onCalcStartPointProgress(indexCurrentProgress);
+    let positionSplit = onCalcValuePointerInnerProgress(valuePointer + valueCounterPointer, startPointProgress);
+    const widthCurrentProgress = onCalcWidthProgress(currentProgress.width)
 
-    const endNewElement = startNewElement + currentProgress.width * widthProgress / 100 + VALUE_SPACING_PROGRESS;
-    const widthPercenterNewElement = endNewElement / widthProgress * 100;
+    const secondHalfWidthProgress = widthCurrentProgress - positionSplit;
+    const secondHalfPercentWidthProgress = secondHalfWidthProgress / currentWidthProgress * 100;
+    const firstHalfPercentWidthProgress = (positionSplit) / currentWidthProgress * 100;
+    const separateTime = onCalcSeparateTime(currentProgress.startTime, currentProgress.endTime, positionSplit, widthCurrentProgress)
 
-    const totalTimeProgress = currentProgress.endTime - currentProgress.startTime;
-    const valuePercentTime = valuePointerProgress / widthCurrentProgress * 100;
-    const separateTime = currentProgress.startTime + valuePercentTime * totalTimeProgress / 100;
-
-
-    const newElement: TDataSplit = {
+    const secondHalfProgress: IDataSplitVideo = {
       id: dataSplit.length + 1,
-      width: widthPercentNewElement,
-      start: startNewElement,
-      end: widthPercenterNewElement,
+      width: secondHalfPercentWidthProgress,
       startTime: separateTime,
       endTime: currentProgress.endTime
     }
 
-    dataSplit[indexCurrentProgress].width = newWidthElement;
-    dataSplit[indexCurrentProgress].start = currentProgress.start;
-    dataSplit[indexCurrentProgress].end = startNewElement / widthProgress * 100 + newWidthElement - VALUE_BORDER_PROGRESS * 2 / widthProgress * 100;
+    dataSplit[indexCurrentProgress].width = firstHalfPercentWidthProgress;
     dataSplit[indexCurrentProgress].startTime = currentProgress.startTime;
     dataSplit[indexCurrentProgress].endTime = separateTime,
       setDataSplit((prevData) => {
         const newData = [...prevData];
-        newData.splice(indexCurrentProgress + 1, 0, newElement);
+        newData.splice(indexCurrentProgress + 1, 0, secondHalfProgress);
         return newData;
       });
-    setValuePointer(valuePointer - 2)
+    setValuePointer(valuePointer - VALUE_WIDTH_POINTER)
   }
 
-  const onOk = () => {
+  const onOkModal = () => {
     setIsModal(false);
     setIsLoading(true);
     setTimeout(() => {
@@ -209,12 +195,16 @@ export default function EditVideo() {
     }, 5000);
   }
 
-  const onCancel = () => {
+  const onCancelModal = () => {
     setIsModal(false)
   }
 
+  const onCancelModalSuccess = () => {
+    setIsSuccess(false)
+  }
+
   const handleEditVideo = async () => {
-    if (dataEditVideo) {
+    if (srcVideoEdit) {
       const { createFFmpeg, fetchFile } = ffmpeg;
       const ffmpegInstance = createFFmpeg({ log: true });
       // error
@@ -225,37 +215,46 @@ export default function EditVideo() {
   };
 
   return (
-    <div>
-      <div className="w-full h-screen bg-[#000] flex flex-col p-[10px] ">
+    <>
+      <div className="w-full h-screen bg-[#000] flex flex-col p-[10px]">
         <Navbar setIsModal={setIsModal} />
         <div className="flex flex-grow-[1] gap-[5px] overflow-hidden items-center mb-[5px]">
-          <Toolbar onClick={handleSplit} />
-          <Video isPlaying={isPlaying} moveVideo={moveVideo} setDuration={setDuration} duration={duration} setCurrentTime={setCurrentTime} valueVolume={valueVolume} setValueVolume={setValueVolume} />
+          <Toolbar handleSplit={handleSplit} />
+          <Video
+            isPlaying={isPlaying}
+            moveVideo={moveVideo}
+            setDuration={setDuration}
+            setCurrentTime={setCurrentTime}
+            valueVolume={valueVolume} />
         </div>
-        <Progressbar dataSplit={dataSplit} valuePointer={valuePointer} widthProgress={widthProgress} setWidthProgress={setWidthProgress} duration={duration} isPlaying={isPlaying} setIsPlaying={setIsPlaying} valueCounter={valueCounter} onProgressBarClick={onProgressBarClick} valueVolume={valueVolume} setValueVolume={setValueVolume} setValuePointer={setValuePointer} currentTime={currentTime} setMoveVideo={setMoveVideo} setValueCounter={setValueCounter} ></Progressbar>
+        <Progressbar
+          dataSplit={dataSplit}
+          valuePointer={valuePointer}
+          currentWidthProgress={currentWidthProgress} setCurrentWidthProgress={setCurrentWidthProgress}
+          duration={duration}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          valueCounterPointer={valueCounterPointer}
+          onProgressBarClick={onProgressBarClick}
+          valueVolume={valueVolume}
+          setValueVolume={setValueVolume}
+          setValuePointer={setValuePointer}
+          currentTime={currentTime}
+          setMoveVideo={setMoveVideo}
+          setValueCounterPointer={setValueCounterPointer} onProgressBarMove={onProgressBarMove} />
       </div>
-      {isModal && <Modal title="Do you want to go to the video editing step?" onOk={onOk} onCancel={onCancel} />}
-      {isLoading && <Loading />}
-      {isSuccess &&
-        <div  className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full bg-black">
-          <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-            <div className="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-              <button onClick={() => setIsSuccess(false)} type="button" className="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-              <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 p-2 flex items-center justify-center mx-auto mb-3.5">
-                <svg aria-hidden="true" className="w-8 h-8 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                <span className="sr-only">Success</span>
-              </div>
-              <p className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Successfully edit video.</p>
-              <Link href="/" type="button" className="py-2 px-3 text-sm font-medium text-center text-white rounded-lg bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-900">
-                Continue
-              </Link>
-            </div>
-          </div>
-        </div>
+      {
+        isModal &&
+        <Modal
+          title="Do you want to go to the video editing step?"
+          onOk={onOkModal}
+          onCancel={onCancelModal} />
       }
-    </div>
+      {isLoading && <Loading />}
+      {
+        isSuccess &&
+        <MenuSuccess toHref="/upload" onClick={onCancelModalSuccess} />
+      }
+    </>
   );
 }
