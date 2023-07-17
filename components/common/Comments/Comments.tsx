@@ -64,9 +64,9 @@ const Comments: React.FC<IComments> = ({ currentUserId, isComment, setComment }:
 
     return (
         <div
-            className={`${
-                isComment ? "flex" : "hidden"
-            } overflow-hidden flex justify-end fixed rounded-xl top-[20%] right-[8%] w-[50%] h-[65%] bg-[#F5F6FA]`}
+            className={`flex overflow-hidden justify-end fixed rounded-xl top-[20%] right-[8%] w-[50%] h-[65%] bg-[#F5F6FA]`}
+            data-aos="fade-left"
+            data-aos-duration="500"
         >
             <div className="w-full h-full">
                 <div className="py-4 px-4 max-h-[82%] snap-y w-full h-full overflow-auto snap-mandatory scrollbar-none">
@@ -86,7 +86,9 @@ const Comments: React.FC<IComments> = ({ currentUserId, isComment, setComment }:
                         ))}
                     </div>
                 </div>
-                <CommentForm submitLabel="Send" handleSubmit={addComment} />
+                <div className="max-h-[18%]">
+                    <CommentForm submitLabel="Send" handleSubmit={addComment} />
+                </div>
             </div>
         </div>
     );

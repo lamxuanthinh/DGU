@@ -38,7 +38,8 @@ export default function ModalVideo({
     const [comment, setComment] = useState(false);
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.code === "Space") {
+            const target = event.target as HTMLElement;
+            if (event.code === "Space" && target.tagName !== "INPUT") {
                 event.preventDefault();
             }
             if (event.key === "Escape") {

@@ -120,7 +120,9 @@ const Comment: React.FC<CommentProps> = ({
                             <div className="text-[#5357B6] text-[13px] font-medium">{createdAt}</div>
                         </div>
                         {!isEditing && (
-                            <div className="text-[16px] w-[95%] font-normal text-[#67727E]">{comment.body}</div>
+                            <div className="text-[16px] w-[95%] font-normal text-[#67727E] break-all">
+                                {comment.body}
+                            </div>
                         )}
                         {isEditing && (
                             <CommentForm
