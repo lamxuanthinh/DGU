@@ -11,7 +11,7 @@ export const MenuItem = styled.div`
 `;
 
 export const MenuBottom = styled.div`
-    margin-top: 10px;
+    margin-top: 5px;
     min-height: calc(100% - 490px);
 `;
 

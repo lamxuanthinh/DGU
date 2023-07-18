@@ -70,17 +70,18 @@ const MenuTablet = () => {
             link: "/",
             icon: <GiUpgrade  fontSize={'30px'} />, 
         },
+    
     ]
 
     return (
         <>
             <ScrollContainer className='w-full h-full bg-[#DBDBDB] absolute top-0 left-0 z-10 overflow-y-scroll ' >
-                <div className='w-full h-[230px] rounded-[10px] bg-[#ffffff] flex flex-col justify-center items-center '>
+                <div className='w-full h-[230px] rounded-[5px] bg-[#ffffff] flex flex-col justify-center items-center '>
                     <div className='w-full h-[150px] border-b border-[#0000001d] border-[1px] flex justify-center items-center ' >
                         <div className=' w-[150px] h-full  flex justify-center items-center   ' >
                             <Image 
                                 className={` w-[100px] h-[100px] object-cover `}
-                                src={require('@/public/Images/Profile/Infomation/avt_quan_su.jpg')}
+                                src={require('@/public/Images/Profile/Infomation/boy_thoi_trang.png')}
                                 alt=""
                             />
                         </div>
@@ -88,10 +89,10 @@ const MenuTablet = () => {
                             <div className=' w-auto h-full flex justify-center items-center ' >
                                 <div className=' h-[100px] flex flex-col justify-start items-start' >
                                     <p className='font-bold text-[24px] ' >
-                                        Kenny Truong
+                                        DGU TEAM
                                     </p>
                                     <p className='font-normal text-[15px] ' >
-                                        kennytruong3118@gmail.com
+                                        dgu000@gmail.com
                                     </p>
                                 </div>
                             </div>
@@ -118,7 +119,7 @@ const MenuTablet = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-full h-[240px] mt-[10px] rounded-[10px] bg-[#ffffff] flex flex-col justify-center items-center '>
+                <div className='w-full h-[240px] mt-[5px] rounded-[5px] bg-[#ffffff] flex flex-col justify-center items-center '>
                     <Link
                         href={`#`}
                         className='w-full h-[80px] flex flex-wrap justify-start items-center  text-[#00000075]'
@@ -153,7 +154,7 @@ const MenuTablet = () => {
                         </MenuItem>
                     </Link>
                 </div>
-                <MenuBottom className=' w-full bg-[#ffffff] rounded-[10px] flex flex-col justify-start items-center '>
+                <MenuBottom className=' w-full bg-[#ffffff] rounded-[5px] flex flex-col justify-start items-center '>
                     <MenuListBottom className='w-full   ' >
                         {navigationList.map(({name, link, icon}, index) => {
                             return (

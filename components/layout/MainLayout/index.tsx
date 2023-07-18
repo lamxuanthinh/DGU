@@ -15,8 +15,6 @@ import { LayoutProps } from "@/model";
 import { useEffect, useState } from "react";
 
 
-
-
 const MainLayout = (props: LayoutProps) => {
   const [isTabletLayout, setIsTabletLayout] = useState(false);
   const { isLoading } = useAppContext();

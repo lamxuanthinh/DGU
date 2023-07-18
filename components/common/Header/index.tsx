@@ -27,11 +27,11 @@ const Header = () => {
 
     return (
         <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
-            <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
+            <div className="w-[50%] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
                 <div className="w-[50px] flex justify-center items-center ">
                     <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
                 </div>
-                <div className="w-[410px] flex justify-center items-center">
+                <div className="w-full flex justify-center items-center">
                     <input
                         type="text"
                         name="search"

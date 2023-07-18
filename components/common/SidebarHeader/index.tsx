@@ -66,7 +66,7 @@ const SidebarHeader: React.FC<{active: boolean}> = ({ active }) => {
                         >
                             <div className="flex gap-3 ml-1 cursor-pointer">
                             <Image
-                                src={require("@/public/Images/Profile/Infomation/boy_thanh_lich.png")}
+                                src={require("@/public/Images/Profile/Infomation/boy_thoi_trang.png")}
                                 width={40}
                                 height={40}
                                 className="rounded-full"

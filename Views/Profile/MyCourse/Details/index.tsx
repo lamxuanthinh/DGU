@@ -102,8 +102,8 @@ export default function Details() {
   };
 
   return (
-    <div className="w-full h-full flex justify-center p-[10px]">
-      <div className="h-[916px] w-[33%] flex justify-center rounded-xl mr-2 bg-gradient-to-b from-[#B0997A] via-[rgba(206, 188, 161, 0.7)] to-[rgba(176, 153, 122, 0)]">
+    <div className="w-full h-full flex   p-[10px] zero:flex-col zero:justify-start  xl:flex-row xl:justify-center  ">
+      <div className="h-full xl:w-[33%]  flex justify-center rounded-xl mr-2 bg-gradient-to-b from-[#B0997A] via-[rgba(206, 188, 161, 0.7)] to-[rgba(176, 153, 122, 0)]">
         <div className="w-[99%] p-3 rounded-md">
           <div className="mb-4">
             <Image
@@ -119,12 +119,9 @@ export default function Details() {
             <div className="flex items-center justify-between pb-4">
               <h4 className="text-[18px] font-bold">Tùng Tâm Lý</h4>
               <div className="flex items-center">
-                <Image
-                  src={require("@/public/Images/Layout/Profile/number.png")}
-                  width={35}
-                  height={26}
-                  alt=""
-                />
+                <div className=" w-[35px] h-[26px] bg-[#1a3882] rounded-[5px] flex justify-center items-center text-[#ffffff] text-[18px] font-bold  ">
+                  16
+                </div>
                 <p className="text-[13px] px-2 font-bold">video</p>
               </div>
               <div className="text-[24px] font-bold text-[#007621]">FREE</div>
