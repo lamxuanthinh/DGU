@@ -38,8 +38,8 @@ export default function MyCourse() {
                       </div>
                     </div>
                   </div>
-
                 </div>
+
                 <div className="w-full h-[160px] flex justify-center items-center">
                   <CourseCardInfo className=" flex flex-col justify-evenly items-center " >
                     <div className="w-full h-[60px]  flex flex-wrap justify-start items-center " >
