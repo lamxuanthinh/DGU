@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import ffmpeg from "@ffmpeg/ffmpeg";
 import { useAppContext } from "@/Context";
-import Modal from "../Modal";
+import Modal from "../../components/common/Modal";
 import Loading from "@/components/common/Loading";
 import Navbar from "./Navbar";
 import Video from "./Video";
@@ -28,6 +27,8 @@ export default function EditVideo() {
   const [valueCounterPointer, setValueCounterPointer] = useState<number>(0);
   const [currentWidthProgress, setCurrentWidthProgress] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
+  const [isUndo, setIsUndo] = useState<boolean>(false);
+  const [isRedo, setIsRedo] = useState<boolean>(false);
   const [dataSplit, setDataSplit] = useState<IListDataSplitVideo>([{
     id: 1,
     width: 100,
@@ -39,9 +40,20 @@ export default function EditVideo() {
     current: "100",
     pre: "0"
   });
+  const [containerDataSplit, setContainerDataSplit] = useState<Array<IListDataSplitVideo>>([[{
+    id: 0,
+    width: 100,
+    startTime: 0,
+    endTime: duration,
+  }]])
+  const [currentIndexProgress, setCurrentIndexProgress] = useState<number>(0);
 
   useEffect(() => {
     dataSplit[0].endTime = duration;
+    setContainerDataSplit((pre) => {
+      pre[0][0].endTime = duration;
+      return pre;
+    })
     setDataSplit(dataSplit);
   }, [duration]);
 
@@ -93,12 +105,53 @@ export default function EditVideo() {
     };
   }, [isPlaying]);
 
-
   useEffect(() => {
     if (!isPlaying) {
       startTimestampRef.current = 0;
     }
   }, [valuePointer]);
+
+  const onOkModal = () => {
+    setIsModal(false);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false)
+      setIsSuccess(true);
+    }, 5000);
+  }
+
+  const onCancelModal = () => {
+    setIsModal(false)
+  }
+
+  const onCancelModalSuccess = () => {
+    setIsSuccess(false)
+  }
+
+  const onUndoProgress = () => {
+    if (isUndo) {
+      const newIndexProgress = currentIndexProgress - 1;
+      setCurrentIndexProgress(newIndexProgress)
+      setDataSplit(containerDataSplit[newIndexProgress]);
+      setIsRedo(true);
+      if (newIndexProgress === 0) {
+        setIsUndo(false)
+      }
+    }
+  }
+
+  const onRedoProgress = () => {
+    if (isRedo) {
+      const newIndexProgress = currentIndexProgress + 1;
+      setCurrentIndexProgress(newIndexProgress)
+      setDataSplit(containerDataSplit[newIndexProgress]);
+      setIsUndo(true);
+      if (newIndexProgress === containerDataSplit.length - 1) {
+        setIsRedo(false)
+      }
+    }
+  }
+
   const onFindIndexCurrentProgress = (id: number) => {
     const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === id);
     return indexCurrentProgress
@@ -157,16 +210,14 @@ export default function EditVideo() {
   }
 
   const handleSplit = () => {
-    setIsPlaying(false);
     const indexCurrentProgress = onFindIndexCurrentProgress(currentProgress.id);
     let startPointProgress = onCalcStartPointProgress(indexCurrentProgress);
     let positionSplit = onCalcValuePointerInnerProgress(valuePointer + valueCounterPointer, startPointProgress);
-    const widthCurrentProgress = onCalcWidthProgress(currentProgress.width)
-
+    const widthCurrentProgress = onCalcWidthProgress(currentProgress.width);
     const secondHalfWidthProgress = widthCurrentProgress - positionSplit;
     const secondHalfPercentWidthProgress = secondHalfWidthProgress / currentWidthProgress * 100;
     const firstHalfPercentWidthProgress = (positionSplit) / currentWidthProgress * 100;
-    const separateTime = onCalcSeparateTime(currentProgress.startTime, currentProgress.endTime, positionSplit, widthCurrentProgress)
+    const separateTime = onCalcSeparateTime(currentProgress.startTime, currentProgress.endTime, positionSplit, widthCurrentProgress);
 
     const secondHalfProgress: IDataSplitVideo = {
       id: dataSplit.length + 1,
@@ -175,49 +226,65 @@ export default function EditVideo() {
       endTime: currentProgress.endTime
     }
 
-    dataSplit[indexCurrentProgress].width = firstHalfPercentWidthProgress;
-    dataSplit[indexCurrentProgress].startTime = currentProgress.startTime;
-    dataSplit[indexCurrentProgress].endTime = separateTime,
-      setDataSplit((prevData) => {
-        const newData = [...prevData];
-        newData.splice(indexCurrentProgress + 1, 0, secondHalfProgress);
-        return newData;
-      });
-    setValuePointer(valuePointer - VALUE_WIDTH_POINTER)
-  }
+    const templeDataSplit = JSON.parse(JSON.stringify(dataSplit));
+    templeDataSplit[indexCurrentProgress].width = firstHalfPercentWidthProgress;
+    templeDataSplit[indexCurrentProgress].startTime = currentProgress.startTime;
+    templeDataSplit[indexCurrentProgress].endTime = separateTime;
 
-  const onOkModal = () => {
-    setIsModal(false);
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false)
-      setIsSuccess(true);
-    }, 5000);
-  }
+    const newDataSplit = [...templeDataSplit];
+    newDataSplit.splice(indexCurrentProgress + 1, 0, secondHalfProgress);
 
-  const onCancelModal = () => {
-    setIsModal(false)
-  }
-
-  const onCancelModalSuccess = () => {
-    setIsSuccess(false)
+    if (containerDataSplit.length === 1) {
+      setIsUndo(true)
+    }
+    setContainerDataSplit((pre) => {
+      return [...pre, newDataSplit]
+    })
+    setIsPlaying(false);
+    setDataSplit(newDataSplit)
+    setCurrentIndexProgress((pre) => pre + 1)
+    setValuePointer(valuePointer - VALUE_WIDTH_POINTER);
   }
 
   const handleEditVideo = async () => {
-    if (srcVideoEdit) {
-      const { createFFmpeg, fetchFile } = ffmpeg;
-      const ffmpegInstance = createFFmpeg({ log: true });
-      // error
-      await ffmpegInstance.load();
-    } else {
-      console.log("::[P}:: ==> Please Input Video And Audio");
-    }
+    const { createFFmpeg, fetchFile } = ffmpeg;
+    const ffmpegInstance = createFFmpeg({ log: true });
+    // error
+    await ffmpegInstance.load();
+    // if (srcVideoEdit) {
+    //   ffmpegInstance.FS(
+    //     "writeFile",
+    //     "input.mp4",
+    //     await fetchFile(srcVideoEdit)
+    //   );
+
+    //   await ffmpegInstance.run(
+    //     "-i",
+    //     "input.mp4",
+    //     "-ss",
+    //     "00:00:00",
+    //     "-t",
+    //     "60",
+    //     "output.mp4"
+    //   );
+
+    //   const data = ffmpegInstance.FS("readFile", "final_output.mp4");
+    //   const videoUrl = URL.createObjectURL(
+    //     new Blob([data.buffer], { type: "video/mp4" })
+    //   );
+    //   console.log(videoUrl);
+    // }
+    // if () {
+    // } else {
+    //   console.log("::[P}:: ==> Please Input Video And Audio");
+    // }
   };
 
   return (
     <>
+      <button onClick={handleEditVideo}>Test</button>
       <div className="w-full h-screen bg-[#000] flex flex-col p-[10px]">
-        <Navbar setIsModal={setIsModal} />
+        <Navbar setIsModal={setIsModal} onUndo={onUndoProgress} onRedu={onRedoProgress} isUndo={isUndo} isRedo={isRedo} />
         <div className="flex flex-grow-[1] gap-[5px] overflow-hidden items-center mb-[5px]">
           <Toolbar handleSplit={handleSplit} />
           <Video

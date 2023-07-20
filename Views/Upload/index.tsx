@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from 'next/router'
-import Modal from "../Modal";
+import Modal from "../../components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
-
+import Loading from "@/components/common/Loading";
 
 export default function Upload() {
-    const { setSrcVideoEdit, setThumbVideoEdit } = useAppContext();
+    const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isDragging, setIsDragging] = useState(false);
@@ -30,6 +30,7 @@ export default function Upload() {
     }
 
     const onOk = () => {
+        setIsLoading(true);
         if (canvasRef.current) {
             let ctx = canvasRef.current.getContext("2d");
             if (ctx && videoRef.current) {
@@ -37,7 +38,8 @@ export default function Upload() {
                 setThumbVideoEdit(canvasRef.current.toDataURL())
             }
         }
-        push("/editvideo")
+        push("/editvideo");
+        setIsLoading(false);
     }
 
     const onCancel = () => {
@@ -93,6 +95,7 @@ export default function Upload() {
                     };
                 }
                 setSrcVideoEdit(url);
+                sessionStorage.setItem("srcVideoEdit", url);
                 setIsModal(true);
             }
             else {

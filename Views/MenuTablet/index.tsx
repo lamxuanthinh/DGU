@@ -2,8 +2,8 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { 
-    HeaderName, 
+import {
+    HeaderName,
     MenuItem,
     MenuBottom,
     MenuListBottom,
@@ -11,7 +11,7 @@ import {
     ScrollContainer
 } from '@/components/common/MenuTablet/menuTabletStyled';
 
-import { FiMoreVertical } from 'react-icons/fi'; 
+import { FiMoreVertical } from 'react-icons/fi';
 import { BsBoxFill } from 'react-icons/bs';
 import { AiOutlineMail, AiOutlineCalendar, AiOutlineHistory, AiOutlineHeart, AiOutlineSetting } from 'react-icons/ai';
 import { MdOutlineChatBubbleOutline, MdOutlinePeopleAlt } from 'react-icons/md';
@@ -32,45 +32,45 @@ const MenuTablet = () => {
         {
             name: "History",
             link: "/",
-            icon: <AiOutlineHistory fontSize={'30px'} />, 
+            icon: <AiOutlineHistory fontSize={'30px'} />,
         },
         {
             name: "Favourites",
             link: "/",
-            icon: <AiOutlineHeart fontSize={'30px'} />, 
+            icon: <AiOutlineHeart fontSize={'30px'} />,
         },
         {
             name: "Setting",
             link: "/",
-            icon: <AiOutlineSetting fontSize={'30px'} />, 
+            icon: <AiOutlineSetting fontSize={'30px'} />,
         },
         {
             name: "Upgrade Account",
             link: "/",
-            icon: <GiUpgrade fontSize={'30px'} />, 
+            icon: <GiUpgrade fontSize={'30px'} />,
         },
 
         {
             name: "History",
             link: "/",
-            icon: <AiOutlineHistory fontSize={'30px'} />, 
+            icon: <AiOutlineHistory fontSize={'30px'} />,
         },
         {
             name: "Favourites",
             link: "/",
-            icon: <AiOutlineHeart fontSize={'30px'} />, 
+            icon: <AiOutlineHeart fontSize={'30px'} />,
         },
         {
             name: "Setting",
             link: "/",
-            icon: <AiOutlineSetting fontSize={'30px'} />, 
+            icon: <AiOutlineSetting fontSize={'30px'} />,
         },
         {
             name: "Upgrade Account",
             link: "/",
-            icon: <GiUpgrade  fontSize={'30px'} />, 
+            icon: <GiUpgrade fontSize={'30px'} />,
         },
-    
+
     ]
 
     return (
@@ -79,13 +79,13 @@ const MenuTablet = () => {
                 <div className='w-full h-[230px] rounded-[5px] bg-[#ffffff] flex flex-col justify-center items-center '>
                     <div className='w-full h-[150px] border-b border-[#0000001d] border-[1px] flex justify-center items-center ' >
                         <div className=' w-[150px] h-full  flex justify-center items-center   ' >
-                            <Image 
+                            <Image
                                 className={` w-[100px] h-[100px] object-cover `}
                                 src={require('@/public/Images/Profile/Infomation/boy_thoi_trang.png')}
                                 alt=""
                             />
                         </div>
-                        <HeaderName className=' flex flex-wrap justify-between items-center ' > 
+                        <HeaderName className=' flex flex-wrap justify-between items-center ' >
                             <div className=' w-auto h-full flex justify-center items-center ' >
                                 <div className=' h-[100px] flex flex-col justify-start items-start' >
                                     <p className='font-bold text-[24px] ' >
@@ -103,18 +103,18 @@ const MenuTablet = () => {
                     </div>
                     <div className='w-full h-[80px] flex ' >
                         <div className=' w-[50%] h-full flex flex-wrap justify-center items-center text-[#00000074]  '>
-                            <AiOutlineMail fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} /> 
-                            <MdOutlineChatBubbleOutline fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} /> 
-                            <AiOutlineCalendar fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} /> 
+                            <AiOutlineMail fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} />
+                            <MdOutlineChatBubbleOutline fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} />
+                            <AiOutlineCalendar fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} />
 
                         </div>
                         <div className=' w-[50%] h-full flex justify-end items-center '>
-                            <Link 
+                            <Link
                                 href={`#`}
                                 className={`w-[180px] h-[50px] rounded-[10px] font-bold mr-[15px]  border-[#96969677] border-[2px]  flex flex-wrap justify-evenly items-center`}
                             >
                                 View Profile
-                                <BsBoxFill fontSize={`20px`} /> 
+                                <BsBoxFill fontSize={`20px`} />
                             </Link>
                         </div>
                     </div>
@@ -131,7 +131,7 @@ const MenuTablet = () => {
                             <p className='text-[24px] font-bold text-[#00000075] ' >Following and share</p>
                         </MenuItem>
                     </Link>
-                    <Link 
+                    <Link
                         href={`#`}
                         className='w-full h-[80px] flex flex-wrap justify-start items-center  text-[#00000075]  '
                     >
@@ -142,7 +142,7 @@ const MenuTablet = () => {
                             <p className='text-[24px] font-bold text-[#00000075] ' >Following and share</p>
                         </MenuItem>
                     </Link>
-                    <Link 
+                    <Link
                         href={`#`}
                         className='w-full h-[80px] flex flex-wrap justify-start items-center  text-[#00000075]  '
                     >
@@ -156,10 +156,10 @@ const MenuTablet = () => {
                 </div>
                 <MenuBottom className=' w-full bg-[#ffffff] rounded-[5px] flex flex-col justify-start items-center '>
                     <MenuListBottom className='w-full   ' >
-                        {navigationList.map(({name, link, icon}, index) => {
+                        {navigationList.map(({ name, link, icon }, index) => {
                             return (
                                 <>
-                                    <Link  
+                                    <Link
                                         href={link}
                                         className='w-full h-[80px] flex flex-wrap justify-start items-center  text-[#00000075]  '
                                     >
@@ -169,7 +169,7 @@ const MenuTablet = () => {
                                         <MenuItem className='  flex justify-start items-center ' >
                                             <p className='text-[24px] font-bold text-[#00000075] ' >{name}</p>
                                         </MenuItem>
-                                    </Link>  
+                                    </Link>
                                 </>
                             )
                         })}
@@ -181,7 +181,7 @@ const MenuTablet = () => {
                     </div>
                 </MenuBottom>
 
-                
+
             </ScrollContainer>
         </>
     )
