@@ -1,45 +1,11 @@
 import { useRouter } from 'next/router';
-// import React from 'react';
+
 import Link from 'next/link';
 
-import { AiFillHome, AiFillSetting } from 'react-icons/ai';
-import { RiBarChart2Line } from 'react-icons/ri';
-import { BsFillPersonFill } from 'react-icons/bs';
-import { BiCategoryAlt, BiBell } from 'react-icons/bi';
-
+import { navLink } from './constant'; 
 
 const NavigationTablet = () => {
     const router = useRouter();
-
-    const navLink = [
-        {
-            name: "Home",
-            link: "/",
-            icon: <AiFillHome fontSize={"28px"} />,
-        },
-        {
-            name: "Ranking",
-            link: "/serveranking",
-            icon: <RiBarChart2Line fontSize={"28px"} />,
-        },
-        {
-            name: "Trends",
-            link: "/trends",
-            icon: <BiCategoryAlt fontSize={"28px"} />,
-        },
-        {
-            name: "Notifications",
-            link: "/notifications",
-            icon: <BiBell fontSize={"28px"} />,
-        },
-        {
-            name: "Profile",
-            link: "/profile/mycourse",
-            icon: <BsFillPersonFill fontSize={"28px"} />,
-        },
-    ];
-
-    
 
     return (
         <>
@@ -48,8 +14,8 @@ const NavigationTablet = () => {
                         if( router.pathname === link) {
                             return (
                                 <>
-                                    <div className=' w-[100px] h-full text-[#000000] ' key={index}>
-                                        <Link key={name} href={link}  className={` w-full h-full flex flex-col justify-evenly items-center  `} >
+                                    <div className='w-[100px] h-full text-[#000000]' key={index}>
+                                        <Link key={name} href={link}  className="w-full h-full flex flex-col justify-evenly items-center">
                                             {icon}
                                             <p className='font-bold  text-[16px] ' >{name}</p>
                                         </Link>
@@ -59,8 +25,8 @@ const NavigationTablet = () => {
                         } else {
                             return (
                                 <>
-                                    <div className=' w-[100px] h-full text-[#00000076] ' key={index}>
-                                        <Link key={name} href={link}  className={` w-full h-full flex justify-center items-center  `} >
+                                    <div className="w-[100px] h-full text-[#00000076]" key={index}>
+                                        <Link key={name} href={link}  className="w-full h-full flex justify-center items-center" >
                                             {icon}
                                         </Link>
                                     </div>
