@@ -17,7 +17,6 @@ export default function Upload() {
     function handleFileSelect(videoFile: File): boolean {
         const file = videoFile;
         const fileName = file.name;
-        const fileType = file.type;
         const fileExtension: string = fileName.split('.').pop()!.toLocaleLowerCase();
         const allowedExtensions: string[] = ['mp4', 'avi', 'mov'];
         if (allowedExtensions.includes(fileExtension)) {

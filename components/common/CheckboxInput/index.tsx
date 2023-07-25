@@ -1,10 +1,4 @@
-import { useState } from "react";
-
-interface Props {
-  checked?: boolean;
-}
-
-export default function CheckboxInput({ checked = false }: Props) {
+export default function CheckboxInput() {
   return (
     <label htmlFor="my-checkbox" className="relative">
       <input

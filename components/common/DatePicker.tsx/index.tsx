@@ -14,7 +14,7 @@ interface Props {
     classBirthday?: string;
 }
 
-export default function DatePicker({ className, errorMessage, classBirthday, value, name, onChange }: Props) {
+export default function DatePicker({ className, errorMessage, classBirthday, value, onChange }: Props) {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [internalValue, setInternalValue] = useState(value);
 

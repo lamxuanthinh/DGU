@@ -57,18 +57,18 @@ export default function Details() {
             <div className="rounded-xl w-[66%]">
                 {dataCardDetail.map((item, index) => {
                     return (
-                        <>
-                            <DetailCourseItem className="flex justify-start h-[140px] pb-4">
-                                <div className="h-full flex items-center p-3">
-                                    <p className="font-bold text-[15px]">{item.id}</p>
-                                </div>
-                                <div className="w-[200px]">{item.image}</div>
-                                <div className="flex flex-col px-2 w-[70%]">
-                                    <h1 className="font-bold text-[18px]">{item.title1}</h1>
-                                    <p className="font-medium text-[16px]">{item.title2}</p>
-                                </div>
-                            </DetailCourseItem>
-                        </>
+                        <DetailCourseItem
+                            key={index}
+                            className="flex justify-start h-[140px] pb-4">
+                            <div className="h-full flex items-center p-3">
+                                <p className="font-bold text-[15px]">{item.id}</p>
+                            </div>
+                            <div className="w-[200px]">{item.image}</div>
+                            <div className="flex flex-col px-2 w-[70%]">
+                                <h1 className="font-bold text-[18px]">{item.title1}</h1>
+                                <p className="font-medium text-[16px]">{item.title2}</p>
+                            </div>
+                        </DetailCourseItem>
                     );
                 })}
             </div>

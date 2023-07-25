@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import ffmpeg from "@ffmpeg/ffmpeg";
+// import ffmpeg from "@ffmpeg/ffmpeg";
 import { useAppContext } from "@/Context";
 import Modal from "../Modal";
 import Loading from "@/components/common/Loading";
@@ -13,7 +13,7 @@ import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 
 export default function EditVideo() {
-  const { srcVideoEdit, isLoading, setIsLoading } = useAppContext();
+  const { isLoading, setIsLoading } = useAppContext();
 
   const runCursorRef = useRef<number | null>(null);
   const startTimestampRef = useRef<number | null>(0);
@@ -54,7 +54,6 @@ export default function EditVideo() {
     } else {
       endPointProgress = currentWidthProgress;
     }
-
     if (currentValuePointer >= endPointProgress && endPointProgress !== 0) {
       if (indexCurrentProgress < dataSplit.length - 1) {
         const newPointer = valuePointer + VALUE_SPACING_PROGRESS;
@@ -92,12 +91,12 @@ export default function EditVideo() {
     };
   }, [isPlaying]);
 
-
   useEffect(() => {
     if (!isPlaying) {
       startTimestampRef.current = 0;
     }
   }, [valuePointer]);
+
   const onFindIndexCurrentProgress = (id: number) => {
     const indexCurrentProgress = dataSplit.findIndex((itemSplit) => itemSplit.id === id);
     return indexCurrentProgress
@@ -202,16 +201,16 @@ export default function EditVideo() {
     setIsSuccess(false)
   }
 
-  const handleEditVideo = async () => {
-    if (srcVideoEdit) {
-      const { createFFmpeg, fetchFile } = ffmpeg;
-      const ffmpegInstance = createFFmpeg({ log: true });
-      // error
-      await ffmpegInstance.load();
-    } else {
-      console.log("::[P}:: ==> Please Input Video And Audio");
-    }
-  };
+  // const handleEditVideo = async () => {
+  //   if (srcVideoEdit) {
+  //     const { createFFmpeg, fetchFile } = ffmpeg;
+  //     const ffmpegInstance = createFFmpeg({ log: true });
+  //     // error
+  //     await ffmpegInstance.load();
+  //   } else {
+  //     console.log("::[P}:: ==> Please Input Video And Audio");
+  //   }
+  // };
 
   return (
     <>
