@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import ffmpeg from "@ffmpeg/ffmpeg";
 import { useAppContext } from "@/Context";
 import Modal from "../Modal";
@@ -9,7 +8,7 @@ import Video from "./Video";
 import Toolbar from "./Toolbar";
 import Progressbar from "./Progressbar";
 import MenuSuccess from "@/components/common/ModalSuccess";
-import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/EditVideo";
+import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/editVideo";
 
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 

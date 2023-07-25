@@ -1,9 +1,10 @@
 import React, { Dispatch, SetStateAction, useState, useEffect, useRef, memo } from 'react'
 import { useAppContext } from '@/Context'
-import { IDataSplitVideo, IListDataSplitVideo, IValueVolumeVideo } from '@/model/EditVideo'
+import { IDataSplitVideo, IListDataSplitVideo, IValueVolumeVideo } from '@/model/editVideo'
 import { AiOutlinePauseCircle, AiOutlinePlayCircle, AiOutlineSound, AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai"
 import { VscMute } from "react-icons/vsc"
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi'
+import Button from '@/components/common/Button'
 
 import { VALUE_PADDING_PROGRESS, VALUE_WIDTH_POINTER, VALUE_TIME_SKIP_VIDEO } from "./constants";
 
@@ -183,18 +184,18 @@ function Progressbar({
                     {/* current time run */}
                     <div className="w-[260px]"></div>
                     <div className="flex gap-x-3">
-                         <button onClick={handleSkipBackVideo}>
+                         <Button onClick={handleSkipBackVideo}>
                               <BiSkipPrevious />
-                         </button>
-                         <button onClick={handlePlayVideo}>
+                         </Button>
+                         <Button onClick={handlePlayVideo}>
                               {isPlaying ? <AiOutlinePauseCircle /> : <AiOutlinePlayCircle />}
-                         </button>
-                         <button onClick={handleSkipForwardVideo}>
+                         </Button>
+                         <Button onClick={handleSkipForwardVideo}>
                               <BiSkipNext />
-                         </button>
+                         </Button>
                     </div>
                     <div className="text-[25px] flex items-center gap-x-2">
-                         <button className="mr-4 relative group" onClick={handleToggleVolume}>
+                         <Button className="mr-4 relative group" onClick={handleToggleVolume}>
                               <span className="bg-transparent w-[30px] h-[30px] absolute top-[-20px] left-[-2px]"></span>
                               <input type="range" className="input-vertical absolute top-[-135px] left-[10px] dark:bg-gray-700 bg-gray-200 cursor-pointer hidden  group-hover:block z-50 w-[5px]"
                                    onClick={(event: React.MouseEvent<HTMLInputElement>) => {
@@ -203,10 +204,10 @@ function Progressbar({
                                    value={valueVolume.current}
                                    onChange={handleChangeVolume} defaultValue={100} ></input>
                               {isMute ? <VscMute /> : <AiOutlineSound />}
-                         </button>
-                         <button><AiOutlineZoomOut /></button>
+                         </Button>
+                         <Button><AiOutlineZoomOut /></Button>
                          <input type="range" className="cursor-pointer h-[5px]" defaultValue={100}></input>
-                         <button><AiOutlineZoomIn /></button>
+                         <Button><AiOutlineZoomIn /></Button>
                     </div>
                </div>
                <div className="w-full h-[1px] bg-[rgba(48,47,47,0.8)] opacity-80"></div>

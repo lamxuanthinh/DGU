@@ -4,7 +4,6 @@ import Modal from "../Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
 
-
 export default function Upload() {
     const { setSrcVideoEdit, setThumbVideoEdit } = useAppContext();
     const { push } = useRouter();
