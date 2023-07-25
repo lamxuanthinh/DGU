@@ -1,11 +1,10 @@
-import MainLayout from "@/components/layout/MainLayout";
 import ProfileLayout from "@/components/layout/ProfileLayout";
-import MyCourse from "@/Views/Profile/MyCourse";
+import MyCourse from "@/Views/Profile/mycourse";
 
 export default function index() {
-  return (
-      <MyCourse />
-  );
+    return (
+        <MyCourse />
+    );
 }
 
 index.Layout = ProfileLayout;
