@@ -1,0 +1,23 @@
+/* ---------------------scroll-thin-course------------------------- */
+.scroll-thin-course::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.scroll-thin-course::-webkit-scrollbar-track {
+    background: #d7d7d7;
+    border-radius: 5px;
+}
+
+/* Handle */
+.scroll-thin-course::-webkit-scrollbar-thumb {
+    background: #b7b7b7;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+/* Handle on hover */
+.scroll-thin-course::-webkit-scrollbar-thumb:hover {
+    background: rgb(146, 146, 146);
+    cursor: pointer;
+}

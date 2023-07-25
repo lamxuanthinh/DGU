@@ -8,109 +8,111 @@ input[type="password"]:not(:placeholder-shown) ~ .input-text,
 input[type="email"]:focus ~ .input-text,
 input[type="email"]:not(:placeholder-shown) ~ .input-text,
 input[type="text"]:not(:placeholder-shown) ~ .input-text {
-  @apply text-[#848484] transform -translate-y-7 -translate-x-[-4px] scale-90;
+    @apply text-[#848484] transform -translate-y-7 -translate-x-[-4px] scale-90;
 }
 
 #my-checkbox:checked + .bg-gray-200 {
-  background-color: black;
+    background-color: black;
 }
 #my-checkbox:checked + .bg-gray-200 svg {
-  display: block;
+    display: block;
 }
 
 /* The effect after change link */
 .choose-link {
-  z-index: 2;
+    z-index: 2;
 }
 #action {
-  position: absolute;
-  top: 0;
-  border-bottom: 3px solid #333;
-  z-index: 1;
-  transition: 1s;
+    position: absolute;
+    top: 0;
+    border-bottom: 3px solid #333;
+    z-index: 1;
+    transition: 1s;
 }
 .stroke-dashoffset-0 {
-  stroke-dashoffset: 0;
+    stroke-dashoffset: 0;
 }
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 /* width */
 .scroll-thin::-webkit-scrollbar {
-  height: 8px;
+    height: 8px;
 }
 
 /* Track */
 .scroll-thin::-webkit-scrollbar-track {
-  background: #1f1f1f;
-  border-radius: 5px;
+    background: #1f1f1f;
+    border-radius: 5px;
 }
 
 /* Handle */
 .scroll-thin::-webkit-scrollbar-thumb {
-  background: #545459;
-  border-radius: 5px;
+    background: #545459;
+    border-radius: 5px;
 }
 
 /* Handle on hover */
 .scroll-thin::-webkit-scrollbar-thumb:hover {
-  background: #555;
-  cursor: pointer;
+    background: #555;
+    cursor: pointer;
 }
 
+
 .triangle {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid white;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
 }
 
 .input-vertical {
-  writing-mode: bt-lr; /* IE */
-  -webkit-appearance: slider-vertical; /* Chromium */
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* Chromium */
 }
 /* control progress bar modal video */
 
 .video_container:hover .control_bar {
-  transform: translateY(0);
+    transform: translateY(0);
 }
 
 .video_container:hover .descriptionVideo {
-  opacity: 100%;
+    opacity: 100%;
 }
 
 .video_container:hover .actionVideo {
-  opacity: 100%;
+    opacity: 100%;
 }
 
 .video_container:hover .closeButton {
-  opacity: 100%;
+    opacity: 100%;
 }
 .backgroud-shadow {
-  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
-  /* box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px; */
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+    /* box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px; */
 }
 
-
 .dgu-course-card {
-  transition:  0.2s all;
-  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
-  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  /* min-width: 340px; */
+    transition: 0.2s all;
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+    /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* min-width: 340px; */
 }
 
 .dgu-course-card:hover {
-  transform:  scale(1.03);
-  /* margin: 0px 10px; */
-  background-color: white;
-  z-index: 5;
+    transform: scale(1.03);
+    /* margin: 0px 10px; */
+    background-color: white;
+    z-index: 5;
 }
+
+
