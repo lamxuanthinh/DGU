@@ -12,7 +12,7 @@ export default function Studying() {
         <div className="w-full h-[100%]   flex flex-col justify-center items-center  ">
             <div className="w-full m-[10px] h-[100%] flex justify-center items-center overflow-hidden p-[10px]">
                 <div className="  w-full  flex flex-col justify-center items-center   ">
-                    {CourseData.map(({ title, link, userAvt, themenails, nameUser, process }, index) => (
+                    {CourseData.map(({ title, link, themenails, process }) => (
                         <Link key={title} href={link} className={` w-[92%] `}>
                             <div className=" dgu-course-card w-full h-[140px] flex flex-wrap justify-between items-center  rounded-[10px] mb-[10px] overflow-hidden hover:cursor-pointer  ">
                                 <StudyingCourseItem className=" flex flex-wrap justify-start items-center   ">
