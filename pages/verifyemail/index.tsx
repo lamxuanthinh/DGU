@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import VerifyEmail from "@/Views/verifyEmail";
 
 export default function VerifyEmailPages() {

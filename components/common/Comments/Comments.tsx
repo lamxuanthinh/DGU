@@ -15,7 +15,7 @@ interface IComments {
     setComment: Dispatch<SetStateAction<boolean>>;
 }
 
-const Comments: React.FC<IComments> = ({ currentUserId, isComment, setComment }: IComments) => {
+const Comments: React.FC<IComments> = ({ currentUserId, isComment }: IComments) => {
     const [backendComments, setBackendComments] = useState<IComment[]>([]);
     const [activeComment, setActiveComment] = useState<Comment | null>(null);
     const rootComments = backendComments.filter((backendComment) => backendComment.parentId === null);
@@ -64,9 +64,8 @@ const Comments: React.FC<IComments> = ({ currentUserId, isComment, setComment }:
 
     return (
         <div
-            className={`${
-                isComment ? "flex" : "hidden"
-            } overflow-hidden flex justify-end fixed rounded-xl top-[20%] right-[8%] w-[50%] h-[65%] bg-[#F5F6FA]`}
+            className={`${isComment ? "flex" : "hidden"
+                } overflow-hidden flex justify-end fixed rounded-xl top-[20%] right-[8%] w-[50%] h-[65%] bg-[#F5F6FA]`}
         >
             <div className="w-full h-full">
                 <div className="py-4 px-4 max-h-[82%] snap-y w-full h-full overflow-auto snap-mandatory scrollbar-none">

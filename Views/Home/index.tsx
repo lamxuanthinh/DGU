@@ -17,7 +17,7 @@ export default function Home({ data }: any) {
   return (
     <div className="snap-y w-full h-full overflow-auto snap-mandatory scrollbar-none">
       {dataVideo &&
-        dataVideo.map((item: any, index: number) => {
+        dataVideo.map((item: any) => {
           return <VideoSection key={item.video_id} data={item} />;
         })}
     </div>

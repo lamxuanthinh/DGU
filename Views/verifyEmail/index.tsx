@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, NextRouter } from "next/router";
 import { auth } from "@/apis/auth";
-import { QueryVerifyEmail, DataResponse } from "@/model";
+import { QueryVerifyEmail } from "@/model";
 import verifySuccessfulImage from "@/public/Images/Verify/verify_successful.png"
 import verifyErrorImage from "@/public/Images/Verify/verify_error.png"
 import VerifyAuth from "@/components/common/VerifyAuth";
