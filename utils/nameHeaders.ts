@@ -3,4 +3,5 @@ export const HEADER = {
     CLIENT_ID: "x-api-client",
     AUTHORIZATION: "authorization",
     REFRESH_TOKEN: "x-refresh-token",
+    VERIFY_EMAIL_TOKEN: "verify-email-token",
 };

@@ -1,9 +1,9 @@
-import Router from "next/router";
+import Router, { NextRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DatePicker from "@/components/common/DatePicker.tsx";
 import moment from "moment";
 import { FaTransgender } from "react-icons/fa";
@@ -14,14 +14,14 @@ import CheckboxInput from "@/components/common/CheckboxInput";
 import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 import { useAppContext } from "@/Context";
-import Loading from "@/components/common/Loading";
-const router = Router;
+import { QueryNotification } from "@/model";
 
 type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
 const signUpSchema = schema.pick(["email", "password", "confirm_password", "birthday", "gender"]);
 
 export default function SignUp() {
+    const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const {
         register,
@@ -50,24 +50,22 @@ export default function SignUp() {
     };
 
     const onSubmit = handleSubmit(async (data: FormData) => {
-        // handler API
         setIsLoading(true);
-        console.log("[P]::SignUP::", data);
         const payload = {
             email: data.email,
             name: data.fullName,
             password: data.confirm_password,
         };
-        console.log("[P]::payload::", payload);
         try {
-            const holderSignUp: any = await auth.signUp(payload);
-            console.log("[P]::SignLog", holderSignUp);
-            // handler loading
-            if (holderSignUp.message !== "ErrorData") {
-                localStorage.setItem("auth", "true");
-                setIsLoading(false);
-                router.push("/");
-            }
+            const { message, emailSent } = await auth.signUp(payload);
+            if (message === "Gmail already exist") console.log("Gmail already exist");
+            if (message === "ErrorData") console.log("ErrorData");
+            localStorage.setItem("auth", "true");
+            setIsLoading(false);
+            router.push({
+                pathname: "/verifyemail/notification",
+                query: { emailSent },
+            } as { query: QueryNotification });
         } catch (error) {
             console.log(error);
         }

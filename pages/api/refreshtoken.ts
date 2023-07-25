@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import httpProxy, { ProxyResCallback } from "http-proxy";
 import Cookies from "cookies";
 import { HEADER } from "@/utils/nameHeaders";
-import { dataResponse } from "@/model";
+import { DataResponse } from "@/model";
 import { TIME_EXPIRED_ACCESS_TOKEN, TIME_EXPIRED_REFRESH_TOKEN, TIME_EXPIRED_USER_ID } from "@/utils/timeExpired";
 
 export const config = {
@@ -13,7 +13,7 @@ export const config = {
 
 const proxy = httpProxy.createProxyServer();
 
-export default function handleRefreshToken(req: NextApiRequest, res: NextApiResponse<dataResponse>) {
+export default function handleRefreshToken(req: NextApiRequest, res: NextApiResponse<DataResponse>) {
     const cookies = new Cookies(req, res);
     const userId = cookies.get("userId");
     const refreshToken = cookies.get("refreshToken");
