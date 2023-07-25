@@ -25,7 +25,6 @@ const SidebarHeader: React.FC<{active: boolean}> = ({ active }) => {
                         />
                     </div>
                 </MenuButton>
-            
                 <HeaderTablet className={`${active ? 'active' : ''} flex items-center justify-end bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]`}>
                     <div className="flex flex-nowrap items-center">
                         <div className="flex items-center">
@@ -33,7 +32,6 @@ const SidebarHeader: React.FC<{active: boolean}> = ({ active }) => {
                                 <BsSearch color="#000000" fontSize={"18px"} />
                             </div>
                         </div>
-            
                         <SectionCreateVideo>
                             <Link
                                 href="/upload"
@@ -49,7 +47,6 @@ const SidebarHeader: React.FC<{active: boolean}> = ({ active }) => {
                             </div>
                             </Link>
                         </SectionCreateVideo>
-
                         <Link
                             href="/menu"
                         >

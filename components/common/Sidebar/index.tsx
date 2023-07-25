@@ -26,7 +26,6 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
             alt="logo"
           />
         </Link>
-        
       </div>
       <div className="h-[76%] w-[100%] flex justify-center items-center mt-[20px]">
         <Navigation>

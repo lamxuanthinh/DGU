@@ -6,8 +6,6 @@ import NavigationProfile from "@/components/common/NavigationProfile";
 import ProfileHeader from "@/components/common/ProfileHeader";
 import MainLayout from "../MainLayout";
 
-
-
 export default function ProfileLayout(props: LayoutProps) {
   return (
     <MainLayout>
