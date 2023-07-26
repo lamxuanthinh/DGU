@@ -1,19 +1,14 @@
 import {
-    HeaderStyle,
-    HeaderInput,
-    SectionIcon,
     SectionLogin,
-    SectionProfile,
     SectionCreateVideo,
 } from "@/components/common/Header/headerStyled";
-
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
 import Image from "next/image";
 import Link from "next/link";
 import Menu from "../Menu";
-import { dataMenuNav } from "@/public/data/menuNavigation";
+import { dataMenuNav } from "../Menu/constants";
 import { useEffect, useState } from "react";
 
 const Header = () => {
@@ -27,11 +22,11 @@ const Header = () => {
 
     return (
         <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
-            <div className="w-[460px] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
+            <div className="w-[50%] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
                 <div className="w-[50px] flex justify-center items-center ">
                     <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
                 </div>
-                <div className="w-[410px] flex justify-center items-center">
+                <div className="w-full flex justify-center items-center">
                     <input
                         type="text"
                         name="search"
@@ -40,7 +35,6 @@ const Header = () => {
                     />
                 </div>
             </div>
-
             <div className="flex flex-nowrap items-center">
                 <div className="flex items-center">
                     <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
@@ -50,7 +44,6 @@ const Header = () => {
                         <BiMessageRounded color="#000000" fontSize={"25px"} />
                     </div>
                 </div>
-
                 <SectionCreateVideo>
                     <Link href="/upload" className="cursor-pointer">
                         <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center">

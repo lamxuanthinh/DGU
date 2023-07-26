@@ -15,7 +15,7 @@ interface IComments {
     setComment: Dispatch<SetStateAction<boolean>>;
 }
 
-const Comments: React.FC<IComments> = ({ currentUserId, isComment, setComment }: IComments) => {
+const Comments: React.FC<IComments> = ({ currentUserId }: IComments) => {
     const [backendComments, setBackendComments] = useState<IComment[]>([]);
     const [activeComment, setActiveComment] = useState<Comment | null>(null);
     const rootComments = backendComments.filter((backendComment) => backendComment.parentId === null);

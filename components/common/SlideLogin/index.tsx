@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import { dataSlideLogin } from "@/public/data/slideLogin";
+import { dataSlideLogin } from "./constants";
 
 export default function SlideLogin() {
      const [currentSlide, setCurrentSlide] = useState(dataSlideLogin[0].key);

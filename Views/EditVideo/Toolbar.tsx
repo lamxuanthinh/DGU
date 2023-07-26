@@ -1,4 +1,5 @@
-import React, { MouseEventHandler, memo } from 'react'
+import React, { memo } from 'react'
+import Button from '@/components/common/Button'
 import { IoMdCopy } from "react-icons/io"
 import { BiCut } from "react-icons/bi"
 import { TfiPencil } from "react-icons/tfi"
@@ -7,36 +8,41 @@ import { BsCursorText } from "react-icons/bs"
 import { GiMusicalNotes } from "react-icons/gi"
 import { MdOutlineInsertEmoticon } from "react-icons/md"
 
-function Toolbar({ onClick }: { onClick: MouseEventHandler<HTMLButtonElement> }) {
+interface IToolbarProps {
+  handleSplit: () => void;
+}
+
+function Toolbar({ handleSplit }: IToolbarProps) {
   return (
-    <div className="grid grid-cols-2 grid-rows-3 grid-flow-row-dense place-items-center gap-y-3 px-11 py-9 min-w-[280px] bg-[#121212] rounded-[5px] h-full">
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
-        <IoMdCopy className="text-3xl"></IoMdCopy>
+    <div className="grid grid-cols-2 grid-rows-3 place-items-center gap-y-3 px-11 py-9 min-w-[280px] bg-[#121212] rounded-[5px] h-full">
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+        <IoMdCopy className="text-3xl" />
         <span>Copy</span>
-      </button>
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60" onClick={onClick}>
-        <BiCut className="text-3xl"></BiCut>
+      </Button>
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60" onClick={handleSplit}>
+        <BiCut className="text-3xl" />
         <span>Split</span>
-      </button>
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
-        <TfiPencil className="text-3xl"></TfiPencil>
+      </Button>
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+        <TfiPencil className="text-3xl" />
         <span>Effects</span>
-      </button>
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
-        <RiDeleteBin6Line className="text-3xl"></RiDeleteBin6Line>
+      </Button>
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+        <RiDeleteBin6Line className="text-3xl" />
         <span>Delete</span>
-      </button> <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
-        <BsCursorText className="text-3xl"></BsCursorText>
+      </Button>
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+        <BsCursorText className="text-3xl" />
         <span>Text</span>
-      </button>
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
-        <GiMusicalNotes className="text-3xl"></GiMusicalNotes>
+      </Button>
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+        <GiMusicalNotes className="text-3xl" />
         <span>Music</span>
-      </button>
-      <button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
-        <MdOutlineInsertEmoticon className="text-3xl"></MdOutlineInsertEmoticon>
+      </Button>
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+        <MdOutlineInsertEmoticon className="text-3xl" />
         <span>Sticker</span>
-      </button>
+      </Button>
     </div>
   )
 }

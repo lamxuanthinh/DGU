@@ -1,25 +1,20 @@
 import React, { Dispatch, SetStateAction, useRef, useEffect, memo } from 'react'
+import { IValueVolumeVideo } from '@/model/editVideo';
 import { useAppContext } from '@/Context';
-import { AiOutlinePauseCircle, AiOutlinePlayCircle } from "react-icons/ai"
+
 interface IVideoProps {
   isPlaying: boolean,
   moveVideo: number
   setDuration: Dispatch<SetStateAction<number>>,
   setCurrentTime: Dispatch<SetStateAction<number>>,
-  valueVolume: {
-    pre: string,
-    current: string,
-  },
-  setValueVolume: Dispatch<SetStateAction<{
-    pre: string,
-    current: string,
-  }>>,
-  duration: number,
+  valueVolume: IValueVolumeVideo,
 }
-function Video({ isPlaying, moveVideo, duration, setDuration, setCurrentTime, valueVolume }: IVideoProps) {
 
-  const { dataEditVideo } = useAppContext();
+function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime }: IVideoProps) {
+
+  const { srcVideoEdit } = useAppContext();
   const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     if (isPlaying) {
       videoRef.current?.play();
@@ -57,13 +52,12 @@ function Video({ isPlaying, moveVideo, duration, setDuration, setCurrentTime, va
           onTimeUpdate={handleUpdateTime}
           onLoadedMetadata={handleGetDuration}
           ref={videoRef}
-          src={dataEditVideo}
+          src={srcVideoEdit}
           controls
           className="h-full w-full"
         >
         </video>
       </div>
-
     </div>
   )
 }
