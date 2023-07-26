@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { IconType } from "react-icons";
-import { FaTransgender } from "react-icons/fa";
 import Select from "react-select";
 
 interface IDropdownProps {

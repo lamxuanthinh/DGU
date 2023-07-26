@@ -1,8 +1,5 @@
-import index from "@/pages/login";
 import Link from "next/link";
-import styled from "styled-components";
 import { useRouter } from "next/router";
-import { BsSearch } from "react-icons/bs";
 
 export default function NavigationProfile() {
     const router = useRouter();
@@ -31,8 +28,8 @@ export default function NavigationProfile() {
                             <Link
                                 href={item.path}
                                 className={` flex justify-center items-center  text-[18px]
-                            ${router.pathname == item.path ? "font-bold " : ""}
-                          `}
+                                    ${router.pathname == item.path ? "font-bold " : ""}
+                                `}
                             >
                                 {item.value}
                             </Link>

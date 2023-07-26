@@ -1,9 +1,9 @@
 import { user } from "@/apis/user";
 import { useEffect, useState } from "react";
-import { profileUser } from "@/model";
+import { ProfileUser } from "@/model";
 
 export default function Profile() {
-    const [profile, setProfile] = useState<profileUser>();
+    const [profile, setProfile] = useState<ProfileUser>();
 
     useEffect(() => {
         const getProfile = async () => {

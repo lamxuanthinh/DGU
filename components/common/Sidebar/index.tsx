@@ -1,7 +1,6 @@
 import {
   Navigation,
   NavigationItem,
-  BaseNavigationItem,
   SideNav
 } from "@/components/common/Sidebar/sidebarStyled";
 
@@ -9,54 +8,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import {
-  AiOutlineDoubleLeft,
-  AiOutlineHeart,
-  AiOutlineHistory,
-} from "react-icons/ai";
-import { BsHearts, BsFillPersonFill, BsFillPeopleFill, BsHouse, BsFire } from "react-icons/bs";
-import { MdOutlineHistory, MdOutlineFavoriteBorder } from "react-icons/md";
-import { RiHome3Line, RiBarChart2Line } from "react-icons/ri";
-import { HiHome } from "react-icons/hi";
-import { FaGripfire} from "react-icons/fa";
-import { SlSettings, SlPeople } from "react-icons/sl";
+import { navLink } from "./constant";
 
-import {AiOutlineHome} from 'react-icons/ai';
 const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
   const router = useRouter();
-
-  const navLink = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <AiOutlineHome fontSize={"27px"} />,
-    },
-    {
-      name: "Server Ranking",
-      link: "/serveranking",
-      icon: <FaGripfire fontSize={"27px"} />,
-    },
-    {
-      name: "Setting",
-      link: "/setting",
-      icon: <SlSettings fontSize={"25px"} />,
-    },
-    {
-      name: "Favorites",
-      link: "/favorites",
-      icon: <MdOutlineFavoriteBorder fontSize={"25px"} />,
-    },
-    {
-      name: "History",
-      link: "/history",
-      icon: <MdOutlineHistory fontSize={"25px"} />,
-    },
-    {
-      name: "Follow",
-      link: "/follow",
-      icon: <SlPeople fontSize={"25px"} />,
-    },
-  ];
 
   return (
     <SideNav className={`${active ? 'active' : ''} w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[5px]`}>
@@ -71,7 +26,6 @@ const Sidebar: React.FC<{active: boolean}> = ({ active }) => {
             alt="logo"
           />
         </Link>
-        
       </div>
       <div className="h-[76%] w-[100%] flex justify-center items-center mt-[20px]">
         <Navigation>

@@ -1,6 +1,5 @@
-import MainLayout from "@/components/layout/MainLayout";
 import ProfileLayout from "@/components/layout/ProfileLayout";
-import Studying from "@/Views/Profile/Studying";
+import Studying from "@/Views/Profile/studying";
 
 export default function index() {
   return (

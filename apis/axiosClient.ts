@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse, AxiosInstance } from "axios";
 import { auth } from "./auth";
 
-const axiosClient = axios.create({
+const axiosClient: AxiosInstance = axios.create({
     baseURL: process.env.BASE_URL,
     headers: {
         "Content-Type": "application/json",
@@ -18,8 +18,8 @@ axiosClient.interceptors.request.use(
 );
 
 axiosClient.interceptors.response.use(
-    async (response: any) => {
-        return response.data;
+    (response: AxiosResponse<any>) => {
+        return response;
     },
     async (error) => {
         // let refreshTokenRequest = null;
