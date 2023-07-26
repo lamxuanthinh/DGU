@@ -12,7 +12,7 @@ interface IDropdownProps {
     }[];
 }
 
-export default function Dropdown({ valueSelected, setValueSelected, Icon, options }: IDropdownProps) {
+export default function Dropdown({ setValueSelected, Icon, options }: IDropdownProps) {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const handleMenu = () => {

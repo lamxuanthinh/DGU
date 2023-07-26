@@ -297,7 +297,7 @@ export default function SelectCourseModal() {
                                 <div className="w-full flex justify-center" style={{ height: "calc(58vh + 28px)" }}>
                                     {stateSelected == "Selected" ? (
                                         <div className="overflow-auto scrollbar-none w-[90%]">
-                                            {dataCardDetail.map((item, index) => {
+                                            {dataCardDetail.map((item) => {
                                                 return <CoursesDetails key={item.id} data={item} />;
                                             })}
                                         </div>
