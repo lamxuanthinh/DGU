@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -19,6 +19,7 @@ const loginSchema = schema.pick(["email", "password"]);
 export default function Login() {
     const router = Router;
     const { setIsLoading } = useAppContext();
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     const {
         register,
@@ -42,8 +43,16 @@ export default function Login() {
         console.log("[P]::payload::", payload);
         try {
             const { message } = await auth.login(payload);
-            if (message === "Gmail already exist") console.log("Gmail already exist");
-            if (message === "ErrorData") console.log("ErrorData");
+            if (message === "Gmail already exist") {
+                setIsLoading(false);
+                setErrorMessage("Gmail already exist");
+                return;
+            }
+            if (message === "ErrorData") {
+                setIsLoading(false);
+                router.push("/404");
+                return;
+            };
             localStorage.setItem("auth", "true");
             setIsLoading(false);
             router.push("/");
@@ -91,6 +100,7 @@ export default function Login() {
                                     animationBorder
                                     errorMessage={errors.password?.message}
                                 />
+                                {errorMessage && <span className="text-[#FF0000]">{errorMessage}</span>}
                                 <div>
                                     <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium">
                                         Forget password?

@@ -1,13 +1,10 @@
 import React, { Dispatch, SetStateAction, memo } from 'react'
 import Image from 'next/image';
-
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { GrUndo, GrRedo } from "react-icons/gr"
-
 import Menu from '@/components/common/Menu';
 import Button from '@/components/common/Button';
-import { dataMenuNav } from '@/public/data/menuNavigation';
-
+import { dataMenuNav } from '@/components/common/Menu/constants';
 
 interface INavbarProps {
   onUndo?: () => void;
@@ -25,14 +22,14 @@ function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
     <div className="h-[54px] px-[15px] py-[10px] font-semibold  text-white rounded-[5px] bg-[#121212] mb-[5px]">
       <nav className="flex items-center justify-between h-full">
         <div className="flex">
-          <Button href="/upload" className="!p-1 " type='text' leftIcon={<IoIosArrowBack className="text-2xl" />}>
+          <Button href="/upload" className="w-[150px] p-1" type='text' leftIcon={<IoIosArrowBack className="text-2xl" />}>
             Back
           </Button>
           <div className="text-2xl flex items-center">
-            <Button className="mr-1 !min-w-[32px] !p-1" type='text' onClick={onUndo}>
+            <Button className="mr-1 min-w-[32px] p-1" type='text' onClick={onUndo}>
               <GrUndo />
             </Button>
-            <Button className="mr-1 !min-w-[32px] !p-1" type='text' onClick={onRedu}>
+            <Button className="mr-1 min-w-[32px] p-1" type='text' onClick={onRedu}>
               <GrRedo />
             </Button>
           </div>
@@ -50,7 +47,7 @@ function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
                 />
               </div>
             </Menu>
-            <Button className="!py-1" type='text' rightIcon=
+            <Button className="py-1 w-[150px]" type='text' rightIcon=
               {<IoIosArrowForward className="text-2xl" />}
               onClick={handleNextEdit}>
               Next

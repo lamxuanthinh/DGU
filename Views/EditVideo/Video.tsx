@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useRef, useEffect, memo } from 'react'
-import { IValueVolumeVideo } from '@/model/EditVideo';
+import { IValueVolumeVideo } from '@/model/editVideo';
 import { useAppContext } from '@/Context';
 
 interface IVideoProps {
