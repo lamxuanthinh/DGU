@@ -1,7 +1,8 @@
-import { IDescriptionCourse } from "@/model/decriptionCourse";
+
 import { BsArrowUpRight, BsSearch } from "react-icons/bs";
 import { HiOutlineFolderAdd } from "react-icons/hi";
 import Image from "next/image";
+import { IDescriptionCourse } from "@/model/course";
 
 interface ISelectCourseProps {
     handleOpenCreateCourse: () => void;

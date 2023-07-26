@@ -24,4 +24,17 @@ export interface detailData {
     title2: string;
 }
 
+export interface ICourseDetails {
+    id: number;
+    image: JSX.Element;
+    title1: string;
+    title2: string;
+}
 
+export interface IDescriptionCourse {
+    title: string;
+    description: string;
+    cost: string;
+    count: string;
+    image: any;
+}

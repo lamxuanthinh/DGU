@@ -3,7 +3,6 @@ import { IconType } from "react-icons";
 import Select from "react-select";
 
 interface IDropdownProps {
-    valueSelected: any;
     setValueSelected: React.Dispatch<React.SetStateAction<string>>;
     Icon: IconType;
     options: {
@@ -48,7 +47,7 @@ export default function Dropdown({ setValueSelected, Icon, options }: IDropdownP
                 }),
                 input: (base, { selectProps }) => ({
                     ...base,
-                    display: "none", // Ẩn thẻ input gây ra sự cố
+                    display: "none",
                     opacity: selectProps.menuIsOpen ? 0 : 1,
                     pointerEvents: selectProps.menuIsOpen ? "none" : "auto",
                 }),

@@ -1,5 +1,5 @@
+import { ICourseDetails } from "@/model/course";
 import { DetailCourseItem } from "@/Views/Profile/ProfileStyled";
-import { ICourseDetails } from "@/model/courseDetails";
 import { useState } from "react";
 
 interface ICourseDetailsProps {
