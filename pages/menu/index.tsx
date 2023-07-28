@@ -18,9 +18,7 @@ const Menu = () => {
         return () => {
             window.removeEventListener("resize", handleResize);
         };
-
     }, []);
-
 
     return (
         <>

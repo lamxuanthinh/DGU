@@ -1,18 +1,18 @@
-import { dataCloudVdoPayload, uploadVdoPayload } from "@/model/vdo";
+import { DataCloudVdoPayload, UploadVdoPayload } from "@/model/vdo";
 import axiosClient from "./axiosClient";
 
 export const vdo = {
-    getDataCloud: async (payload: dataCloudVdoPayload) => {
-        return (Object.create(await axiosClient.put(`/api/videos?title=${payload.titleVideo}`)))
+    getDataCloud: async (payload: DataCloudVdoPayload) => {
+        return Object.create(await axiosClient.put(`/api/videos?title=${payload.titleVideo}`));
     },
 
-    uploadCloud: async (uploadVdoPayload: uploadVdoPayload) => {
+    uploadCloud: async (uploadVdoPayload: UploadVdoPayload) => {
         const formData = new FormData();
 
-        formData.append("x-amz-credential",uploadVdoPayload.dataCloud["x-amz-credential"]);
-        formData.append("x-amz-algorithm",uploadVdoPayload.dataCloud["x-amz-algorithm"]);
+        formData.append("x-amz-credential", uploadVdoPayload.dataCloud["x-amz-credential"]);
+        formData.append("x-amz-algorithm", uploadVdoPayload.dataCloud["x-amz-algorithm"]);
         formData.append("x-amz-date", uploadVdoPayload.dataCloud["x-amz-date"]);
-        formData.append("x-amz-signature",uploadVdoPayload.dataCloud["x-amz-signature"]);
+        formData.append("x-amz-signature", uploadVdoPayload.dataCloud["x-amz-signature"]);
         formData.append("policy", uploadVdoPayload.dataCloud["policy"]);
         formData.append("key", uploadVdoPayload.dataCloud["key"]);
         formData.append("success_action_status", "201");
@@ -25,6 +25,6 @@ export const vdo = {
         });
 
         const API_URL = new URL(uploadVdoPayload.dataCloud.uploadLink);
-        return (await axiosClient.post(API_URL.href, formData));
+        return await axiosClient.post(API_URL.href, formData);
     },
 };

@@ -2,18 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import ffmpeg from "@ffmpeg/ffmpeg";
 import { useAppContext } from "@/Context";
 import Modal from "../../components/common/Modal";
-import Loading from "@/components/common/Loading";
 import Navbar from "./Navbar";
 import Video from "./Video";
 import Toolbar from "./Toolbar";
 import Progressbar from "./Progressbar";
 import MenuSuccess from "@/components/common/ModalSuccess";
-import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/EditVideo";
+import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/editVideo";
 
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 
 export default function EditVideo() {
-  const { srcVideoEdit, isLoading, setIsLoading } = useAppContext();
+  const { setIsLoading } = useAppContext();
 
   const runCursorRef = useRef<number | null>(null);
   const startTimestampRef = useRef<number | null>(0);
@@ -67,7 +66,6 @@ export default function EditVideo() {
     } else {
       endPointProgress = currentWidthProgress;
     }
-
     if (currentValuePointer >= endPointProgress && endPointProgress !== 0) {
       if (indexCurrentProgress < dataSplit.length - 1) {
         const newPointer = valuePointer + VALUE_SPACING_PROGRESS;
@@ -251,40 +249,40 @@ export default function EditVideo() {
     const ffmpegInstance = createFFmpeg({ log: true });
     // error
     await ffmpegInstance.load();
-    // if (srcVideoEdit) {
-    //   ffmpegInstance.FS(
-    //     "writeFile",
-    //     "input.mp4",
-    //     await fetchFile(srcVideoEdit)
-    //   );
+    if (true) {
+      ffmpegInstance.FS(
+        "writeFile",
+        "input.mp4",
+        await fetchFile("")
+      );
 
-    //   await ffmpegInstance.run(
-    //     "-i",
-    //     "input.mp4",
-    //     "-ss",
-    //     "00:00:00",
-    //     "-t",
-    //     "60",
-    //     "output.mp4"
-    //   );
+      //   await ffmpegInstance.run(
+      //     "-i",
+      //     "input.mp4",
+      //     "-ss",
+      //     "00:00:00",
+      //     "-t",
+      //     "60",
+      //     "output.mp4"
+      //   );
 
-    //   const data = ffmpegInstance.FS("readFile", "final_output.mp4");
-    //   const videoUrl = URL.createObjectURL(
-    //     new Blob([data.buffer], { type: "video/mp4" })
-    //   );
-    //   console.log(videoUrl);
-    // }
-    // if () {
-    // } else {
-    //   console.log("::[P}:: ==> Please Input Video And Audio");
-    // }
-  };
+      //   const data = ffmpegInstance.FS("readFile", "final_output.mp4");
+      //   const videoUrl = URL.createObjectURL(
+      //     new Blob([data.buffer], { type: "video/mp4" })
+      //   );
+      //   console.log(videoUrl);
+      // }
+      // if () {
+      // } else {
+      //   console.log("::[P}:: ==> Please Input Video And Audio");
+      // }
+    };
+  }
 
   return (
     <>
-      <button onClick={handleEditVideo}>Test</button>
       <div className="w-full h-screen bg-[#000] flex flex-col p-[10px]">
-        <Navbar setIsModal={setIsModal} onUndo={onUndoProgress} onRedu={onRedoProgress} isUndo={isUndo} isRedo={isRedo} />
+        <Navbar setIsModal={setIsModal} onUndo={onUndoProgress} onRedu={onRedoProgress} isUndo={isUndo} isRedo={isRedo} handleEditVideo={handleEditVideo} />
         <div className="flex flex-grow-[1] gap-[5px] overflow-hidden items-center mb-[5px]">
           <Toolbar handleSplit={handleSplit} />
           <Video
@@ -317,7 +315,6 @@ export default function EditVideo() {
           onOk={onOkModal}
           onCancel={onCancelModal} />
       }
-      {isLoading && <Loading />}
       {
         isSuccess &&
         <MenuSuccess toHref="/upload" onClick={onCancelModalSuccess} />

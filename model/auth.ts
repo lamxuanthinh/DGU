@@ -1,14 +1,19 @@
-export interface signUpPayload {
+export interface SignUpPayload {
     email: String;
     name: String;
     password: String;
 }
 
-export interface loginPayload {
+export interface VerifyEmailPayload {
+    email: String;
+}
+
+export interface LoginPayload {
     email: String;
     password: String;
 }
 
-export interface dataResponse {
-    message: string;
+export interface DataResponse {
+    message?: string;
+    emailSent?: String;
 }

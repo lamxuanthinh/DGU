@@ -2,76 +2,55 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {
-    HeaderName,
-    MenuItem,
-    MenuBottom,
-    MenuListBottom,
-    LogoutBtn,
-    ScrollContainer
-} from '@/components/common/MenuTablet/menuTabletStyled';
+import { navigationList } from './constant';
 
 import { FiMoreVertical } from 'react-icons/fi';
 import { BsBoxFill } from 'react-icons/bs';
-import { AiOutlineMail, AiOutlineCalendar, AiOutlineHistory, AiOutlineHeart, AiOutlineSetting } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineCalendar } from 'react-icons/ai';
 import { MdOutlineChatBubbleOutline, MdOutlinePeopleAlt } from 'react-icons/md';
 import { RiBarChart2Line } from 'react-icons/ri';
 import { BiBell } from 'react-icons/bi';
-import { GiUpgrade } from 'react-icons/gi';
+
+import styled from "styled-components";
+
+
+const HeaderName = styled.div`
+    width: calc(100% - 150px);
+    height: 100%;
+`;
+
+const MenuItem = styled.div`
+    width: calc(100% - 160px);
+`;
+
+const MenuBottom = styled.div`
+    margin-top: 5px;
+    min-height: calc(100% - 490px);
+`;
+
+const MenuListBottom = styled.div`
+    min-height: calc(100% - 80px);
+    /* overflow: scroll; */
+`;
+
+const LogoutBtn = styled.div`
+    width: calc(100% - 20px);
+`;
+
+const ScrollContainer = styled.div`
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;
+
 
 
 
 
 
 const MenuTablet = () => {
-
-
-
-
-    const navigationList = [
-        {
-            name: "History",
-            link: "/",
-            icon: <AiOutlineHistory fontSize={'30px'} />,
-        },
-        {
-            name: "Favourites",
-            link: "/",
-            icon: <AiOutlineHeart fontSize={'30px'} />,
-        },
-        {
-            name: "Setting",
-            link: "/",
-            icon: <AiOutlineSetting fontSize={'30px'} />,
-        },
-        {
-            name: "Upgrade Account",
-            link: "/",
-            icon: <GiUpgrade fontSize={'30px'} />,
-        },
-
-        {
-            name: "History",
-            link: "/",
-            icon: <AiOutlineHistory fontSize={'30px'} />,
-        },
-        {
-            name: "Favourites",
-            link: "/",
-            icon: <AiOutlineHeart fontSize={'30px'} />,
-        },
-        {
-            name: "Setting",
-            link: "/",
-            icon: <AiOutlineSetting fontSize={'30px'} />,
-        },
-        {
-            name: "Upgrade Account",
-            link: "/",
-            icon: <GiUpgrade fontSize={'30px'} />,
-        },
-
-    ]
 
     return (
         <>
@@ -102,13 +81,12 @@ const MenuTablet = () => {
                         </HeaderName>
                     </div>
                     <div className='w-full h-[80px] flex ' >
-                        <div className=' w-[50%] h-full flex flex-wrap justify-center items-center text-[#00000074]  '>
+                        <div className='w-[50%] h-full flex flex-wrap justify-center items-center text-[#00000074]'>
                             <AiOutlineMail fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} />
                             <MdOutlineChatBubbleOutline fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} />
                             <AiOutlineCalendar fontSize={`25px`} className={`mx-[1rem] cursor-pointer`} />
-
                         </div>
-                        <div className=' w-[50%] h-full flex justify-end items-center '>
+                        <div className='w-[50%] h-full flex justify-end items-center'>
                             <Link
                                 href={`#`}
                                 className={`w-[180px] h-[50px] rounded-[10px] font-bold mr-[15px]  border-[#96969677] border-[2px]  flex flex-wrap justify-evenly items-center`}
@@ -154,27 +132,27 @@ const MenuTablet = () => {
                         </MenuItem>
                     </Link>
                 </div>
-                <MenuBottom className=' w-full bg-[#ffffff] rounded-[5px] flex flex-col justify-start items-center '>
+                <MenuBottom className='w-full bg-[#ffffff] rounded-[5px] flex flex-col justify-start items-center'>
                     <MenuListBottom className='w-full   ' >
-                        {navigationList.map(({ name, link, icon }, index) => {
+                        {navigationList.map(({ name, link, icon }) => {
                             return (
                                 <>
                                     <Link
                                         href={link}
                                         className='w-full h-[80px] flex flex-wrap justify-start items-center  text-[#00000075]  '
                                     >
-                                        <div className='w-[160px] flex  justify-center items-center '>
+                                        <div className='w-[160px] flex  justify-center items-center'>
                                             {icon}
                                         </div>
-                                        <MenuItem className='  flex justify-start items-center ' >
-                                            <p className='text-[24px] font-bold text-[#00000075] ' >{name}</p>
+                                        <MenuItem className='  flex justify-start items-center'>
+                                            <p className='text-[24px] font-bold text-[#00000075]'>{name}</p>
                                         </MenuItem>
                                     </Link>
                                 </>
                             )
                         })}
                     </MenuListBottom>
-                    <div className=' w-full h-[80px] flex justify-center items-center ' >
+                    <div className=' w-full h-[80px] flex justify-center items-center'>
                         <LogoutBtn className='h-[50px] rounded-[5px] border-[2px] border-[#9696966a] text-[18px] font-bold cursor-pointer flex justify-center items-center '>
                             Logout
                         </LogoutBtn>

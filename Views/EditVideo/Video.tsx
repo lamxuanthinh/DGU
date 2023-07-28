@@ -1,7 +1,5 @@
 import React, { Dispatch, SetStateAction, useRef, useEffect, memo, useState } from 'react'
-import { IValueVolumeVideo } from '@/model/EditVideo';
-import { useAppContext } from '@/Context';
-
+import { IValueVolumeVideo } from '@/model/editVideo';
 interface IVideoProps {
   isPlaying: boolean,
   moveVideo: number

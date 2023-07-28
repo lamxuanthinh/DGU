@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import Modal from "../../components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
-import Loading from "@/components/common/Loading";
 
 export default function Upload() {
     const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading } = useAppContext();
@@ -18,7 +17,6 @@ export default function Upload() {
     function handleFileSelect(videoFile: File): boolean {
         const file = videoFile;
         const fileName = file.name;
-        const fileType = file.type;
         const fileExtension: string = fileName.split('.').pop()!.toLocaleLowerCase();
         const allowedExtensions: string[] = ['mp4', 'avi', 'mov'];
         if (allowedExtensions.includes(fileExtension)) {

@@ -1,8 +1,8 @@
-export interface uploadVdoPayload {
+export interface UploadVdoPayload {
     dataCloud: any;
     file: File;
 }
 
-export interface dataCloudVdoPayload {
+export interface DataCloudVdoPayload {
     titleVideo: string;
 }

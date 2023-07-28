@@ -32,8 +32,6 @@ const MainLayout = (props: LayoutProps) => {
   }, []);
 
 
-
-
   return (
     <>
       {isLoading && <Loading/> }
@@ -41,7 +39,6 @@ const MainLayout = (props: LayoutProps) => {
         <div className="w-screen h-screen bg-[#DBDBDB] flex justify-center items-center ">
           <BigLayout>
             <div className="w-full h-full bg-[#DBDBDB] flex justify-between rounded-[10px] relative" >
-              {/* <Sidebar active={false}  /> */}
               <Content className={``}>
                 <SidebarHeader active={false} />
                 <MainContent>
@@ -50,7 +47,6 @@ const MainLayout = (props: LayoutProps) => {
                   </div>
                 </MainContent>
               </Content>
-              
               <NavigationTablet />
             </div>
           </BigLayout>
@@ -72,9 +68,7 @@ const MainLayout = (props: LayoutProps) => {
           </BigLayout>
         </div>
       )}
-      
     </>
   );
 };
-
 export default MainLayout;

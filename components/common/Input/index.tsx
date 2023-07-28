@@ -46,8 +46,8 @@ export default function Input({
                          <svg width={468} height={52} viewBox="0 0 470 52" className="absolute w-full left-0 top-0 pointer-events-none">
                               <defs>
                                    <linearGradient id="gradient" gradientTransform="rotate(10)">
-                                        <stop offset="5%" stop-color="#29fb65" />
-                                        <stop offset="95%" stop-color="#77a7fa" />
+                                        <stop offset="5%" stopColor="#29fb65" />
+                                        <stop offset="95%" stopColor="#77a7fa" />
                                    </linearGradient>
                                    <mask id="border">
                                         <rect
@@ -55,14 +55,14 @@ export default function Input({
                                              y={1}
                                              rx={12}
                                              ry={12}
-                                             stroke-width={2}
+                                             strokeWidth={2}
                                              stroke="#ccc"
                                              width={468}
                                              height={50}
                                              fill="none"
                                              pathLength={1}
-                                             stroke-dasharray={1}
-                                             stroke-dashoffset={-.08}
+                                             strokeDasharray={1}
+                                             strokeDashoffset={-.08}
                                              id="border"
                                         />
                                    </mask>
@@ -72,7 +72,7 @@ export default function Input({
                                    y={1}
                                    rx={12}
                                    ry={12}
-                                   stroke-width={2}
+                                   strokeWidth={2}
                                    stroke="#ccc"
                                    width={468}
                                    height={50}
@@ -84,15 +84,15 @@ export default function Input({
                                    y={1}
                                    rx={12}
                                    ry={12}
-                                   stroke-width={2}
+                                   strokeWidth={2}
                                    stroke={"url(#gradient)"}
                                    width={468}
                                    height={50}
                                    fill="none"
                                    mask="url(#border)"
                                    pathLength={1}
-                                   stroke-dasharray={1}
-                                   stroke-dashoffset={.92}
+                                   strokeDasharray={1}
+                                   strokeDashoffset={.92}
                                    className={`${isFocus ? "stroke-dashoffset-0" : ""} transition-stroke-dashoffset duration-700 ease-in-out`}
                               />
                          </svg>}
@@ -115,7 +115,7 @@ export default function Input({
                          id={name}
                          onBlur={handleBlur}
                          onFocus={handleFocus}
-                         
+
                     />
                     {isShowPassword == true &&
                          (isPasswordVisible ? (
