@@ -7,15 +7,26 @@ import Button from '@/components/common/Button';
 import { dataMenuNav } from '@/components/common/Menu/constants';
 
 interface INavbarProps {
-  onUndo?: () => void;
-  onRedu?: () => void;
+  onUndo: () => void;
+  onRedu: () => void;
   setIsModal: Dispatch<SetStateAction<boolean>>,
+  isUndo: boolean,
+  isRedo: boolean,
+  handleEditVideo: () => void;
 }
 
-function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
+function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
 
   const handleNextEdit = () => {
     setIsModal(true)
+  }
+
+  const handleUndo = () => {
+    onUndo();
+  }
+
+  const handelRedo = () => {
+    onRedu();
   }
 
   return (
@@ -26,10 +37,11 @@ function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
             Back
           </Button>
           <div className="text-2xl flex items-center">
-            <Button className="mr-1 min-w-[32px] p-1" type='text' onClick={onUndo}>
+            <Button className="mr-1 !min-w-[32px] !p-1" type="text" disabled={!isUndo} onClick={handleUndo}>
               <GrUndo />
             </Button>
-            <Button className="mr-1 min-w-[32px] p-1" type='text' onClick={onRedu}>
+            <Button className="mr-1 !min-w-[32px] !p-1" type="text"
+              disabled={!isRedo} onClick={handelRedo}>
               <GrRedo />
             </Button>
           </div>
@@ -49,7 +61,8 @@ function Navbar({ onUndo, onRedu, setIsModal }: INavbarProps) {
             </Menu>
             <Button className="py-1 w-[150px]" type='text' rightIcon=
               {<IoIosArrowForward className="text-2xl" />}
-              onClick={handleNextEdit}>
+              onClick={handleNextEdit}
+            >
               Next
             </Button>
           </div>

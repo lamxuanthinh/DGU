@@ -1,7 +1,5 @@
-import React, { Dispatch, SetStateAction, useRef, useEffect, memo } from 'react'
+import React, { Dispatch, SetStateAction, useRef, useEffect, memo, useState } from 'react'
 import { IValueVolumeVideo } from '@/model/editVideo';
-import { useAppContext } from '@/Context';
-
 interface IVideoProps {
   isPlaying: boolean,
   moveVideo: number
@@ -11,9 +9,13 @@ interface IVideoProps {
 }
 
 function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime }: IVideoProps) {
-
-  const { srcVideoEdit } = useAppContext();
+  const [srcVideo, setSrcVideo] = useState<string>();
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const srcVideoEdit = sessionStorage.getItem("srcVideoEdit") || "";
+    setSrcVideo(srcVideoEdit);
+  }, []);
 
   useEffect(() => {
     if (isPlaying) {
@@ -52,7 +54,7 @@ function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime 
           onTimeUpdate={handleUpdateTime}
           onLoadedMetadata={handleGetDuration}
           ref={videoRef}
-          src={srcVideoEdit}
+          src={srcVideo}
           controls
           className="h-full w-full"
         >

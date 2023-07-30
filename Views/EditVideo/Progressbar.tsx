@@ -202,7 +202,7 @@ function Progressbar({
                                         event.stopPropagation();
                                    }}
                                    value={valueVolume.current}
-                                   onChange={handleChangeVolume} defaultValue={100} ></input>
+                                   onChange={handleChangeVolume} />
                               {isMute ? <VscMute /> : <AiOutlineSound />}
                          </Button>
                          <Button><AiOutlineZoomOut /></Button>
@@ -213,7 +213,7 @@ function Progressbar({
                <div className="w-full h-[1px] bg-[rgba(48,47,47,0.8)] opacity-80"></div>
                {/* wrap rule in here */}
                {srcVideoEdit &&
-                    <div ref={progressRef} className="h-3/4 relative flex gap-2  px-4 pt-9 overflow-x-scroll overflow-y-hidden scroll-thin">
+                    <div ref={progressRef} className="h-3/4 relative flex gap-2 px-4 pt-9 overflow-x-scroll overflow-y-hidden scroll-thin">
                          {
                               dataSplit.map((itemSlipt) => (
                                    <div key={itemSlipt.id} style={{
