@@ -28,6 +28,8 @@ export default function EditVideo() {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isUndo, setIsUndo] = useState<boolean>(false);
   const [isRedo, setIsRedo] = useState<boolean>(false);
+  const [srcMp3, setSrcMp3] = useState<Blob | undefined>();
+  const [durationMp3, setDurationMp3] = useState<number>(0);
   const [dataSplit, setDataSplit] = useState<IListDataSplitVideo>([{
     id: 1,
     width: 100,
@@ -46,7 +48,6 @@ export default function EditVideo() {
     endTime: duration,
   }]])
   const [currentIndexProgress, setCurrentIndexProgress] = useState<number>(0);
-
   useEffect(() => {
     dataSplit[0].endTime = duration;
     setContainerDataSplit((pre) => {
@@ -196,6 +197,7 @@ export default function EditVideo() {
     setMoveVideo(separateTime);
     setValuePointer(valuePositionCursor);
     setCurrentProgress(dataItem);
+    return separateTime;
   }
 
   const onProgressBarMove = (valuePointerMove: number, itemSlipt: IDataSplitVideo) => {
@@ -284,13 +286,16 @@ export default function EditVideo() {
       <div className="w-full h-screen bg-[#000] flex flex-col p-[10px]">
         <Navbar setIsModal={setIsModal} onUndo={onUndoProgress} onRedu={onRedoProgress} isUndo={isUndo} isRedo={isRedo} handleEditVideo={handleEditVideo} />
         <div className="flex flex-grow-[1] gap-[5px] overflow-hidden items-center mb-[5px]">
-          <Toolbar handleSplit={handleSplit} />
+          <Toolbar handleSplit={handleSplit} setSrcMp3={setSrcMp3} />
           <Video
             isPlaying={isPlaying}
             moveVideo={moveVideo}
             setDuration={setDuration}
             setCurrentTime={setCurrentTime}
-            valueVolume={valueVolume} />
+            valueVolume={valueVolume}
+            srcMp3={srcMp3}
+            durationMp3={durationMp3}
+          />
         </div>
         <Progressbar
           dataSplit={dataSplit}
@@ -306,7 +311,10 @@ export default function EditVideo() {
           setValuePointer={setValuePointer}
           currentTime={currentTime}
           setMoveVideo={setMoveVideo}
-          setValueCounterPointer={setValueCounterPointer} onProgressBarMove={onProgressBarMove} />
+          setValueCounterPointer={setValueCounterPointer} onProgressBarMove={onProgressBarMove}
+          srcMp3={srcMp3}
+          setDurationMp3={setDurationMp3}
+        />
       </div>
       {
         isModal &&

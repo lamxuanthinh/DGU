@@ -6,9 +6,11 @@ interface IVideoProps {
   setDuration: Dispatch<SetStateAction<number>>,
   setCurrentTime: Dispatch<SetStateAction<number>>,
   valueVolume: IValueVolumeVideo,
+  srcMp3: Blob | undefined,
+  durationMp3: number,
 }
 
-function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime }: IVideoProps) {
+function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime, srcMp3, durationMp3 }: IVideoProps) {
   const [srcVideo, setSrcVideo] = useState<string>();
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -16,6 +18,12 @@ function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime 
     const srcVideoEdit = sessionStorage.getItem("srcVideoEdit") || "";
     setSrcVideo(srcVideoEdit);
   }, []);
+
+  useEffect(() => {
+    if (srcMp3 && videoRef.current) {
+      videoRef.current.muted = true;
+    }
+  }, [srcMp3]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -44,7 +52,14 @@ function Video({ isPlaying, moveVideo, setDuration, valueVolume, setCurrentTime 
 
   const handleUpdateTime = (event: React.ChangeEvent<HTMLVideoElement>) => {
     const timeUpdate = event.currentTarget.currentTime;
-    setCurrentTime(timeUpdate)
+    if (srcMp3 && videoRef.current) {
+      if (timeUpdate > durationMp3) {
+        videoRef.current.muted = false;
+      } else {
+        videoRef.current.muted = true;
+      }
+    }
+    setCurrentTime(timeUpdate);
   }
 
   return (
