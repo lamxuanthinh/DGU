@@ -93,6 +93,13 @@ function Progressbar({
                     setWidthWavesurfer(valuePercentWidthWave);
                })
           }
+
+          return () => {
+               if (waveformRef.current && srcMp3) {
+                    waveformRef.current.destroy();
+                    setIsPlaying(false);
+               }
+          }
      }, [srcMp3]);
 
      useEffect(() => {
