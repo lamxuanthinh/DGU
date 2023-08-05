@@ -10,9 +10,11 @@ import Link from "next/link";
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import { useEffect, useState } from "react";
+import SearchBar from "../SearchBar";
 
 const Header = () => {
     const [checkAuth, setCheckAuth] = useState("false");
+    const [isSearchBar, setIsSearchBar] = useState<boolean>(false);
 
     useEffect(() => {
         const auth: any = localStorage.getItem("auth");
@@ -20,9 +22,17 @@ const Header = () => {
         console.log("auth", auth);
     }, []);
 
+    const handleOpenSearchBar = () => {
+        setIsSearchBar(true)
+    }
+
+    const handleCloseSearchBar = () => {
+        setIsSearchBar(false)
+    }
+
     return (
         <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
-            <div className="w-[50%] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
+            <div className="relative w-[50%] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
                 <div className="w-[50px] flex justify-center items-center ">
                     <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
                 </div>
@@ -32,8 +42,13 @@ const Header = () => {
                         name="search"
                         placeholder="Search..."
                         className="w-[100%] bg-transparent border-none outline-none"
+                        onFocus={handleOpenSearchBar}
                     />
                 </div>
+                {isSearchBar && <>
+                    <div className="fixed inset-0 z-10" onClick={handleCloseSearchBar}></div>
+                    <SearchBar />
+                </>}
             </div>
             <div className="flex flex-nowrap items-center">
                 <div className="flex items-center">
