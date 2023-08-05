@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../Button";
 import SearchList from "./SearchList";
 import Filter from "./Filter";
@@ -11,6 +11,13 @@ function SearchBar() {
      const [isFilter, setIsFilter] = useState<boolean>(false);
      const [valueInput, setValueInput] = useState<string>("");
      const [isLoading, setIsLoading] = useState<boolean>(false);
+     const inputRef = useRef<HTMLInputElement>(null);
+
+     useEffect(() => {
+          if (inputRef.current) {
+               inputRef.current.focus();
+          }
+     }, []);
 
      useEffect(() => {
           const handleSearch = async () => {
@@ -47,7 +54,7 @@ function SearchBar() {
                     <Button className="text-2xl text-[#6D6C6C]">
                          <BiSearch />
                     </Button>
-                    <input type="text" placeholder="Search in here" className="outline-none w-full px-4 py-2" onChange={onChangeValueInput} value={valueInput} />
+                    <input ref={inputRef} type="text" placeholder="Search in here" className="outline-none w-full px-4 py-2" onChange={onChangeValueInput} value={valueInput} />
                     <Button className="text-2xl text-[#6D6C6C] mr-3 relative" onClick={handleToggleFilter}>
                          {isFilter ?
                               <>
