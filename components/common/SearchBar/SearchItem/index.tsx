@@ -11,7 +11,7 @@ function SearchItem({ isUser }: ISearchItemProps) {
                     <Image fill src={require("@/public/Images/Profile/Mycourse/course1.png")} alt="avt image" />
                </div>
                <div>
-                    <h4 className="font-semibold text-lg">Kenny tung</h4>
+                    <h4 className="font-bold text-base">Kenny tung</h4>
                     <p className="text-xs text-[#8F8F8F]">
                          Hoc gioi korean trong 5 ngay #korean #kenny
                     </p>

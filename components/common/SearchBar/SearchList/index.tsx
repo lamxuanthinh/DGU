@@ -13,11 +13,11 @@ function SearchList({ isFilter, isUser }: ISearchListProps) {
           <>
                {
                     isFilter &&
-                    <div className="px-4 flex items-center mb-1">
+                    <div className="px-4 flex items-center mb-1 mt-[10px]">
                          <span className="font-semibold text-[15px] text-[#8A8A8A]">
                               User
                          </span>
-                         <span className="w-5 h-5 bg-[#8A8A8A] rounded-[5px] ml-2 flex items-center justify-center text-white font-semibold text-[10px]">
+                         <span className="w-5 h-5 bg-[#8A8A8A] rounded-[5px] ml-2 mr-[3px] flex items-center justify-center text-white font-semibold text-[10px]">
                               22
                          </span>
                          <Button className="text-3xl">

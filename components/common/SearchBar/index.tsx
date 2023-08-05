@@ -52,11 +52,8 @@ function SearchBar() {
                          {isFilter ?
                               <>
                                    <MdFilterList className="text-[#0075FF] opacity-70" />
-                                   <span className="absolute top-full left-1/2 translate-x-[-50%] font-semibold text-black text-[15px] min-w-[80px]">
-                                        Enable all
-                                   </span>
                               </>
-                              : <MdFilterList className="text-[#0075FF] opacity-70" />
+                              : <MdFilterList className="text-[#6D6C6C] opacity-70" />
                          }
                     </Button>
                     <Button className="text-2xl text-[#6D6C6C]" onClick={handleClearSearch}>
