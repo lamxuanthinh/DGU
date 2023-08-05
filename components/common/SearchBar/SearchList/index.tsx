@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Button from "../../Button";
 import SearchItem from "../SearchItem";
-// IoMdArrowDropup
-import { IoMdArrowDropdown, } from "react-icons/io";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 interface ISearchListProps {
      isFilter?: boolean,
@@ -28,7 +27,11 @@ function SearchList({ isFilter, isUser }: ISearchListProps) {
                               22
                          </span>
                          <Button className="text-3xl" onClick={handleToggleCollapse}>
-                              <IoMdArrowDropdown className="text-[#8A8A8A]" />
+                              {
+                                   !isCollapse ?
+                                        <IoMdArrowDropdown className="text-[#8A8A8A]" />
+                                        : <IoMdArrowDropup className="text-[#8A8A8A]" />
+                              }
                          </Button>
                     </div>
                }

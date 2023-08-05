@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../../Button";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 function Filter() {
      const [isCollapse, setIsCollapse] = useState<boolean>(false);
@@ -14,7 +14,11 @@ function Filter() {
                <div className="flex items-center">
                     <span className="text-[#8A8A8A]">Filter by</span>
                     <Button className="ml-1 text-3xl" onClick={handleToggleCollapse}>
-                         <IoMdArrowDropdown className="text-[#8A8A8A]" />
+                         {
+                              !isCollapse ?
+                                   <IoMdArrowDropdown className="text-[#8A8A8A]" />
+                                   : <IoMdArrowDropup className="text-[#8A8A8A]" />
+                         }
                     </Button>
                </div>
                {

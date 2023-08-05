@@ -49,7 +49,7 @@ function SearchBar() {
      }
 
      return (
-          <div className="absolute top-0 left-0 w-[55vw] bg-white z-20 rounded-[5px] border-[1px] border-solid border-[rgba(159,159,159,0.2)]">
+          <div className="absolute top-0 left-0 w-[50vw] bg-white z-20 rounded-[5px] border-[1px] border-solid border-[rgba(159,159,159,0.2)]">
                <div className="flex px-7 py-1 border-b-[1px] ">
                     <Button className="text-2xl text-[#6D6C6C]">
                          <BiSearch />
