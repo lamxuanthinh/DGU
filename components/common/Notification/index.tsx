@@ -13,7 +13,6 @@ import { notificationData } from "@/components/common/Notification/constants";
 import { NotificationContentStyle } from "@/components/common/Notification/notificationStyled"; 
 
 
-
 interface INotificationProps {
     className?: string;
     notificationItems: Array<notification>;
@@ -45,7 +44,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                             <FcSettings fontSize={`20px`} className={`mr-[20px]`} />
                         </div>
                         <ul className={`h-[440px] overflow-y-scroll no-scrollbar`} >
-                            { notificationItems.map((data) => {
+                            { notificationItems.map((data: notification) => {
                                 
                                 switch(data.type)
                                 {
@@ -152,7 +151,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                                     
                                                     <div className="flex justify-center items-start flex-col">
 
-                                                        <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã bình luận bài viết của bạn: &quot;<b className="text-[#000000]">{data.comment.content_comment}</b> &quot;</span>
+                                                        <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã bình luận bài viết của bạn: &quot;<b className="text-[#000000]">{data.comment != null ? data.comment.content_comment : "" }</b> &quot;</span>
 
                                                         <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                                     </div>
@@ -189,7 +188,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                                     
                                                     <div className="flex justify-center items-start flex-col">
 
-                                                        <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã đăng ký khóa học: &quot;<b className="text-[#000000]">{data.course.course_name}</b>&quot;  của bạn với giá <b className="text-[#00B01C]">${data.course.fee}</b> </span>
+                                                        <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã đăng ký khóa học: &quot;<b className="text-[#000000]">{data.comment != null ? data.comment.content_comment : "" }</b>&quot;  của bạn với giá <b className="text-[#00B01C]">${data.course != null ? data.course.fee : "" }</b> </span>
 
                                                         <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                                     </div>
@@ -215,7 +214,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                                     
                                                     <div className="flex justify-center items-start flex-col">
 
-                                                        <span className="ml-4  text-base font-medium text-[#818181]">Bạn đã nhận được <b className="text-[#00B01C]">${data.course.fee}</b> từ <b className="text-[#000000]">{data.user.name}</b> phí đăng kí khóa học &quot;<b className="text-[#000000]">{data.course.course_name}</b>&quot;</span>
+                                                        <span className="ml-4  text-base font-medium text-[#818181]">Bạn đã nhận được <b className="text-[#00B01C]">${data.course != null ? data.course.fee : "" }</b> từ <b className="text-[#000000]">{data.user.name}</b> phí đăng kí khóa học &quot;<b className="text-[#000000]">{data.course != null ? data.course.course_name : "" }</b>&quot;</span>
 
                                                         <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                                     </div>
@@ -357,7 +356,7 @@ export function NotificationContent() {
                                             </div>
                                             
                                             <div className="flex justify-center items-start flex-col">
-                                                <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã bình luận bài viết của bạn: &quot;<b className="text-[#000000]">{data.comment.content_comment}</b> &quot;</span>
+                                                <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã bình luận bài viết của bạn: &quot;<b className="text-[#000000]">{data.comment != null ? data.comment.content_comment : "" }</b> &quot;</span>
 
                                                 <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                             
@@ -404,7 +403,7 @@ export function NotificationContent() {
                                             
                                             <div className="flex justify-center items-start flex-col">
 
-                                                <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã share video short &quot;<b className="text-[#000000]">{data.course.course_name}</b>&quot; của bạn.</span>
+                                                <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã share video short &quot;<b className="text-[#000000]">{data.course ? data.course.course_name : ""}</b>&quot; của bạn.</span>
 
                                                 <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                             </div>
@@ -441,7 +440,7 @@ export function NotificationContent() {
                                             
                                             <div className="flex justify-center items-start flex-col">
 
-                                                <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã đăng ký khóa học: &quot;<b className="text-[#000000]">{data.course.course_name}</b>&quot;  của bạn với giá <b className="text-[#00B01C]">${data.course.fee}</b> </span>
+                                                <span className="ml-4  text-base font-medium text-[#818181]"><b className="text-[#000000]">{data.user.name}</b> đã đăng ký khóa học: &quot;<b className="text-[#000000]">{data.course ? data.course.course_name : ""}</b>&quot;  của bạn với giá <b className="text-[#00B01C]">${data.course ? data.course.fee : ""}</b> </span>
 
                                                 <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                             </div>
@@ -466,7 +465,7 @@ export function NotificationContent() {
                                             </div>
                                             
                                             <div className="flex justify-center items-start flex-col">
-                                                <span className="ml-4  text-base font-medium text-[#818181]">Bạn đã nhận được <b className="text-[#00B01C]">${data.course.fee}</b> từ <b className="text-[#000000]">{data.user.name}</b> phí đăng kí khóa học &quot;<b className="text-[#000000]">{data.course.course_name}</b>&quot;</span>
+                                                <span className="ml-4  text-base font-medium text-[#818181]">Bạn đã nhận được <b className="text-[#00B01C]">${data.course ? data.course.fee : ""}</b> từ <b className="text-[#000000]">{data.user.name}</b> phí đăng kí khóa học &quot;<b className="text-[#000000]">{data.course ? data.course.course_name : ""}</b>&quot;</span>
 
                                                 <span className="ml-4 mt-2  font-medium text-[12px] text-[#818181]"> {data.time}</span>
                                             

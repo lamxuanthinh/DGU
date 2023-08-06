@@ -11,7 +11,7 @@ export interface comment {
 
 export interface course {
     type: string,
-    fee: number,
+    fee: number|null,
     course_name: string,
 }
 

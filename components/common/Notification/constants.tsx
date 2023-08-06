@@ -12,8 +12,7 @@ export const notificationData: notification[] = [
             name: "Jane Smith",
             avt: "@/public/Images/Notifications/boy_thoi_trang.png",
         },
-        comment: {
-        },
+        comment: null,
         course: null,
         time: "2 minutes",
     },
@@ -29,8 +28,7 @@ export const notificationData: notification[] = [
             name: "Jocelyn Lam",
             avt: "@/public/Images/Notifications/boy_hip_hop.png",
         },
-        comment: {
-        },
+        comment: null,
         course: null,
         time: "5 minutes",
     },
@@ -55,8 +53,7 @@ export const notificationData: notification[] = [
             name: "Jane Smith",
             avt: "@/public/Images/Notifications/girl_beauty.png",
         },
-        comment: {
-        },
+        comment: null,
         course: {
             type: "register-course-from-user",
             fee: 100.00,
@@ -77,8 +74,7 @@ export const notificationData: notification[] = [
             name: "Yang",
             avt: "@/public/Images/Notifications/boy_thanh_lich.png",
         },
-        comment: {
-        },
+        comment: null,
         course: {
             type: "register-course-from-user",
             fee: 100.00,
@@ -108,8 +104,7 @@ export const notificationData: notification[] = [
             name: "Jane Smith",
             avt: "@/public/Images/Notifications/boy_thanh_lich.png",
         },
-        comment: {
-        },
+        comment: null,
         course: {
             type: "success-register-course",
             fee: null,
