@@ -10,7 +10,7 @@ function Filter() {
      }
 
      return (
-          <div className="flex flex-col px-4 py-1">
+          <div className="flex flex-col px-4">
                <div className="flex items-center">
                     <span className="text-[#8A8A8A]">Filter by</span>
                     <Button className="ml-1 text-3xl" onClick={handleToggleCollapse}>

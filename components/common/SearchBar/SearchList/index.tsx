@@ -38,15 +38,15 @@ function SearchList({ isFilter, isUser }: ISearchListProps) {
                {
                     !isCollapse &&
                     <>
-                         <SearchItem isUser={isUser} />
-                         <SearchItem isUser={isUser} />
-                         <SearchItem isUser={isUser} />
-                         <SearchItem isUser={isUser} />
-                         <SearchItem isUser={isUser} />
+                         <SearchItem srcImage={require("@/public/Images/Profile/Mycourse/course1.png")} isUser={isUser} />
+                         <SearchItem isUser={isUser} srcImage={require("@/public/Images/Profile/Mycourse/course2.jpg")} />
+                         <SearchItem isUser={isUser} srcImage={require("@/public/Images/Profile/Mycourse/course3.jpg")} />
+                         <SearchItem isUser={isUser} srcImage={require("@/public/Images/Profile/Mycourse/course4.jpg")} />
+                         <SearchItem isUser={isUser} srcImage={require("@/public/Images/Profile/Mycourse/course5.jpg")} />
                          <Button className="font-semibold text-[15px] px-4 !block mt-3 mb-2" href="/searchAll" type="text">
                               See all results
                          </Button>
-                         <div className="h-[1px] w-full bg-[#161823] opacity-[0.12]"></div>
+                         <div className="h-[1px] w-full bg-[#979797] opacity-[0.12]"></div>
                     </>
                }
           </>

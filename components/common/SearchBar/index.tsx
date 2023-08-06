@@ -3,21 +3,16 @@ import Button from "../Button";
 import SearchList from "./SearchList";
 import Filter from "./Filter";
 import { MdFilterList, MdOpenInNew } from "react-icons/md";
-import { BiSearch } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 
 function SearchBar() {
      const [isFilter, setIsFilter] = useState<boolean>(false);
      const [valueInput, setValueInput] = useState<string>("");
      const [isLoading, setIsLoading] = useState<boolean>(false);
+     const [isSearchResult, setIsSearchResult] = useState<boolean>(false);
      const inputRef = useRef<HTMLInputElement>(null);
-
-     useEffect(() => {
-          if (inputRef.current) {
-               inputRef.current.focus();
-          }
-     }, []);
 
      useEffect(() => {
           const handleSearch = async () => {
@@ -48,40 +43,59 @@ function SearchBar() {
           setValueInput(valueInput);
      }
 
-     return (
-          <div className="absolute top-0 left-0 w-[50vw] bg-white z-20 rounded-[5px] border-[1px] border-solid border-[rgba(159,159,159,0.2)]">
-               <div className="flex px-7 py-1 border-b-[1px] ">
-                    <Button className="text-2xl text-[#6D6C6C]">
-                         <BiSearch />
-                    </Button>
-                    <input ref={inputRef} type="text" placeholder="Search in here" className="outline-none w-full px-4 py-2" onChange={onChangeValueInput} value={valueInput} />
-                    <Button className="text-2xl text-[#6D6C6C] mr-3 relative" onClick={handleToggleFilter}>
-                         {isFilter ?
-                              <>
-                                   <MdFilterList className="text-[#0075FF] opacity-70" />
-                              </>
-                              : <MdFilterList className="text-[#6D6C6C] opacity-70" />
-                         }
-                    </Button>
-                    <Button className="text-2xl text-[#6D6C6C]" onClick={handleClearSearch}>
-                         {
-                              isLoading ?
-                                   <AiOutlineLoading3Quarters className="animate-spin text-lg" />
-                                   : <IoMdClose className="text-lg" />
-                         }
+     const handleOpenSearchResult = () => {
+          setIsSearchResult(true)
+     }
 
+
+     const handleCloseSearchBar = () => {
+          setIsSearchResult(false)
+     }
+     console.log(isSearchResult);
+
+     return (
+          <div className="relative w-[50vw] bg-white z-30">
+               {
+                    isSearchResult &&
+                    <div className="fixed inset-0 z-10" onClick={handleCloseSearchBar}></div>
+               }
+               <div className="flex px-7 py-1 relative z-30">
+                    <Button className="text-base text-[#909090]">
+                         <BsSearch />
                     </Button>
+                    <input ref={inputRef} type="text" placeholder="Search..." className="outline-none w-full px-4 py-2" onChange={onChangeValueInput} value={valueInput} onFocus={handleOpenSearchResult} />
+                    {
+                         isSearchResult && <>
+                              <Button className="text-2xl text-[#6D6C6C] mr-3 relative" onClick={handleToggleFilter}>
+                                   {isFilter ?
+                                        <>
+                                             <MdFilterList className="text-[#0075FF] opacity-70" />
+                                        </>
+                                        : <MdFilterList className="text-[#6D6C6C] opacity-70" />
+                                   }
+                              </Button>
+                              <Button className="text-2xl text-[#6D6C6C]" onClick={handleClearSearch}>
+                                   {
+                                        isLoading ?
+                                             <AiOutlineLoading3Quarters className="animate-spin text-lg" />
+                                             : <IoMdClose className="text-lg" />
+                                   }
+                              </Button>
+                         </>
+                    }
                </div>
-               {isFilter && <Filter />}
-               <div className="h-[1px] w-full bg-[#161823] opacity-[0.12]"></div>
-               <div className="overflow-y-scroll no-scrollbar max-h-[60vh]">
+               {isSearchResult && <div className="overflow-y-scroll no-scrollbar max-h-[60vh] bg-white absolute top-[61px] left-0 w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 z-30">
+                    {isFilter && <>
+                         <Filter />
+                         <div className="h-[1px] w-full bg-[#979797] opacity-[0.12]" />
+                    </>}
                     <SearchList isFilter={isFilter} isUser />
                     <SearchList isFilter={isFilter} />
                     <SearchList isFilter={isFilter} />
-               </div>
-               <Button className="px-4 py-2 font-semibold" leftIcon={<MdOpenInNew className="text-xl" />}>
-                    Open search page
-               </Button>
+                    <Button className="px-4 py-2 font-semibold" leftIcon={<MdOpenInNew className="text-xl" />}>
+                         Open search page
+                    </Button>
+               </div>}
           </div>
      )
 }
