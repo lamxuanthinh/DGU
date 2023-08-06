@@ -1,10 +1,19 @@
-import { number } from "yup"
-
 
 export interface user {
     name: string,
     avt: string,
 } 
+
+export interface comment {
+    id: string,
+    content_comment: string,
+} 
+
+export interface course {
+    type: string,
+    fee: number,
+    course_name: string,
+}
 
 
 export interface notification {
@@ -12,8 +21,8 @@ export interface notification {
     link: string,
     user: user,
 
-    comment: object|null,
+    comment: comment|null,
 
-    course: object|null,
+    course: course|null,
     time: string,
 }
