@@ -2,6 +2,7 @@ import { MdOutlineHistory, MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaGripfire} from "react-icons/fa";
 import { SlSettings, SlPeople } from "react-icons/sl";
 import {AiOutlineHome} from 'react-icons/ai'
+import { HiSquares2X2 } from "react-icons/hi2";
 
 import { NavLink } from "@/model/common/sidebarItem";
 
@@ -10,6 +11,11 @@ export const navLink: NavLink[] = [
         name: "Home",
         link: "/",
         icon: <AiOutlineHome fontSize={"27px"} />,
+    },
+    {
+        name: "Trending Page",
+        link: "/trending",
+        icon: <HiSquares2X2 fontSize={"27px"} />,
     },
     {
         name: "Server Ranking",

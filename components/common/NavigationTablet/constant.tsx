@@ -24,7 +24,7 @@ export const navLink: NavLink[] = [
     },
     {
         name: "Notifications",
-        link: "/notifications",
+        link: "/notification",
         icon: <BiBell fontSize={"28px"} />,
     },
     {

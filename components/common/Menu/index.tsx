@@ -9,6 +9,9 @@ interface IMenuProps {
     theme?: "black";
 }
 
+
+
+
 function Menu({ menuItems, children, theme, className }: IMenuProps) {
     const [isMenu, setIsMenu] = useState<boolean>(false);
     const lastItems = menuItems[menuItems.length - 1];

@@ -13,7 +13,7 @@ export default function MyCourse() {
                 <div className="w-full xl:max-w-[1700px] zero:max-w-[400px] md:max-w-[900px] 3xl:max-w-[1900px]    mx-auto grid  md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-6 px-[20px]  ">
                     {CourseData.map(({ title, link, themenails, }) => (
                         <Link key={title} href={link}>
-                            <div className=" dgu-course-card h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer  ">
+                            <div className=" dgu-course-card h-[340px] flex flex-col rounded-[5px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer  ">
                                 <div className="w-full h-[180px] flex justify-center items-center relative">
                                     {themenails}
                                     <div className="w-full bottom-0 left-0 absolute">
