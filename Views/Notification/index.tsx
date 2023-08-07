@@ -1,5 +1,5 @@
 import { NotificationContent as Content } from "@/components/common/Notification";
-import { FilterSection, ActionFilterSection } from "@/components/common/Notification/notificationStyled"; 
+import { FilterSectionStyled, ActionFilterSectionStyled } from "@/components/common/Notification/notificationStyled"; 
 
 import { useRef } from "react";
 
@@ -14,8 +14,6 @@ export default function NotificationContent () {
         }
     }
 
-
-
     return (
         <>
             <div className="w-[100%] h-[100%] flex flex-col justify-center items-center overflow-hidden p-[10px] ">
@@ -27,16 +25,16 @@ export default function NotificationContent () {
                         </div>
                         <div className="w-[100%] h-[40px] flex flex-nowrap justify-start items-center">
                             <div className="w-auto h-[40px] flex flex-nowrap justify-start items-center relative">
-                                <FilterSection ref={filterSectionRef} onClick={HandleClickFilter} className="filter-section w-[120px] h-[40px] flex justify-center items-center hover:cursor-pointer">
+                                <FilterSectionStyled ref={filterSectionRef} onClick={HandleClickFilter} className="filter-section w-[120px] h-[40px] flex justify-center items-center hover:cursor-pointer">
                                     <p className="text-[15px] font-bold active">All</p>
-                                </FilterSection>
-                                <FilterSection ref={filterSectionRef} onClick={HandleClickFilter} className="filter-section w-[120px] h-[40px] flex justify-center items-center hover:cursor-pointer">
+                                </FilterSectionStyled>
+                                <FilterSectionStyled ref={filterSectionRef} onClick={HandleClickFilter} className="filter-section w-[120px] h-[40px] flex justify-center items-center hover:cursor-pointer">
                                     <p className="text-[15px] font-bold ">Following</p>
-                                </FilterSection>
-                                <FilterSection ref={filterSectionRef} onClick={HandleClickFilter} className="filter-section w-[120px] h-[40px] flex justify-center items-center hover:cursor-pointer">
+                                </FilterSectionStyled>
+                                <FilterSectionStyled ref={filterSectionRef} onClick={HandleClickFilter} className="filter-section w-[120px] h-[40px] flex justify-center items-center hover:cursor-pointer">
                                     <p className="text-[15px] font-bold ">Archive</p>
-                                </FilterSection>
-                                <ActionFilterSection ref={actionFilterSectionRef} className="action-filter-section w-[120px] h-[40px] flex justify-center items-center border-[#3983AC] border-b-[3px] absolute top-0 left-0"></ActionFilterSection>
+                                </FilterSectionStyled>
+                                <ActionFilterSectionStyled ref={actionFilterSectionRef} className="action-filter-section w-[120px] h-[40px] flex justify-center items-center border-[#3983AC] border-b-[3px] absolute top-0 left-0"></ActionFilterSectionStyled>
                             </div>
                         </div>
                         <Content />

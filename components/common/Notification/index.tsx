@@ -10,8 +10,7 @@ import { IoMdCheckmark, IoMdShareAlt } from "react-icons/io";
 import { notification } from "@/model/notification";
 import { notificationData } from "@/components/common/Notification/constants";
 
-import { NotificationContentStyle } from "@/components/common/Notification/notificationStyled"; 
-
+import { NotificationContentStyled } from "@/components/common/Notification/notificationStyled"; 
 
 interface INotificationProps {
     className?: string;
@@ -19,8 +18,6 @@ interface INotificationProps {
     children: string | React.ReactNode;
     theme?: "black";
 }
-
-
 
 export function NotificationPopup({ notificationItems, children, theme, className }: INotificationProps) {
     const [isNotification, setIsNotification] = useState<boolean>(false);
@@ -52,7 +49,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                         return (
                                             <li
                                                 key={``}
-                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#00000020]`}
+                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#F9F9F9]`}
                                             >
                                                 <Link
                                                     className="flex justify-start items-center px-[14px] py-[10px]"
@@ -89,7 +86,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                         return (
                                             <li
                                                 key={``}
-                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#00000020]`}
+                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#F9F9F9]`}
                                             >
                                                 <Link
                                                     className="flex justify-start items-center px-[14px] py-[10px]"
@@ -126,7 +123,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                         return (
                                             <li
                                                 key={``}
-                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#00000020]`}
+                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#F9F9F9]`}
                                             >
                                                 <Link
                                                     className="flex justify-start items-center px-[14px] py-[10px]  h-full"
@@ -163,7 +160,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                         return (
                                             <li
                                                 key={``}
-                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#00000020]`}
+                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#F9F9F9]`}
                                             >
                                                 <Link
                                                     className="flex justify-start items-center px-[14px] py-[10px]  h-full"
@@ -200,7 +197,7 @@ export function NotificationPopup({ notificationItems, children, theme, classNam
                                         return (
                                             <li
                                                 key={``}
-                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#00000020]`}
+                                                className={`cursor-pointer h-[75px]  rounded-[5px] mx-[8px] my-[2px] hover:bg-[#F9F9F9]`}
                                             >
                                                 <Link
                                                     className="flex justify-start items-center px-[14px] py-[10px]  h-full"
@@ -243,7 +240,7 @@ export function NotificationContent() {
     
     return (
         <>
-            <NotificationContentStyle >
+            <NotificationContentStyled >
                 <ul className={`w-full h-full overflow-y-scroll no-scrollbar`} >
                     {notificationData.map((data) => {
                         
@@ -253,7 +250,7 @@ export function NotificationContent() {
                                 return (
                                     <li
                                         key={``}
-                                        className={`cursor-pointer w-full h-[130px] rounded-[5px]  hover:bg-[#0000000b]`}
+                                        className={`cursor-pointer w-full h-[130px] rounded-[5px]  hover:bg-[#F9F9F9]`}
                                     >
                                         <Link
                                             className="flex justify-start items-start px-[14px] py-[10px]"
@@ -295,7 +292,7 @@ export function NotificationContent() {
                                 return (
                                     <li
                                         key={``}
-                                        className={`cursor-pointerw-full h-[75px] rounded-[5px] hover:bg-[#0000000b]`}
+                                        className={`cursor-pointerw-full h-[75px] rounded-[5px] hover:bg-[#F9F9F9]`}
                                     >
                                         <Link
                                             className="flex justify-start items-center px-[14px] py-[10px]"
@@ -332,7 +329,7 @@ export function NotificationContent() {
                                 return (
                                     <li
                                         key={``}
-                                        className={`cursor-pointer w-full h-[130px] rounded-[5px] hover:bg-[#0000000b]`}
+                                        className={`cursor-pointer w-full h-[130px] rounded-[5px] hover:bg-[#F9F9F9]`}
                                     >
                                         <Link
                                             className="flex justify-start items-center px-[14px] py-[10px]  h-full"
@@ -378,7 +375,7 @@ export function NotificationContent() {
                                 return (
                                     <li
                                         key={``}
-                                        className={`cursor-pointerw-full h-[75px] rounded-[5px] hover:bg-[#0000000b]`}
+                                        className={`cursor-pointerw-full h-[75px] rounded-[5px] hover:bg-[#F9F9F9]`}
                                     >
                                         <Link
                                             className="flex justify-start items-center px-[14px] py-[10px]"
@@ -415,7 +412,7 @@ export function NotificationContent() {
                                 return (
                                     <li
                                         key={``}
-                                        className={`cursor-pointer w-full h-[75px] rounded-[5px] hover:bg-[#0000000b]`}
+                                        className={`cursor-pointer w-full h-[75px] rounded-[5px] hover:bg-[#F9F9F9]`}
                                     >
                                         <Link
                                             className="flex justify-start items-center px-[14px] py-[10px]  h-full"
@@ -452,7 +449,7 @@ export function NotificationContent() {
                                 return (
                                     <li
                                         key={``}
-                                        className={`cursor-pointer w-full h-[130px] rounded-[5px] hover:bg-[#0000000b]`}
+                                        className={`cursor-pointer w-full h-[130px] rounded-[5px] hover:bg-[#F9F9F9]`}
                                     >
                                         <Link
                                             className="flex justify-start items-center px-[14px] py-[10px]  h-full"
@@ -486,7 +483,7 @@ export function NotificationContent() {
                         
                     }) }
                 </ul>
-            </NotificationContentStyle>
+            </NotificationContentStyled>
         </>
     );
 }

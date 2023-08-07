@@ -1,6 +1,3 @@
-
-
-
 import { notification } from "@/model/notification";
 
 export const notificationData: notification[] = [

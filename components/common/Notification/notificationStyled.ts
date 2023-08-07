@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 
-export const NotificationContentStyle = styled.div`
+export const NotificationContentStyled = styled.div`
     height: calc(100% - 90px);
     width: 100%;
 `;
 
-export const FilterSection = styled.div`
+export const FilterSectionStyled = styled.div`
     color: #777777; 
     z-index: 2;
     transition: 1s;
@@ -16,7 +16,7 @@ export const FilterSection = styled.div`
     }
 `;
 
-export const ActionFilterSection = styled.div`
+export const ActionFilterSectionStyled = styled.div`
     transition: .5s;
 `;
 
