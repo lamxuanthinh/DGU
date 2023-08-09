@@ -1,26 +1,16 @@
+import Image from "next/image";
 import React, {  useRef, Dispatch, SetStateAction } from "react";
-
 
 import { ContentStyled } from "@/components/common/Share/shareStyled";
 
 import { AiOutlineClose } from "react-icons/ai";
-import { BsFacebook, BsLinkedin, BsTelegram } from "react-icons/bs";
-import { FaTiktok, FaTwitterSquare } from "react-icons/fa";
-import { BiLogoGmail } from "react-icons/bi";
-import { IoLogoWhatsapp } from "react-icons/io";
-
 interface IShares {
     currentUserId: string;
     isShare: boolean;
     setShare: Dispatch<SetStateAction<boolean>>;
 }
 
-
-
 const Share: React.FC<IShares> = ({ isShare }: IShares) => {
-
-    
-
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const handleCopy = () => {
@@ -39,8 +29,6 @@ const Share: React.FC<IShares> = ({ isShare }: IShares) => {
         isShare = !isShare;
     };
 
-    
-
     return (
         <>
             <div
@@ -50,7 +38,7 @@ const Share: React.FC<IShares> = ({ isShare }: IShares) => {
                     <div className="w-full h-[40px] text-[#656565] flex flex-nowrap justify-between items-center border-[#9d9d9d45] border-b-[1px]">
                         <p className="text-[16px] ml-[20px] font-bold ">Share</p> 
                         <div onClick={handleToggleShare} className="cursor-pointer">
-                            <AiOutlineClose  fontSize={`20px`} className={`mr-[20px]`} />
+                            <AiOutlineClose fontSize={`20px`} className={`mr-[20px]`} />
                         </div>
                     </div>
                     <ContentStyled className="w-full flex flex-nowrap justify-center items-center">
@@ -85,43 +73,113 @@ const Share: React.FC<IShares> = ({ isShare }: IShares) => {
                             <div className="w-[220px] h-[270px] bg-[#ffffff] rounded-[5px] flex flex-col justify-start items-center">
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <BsFacebook fontSize={`20px`} className={`text-[#1877F2]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/logos_facebook.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to Facebook</p>
                                 </div>
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <FaTiktok fontSize={`20px`} className={`text-[#000000]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/logos_tiktok-icon.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to Tiktok</p>
                                 </div>
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <BiLogoGmail fontSize={`20px`} className={`text-[#791d1d]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/logos_google-gmail.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to Gmail</p>
                                 </div>
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <IoLogoWhatsapp fontSize={`20px`} className={`text-[#60D669]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/logos_whatsapp-icon.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to WhatsApp</p>
                                 </div>
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <FaTwitterSquare fontSize={`20px`} className={`text-[#1D9BF0]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/skill-icons_twitter.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to Twitter</p>
                                 </div>
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <BsLinkedin fontSize={`20px`} className={`text-[#0A66C2]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/skill-icons_linkedin.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to LinkedIn</p>
                                 </div>
                                 <div className="w-full h-[30px] flex flex-nowrap justify-start items-center cursor-pointer transition-all duration-200 hover:scale-[1.03]">
                                     <div className="w-[30px] h-[30px] ml-[25px] flex justify-center items-center">
-                                        <BsTelegram fontSize={`20px`} className={`text-[#229ED9]`} />
+                                        <div className="w-[20px] h-[20px]">
+                                            <Image
+                                                src={require("@/public/Images/Home/logos_telegram.png")}
+                                                style={{ 
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>  
                                     <p className="text-[12px] ml-[0.5rem] text-[#606060] font-semibold">Share to Telegram</p>
                                 </div>
