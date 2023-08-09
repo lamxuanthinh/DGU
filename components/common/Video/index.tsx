@@ -7,7 +7,6 @@ import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
 import { IVideoShortPayload } from "@/model/video";
 import Comments from "../Comments/Comments";
-import Shares from "../Share";
 
 interface IVideo {
     data: IVideoShortPayload;

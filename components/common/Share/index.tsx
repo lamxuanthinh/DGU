@@ -1,6 +1,5 @@
-import React, { useState, useRef, Dispatch, SetStateAction } from "react";
+import React, {  useRef, Dispatch, SetStateAction } from "react";
 
-import { IShare } from "@/model/share";
 
 import { ContentStyled } from "@/components/common/Share/shareStyled";
 
@@ -18,7 +17,7 @@ interface IShares {
 
 
 
-const Share: React.FC<IShares> = ({ currentUserId, isShare }: IShares) => {
+const Share: React.FC<IShares> = ({ isShare }: IShares) => {
 
     
 
