@@ -8,6 +8,8 @@ import { TiPlus } from "react-icons/ti";
 interface IActionVideoProps {
     comment: boolean;
     setComment: Dispatch<SetStateAction<boolean>>;
+    share: boolean;
+    setShare: Dispatch<SetStateAction<boolean>>;
     pathAvatar: string;
     heartCount: string | number;
     commentCount: string | number;
@@ -21,9 +23,10 @@ export default function ActionVideo({
     shareCount = 52,
     comment,
     setComment,
+    share,
+    setShare,
 }: IActionVideoProps) {
     const [heart, setHeart] = useState(false);
-    const [share, setShare] = useState(false);
 
     return (
         <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[25%] right-6 flex flex-col">
@@ -64,9 +67,6 @@ export default function ActionVideo({
             </div>
             <div
                 className="mb-5 relative"
-                onClick={() => {
-                    setShare(!share);
-                }}
             >
                 <div className="flex justify-center">
                     <FaShare

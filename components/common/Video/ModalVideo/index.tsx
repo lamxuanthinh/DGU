@@ -5,6 +5,7 @@ import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
 import ActionVideo from "../ActionVideo";
 import Comments from "../../Comments/Comments";
+import Shares from "../../Share";
 
 interface IModalVideo {
     dataVideo: IVideoPayload;
@@ -36,6 +37,7 @@ export default function ModalVideo({
     const [isHovered, setIsHovered] = useState(false);
     const hoverTimeoutRef: any = useRef<NodeJS.Timeout | null>(null);
     const [comment, setComment] = useState(false);
+    const [share, setShare] = useState(false);
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.code === "Space") {
@@ -88,6 +90,7 @@ export default function ModalVideo({
                             handlePlayByPlayerModal();
                         }
                         setComment(false);
+                        setShare(false);
                     }}
                     className={`absolute top-0 w-[100%] h-[100%]`}
                 ></div>
@@ -96,6 +99,7 @@ export default function ModalVideo({
                     className="closeButton opacity-0 transition duration-500 ease-in-out p-[10px] rounded-[50%] absolute top-5 left-5 bg-[#92929280] hover:cursor-pointer hover:bg-[#b7b7b7]"
                     onClick={() => {
                         setComment(false);
+                        setShare(false);
                         handleCloseModal();
                     }}
                 >
@@ -112,6 +116,8 @@ export default function ModalVideo({
                 <ActionVideo
                     comment={comment}
                     setComment={setComment}
+                    share={share}
+                    setShare={setShare}
                     pathAvatar={dataVideo.author.pathAvatar}
                     heartCount={100}
                     commentCount={93}
@@ -133,6 +139,7 @@ export default function ModalVideo({
                     handleOpenModal={handleOpenModal}
                 />
                 {comment && <Comments isComment={comment} setComment={setComment} currentUserId="1" />}
+                {share && <Shares isShare={share} setShare={setShare}  currentUserId="1" />}
             </div>
         </div>
     );

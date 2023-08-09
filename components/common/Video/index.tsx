@@ -7,6 +7,7 @@ import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
 import { IVideoShortPayload } from "@/model/video";
 import Comments from "../Comments/Comments";
+import Shares from "../Share";
 
 interface IVideo {
     data: IVideoShortPayload;
@@ -14,6 +15,7 @@ interface IVideo {
 
 export default function Video({ data }: IVideo) {
     const [comment, setComment] = useState(false);
+    const [share, setShare] = useState(false);
     const [status, setStatus] = useState("NA");
     const [statusModal, setStatusModal] = useState("NA");
     const [player, setPlayer] = useState<any>(null);
@@ -185,7 +187,8 @@ export default function Video({ data }: IVideo) {
                     ></div>
                 )}
 
-                <Comments isComment={comment} setComment={setComment} currentUserId="1" />
+                <Comments isComment={comment} setComment={setComment} currentUserId="1"  />
+
 
                 <ControlsVideo
                     setComment={setComment}
@@ -213,6 +216,8 @@ export default function Video({ data }: IVideo) {
                 <ActionVideo
                     comment={comment}
                     setComment={setComment}
+                    share={share}
+                    setShare={setShare}
                     pathAvatar={data.author.pathAvatar}
                     heartCount={100}
                     commentCount={93}
