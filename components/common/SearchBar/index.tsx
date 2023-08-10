@@ -16,7 +16,7 @@ function SearchBar() {
 
      useEffect(() => {
           const handleSearch = async () => {
-               if (valueInput) {
+               if (valueInput.trim()) {
                     setIsLoading(true);
                     // call api in here
                     await new Promise((resolve) => {
@@ -39,7 +39,7 @@ function SearchBar() {
      }
 
      const onChangeValueInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-          const valueInput = event.target.value.trim();
+          const valueInput = event.target.value;
           setValueInput(valueInput);
      }
 
@@ -51,7 +51,6 @@ function SearchBar() {
      const handleCloseSearchBar = () => {
           setIsSearchResult(false)
      }
-     console.log(isSearchResult);
 
      return (
           <div className="relative w-[50vw] bg-white z-30">
