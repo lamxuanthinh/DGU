@@ -138,7 +138,7 @@ function SearchDetail() {
                               </div>
                          </div>
                          <div className="flex-1">
-                              <div className="border border-solid borser-[#989898]/[0.18] py-5 mb-6">
+                              <div className="border border-solid border-[#989898]/[0.18] py-5 mb-6">
                                    <div className="flex items-center justify-between pb-4 border-b-[1px] border-solid border-[#989898]/[0.18] px-5">
                                         <h5 className="text-[#646464]  text-xl">Live Chat</h5>
                                         <p className="flex items-center text-lg">
@@ -163,7 +163,7 @@ function SearchDetail() {
                                              </li>
                                         ))}
                                    </ul>
-                                   <div className="border border-solid borser-[#A9A9A9]/[0.29] flex items-center px-[4px] md:px-2 py-2 bg-[#DEDEDE]/[0.25] mx-1 md:mx-4 rounded-[5px] justify-between">
+                                   <div className="border border-solid border-[#A9A9A9]/[0.29] flex items-center px-[4px] md:px-2 py-2 bg-[#DEDEDE]/[0.25] mx-1 md:mx-4 rounded-[5px] justify-between">
                                         <Button className="w-[30px] h-[30px] bg-[#ECEAEA] rounded-[5px] mr-2 md:mr-4"><BsThreeDots></BsThreeDots></Button>
                                         <input type="text" placeholder="write your message" className="outline-none md:flex-1 bg-transparent w-32 md:w-auto" />
                                         <Button className="w-[30px] h-[30px] bg-primary text-[#0937D9] rounded-[5px]">
@@ -171,7 +171,7 @@ function SearchDetail() {
                                         </Button>
                                    </div>
                               </div>
-                              <div className="border border-solid borser-[#989898]/[0.18] py-5">
+                              <div className="border border-solid border-[#989898]/[0.18] py-5">
                                    <div className="flex items-center justify-between pb-4 border-b-[1px] border-solid border-[#989898]/[0.18] px-5">
                                         <h5 className="text-[#646464]  text-xl">Related Videos</h5>
                                    </div>
