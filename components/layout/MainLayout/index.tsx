@@ -43,7 +43,7 @@ const MainLayout = (props: LayoutProps) => {
                 <SidebarHeader active={false} />
                 <MainContent>
                   <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px]">
-                    <div className="h-full flex justify-center">{props.children}</div>
+                    <div className="flex justify-center">{props.children}</div>
                   </div>
                 </MainContent>
               </Content>
@@ -60,7 +60,7 @@ const MainLayout = (props: LayoutProps) => {
                 <Header />
                 <MainContent>
                   <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px]">
-                    <div className="h-full flex justify-center">{props.children}</div>
+                    <div className="flex justify-center">{props.children}</div>
                   </div>
                 </MainContent>
               </Content>

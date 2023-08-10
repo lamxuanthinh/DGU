@@ -9,6 +9,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      primary: "#7FCFFC",
+    },
     extend: {
       boxShadow: {
         "inset-white": "0 0 0px 1000px white inset",
