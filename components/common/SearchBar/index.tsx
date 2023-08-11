@@ -16,7 +16,7 @@ function SearchBar() {
 
      useEffect(() => {
           const handleSearch = async () => {
-               if (valueInput.trim()) {
+               if (valueInput) {
                     setIsLoading(true);
                     // call api in here
                     await new Promise((resolve) => {
@@ -39,7 +39,7 @@ function SearchBar() {
      }
 
      const onChangeValueInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-          const valueInput = event.target.value;
+          const valueInput = event.target.value.trim();
           setValueInput(valueInput);
      }
 
@@ -83,17 +83,21 @@ function SearchBar() {
                          </>
                     }
                </div>
-               {isSearchResult && <div className="overflow-y-scroll no-scrollbar max-h-[60vh] bg-white absolute top-[61px] left-0 w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 z-30">
-                    {isFilter && <>
-                         <Filter />
-                         <div className="h-[1px] w-full bg-[#979797] opacity-[0.12]" />
-                    </>}
-                    <SearchList isFilter={isFilter} isUser />
-                    <SearchList isFilter={isFilter} />
-                    <SearchList isFilter={isFilter} />
-                    <Button className="px-4 py-2 font-semibold" leftIcon={<MdOpenInNew className="text-xl" />}>
-                         Open search page
-                    </Button>
+               {isSearchResult && <div className="bg-white absolute top-[61px] left-[-20px] w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 px-[30px] z-30">
+                    <div className="overflow-y-scroll no-scrollbar max-h-[60vh] pb-8">
+                         {isFilter && <>
+                              <Filter />
+                              <div className="h-[1px] w-full bg-[#979797] opacity-[0.12]" />
+                         </>}
+                         <SearchList isFilter={isFilter} isUser />
+                         <SearchList isFilter={isFilter} />
+                         <SearchList isFilter={isFilter} />
+                    </div>
+                    <div className="bg-white absolute bottom-0 w-[calc(100%-30px)]">
+                         <Button className="px-4 py-3 font-semibold" leftIcon={<MdOpenInNew className="text-xl" />}>
+                              Open search page
+                         </Button>
+                    </div>
                </div>}
           </div>
      )
