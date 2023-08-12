@@ -1,4 +1,4 @@
-import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import UploadImageFile from "../../UploadFile/UploadImageFile";
 import { SchemaCourse } from "@/utils/rules";
 import Dropdown from "../../Dropdown";
@@ -30,7 +30,7 @@ export default function CourseItemForm({ register, setValue }: ICourseItemForm) 
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Lesson Title & Author</h1>
                     <p className="text-[13px] mr-16 text-[#464646]">
-                        Put an attention-grabbing title and shorten the video's content description.
+                        Put an attention-grabbing title and shorten the video&apos;s content description.
                     </p>
                 </div>
                 <div className="col-span-2">
@@ -58,7 +58,7 @@ export default function CourseItemForm({ register, setValue }: ICourseItemForm) 
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Description & Fee</h1>
                     <p className="text-[13px] mr-12 text-[#464646]">
-                        Provide a detailed description of the video's content and goals.
+                        Provide a detailed description of the video&apos;s content and goals.
                     </p>
                 </div>
                 <div className="col-span-2">

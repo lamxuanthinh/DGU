@@ -16,7 +16,7 @@ export default function LessonFillForm({ register, setValue }: ILessonFillForm) 
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Lesson Title & Description</h1>
                     <p className="text-[13px] mr-12 text-[#464646]">
-                        Put an attention-grabbing title and shorten the video's content description.
+                        Put an attention-grabbing title and shorten the video&apos;s content description.
                     </p>
                 </div>
                 <div className="col-span-2">
