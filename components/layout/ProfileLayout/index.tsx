@@ -1,7 +1,4 @@
-import React from "react";
-
 import { LayoutProps } from "@/model";
-
 import NavigationProfile from "@/components/common/NavigationProfile";
 import ProfileHeader from "@/components/common/ProfileHeader";
 import MainLayout from "../MainLayout";

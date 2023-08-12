@@ -3,15 +3,18 @@ import { IconType } from "react-icons";
 import Select from "react-select";
 
 interface IDropdownProps {
+    valueSelected: any;
     setValueSelected: React.Dispatch<React.SetStateAction<string>>;
-    Icon: IconType;
+    Icon?: IconType;
     options: {
         value: string;
         label: string;
     }[];
+    classNameLabel?: string;
+    setValue?: any;
 }
 
-export default function Dropdown({ setValueSelected, Icon, options }: IDropdownProps) {
+export default function Dropdown({ setValueSelected, Icon, options, classNameLabel = "", setValue }: IDropdownProps) {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const handleMenu = () => {
@@ -20,6 +23,7 @@ export default function Dropdown({ setValueSelected, Icon, options }: IDropdownP
 
     const handleValue = (value: any) => {
         setValueSelected(value.value);
+        setValue && setValue("classify", value.value);
     };
 
     return (
@@ -63,9 +67,9 @@ export default function Dropdown({ setValueSelected, Icon, options }: IDropdownP
                 IndicatorSeparator: null,
 
                 SingleValue: ({ data }) => (
-                    <div className="flex items-center justify-evenly" onClick={handleMenu}>
-                        <Icon className="text-xl mx-2" />
-                        <span className="">{data.label}</span>
+                    <div className="flex items-center justify-start" onClick={handleMenu}>
+                        {Icon && <Icon className="text-xl mx-2" />}
+                        <span className={classNameLabel}>{data.label}</span>
                     </div>
                 ),
             }}
