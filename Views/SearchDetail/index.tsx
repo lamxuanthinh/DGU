@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProfileHeader from "@/components/common/ProfileHeader";
 import Button from "@/components/common/Button";
 import avatarImage from "@/public/Images/Profile/Mycourse/boy_thanh_lich.png"
@@ -14,10 +14,19 @@ import { MdPeopleOutline } from "react-icons/md";
 import { iconData } from "./constants";
 
 function SearchDetail() {
+     const videoRef = useRef<HTMLVideoElement>(null);
+     const [heightVideo, setHeightVideo] = useState<number>(0)
      const tempArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
      const courseArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
      const [courseShowArray, setCourseShowArray] = useState<Array<number>>(courseArray.slice(0, 5));
      const [isShowMoreCourse, setIsShowMoreCourse] = useState<boolean>(false);
+
+     useEffect(() => {
+          if (videoRef.current) {
+               const heightVideo = videoRef.current.offsetHeight;
+               setHeightVideo(heightVideo);
+          }
+     }, []);
 
      useEffect(() => {
           if (isShowMoreCourse) {
@@ -35,45 +44,6 @@ function SearchDetail() {
           <div className="w-full bg-[#dbdbdb] flex flex-col gap-y-[5px] mb-16 ">
                <div className="bg-white">
                     <ProfileHeader></ProfileHeader>
-               </div>
-               <div className="relative bg-white px-2 md:px-[30px] py-[8px]">
-                    <p className="text-base font-semibold text-[#8a8a8a] inline-block">The others</p>
-                    <span className="bg-[#8a8a8a] text-white rounded-[5px] ml-[6px] px-[3px]">22</span>
-                    <ul className="mt-2 h-[370px] overflow-y-scroll no-scrollbar pb-[80px]">
-                         <li className="flex justify-between">
-                              <div className="flex items-center py-1 cursor-pointer transition-opacity hover:opacity-80 ">
-                                   <div className="w-[40px] h-[40px] overflow-hidden mr-3 relative rounded-[50%]">
-                                        <Image fill src={avatarImage} alt="avt image" />
-                                   </div>
-                                   <div>
-                                        <h4 className="font-bold text-sm md:text-lg">Kenny tung</h4>
-                                        <p className="text-xs text-[#8F8F8F] max-w-[180px] sm:w-auto">
-                                             Hoc gioi korean trong 5 ngay #korean #kenny
-                                        </p>
-                                   </div>
-                              </div>
-                              <Button className="font-bold text-sm md:text-xl text-primary border-[2px] border-solid border-primary rounded-[10px] h-[38px] w-24 sm:w-[130px]">Contact</Button>
-                         </li>
-                         {tempArray.map((item) => (
-                              <li key={item} className="flex justify-between">
-                                   <div className="flex items-center py-1 cursor-pointer transition-opacity hover:opacity-80 ">
-                                        <div className="w-[40px] h-[40px] overflow-hidden mr-3 relative rounded-[50%]">
-                                             <Image fill src={avatarImage} alt="avt image" />
-                                        </div>
-                                        <div>
-                                             <h4 className="font-bold text-sm md:text-lg">Kenny tung</h4>
-                                             <p className="text-xs text-[#8F8F8F] max-w-[180px] sm:w-auto">
-                                                  Hoc gioi korean trong 5 ngay #korean #kenny
-                                             </p>
-                                        </div>
-                                   </div>
-                                   <Button className="font-bold text-sm md:text-xl text-[#757575] border-[2px] border-solid border-[#919090]/[0.5] rounded-[10px] h-[38px] w-24 sm:w-[130px]">Follow</Button>
-                              </li>
-                         ))}
-                    </ul>
-                    <div className="bg-white absolute bottom-0 left-0 w-full px-6">
-                         <Button className="bg-primary text-black font-bold w-full h-[40px] text-lg my-4 hover:!opacity-100 rounded-[5px]">See All Result</Button>
-                    </div>
                </div>
                <div className="relative bg-white px-2 md:px-[30px] py-[8px]">
                     <div className="flex items-center text-[#8a8a8a] mb-4">
@@ -101,9 +71,9 @@ function SearchDetail() {
                          <h5 className="font-semibold text-xl ml-2">Video</h5>
                     </div>
                     <div className="flex flex-col xl:flex-row">
-                         <div className="w-full mb-8 xl:mb-0 xl:w-3/5 mr-5">
+                         <div className="w-full mb-8 xl:mb-0 xl:w-[65%] mr-5">
                               <div className="rounded-[5px] overflow-hidden mb-6">
-                                   <video src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/EyvF0jkPg/videoblocks-portrait-of-young-caucasian-bearded-coach-businessman-hosting-online-webinar-using-laptop-web-conference-call-at-home_sk6qxg028__c30e9293cb24b8df3d5a2de0688141a3__P720.mp4?type=preview&origin=VIDEOBLOCKS&timestamp_ms=1687421124503&publicKey=2lokuPIv3fAKGDKliUAiyHgdBftPlUJJXmQIeeI4MNa58ZQpXYMoH4pj1NB37cRu&organizationId=103593&apiVersion=2.0&stockItemId=10907825&resolution=720p&endUserId=a94a8fe5ccb19ba61c4c0873d391e987982fbbd3&projectId=test&searchId=741e93f3-8c02-4ab0-9af8-a0e3bfc843ee&searchPageId=a1cd9ca1-65b6-49f0-8f7e-f5b3b148b8e6" controls></video>
+                                   <video ref={videoRef} src="https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/EyvF0jkPg/videoblocks-portrait-of-young-caucasian-bearded-coach-businessman-hosting-online-webinar-using-laptop-web-conference-call-at-home_sk6qxg028__c30e9293cb24b8df3d5a2de0688141a3__P720.mp4?type=preview&origin=VIDEOBLOCKS&timestamp_ms=1687421124503&publicKey=2lokuPIv3fAKGDKliUAiyHgdBftPlUJJXmQIeeI4MNa58ZQpXYMoH4pj1NB37cRu&organizationId=103593&apiVersion=2.0&stockItemId=10907825&resolution=720p&endUserId=a94a8fe5ccb19ba61c4c0873d391e987982fbbd3&projectId=test&searchId=741e93f3-8c02-4ab0-9af8-a0e3bfc843ee&searchPageId=a1cd9ca1-65b6-49f0-8f7e-f5b3b148b8e6" controls></video>
                               </div>
                               <div className="flex justify-between items-center flex-wrap gap-y-3 md:gap-y-0 md:flex-nowrap">
                                    <div className="flex items-center py-1 cursor-pointer transition-opacity hover:opacity-80 ">
@@ -146,7 +116,7 @@ function SearchDetail() {
                                              <span className="ml-2">31,210 peoples</span>
                                         </p>
                                    </div>
-                                   <ul className="h-[350px] overflow-y-scroll no-scrollbar px-5 mb-2">
+                                   <ul style={{ height: `${heightVideo - 143}px` }} className="overflow-y-scroll no-scrollbar px-5 mb-2">
                                         {tempArray.map((item) => (
                                              <li key={item}>
                                                   <div className="flex items-start py-1 cursor-pointer transition-opacity hover:opacity-80 ">

@@ -3,7 +3,7 @@ import Header from "@/components/common/Header";
 import Loading from "@/components/common/Loading";
 import SidebarHeader from "@/components/common/SidebarHeader";
 import Sidebar from "@/components/common/Sidebar";
-import NavigationTablet from "@/components/common/NavigationTablet"; 
+import NavigationTablet from "@/components/common/NavigationTablet";
 
 import {
   BigLayout,
@@ -21,9 +21,9 @@ const MainLayout = (props: LayoutProps) => {
   useEffect(() => {
     const handleResize = () => {
       setIsTabletLayout(window.innerWidth <= 1024);
-    } 
+    }
 
-    handleResize(); 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -34,7 +34,7 @@ const MainLayout = (props: LayoutProps) => {
 
   return (
     <>
-      {isLoading && <Loading/> }
+      {isLoading && <Loading />}
       {isTabletLayout ? (
         <div className="w-screen h-screen bg-[#DBDBDB] flex justify-center items-center ">
           <BigLayout>
@@ -43,7 +43,7 @@ const MainLayout = (props: LayoutProps) => {
                 <SidebarHeader active={false} />
                 <MainContent>
                   <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px]">
-                    <div className="flex justify-center">{props.children}</div>
+                    <div className="h-full flex justify-center">{props.children}</div>
                   </div>
                 </MainContent>
               </Content>
@@ -60,7 +60,7 @@ const MainLayout = (props: LayoutProps) => {
                 <Header />
                 <MainContent>
                   <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px]">
-                    <div className="flex justify-center">{props.children}</div>
+                    <div className="h-full flex justify-center">{props.children}</div>
                   </div>
                 </MainContent>
               </Content>
