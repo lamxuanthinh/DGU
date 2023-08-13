@@ -25,11 +25,13 @@ export default function LessonFillForm({ register, setValue }: ILessonFillForm) 
                         className="p-[2px] pl-3 outline-none mb-4 w-full"
                         placeholder="Enter your title"
                         type="text"
+                        required
                     />
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
                         className="h-[120px] col-span-3 font-semibold py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full"
+                        required
                     />
                 </div>
             </div>

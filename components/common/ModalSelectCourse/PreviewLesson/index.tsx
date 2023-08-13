@@ -20,7 +20,7 @@ export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
             <div className="w-full h-[160px] flex justify-center items-center">
                 <CourseCardInfo className=" flex flex-col justify-around items-center">
                     <div className="w-full h-[60px]  flex flex-wrap justify-start items-center py-3">
-                        <p className="text-[16px] font-bold  ">{lessonDataInput.title}</p>
+                        <p className="text-[16px] font-bold">{lessonDataInput.title}</p>
                     </div>
 
                     <div className="w-full flex flex-wrap justify-start items-center">

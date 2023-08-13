@@ -1,7 +1,11 @@
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { GrDocumentStore } from "react-icons/gr";
 
-export default function SelectCourseHeader() {
+interface ISelectCourseHeader {
+    setModalSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function SelectCourseHeader({ setModalSelectCourse }: ISelectCourseHeader) {
     return (
         <div className="flex justify-between items-center w-full">
             <div className="flex">
@@ -13,7 +17,12 @@ export default function SelectCourseHeader() {
                     <GrDocumentStore />
                     <p className="pl-2 font-semibold">Storage draft</p>
                 </button>
-                <button className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded">
+                <button
+                    onClick={() => {
+                        setModalSelectCourse(false);
+                    }}
+                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded"
+                >
                     <AiOutlineClose />
                     <p className="pl-2 font-semibold">Cancel</p>
                 </button>
