@@ -26,7 +26,7 @@ function SearchDetail() {
                const heightVideo = videoRef.current.offsetHeight;
                setHeightVideo(heightVideo);
           }
-     }, []);
+     }, [videoRef.current?.offsetHeight]);
 
      useEffect(() => {
           if (isShowMoreCourse) {
@@ -116,7 +116,7 @@ function SearchDetail() {
                                              <span className="ml-2">31,210 peoples</span>
                                         </p>
                                    </div>
-                                   <ul style={{ height: `${heightVideo - 143}px` }} className="overflow-y-scroll no-scrollbar px-5 mb-2">
+                                   <ul style={{ height: `${heightVideo - 143}px` }} className="overflow-y-scroll no-scrollbar px-5 mb-2 min-h-[345px]">
                                         {tempArray.map((item) => (
                                              <li key={item}>
                                                   <div className="flex items-start py-1 cursor-pointer transition-opacity hover:opacity-80 ">
