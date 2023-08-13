@@ -26,7 +26,7 @@ function SearchDetail() {
                const heightVideo = videoRef.current.offsetHeight;
                setHeightVideo(heightVideo);
           }
-     }, []);
+     }, [videoRef.current?.offsetHeight]);
 
      useEffect(() => {
           if (isShowMoreCourse) {
