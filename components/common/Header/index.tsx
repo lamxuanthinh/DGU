@@ -1,7 +1,4 @@
-import {
-    SectionLogin,
-    SectionCreateVideo,
-} from "@/components/common/Header/headerStyled";
+import { SectionLogin, SectionCreateVideo } from "@/components/common/Header/headerStyled";
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
@@ -12,12 +9,12 @@ import { dataMenuNav } from "../Menu/constants";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-    const [checkAuth, setCheckAuth] = useState("false");
+    const [checkAuth, setCheckAuth] = useState();
 
     useEffect(() => {
-        const auth: any = localStorage.getItem("auth");
-        setCheckAuth(auth);
-        console.log("auth", auth);
+        const userId: any = localStorage.getItem("userId");
+        setCheckAuth(userId);
+        console.log("userId", userId);
     }, []);
 
     return (
@@ -56,7 +53,7 @@ const Header = () => {
                         </div>
                     </Link>
                 </SectionCreateVideo>
-                {checkAuth === "true" ? (
+                {checkAuth ? (
                     <Menu menuItems={dataMenuNav}>
                         <div className="flex gap-3 ml-1 cursor-pointer">
                             <Image
