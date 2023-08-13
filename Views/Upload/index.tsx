@@ -5,16 +5,17 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 
-export default function Upload() {
+export default function Upload({ data }: any) {
     const { setSrcVideoEdit, setThumbVideoEdit } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
-    const [isModalSelectCourse, setModalSelectCourse] = useState<boolean>(true);
+    const [isRenderSelectCourse, setRenderSelectCourse] = useState<boolean>(false);
     const [isDragging, setIsDragging] = useState(false);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    console.log(data);
 
     function handleFileSelect(videoFile: File): boolean {
         const file = videoFile;
@@ -91,7 +92,7 @@ export default function Upload() {
                     };
                 }
                 setSrcVideoEdit(url);
-                setModalSelectCourse(!isModalSelectCourse);
+                setRenderSelectCourse(!isRenderSelectCourse);
                 // setIsModal(true);
             } else {
                 alert("This is not video file.");
@@ -158,7 +159,9 @@ export default function Upload() {
                 </div>
             </div>
             {isModal && <Modal title="Do you want to go to the video editing step?" onOk={onOk} onCancel={onCancel} />}
-            {isModalSelectCourse && <ModalSelectCourse isModalSelectCourse={isModalSelectCourse} setModalSelectCourse={setModalSelectCourse} setConfirmEditModal={setIsModal} />}
+            {isRenderSelectCourse && (
+                <ModalSelectCourse setRenderSelectCourse={setRenderSelectCourse} setConfirmEditModal={setIsModal} />
+            )}
             <canvas ref={canvasRef} className="fixed z-[-10] opacity-0" />
             <video ref={videoRef} className="fixed z-[-10] opacity-0" />
         </>

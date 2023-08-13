@@ -10,32 +10,22 @@ import { SchemaCourse } from "@/utils/rules";
 import { MdOutlineAddchart, MdOutlinePlayLesson } from "react-icons/md";
 import { BsEyeFill, BsSearch } from "react-icons/bs";
 import PreviewLesson from "@/components/common/ModalSelectCourse/PreviewLesson";
-
-interface IMyCourseData {
-    id: string | number;
-    title: string;
-    content: string;
-    quantity: string | number;
-    price: string;
-    image: any;
-}
+import { useAppContext } from "@/Context";
+import { IMyCourseData } from "@/model/course";
 
 interface IModalSelectCourse {
-    isModalSelectCourse: boolean;
-    setModalSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
+    setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
     setConfirmEditModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | "price" | "image" | "author">;
 type FormLessonData = Pick<SchemaCourse, "title" | "description" | "image" | "author">;
 
-export default function ModalSelectCourse({
-    setConfirmEditModal,
-    setModalSelectCourse,
-}: IModalSelectCourse) {
+export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelectCourse }: IModalSelectCourse) {
+    const { courseSelected, setCourseSelected, setLessonCreated } = useAppContext();
+
     const [stepSelected, setStepSelected] = useState<number>(0);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
-    const [courseSelected, setCourseSelected] = useState<IMyCourseData>();
     const [myCourseData, setMyCourseData] = useState<Array<IMyCourseData>>();
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Preview video short"];
 
@@ -94,7 +84,7 @@ export default function ModalSelectCourse({
     });
 
     const onSubmitLessonItemForm = handleLessonSubmit(async (data) => {
-        console.log(data);
+        setLessonCreated(data);
         handleNextStep();
         resetLessonData({
             description: "",
@@ -112,7 +102,7 @@ export default function ModalSelectCourse({
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">
             <SelectCourseLayout
-                setModalSelectCourse={setModalSelectCourse}
+                setModalSelectCourse={setRenderSelectCourse}
                 stepSelected={stepSelected}
                 setStepSelected={setStepSelected}
                 setStepCreateCourse={setStepCreateCourse}

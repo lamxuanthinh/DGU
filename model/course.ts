@@ -1,12 +1,3 @@
-export interface myCourse {
-    _id: string;
-    title: string;
-    link: string;
-    themenails: JSX.Element;
-    userAvt: JSX.Element;
-    nameUser: string;
-}
-
 export interface studying {
     _id: string;
     title: string;
@@ -24,17 +15,20 @@ export interface detailData {
     title2: string;
 }
 
-export interface ICourseDetails {
-    id: number;
-    image: JSX.Element;
-    title1: string;
-    title2: string;
-}
-
-export interface IDescriptionCourse {
+export interface IMyCourseData {
+    id: string | number;
     title: string;
-    description: string;
-    cost: string;
-    count: string;
+    content: string;
+    quantity: string | number;
+    price: string;
     image: any;
 }
+
+export interface ILessonData {
+    description: string;
+    image: string;
+    title: string;
+    author: string;
+}
+
+
