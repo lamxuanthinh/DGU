@@ -5,13 +5,13 @@ import LessonFillForm from "@/components/common/ModalSelectCourse/LessonFillForm
 import CourseItemForm from "@/components/common/ModalSelectCourse/CourseItemForm";
 import PreviewCourse from "@/components/common/ModalSelectCourse/PreviewCourse";
 import SelectCourseLayout from "@/components/layout/SelectCourseLayout";
-import { myCourse } from "./constant";
 import { SchemaCourse } from "@/utils/rules";
 import { MdOutlineAddchart, MdOutlinePlayLesson } from "react-icons/md";
 import { BsEyeFill, BsSearch } from "react-icons/bs";
 import PreviewLesson from "@/components/common/ModalSelectCourse/PreviewLesson";
 import { useAppContext } from "@/Context";
 import { IMyCourseData } from "@/model/course";
+import courseApi from "@/apis/course";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,11 +22,11 @@ type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | 
 type FormLessonData = Pick<SchemaCourse, "title" | "description" | "image" | "author">;
 
 export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelectCourse }: IModalSelectCourse) {
-    const { courseSelected, setCourseSelected, setLessonCreated } = useAppContext();
+    const { courseSelected, setCourseSelected, myCourseData, setMyCourseData, setLessonCreated } = useAppContext();
 
     const [stepSelected, setStepSelected] = useState<number>(0);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
-    const [myCourseData, setMyCourseData] = useState<Array<IMyCourseData>>();
+    const [newCourseCreated, setCourseCreated] = useState<IMyCourseData>();
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Preview video short"];
 
     const {
@@ -56,20 +56,28 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
     };
 
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
-        const newMyCourseData = myCourseData;
-        newMyCourseData &&
-            newMyCourseData.push({
-                id: newMyCourseData.length,
-                title: data.title,
-                content: data.description,
-                quantity: 0,
-                price: `$ ${data.price}`,
-                image: (
-                    <Image width={100} height={100} className="rounded-md w-full h-full" src={`${data.image}`} alt="" />
-                ),
-            });
+        const addNewCourse = () => {
+            const userId = localStorage.getItem("userId");
+            {
+                userId &&
+                    myCourseData &&
+                    setCourseCreated({
+                        _id: myCourseData.length,
+                        title: data.title,
+                        author: data.author,
+                        description: data.description,
+                        price: data.price,
+                        level: data.classify,
+                        status: "",
+                        thumbnail: data.image,
+                        createdAt: "",
+                        updatedAt: "",
+                        userId: userId,
+                    });
+            }
+        };
 
-        setMyCourseData(newMyCourseData);
+        addNewCourse();
 
         setStepCreateCourse(0);
 
@@ -95,9 +103,19 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
     });
 
     useEffect(() => {
-        setMyCourseData(myCourse);
-        setCourseSelected(myCourse[0]);
-    }, []);
+        const fetchMyCourseApi = async () => {
+            const userId = localStorage.getItem("userId");
+            const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
+            setMyCourseData(myCourse);
+        };
+
+        fetchMyCourseApi();
+
+        myCourseData && setCourseSelected(myCourseData[0]);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    console.log(courseSelected?._id);
+    console.log(newCourseCreated?._id);
 
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">
@@ -123,7 +141,7 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                                         setCourseSelected(item);
                                                     }}
                                                     className={`h-[140px] p-1 rounded-md ${
-                                                        item.id == courseSelected.id &&
+                                                        item.id == courseSelected._id &&
                                                         "border-[3px] border-[#7FCFFC] transition-all duration-200"
                                                     }`}
                                                 >
@@ -131,6 +149,32 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                                 </div>
                                             );
                                         })}
+
+                                    {newCourseCreated && myCourseData && (
+                                        <div
+                                            onClick={() => {
+                                                setCourseSelected(newCourseCreated);
+                                            }}
+                                            className={`h-[140px] p-1 rounded-md ${
+                                                courseSelected &&
+                                                courseSelected._id == newCourseCreated._id &&
+                                                "border-[3px] border-[#7FCFFC] transition-all duration-200"
+                                            } hover:cursor-pointer`}
+                                        >
+                                            <Image
+                                                src={`${newCourseCreated.thumbnail}`}
+                                                width={0}
+                                                height={0}
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                                alt="logo"
+                                            />
+                                        </div>
+                                    )}
+
                                     <div
                                         className={`h-[140px] flex items-center justify-center p-1 rounded-md text-[#3983AC] bg-[#f4fbff] hover:cursor-pointer hover:border-[3px] hover:border-[#7FCFFC] transition-all duration-200`}
                                         onClick={() => {
@@ -156,12 +200,14 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                             </p>
                                         </div>
                                         <div className="text-[14px] font-semibold text-[#4F4E4E] mb-4">
-                                            {courseSelected.content}
+                                            {courseSelected.description}
                                         </div>
                                         <div className="flex justify-between items-center mb-4">
                                             <div className="px-4 py-1 rounded-[50px] bg-[#FCF8BA]">Beginner</div>
                                             <div className="flex items-center">
-                                                <p className="text-[18px] font-bold pr-2">{courseSelected.quantity}</p>
+                                                <p className="text-[18px] font-bold pr-2">
+                                                    {myCourseData && myCourseData.length}
+                                                </p>
                                                 <p className="text-[14px] font-semibold">video</p>
                                             </div>
                                         </div>

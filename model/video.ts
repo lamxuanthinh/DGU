@@ -36,3 +36,9 @@ export interface IVideoShortPayload {
     pathVideo: string;
     fullVideoInfo: IVideoPayload;
 }
+
+export interface VideoDataResponse {
+    message: String;
+    status: string;
+    metaData: {};
+}

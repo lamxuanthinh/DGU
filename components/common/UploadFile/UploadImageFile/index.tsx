@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import Image from "next/image";
 interface IUploadImagefile {
     setValue?: any;
 }
@@ -46,7 +47,9 @@ export default function UploadImageFile({ setValue }: IUploadImagefile) {
             onClick={handleButtonClick}
         >
             {srcImageEdit && (
-                <img
+                <Image
+                    width={100}
+                    height={100}
                     className="absolute inset-0 w-full h-full object-cover z-20"
                     src={srcImageEdit}
                     alt="Course Avatar"

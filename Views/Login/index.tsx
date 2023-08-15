@@ -42,7 +42,7 @@ export default function Login() {
         };
         console.log("[P]::payload::", payload);
         try {
-            const { message } = await auth.login(payload);
+            const { message, userId } = await auth.login(payload);
             if (message === "Gmail already exist") {
                 setIsLoading(false);
                 setErrorMessage("Gmail already exist");
@@ -52,8 +52,8 @@ export default function Login() {
                 setIsLoading(false);
                 router.push("/404");
                 return;
-            };
-            localStorage.setItem("auth", "true");
+            }
+            localStorage.setItem("userId", `${userId}`);
             setIsLoading(false);
             router.push("/");
         } catch (error) {

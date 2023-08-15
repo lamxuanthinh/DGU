@@ -22,7 +22,7 @@ export default function CourseItemForm({ register, setValue }: ICourseItemForm) 
 
     useEffect(() => {
         setValue("author", authorRef.current?.value || "");
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="px-5 pt-5 pb-2 h-full rounded">

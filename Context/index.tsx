@@ -12,13 +12,13 @@ interface AppContextType {
     setCourseSelected: React.Dispatch<React.SetStateAction<IMyCourseData | undefined>>;
     lessonCreated: ILessonData | undefined;
     setLessonCreated: React.Dispatch<React.SetStateAction<ILessonData | undefined>>;
+    myCourseData: IMyCourseData[] | undefined;
+    setMyCourseData: React.Dispatch<React.SetStateAction<IMyCourseData[] | undefined>>;
 }
 
 interface IAppProviderProps {
     children: React.ReactNode;
 }
-
-
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -26,8 +26,9 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
     const [srcVideoEdit, setSrcVideoEdit] = useState<string | undefined>(undefined);
     const [thumbVideoEdit, setThumbVideoEdit] = useState<string | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [courseSelected, setCourseSelected] = useState<IMyCourseData>();
     const [lessonCreated, setLessonCreated] = useState<ILessonData>();
+    const [courseSelected, setCourseSelected] = useState<IMyCourseData>();
+    const [myCourseData, setMyCourseData] = useState<Array<IMyCourseData> | undefined>([]);
 
     return (
         <AppContext.Provider
@@ -42,6 +43,8 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
                 setThumbVideoEdit,
                 isLoading,
                 setIsLoading,
+                myCourseData,
+                setMyCourseData,
             }}
         >
             {children}

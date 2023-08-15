@@ -1,21 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import { useRouter } from "next/router";
-import Modal from "../Modal";
+import Modal from "../../components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 
-export default function Upload({ data }: any) {
-    const { setSrcVideoEdit, setThumbVideoEdit } = useAppContext();
+export default function Upload() {
+    const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isRenderSelectCourse, setRenderSelectCourse] = useState<boolean>(false);
     const [isDragging, setIsDragging] = useState(false);
+    
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    console.log(data);
 
     function handleFileSelect(videoFile: File): boolean {
         const file = videoFile;
@@ -30,6 +30,7 @@ export default function Upload({ data }: any) {
     }
 
     const onOk = () => {
+        setIsLoading(true);
         if (canvasRef.current) {
             let ctx = canvasRef.current.getContext("2d");
             if (ctx && videoRef.current) {
@@ -38,6 +39,7 @@ export default function Upload({ data }: any) {
             }
         }
         push("/editvideo");
+        setIsLoading(false);
     };
 
     const onCancel = () => {

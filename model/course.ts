@@ -15,13 +15,38 @@ export interface detailData {
     title2: string;
 }
 
+// export interface IMyCourseData {
+
+//     id: string | number;
+//     title: string;
+//     content: string;
+//     quantity: string | number;
+//     price: string;
+//     image: any;
+// }
+
 export interface IMyCourseData {
-    id: string | number;
+    _id: number;
+    userId: string;
     title: string;
-    content: string;
-    quantity: string | number;
+    author: string;
+    description: string;
     price: string;
-    image: any;
+    level: string;
+    status: string;
+    thumbnail: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface MyCoursePayload {
+    title: string;
+    author: string;
+    description: string;
+    price: string;
+    level: string;
+    status: string;
+    thumbnail: string;
 }
 
 export interface ILessonData {
@@ -31,4 +56,10 @@ export interface ILessonData {
     author: string;
 }
 
-
+export interface DataResponse {
+    message: String;
+    status: string;
+    metaData: {
+        courseList: IMyCourseData[]; 
+    };
+}

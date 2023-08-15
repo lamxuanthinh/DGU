@@ -18,16 +18,12 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
             <div className="select-none" onClick={() => setIsMenu(true)}>
                 {children}
             </div>
-            {isMenu &&
-                <div
-                    className="fixed inset-0 bg-transparent z-40"
-                    onClick={() => setIsMenu(false)}>
-                </div>
-            }
+            {isMenu && <div className="fixed inset-0 bg-transparent z-40" onClick={() => setIsMenu(false)}></div>}
             {isMenu && (
                 <ul
-                    className={`absolute top-[60px] right-[-12px] w-[230px]  shadow-menu z-50 rounded-[20px] py-[10px] max-h-[60vh] overflow-y-scroll no-scrollbar ${theme === "black" ? "bg-[#1F1F1F] text-white" : "bg-white text-black"} ${className}`
-                    }
+                    className={`absolute top-[60px] right-[-12px] w-[230px]  shadow-menu z-50 rounded-[20px] py-[10px] max-h-[60vh] overflow-y-scroll no-scrollbar ${
+                        theme === "black" ? "bg-[#1F1F1F] text-white" : "bg-white text-black"
+                    } ${className}`}
                 >
                     {menuItems.slice(0, -1).map((item) => {
                         const Icon: any = item.icon;
@@ -64,7 +60,7 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
                                     <span
                                         onClick={() => {
                                             console.log("::[LOGOUT]::");
-                                            localStorage.setItem("auth", "false");
+                                            localStorage.setItem("userId", "");
                                         }}
                                         className="ml-4"
                                     >

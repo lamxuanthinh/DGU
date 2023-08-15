@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { Dispatch, SetStateAction, memo, useRef } from 'react'
 import Button from '@/components/common/Button'
 import { IoMdCopy } from "react-icons/io"
 import { BiCut } from "react-icons/bi"
@@ -10,9 +10,31 @@ import { MdOutlineInsertEmoticon } from "react-icons/md"
 
 interface IToolbarProps {
   handleSplit: () => void;
+  setSrcMp3: Dispatch<SetStateAction<Blob | undefined>>,
 }
 
-function Toolbar({ handleSplit }: IToolbarProps) {
+function Toolbar({ handleSplit, setSrcMp3 }: IToolbarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const onCheckFileMp3 = (file: File) => {
+    return file.type === 'audio/mpeg' || file.name.toLowerCase().endsWith('.mp3');
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileObj = event.target.files && event.target.files[0];
+    console.log(fileObj);
+    if (fileObj && onCheckFileMp3(fileObj)) {
+      const blob = new Blob([fileObj], { type: 'audio/mpeg' });
+      setSrcMp3(blob);
+    }
+  };
+
   return (
     <div className="grid grid-cols-2 grid-rows-3 place-items-center gap-y-3 px-11 py-9 min-w-[280px] bg-[#121212] rounded-[5px] h-full">
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
@@ -35,7 +57,7 @@ function Toolbar({ handleSplit }: IToolbarProps) {
         <BsCursorText className="text-3xl" />
         <span>Text</span>
       </Button>
-      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
+      <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60" onClick={handleClick}>
         <GiMusicalNotes className="text-3xl" />
         <span>Music</span>
       </Button>
@@ -43,6 +65,12 @@ function Toolbar({ handleSplit }: IToolbarProps) {
         <MdOutlineInsertEmoticon className="text-3xl" />
         <span>Sticker</span>
       </Button>
+      <input
+        style={{ display: 'none' }}
+        ref={inputRef}
+        type="file"
+        onChange={handleFileChange}
+      />
     </div>
   )
 }

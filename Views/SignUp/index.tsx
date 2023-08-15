@@ -58,9 +58,17 @@ export default function SignUp() {
         };
         try {
             const { message, emailSent } = await auth.signUp(payload);
-            if (message === "Gmail already exist") console.log("Gmail already exist");
-            if (message === "ErrorData") console.log("ErrorData");
-            localStorage.setItem("auth", "true");
+            if (message === "Gmail already exist") {
+                setIsLoading(false);
+                console.log("Gmail already exist");
+                return;
+            }
+            if (message === "ErrorData") {
+                setIsLoading(false);
+                router.push("/404");
+                return;
+            }
+
             setIsLoading(false);
             router.push({
                 pathname: "/verifyemail/notification",
