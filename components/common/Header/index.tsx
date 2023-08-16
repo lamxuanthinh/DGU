@@ -1,5 +1,4 @@
 import { SectionLogin, SectionCreateVideo } from "@/components/common/Header/headerStyled";
-import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
 import Image from "next/image";
