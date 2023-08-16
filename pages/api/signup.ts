@@ -56,7 +56,9 @@ export default function handleSignUp(req: NextApiRequest, res: NextApiResponse<D
                         sameSite: "lax",
                         expires: new Date(Date.now() + TIME_EXPIRED_USER_ID),
                     });
-                    (res as NextApiResponse<DataResponse>).status(200).json({ message: "SignUp Successfully" });
+                    (res as NextApiResponse<DataResponse>)
+                        .status(200)
+                        .json({ message: "SignUp Successfully", userId: user._id });
                     resolve(true);
                 } catch (error) {
                     (res as NextApiResponse<DataResponse>).json({ message: "ErrorData" });
