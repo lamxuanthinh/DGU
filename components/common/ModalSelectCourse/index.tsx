@@ -26,7 +26,7 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
 
     const [stepSelected, setStepSelected] = useState<number>(0);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
-    const [newCourseCreated, setCourseCreated] = useState<IMyCourseData>();
+    const [newCourseCreated, setCourseCreated] = useState<IMyCourseData[]>([]);
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Preview video short"];
 
     const {
@@ -61,19 +61,22 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
             {
                 userId &&
                     myCourseData &&
-                    setCourseCreated({
-                        _id: myCourseData.length,
-                        title: data.title,
-                        author: data.author,
-                        description: data.description,
-                        price: data.price,
-                        level: data.classify,
-                        status: "",
-                        thumbnail: data.image,
-                        createdAt: "",
-                        updatedAt: "",
-                        userId: userId,
-                    });
+                    setCourseCreated((prevCourses) => [
+                        ...prevCourses,
+                        {
+                            _id: prevCourses.length,
+                            title: data.title,
+                            author: data.author,
+                            description: data.description,
+                            price: data.price,
+                            level: data.classify,
+                            status: "",
+                            thumbnail: data.image,
+                            createdAt: "", 
+                            updatedAt: "",
+                            userId: userId,
+                        },
+                    ]);
             }
         };
 
@@ -114,9 +117,6 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
         myCourseData && setCourseSelected(myCourseData[0]);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    console.log(courseSelected?._id);
-    console.log(newCourseCreated?._id);
-
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">
             <SelectCourseLayout
@@ -150,30 +150,34 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                             );
                                         })}
 
-                                    {newCourseCreated && myCourseData && (
-                                        <div
-                                            onClick={() => {
-                                                setCourseSelected(newCourseCreated);
-                                            }}
-                                            className={`h-[140px] p-1 rounded-md ${
-                                                courseSelected &&
-                                                courseSelected._id == newCourseCreated._id &&
-                                                "border-[3px] border-[#7FCFFC] transition-all duration-200"
-                                            } hover:cursor-pointer`}
-                                        >
-                                            <Image
-                                                src={`${newCourseCreated.thumbnail}`}
-                                                width={0}
-                                                height={0}
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    objectFit: "cover",
-                                                }}
-                                                alt="logo"
-                                            />
-                                        </div>
-                                    )}
+                                    {newCourseCreated &&
+                                        myCourseData &&
+                                        newCourseCreated.map((item) => {
+                                            return (
+                                                <div
+                                                    onClick={() => {
+                                                        setCourseSelected(item);
+                                                    }}
+                                                    className={`h-[140px] p-1 rounded-md ${
+                                                        courseSelected &&
+                                                        courseSelected._id == item._id &&
+                                                        "border-[3px] border-[#7FCFFC] transition-all duration-200"
+                                                    } hover:cursor-pointer`}
+                                                >
+                                                    <Image
+                                                        src={`${item.thumbnail}`}
+                                                        width={0}
+                                                        height={0}
+                                                        style={{
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            objectFit: "cover",
+                                                        }}
+                                                        alt="logo"
+                                                    />
+                                                </div>
+                                            );
+                                        })}
 
                                     <div
                                         className={`h-[140px] flex items-center justify-center p-1 rounded-md text-[#3983AC] bg-[#f4fbff] hover:cursor-pointer hover:border-[3px] hover:border-[#7FCFFC] transition-all duration-200`}

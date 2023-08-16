@@ -1,6 +1,8 @@
 import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import Image from "next/image";
+import { useState } from "react";
 import { BiCommentDetail } from "react-icons/bi";
+import TextEllipsis from "../../TextEllipsis";
 interface IPreviewCourse {
     courseDataInput: {
         title: string;
@@ -10,7 +12,18 @@ interface IPreviewCourse {
 }
 
 export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
-    
+    const MAX_CAPTION_LENGTH = 50;
+    const truncatedCaption =
+        courseDataInput.title && courseDataInput.title.length > MAX_CAPTION_LENGTH
+            ? courseDataInput.title.slice(0, MAX_CAPTION_LENGTH) + "...  "
+            : courseDataInput.title;
+
+    const [showFullCaption, setShowFullCaption] = useState(false);
+
+    const handleSeeMoreClick = () => {
+        setShowFullCaption(true);
+    };
+
     return (
         <div className="w-full dgu-course-card bg-white h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer">
             <div className="w-full h-[180px] flex justify-center items-center relative">
@@ -33,9 +46,11 @@ export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
 
             <div className="w-full h-[160px] flex justify-center items-center">
                 <CourseCardInfo className=" flex flex-col justify-evenly items-center ">
-                    <div className="w-full h-[60px]  flex flex-wrap justify-start items-center">
-                        <p className="text-[16px] font-bold">{courseDataInput.title}</p>
-                    </div>
+                    <TextEllipsis
+                        content={courseDataInput.title}
+                        styleContent={{ maxHeight: "48px", textSize: "16px" }}
+                    />
+
                     <div className="w-full h-[25px] flex flex-wrap justify-start ">
                         <div className="bg-[#fcf8bae6] flex justify-start items-center h-[25px] rounded-[20px] ">
                             <p className="text-[10px] font-bold p-2 ">Beginner</p>

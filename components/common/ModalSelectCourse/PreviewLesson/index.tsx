@@ -1,5 +1,6 @@
 import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import Image from "next/image";
+import TextEllipsis from "../../TextEllipsis";
 
 interface IPreviewCourse {
     lessonDataInput: {
@@ -19,9 +20,10 @@ export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
 
             <div className="w-full h-[160px] flex justify-center items-center">
                 <CourseCardInfo className=" flex flex-col justify-around items-center">
-                    <div className="w-full h-[60px]  flex flex-wrap justify-start items-center py-3">
-                        <p className="text-[16px] font-bold">{lessonDataInput.title}</p>
-                    </div>
+                    <TextEllipsis
+                        content={lessonDataInput.title}
+                        styleContent={{ maxHeight: "48px", textSize: "16px" }}
+                    />
 
                     <div className="w-full flex flex-wrap justify-start items-center">
                         <Image
