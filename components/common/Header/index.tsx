@@ -1,5 +1,4 @@
 import { SectionLogin, SectionCreateVideo } from "@/components/common/Header/headerStyled";
-import { BsSearch } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
 import Image from "next/image";
@@ -7,6 +6,7 @@ import Link from "next/link";
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import { useEffect, useState } from "react";
+import SearchBar from "../SearchBar";
 
 const Header = () => {
     const [checkAuth, setCheckAuth] = useState();
@@ -18,18 +18,8 @@ const Header = () => {
 
     return (
         <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
-            <div className="w-[50%] flex flex-nowrap bg-[#F6F6F6] rounded-2xl p-2">
-                <div className="w-[50px] flex justify-center items-center ">
-                    <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
-                </div>
-                <div className="w-full flex justify-center items-center">
-                    <input
-                        type="text"
-                        name="search"
-                        placeholder="Search..."
-                        className="w-[100%] bg-transparent border-none outline-none"
-                    />
-                </div>
+            <div className="relative w-[50%] flex flex-nowrap rounded-2xl p-2">
+                <SearchBar />
             </div>
             <div className="flex flex-nowrap items-center">
                 <div className="flex items-center">
