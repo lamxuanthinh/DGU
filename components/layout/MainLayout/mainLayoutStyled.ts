@@ -28,4 +28,5 @@ export  const MainContent = styled.div`
     margin-top: 5px;
     background: #fff;
     border-radius: 5px;
+    z-index: 1;
 `;

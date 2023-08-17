@@ -17,7 +17,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
+        <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px] z-[1]">
             <div className="relative w-[50%] flex flex-nowrap rounded-2xl p-2">
                 <SearchBar />
             </div>
