@@ -1,4 +1,4 @@
-import React, {  useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -112,29 +112,29 @@ export default function Upload() {
     return (
         <>
             <div className="w-[100%] h-[100%] flex flex-col justify-center items-center">
-                <div className="w-[80%] h-[100%] flex flex-col ">
-                    <div className="w-[100%] h-[100px]  flex justify-start items-center">
-                        <p className="font-bold text-[25px]">Upload your file below</p>
+                <div className="sm:w-[80%] h-[100%] flex flex-col w-full">
+                    <div className="h-[100px]  flex justify-start items-center mt-[20px] w-full">
+                        <p className="font-bold text-[25px] w-[85%] mx-auto">Upload your file below</p>
                     </div>
-                    <div className="w-[100%] h-[90%] flex justify-center items-center">
+                    <div className="w-[100%] h-[70%] flex justify-center items-center">
                         <div
-                            className={`w-[100%] h-[90%] border-dashed border-2 border-black flex justify-center items-center drag-drop-area 
+                            className={`w-[85%] h-[95%] border-dashed border-2 border-black flex justify-center items-center drag-drop-area 
                             ${isDragging ? "dragging" : ""}
                             `}
                             onDragOver={handleDragOver}
                             onDragLeave={handleDragLeave}
                             onDrop={handleDrop}
                         >
-                            <div className="w-[50%] h-[90%]  flex flex-col justify-center items-center ">
+                            <div className="w-[50%] h-[70%]  flex flex-col justify-center items-center ">
                                 <div className="w-[100%] h-1/3 flex flex-col justify-center items-center">
                                     <FaCloudUploadAlt
-                                        className="h-full w-full flex items-center justify-center "
+                                        className="h-full w-full flex items-center justify-center opacity-60"
                                         size={100}
                                     />
                                 </div>
-                                <div className="w-[100%] h-1/3 my-[10px] flex flex-col justify-center items-center">
+                                <div className="w-[100%] h-1/3 mt-[6px] mb-[10px] flex flex-col justify-center items-center">
                                     <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-end">
-                                        <p className="font-bold  text-2xl ">Drag your file here</p>
+                                        <p className="font-bold  text-2xl text-center">Drag your file here</p>
                                     </div>
                                     <div className="w-[100%] h-[60px] my-[10px]  flex justify-center items-start">
                                         <p className="font-bold  text-2xl ">Or</p>
