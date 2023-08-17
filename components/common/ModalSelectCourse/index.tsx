@@ -12,6 +12,7 @@ import PreviewLesson from "@/components/common/ModalSelectCourse/PreviewLesson";
 import { useAppContext } from "@/Context";
 import { IMyCourseData } from "@/model/course";
 import courseApi from "@/apis/course";
+import TextEllipsis from "../TextEllipsis";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,7 +73,7 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                             level: data.classify,
                             status: "",
                             thumbnail: data.image,
-                            createdAt: "", 
+                            createdAt: "",
                             updatedAt: "",
                             userId: userId,
                         },
@@ -198,10 +199,11 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                 {courseSelected && (
                                     <div className="p-4 mx-5 border border-[#c3c3c3] rounded-md text-[#000]">
                                         <div className="flex justify-start mb-4">
-                                            <MdOutlinePlayLesson fontSize={24} className="text-[#3983AC]" />
-                                            <p className="text-[17px] font-bold text-[#3B3A3A] ml-4">
-                                                {courseSelected.title}
-                                            </p>
+                                            <MdOutlinePlayLesson fontSize={28} className="text-[#3983AC] mr-4" />
+                                            <TextEllipsis
+                                                content={courseSelected.title}
+                                                styleContent={{ maxHeight: "48px", textSize: "16px" }}
+                                            />
                                         </div>
                                         <div className="text-[14px] font-semibold text-[#4F4E4E] mb-4">
                                             {courseSelected.description}
