@@ -1,6 +1,5 @@
 import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import Image from "next/image";
-import { useState } from "react";
 import { BiCommentDetail } from "react-icons/bi";
 import TextEllipsis from "../../TextEllipsis";
 interface IPreviewCourse {
@@ -12,17 +11,6 @@ interface IPreviewCourse {
 }
 
 export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
-    const MAX_CAPTION_LENGTH = 50;
-    const truncatedCaption =
-        courseDataInput.title && courseDataInput.title.length > MAX_CAPTION_LENGTH
-            ? courseDataInput.title.slice(0, MAX_CAPTION_LENGTH) + "...  "
-            : courseDataInput.title;
-
-    const [showFullCaption, setShowFullCaption] = useState(false);
-
-    const handleSeeMoreClick = () => {
-        setShowFullCaption(true);
-    };
 
     return (
         <div className="w-full dgu-course-card bg-white h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer">

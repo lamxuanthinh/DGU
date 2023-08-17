@@ -153,9 +153,10 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
 
                                     {newCourseCreated &&
                                         myCourseData &&
-                                        newCourseCreated.map((item) => {
+                                        newCourseCreated.map((item, index) => {
                                             return (
                                                 <div
+                                                    key={index}
                                                     onClick={() => {
                                                         setCourseSelected(item);
                                                     }}
