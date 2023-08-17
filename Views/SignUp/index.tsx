@@ -96,10 +96,10 @@ export default function SignUp() {
     }, []);
 
     return (
-        <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
-            <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
+        <div className="h-screen w-screen lg:bg-[#c3c3c3f5] flex justify-center items-center">
+            <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
                 <SlideLogin />
-                <div data-aos="fade-up" data-aos-duration="2000" className="w-[469px] flex items-center z-2">
+                <div data-aos="fade-up" data-aos-duration="2000" className="w-full lg:w-[469px] flex items-center z-2">
                     <div className="w-[100%]">
                         <div className="pb-8 pt-4">
                             <h1 className="font-bold text-[32px] pb-3">Welcome you to DGU!</h1>
@@ -134,7 +134,7 @@ export default function SignUp() {
                                     <div className="flex justify-between">
                                         <div
                                             ref={selectRef}
-                                            className="bg-white w-[35%] flex justify-start items-center h-[48px] rounded-xl text-[14px] border-[#52525233] border-2"
+                                            className="bg-white mr-2 sm:mr-0 w-[35%] flex justify-start items-center h-[48px] rounded-xl text-[14px] border-[#52525233] border-2"
                                         >
                                             <Select
                                                 styles={{

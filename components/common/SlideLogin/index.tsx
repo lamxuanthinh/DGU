@@ -7,11 +7,11 @@ export default function SlideLogin() {
      return <div
           data-aos="fade-left"
           data-aos-duration="1500"
-          className="w-[469px] bg-[#000000] rounded-xl rounded-br-[50px] z-3"
+          className="w-[469px] bg-[#000000] rounded-xl rounded-br-[50px] z-3 hidden lg:block"
      >
           {dataSlideLogin.map((itemSlide) => {
                return (
-                    itemSlide.key === currentSlide && (
+                    itemSlide.key === currentSlide && ( 
                          <div key={itemSlide.key}>
                               <div className="h-[450px] relative">
                                    {itemSlide.images?.map((image, key) => (
