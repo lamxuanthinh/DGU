@@ -17,7 +17,7 @@ export default function MyCourse() {
                                 <div className="w-full h-[180px] flex justify-center items-center relative">
                                     {themenails}
                                     <div className="w-full bottom-0 left-0 absolute">
-                                        <div className="flex flex-wrap  my-[0.5rem]  ">
+                                        <div className="flex flex-wrap  my-[0.5rem]  gap-y-2 sm:gap-y-0">
                                             <div className="bg-[#f3f3f3e7] ml-[0.5rem] flex justify-start items-center h-[25px] rounded-[20px] ">
                                                 <p className="text-[10px] font-bold p-2 ">10 Lesson</p>
                                             </div>

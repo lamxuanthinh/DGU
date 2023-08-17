@@ -33,7 +33,6 @@ export const SectionIcon = styled.div`
 export const SectionCreateVideo = styled.div`
   width: 182px;
   height: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
 `;
@@ -54,8 +53,6 @@ export const SectionProfile = styled.div`
 `;
 
 export const HeaderTablet = styled.div`
-  width: calc(100% - 120px);
-
   &.active {
     width: 100%;
   }
