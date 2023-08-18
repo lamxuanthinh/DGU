@@ -8,6 +8,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 
 function SearchBar() {
+     const searchInputRef = useRef<HTMLInputElement>(null);
      const [isFilter, setIsFilter] = useState<boolean>(false);
      const [valueInput, setValueInput] = useState<string>("");
      const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,8 +16,20 @@ function SearchBar() {
      const inputRef = useRef<HTMLInputElement>(null);
 
      useEffect(() => {
+          function handleClickOutside(event: any) {
+               if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+                    setIsSearchResult(false);
+               }
+          }
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => {
+               document.removeEventListener("mousedown", handleClickOutside);
+          }
+     }, []);
+
+     useEffect(() => {
           const handleSearch = async () => {
-               if (valueInput) {
+               if (valueInput.trim()) {
                     setIsLoading(true);
                     // call api in here
                     await new Promise((resolve) => {
@@ -32,33 +45,23 @@ function SearchBar() {
 
      const handleToggleFilter = () => {
           setIsFilter(!isFilter);
-     }
+     }     
 
      const handleClearSearch = () => {
           setValueInput("");
      }
 
      const onChangeValueInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-          const valueInput = event.target.value.trim();
-          setValueInput(valueInput);
+          setValueInput(event.target.value);
      }
 
      const handleOpenSearchResult = () => {
           setIsSearchResult(true)
-     }
-
-
-     const handleCloseSearchBar = () => {
-          setIsSearchResult(false)
-     }
-
+     }     
+     
      return (
-          <div className="relative w-[50vw] bg-white z-30">
-               {
-                    isSearchResult &&
-                    <div className="fixed inset-0 z-10" onClick={handleCloseSearchBar}></div>
-               }
-               <div className="flex px-7 py-1 relative z-30">
+          <div className="relative w-[50vw] bg-white" ref={searchInputRef}>
+               <div className="flex px-7 py-1 relative">
                     <Button className="text-base text-[#909090]">
                          <BsSearch />
                     </Button>
@@ -83,7 +86,7 @@ function SearchBar() {
                          </>
                     }
                </div>
-               {isSearchResult && <div className="bg-white absolute top-[61px] left-[-20px] w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 px-[30px] z-30">
+               {isSearchResult && <div className="bg-white absolute top-[61px] left-[-20px] w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 px-[30px] z-[1]">
                     <div className="overflow-y-scroll no-scrollbar max-h-[60vh] pb-8">
                          {isFilter && <>
                               <Filter />
