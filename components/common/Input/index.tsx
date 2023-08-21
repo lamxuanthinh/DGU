@@ -98,9 +98,9 @@ export default function Input({
                             ry={12}
                             strokeWidth={2}
                             stroke="#ccc"
-                            className=" lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px]"
                             width={590}
                             fill="none"
+                            className=" lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px]"
                             mask="url(#border)"
                         />
                         <rect
@@ -118,7 +118,7 @@ export default function Input({
                             strokeDashoffset={0.92}
                             className={`${
                                 isFocus ? "stroke-dashoffset-0" : ""
-                            }  lg:w-[468px] h-[55px] md:h-[50px]  md:w-[590px] transi ion-stroke-dashoffset duration-700ease-in-out`}
+                            } lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px] transition-stroke-dashoffset duration-700 ease-in-out`}
                         />
                     </svg>
                 )}
