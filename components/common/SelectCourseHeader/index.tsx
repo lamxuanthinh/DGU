@@ -3,9 +3,10 @@ import { GrDocumentStore } from "react-icons/gr";
 
 interface ISelectCourseHeader {
     setModalSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function SelectCourseHeader({ setModalSelectCourse }: ISelectCourseHeader) {
+export default function SelectCourseHeader({ setModalSelectCourse, setIsCloseModal }: ISelectCourseHeader) {
     return (
         <div className="flex justify-between items-center w-full">
             <div className="flex">
@@ -19,7 +20,7 @@ export default function SelectCourseHeader({ setModalSelectCourse }: ISelectCour
                 </button>
                 <button
                     onClick={() => {
-                        setModalSelectCourse(false);
+                        setIsCloseModal(true);
                     }}
                     className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded"
                 >

@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Image from "next/image";
+import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
 interface IUploadImagefile {
-    setValue?: any;
+    setValue: UseFormSetValue<any>;
+    getValues: UseFormGetValues<any>;
 }
 
-export default function UploadImageFile({ setValue }: IUploadImagefile) {
+export default function UploadImageFile({ setValue, getValues }: IUploadImagefile) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [srcImageEdit, setSrcImageEdit] = useState<string | null>(null);
 
@@ -51,7 +53,7 @@ export default function UploadImageFile({ setValue }: IUploadImagefile) {
                     width={100}
                     height={100}
                     className="absolute inset-0 w-full h-full object-cover z-20"
-                    src={srcImageEdit}
+                    src={getValues("image")}
                     alt="Course Avatar"
                 />
             )}

@@ -1,5 +1,5 @@
 import { SchemaLesson } from "@/utils/rules";
-import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import UploadImageFile from "../../UploadFile/UploadImageFile";
 
 type FormLessonData = Pick<SchemaLesson, "title" | "description" | "image" | "author">;
@@ -7,9 +7,11 @@ type FormLessonData = Pick<SchemaLesson, "title" | "description" | "image" | "au
 interface ILessonFillForm {
     register: UseFormRegister<FormLessonData>;
     setValue: UseFormSetValue<FormLessonData>;
+    getValues: UseFormGetValues<FormLessonData>;
+
 }
 
-export default function LessonFillForm({ register, setValue }: ILessonFillForm) {
+export default function LessonFillForm({ register, setValue,getValues }: ILessonFillForm) {
     return (
         <div className="px-5 pt-5 pb-2 h-full rounded">
             <div className="grid grid-cols-4 mb-4">
@@ -46,7 +48,7 @@ export default function LessonFillForm({ register, setValue }: ILessonFillForm) 
                     </p>
                 </div>
                 <div className="col-span-2 h-[140px]">
-                    <UploadImageFile setValue={setValue} />
+                    <UploadImageFile setValue={setValue} getValues={getValues} />
                 </div>
             </div>
         </div>

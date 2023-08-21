@@ -1,6 +1,7 @@
 import { IoIosArrowForward, IoIosRadioButtonOff, IoIosRadioButtonOn } from "react-icons/io";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { Dispatch, SetStateAction } from "react";
+import { useAppContext } from "@/Context";
 
 interface IStepTransition {
     stepSelected: number;
@@ -15,6 +16,8 @@ export default function StepTransition({
     titleSteps,
     setStepCreateCourse,
 }: IStepTransition) {
+    const { courseSelected } = useAppContext();
+
     const handleStepSelected = (index: number) => {
         setStepSelected(index);
         setStepCreateCourse(0);
@@ -35,7 +38,7 @@ export default function StepTransition({
                             }
                         }`}
                             onClick={() => {
-                                handleStepSelected(index);
+                                courseSelected && handleStepSelected(index);
                             }}
                         >
                             {stepSelected > index ? (

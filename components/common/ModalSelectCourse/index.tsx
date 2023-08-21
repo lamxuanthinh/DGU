@@ -17,23 +17,29 @@ import TextEllipsis from "../TextEllipsis";
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
     setConfirmEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | "price" | "image" | "author">;
 type FormLessonData = Pick<SchemaCourse, "title" | "description" | "image" | "author">;
 
-export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelectCourse }: IModalSelectCourse) {
+export default function ModalSelectCourse({
+    setConfirmEditModal,
+    setRenderSelectCourse,
+    setIsCloseModal,
+}: IModalSelectCourse) {
     const { courseSelected, setCourseSelected, myCourseData, setMyCourseData, setLessonCreated } = useAppContext();
 
     const [stepSelected, setStepSelected] = useState<number>(0);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
     const [newCourseCreated, setCourseCreated] = useState<IMyCourseData[]>([]);
-    const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Preview video short"];
+    const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Preview video short"];
 
     const {
         register: courseRegister,
         handleSubmit: handleCourseSubmit,
         setValue: setValueOfCourse,
+        getValues: getValueOfCourse,
         watch: watchValueOfCourse,
         reset: resetCourseData,
     } = useForm<FormCourseData>({});
@@ -42,6 +48,7 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
         register: lessonRegister,
         handleSubmit: handleLessonSubmit,
         setValue: setValueOfLesson,
+        getValues: getValueOfLesson,
         watch: watchValueOfLesson,
         reset: resetLessonData,
     } = useForm<FormLessonData>({});
@@ -59,6 +66,7 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
         const addNewCourse = () => {
             const userId = localStorage.getItem("userId");
+
             {
                 userId &&
                     myCourseData &&
@@ -110,6 +118,8 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
         const fetchMyCourseApi = async () => {
             const userId = localStorage.getItem("userId");
             const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
+            console.log(userId);
+
             setMyCourseData(myCourse);
         };
 
@@ -118,9 +128,17 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
         myCourseData && setCourseSelected(myCourseData[0]);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    useEffect(() => {
+        if (newCourseCreated) {
+            const lengthOfListNewCourse = newCourseCreated.length - 1;
+            setCourseSelected(newCourseCreated[lengthOfListNewCourse]);
+        }
+    }, [newCourseCreated]);
+
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">
             <SelectCourseLayout
+                setIsCloseModal={setIsCloseModal}
                 setModalSelectCourse={setRenderSelectCourse}
                 stepSelected={stepSelected}
                 setStepSelected={setStepSelected}
@@ -250,12 +268,16 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                 </div>
                             </div>
                             <button
-                                className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded"
+                                className={`flex items-center text-[16px] ${
+                                    courseSelected
+                                        ? "text-[#3983AC] bg-[#a8dfff] hover:cursor-pointer"
+                                        : "text-[#959595] bg-[#dddddd] hover:cursor-none"
+                                } py-2 px-4 rounded`}
                                 onClick={() => {
-                                    handleNextStep();
+                                    courseSelected && handleNextStep();
                                 }}
                             >
-                                <p className="font-semibold">Next</p>
+                                <p className="font-semibold">Select</p>
                             </button>
                         </div>
                     </div>
@@ -268,7 +290,11 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                 onSubmitCourseItemForm();
                             }}
                         >
-                            <CourseItemForm register={courseRegister} setValue={setValueOfCourse} />
+                            <CourseItemForm
+                                register={courseRegister}
+                                setValue={setValueOfCourse}
+                                getValues={getValueOfCourse}
+                            />
                             <div className="flex justify-between">
                                 <div
                                     className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded hover:cursor-pointer"
@@ -337,7 +363,11 @@ export default function ModalSelectCourse({ setConfirmEditModal, setRenderSelect
                                 onSubmitLessonItemForm();
                             }}
                         >
-                            <LessonFillForm register={lessonRegister} setValue={setValueOfLesson} />
+                            <LessonFillForm
+                                register={lessonRegister}
+                                setValue={setValueOfLesson}
+                                getValues={getValueOfLesson}
+                            />
                             <div className="flex justify-between">
                                 <button
                                     className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded"

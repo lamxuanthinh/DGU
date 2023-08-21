@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -9,9 +9,9 @@ export default function Upload() {
     const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
+    const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
     const [isRenderSelectCourse, setRenderSelectCourse] = useState<boolean>(false);
     const [isDragging, setIsDragging] = useState(false);
-    
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -42,8 +42,17 @@ export default function Upload() {
         setIsLoading(false);
     };
 
+    const onOpenCloseModal = () => {
+        setIsCloseModal(false);
+        setRenderSelectCourse(false);
+    };
+
     const onCancel = () => {
         setIsModal(false);
+    };
+
+    const handleCancelCloseModal = () => {
+        setIsCloseModal(false);
     };
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -109,6 +118,21 @@ export default function Upload() {
         }
     };
 
+    useEffect(() => {
+        if (isRenderSelectCourse) {
+            const handleBeforeUnload = (event: any) => {
+                event.preventDefault();
+                event.returnValue = "";
+            };
+
+            window.addEventListener("beforeunload", handleBeforeUnload);
+
+            return () => {
+                window.removeEventListener("beforeunload", handleBeforeUnload);
+            };
+        }
+    }, [isRenderSelectCourse]);
+
     return (
         <>
             <div className="w-[100%] h-[100%] flex flex-col justify-center items-center">
@@ -161,8 +185,20 @@ export default function Upload() {
                 </div>
             </div>
             {isModal && <Modal title="Do you want to go to the video editing step?" onOk={onOk} onCancel={onCancel} />}
+            {isCloseModal && (
+                <Modal
+                    title="Do you want to reload, changes you made may not be saved.?"
+                    onOk={onOpenCloseModal}
+                    onCancel={handleCancelCloseModal}
+                />
+            )}
+
             {isRenderSelectCourse && (
-                <ModalSelectCourse setRenderSelectCourse={setRenderSelectCourse} setConfirmEditModal={setIsModal} />
+                <ModalSelectCourse
+                    setRenderSelectCourse={setRenderSelectCourse}
+                    setConfirmEditModal={setIsModal}
+                    setIsCloseModal={setIsCloseModal}
+                />
             )}
             <canvas ref={canvasRef} className="fixed z-[-10] opacity-0" />
             <video ref={videoRef} className="fixed z-[-10] opacity-0" />

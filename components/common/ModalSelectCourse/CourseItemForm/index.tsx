@@ -1,4 +1,4 @@
-import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import UploadImageFile from "../../UploadFile/UploadImageFile";
 import { SchemaCourse } from "@/utils/rules";
 import Dropdown from "../../Dropdown";
@@ -10,9 +10,10 @@ type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | 
 interface ICourseItemForm {
     register: UseFormRegister<FormCourseData>;
     setValue: UseFormSetValue<FormCourseData>;
+    getValues: UseFormGetValues<FormCourseData>;
 }
 
-export default function CourseItemForm({ register, setValue }: ICourseItemForm) {
+export default function CourseItemForm({ register, setValue, getValues }: ICourseItemForm) {
     const [visibility, setVisibility] = useState("");
     const authorRef = React.useRef<HTMLInputElement>(null);
     const visibilityOptions = [
@@ -105,7 +106,7 @@ export default function CourseItemForm({ register, setValue }: ICourseItemForm) 
                     </p>
                 </div>
                 <div className="col-span-2 h-[140px]">
-                    <UploadImageFile setValue={setValue} />
+                    <UploadImageFile setValue={setValue} getValues={getValues}/>
                 </div>
             </div>
         </div>
