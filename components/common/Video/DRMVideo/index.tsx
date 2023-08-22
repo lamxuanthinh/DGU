@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import useVdocipher from "@/hooks/use-vdocipher";
-import DescriptionVideo from "./DescriptionVideo";
-import ActionVideo from "./ActionVideo";
-import ModalVideo from "./ModalVideo";
-import ControlsVideo from "./ControlsVideo";
+import DescriptionVideo from "../DescriptionVideo";
+import ActionVideo from "../ActionVideo";
+import ModalVideo from "../ModalVideo";
+import ControlsVideo from "../ControlsVideo";
 import { IVideoShortPayload } from "@/model/video";
-import Comments from "../Comments/Comments";
+import Comments from "../../Comments/Comments";
 
 interface IVideo {
     data: IVideoShortPayload;

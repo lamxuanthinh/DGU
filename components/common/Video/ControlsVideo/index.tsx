@@ -32,6 +32,7 @@ export default function ControlsVideo({
     handleCloseModal,
     handleOpenModal,
 }: IControlsVideo) {
+
     const currentTimeByPercent = (currentTime / totalTime) * 100;
 
     const calcPercentProgress = (event: React.MouseEvent<HTMLDivElement>) => {

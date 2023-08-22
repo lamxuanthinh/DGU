@@ -1,14 +1,15 @@
+import Video from "@/components/common/Video/DRMVideo";
 import { useState } from "react";
-import NormalVideo from "@/components/common/Video/NormalVideo";
 
-export default function Home({ data }: any) {
-    const [dataVideo] = useState(data);
+export default function VDoCipher({ data }: any) {
+    const [dataVideo] = useState(data.metaData);
 
     const VideoSection = ({ data }: any) => {
+
         return (
             <div className="snap-start flex-shrink-0 mb-3 w-full h-full text-[#fff] overflow-hidden">
                 <div className="mb-4 relative h-full">
-                    <NormalVideo data={data} />
+                    <Video data={data} />
                 </div>
             </div>
         );

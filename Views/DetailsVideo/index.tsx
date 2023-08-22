@@ -1,4 +1,4 @@
-import Video from "@/components/common/Video";
+import Video from "@/components/common/Video/DRMVideo";
 import { IVideoShortPayload } from "@/model/video";
 
 interface IDetailsVideo {

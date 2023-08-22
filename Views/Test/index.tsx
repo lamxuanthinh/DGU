@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NormalVideo from "@/components/common/Video/NormalVideo";
 
-export default function Home({ data }: any) {
+export default function Test({ data }: any) {
     const [dataVideo] = useState(data);
 
     const VideoSection = ({ data }: any) => {
