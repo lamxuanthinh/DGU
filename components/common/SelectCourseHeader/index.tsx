@@ -2,11 +2,11 @@ import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { GrDocumentStore } from "react-icons/gr";
 
 interface ISelectCourseHeader {
-    setModalSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
+    
     setIsCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function SelectCourseHeader({ setModalSelectCourse, setIsCloseModal }: ISelectCourseHeader) {
+export default function SelectCourseHeader({ setIsCloseModal }: ISelectCourseHeader) {
     return (
         <div className="flex justify-between items-center w-full">
             <div className="flex">
