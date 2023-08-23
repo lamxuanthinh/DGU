@@ -8,10 +8,9 @@ interface ILessonFillForm {
     register: UseFormRegister<FormLessonData>;
     setValue: UseFormSetValue<FormLessonData>;
     getValues: UseFormGetValues<FormLessonData>;
-
 }
 
-export default function LessonFillForm({ register, setValue,getValues }: ILessonFillForm) {
+export default function LessonFillForm({ register, setValue, getValues }: ILessonFillForm) {
     return (
         <div className="px-5 pt-5 pb-2 h-full rounded">
             <div className="grid grid-cols-4 mb-4">

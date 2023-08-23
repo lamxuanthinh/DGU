@@ -26,7 +26,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className="px-5 pt-5 pb-2 h-full rounded">
+        <div className="pt-5 max-h-[89%] rounded overflow-scroll scrollbar-none">
             <div className="grid grid-cols-4 mb-4">
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Lesson Title & Author</h1>
@@ -37,14 +37,15 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                 <div className="col-span-2">
                     <input
                         {...register("title")}
-                        className="p-[2px] pl-3 outline-none mb-4 w-full"
-                        placeholder="Enter your title"
+                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded-md"
+                        placeholder="Enter your title ..."
                         type="text"
                         required
                     />
+
                     <input
                         ref={authorRef}
-                        className="p-[3px] pl-3 col-span-3 w-full text-[#888888]"
+                        className="p-[3px] pl-3 col-span-3 w-full text-[#888888] bg-[#7fcffc1c] rounded-md"
                         value="Giana Schelea"
                         type="text"
                         disabled
@@ -63,18 +64,24 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     </p>
                 </div>
                 <div className="col-span-2">
-                    <div className="grid grid-cols-2 mb-3">
-                        <div className="col-span-1">
-                            <div>
-                                <Dropdown
-                                    classNameLabel="text-[#9ca3b7] p-[3px]"
-                                    options={visibilityOptions}
-                                    valueSelected={visibility}
-                                    setValueSelected={setVisibility}
-                                    setValue={setValue}
-                                />
-                            </div>
-                            <div className="flex items-center">
+                    <textarea
+                        {...register("description")}
+                        placeholder="Enter your description ..."
+                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full"
+                        required
+                    />
+                    <div className="mb-3">
+                        <div className="bg-[#7fcffc1c]">
+                            <Dropdown
+                                classNameLabel="text-[#9ca3b7] p-[3px]"
+                                options={visibilityOptions}
+                                valueSelected={visibility}
+                                setValueSelected={setVisibility}
+                                setValue={setValue}
+                            />
+                        </div>
+                        <div>
+                            <div className="flex items-center w-[50%]">
                                 <input
                                     {...register("price")}
                                     className="p-[3px] pl-3 outline-none w-full"
@@ -86,13 +93,6 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                             </div>
                         </div>
                     </div>
-
-                    <textarea
-                        {...register("description")}
-                        placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full"
-                        required
-                    />
                 </div>
             </div>
 
@@ -106,7 +106,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     </p>
                 </div>
                 <div className="col-span-2 h-[140px]">
-                    <UploadImageFile setValue={setValue} getValues={getValues}/>
+                    <UploadImageFile setValue={setValue} getValues={getValues} />
                 </div>
             </div>
         </div>

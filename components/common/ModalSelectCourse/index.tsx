@@ -293,7 +293,7 @@ export default function ModalSelectCourse({
                 {stepSelected == 0 && stepCreateCourse == 1 && (
                     <div className="h-full flex justify-between">
                         <form
-                            className="w-[55%] flex flex-col justify-between"
+                            className="w-[58%] flex flex-col justify-between px-5"
                             onSubmit={() => {
                                 onSubmitCourseItemForm();
                             }}
@@ -305,7 +305,7 @@ export default function ModalSelectCourse({
                             />
                             <div className="flex justify-between">
                                 <div
-                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded hover:cursor-pointer"
+                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 border border-[#a4a4a4] rounded hover:cursor-pointer"
                                     onClick={() => {
                                         setStepCreateCourse(0);
                                     }}
@@ -322,14 +322,14 @@ export default function ModalSelectCourse({
                             </div>
                         </form>
                         <div
-                            className="w-[45%] flex justify-center items-center relative"
+                            className="w-[40%] flex justify-center items-center relative"
                             style={{
                                 backgroundImage: `url(/Images/CreateCourse/background.png)`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                             }}
                         >
-                            <div className="w-[70%]">
+                            <div className="w-[80%]">
                                 <div className="flex justify-center items-center">
                                     <BsEyeFill className="mr-3" />
                                     <p className="font-semibold">Course Card preview</p>
