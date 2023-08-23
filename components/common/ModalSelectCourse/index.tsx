@@ -13,6 +13,7 @@ import { useAppContext } from "@/Context";
 import { IMyCourseData } from "@/model/course";
 import courseApi from "@/apis/course";
 import TextEllipsis from "../TextEllipsis";
+import FillFormVideoShort from "./FillFormVideoShort";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,9 +29,16 @@ export default function ModalSelectCourse({
     setRenderSelectCourse,
     setIsCloseModal,
 }: IModalSelectCourse) {
-    const { courseSelected, setCourseSelected, myCourseData, setMyCourseData, setLessonCreated } = useAppContext();
+    const {
+        courseSelected,
+        setCourseSelected,
+        myCourseData,
+        setMyCourseData,
+        setLessonCreated,
+        stepSelected,
+        setStepSelected,
+    } = useAppContext();
 
-    const [stepSelected, setStepSelected] = useState<number>(0);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
     const [newCourseCreated, setCourseCreated] = useState<IMyCourseData[]>([]);
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Preview video short"];
@@ -428,6 +436,7 @@ export default function ModalSelectCourse({
                         </div>
                     </div>
                 )}
+                {stepSelected == 3 && <FillFormVideoShort />}
             </SelectCourseLayout>
         </div>
     );

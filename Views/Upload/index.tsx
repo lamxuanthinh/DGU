@@ -6,11 +6,11 @@ import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 
 export default function Upload() {
-    const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading } = useAppContext();
+    const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading, isRenderSelectCourse, setRenderSelectCourse } =
+        useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
-    const [isRenderSelectCourse, setRenderSelectCourse] = useState<boolean>(false);
     const [isDragging, setIsDragging] = useState(false);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
