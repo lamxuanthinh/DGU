@@ -15,8 +15,9 @@ interface ICourseItemForm {
 }
 
 export default function CourseItemForm({ register, setValue, getValues }: ICourseItemForm) {
-    const [visibility, setVisibility] = useState("");
     const authorRef = React.useRef<HTMLInputElement>(null);
+    const [isFreeCourse, setIsFreeCourse] = useState("Free");
+
     // const visibilityOptions = [
     //     { value: "beginner", label: "Beginner" },
     //     { value: "beginner2", label: "Beginner2" },
@@ -30,6 +31,17 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
         {
             id: 2,
             name: "Beginner2",
+        },
+    ];
+
+    const costsOptions = [
+        {
+            id: 1,
+            name: "Free",
+        },
+        {
+            id: 2,
+            name: "Fee",
         },
     ];
 
@@ -49,7 +61,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                 <div className="col-span-2">
                     <input
                         {...register("title")}
-                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded-md"
+                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded-md placeholder-black"
                         placeholder="Enter your title ..."
                         type="text"
                         required
@@ -68,7 +80,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
 
             <hr className="h-0.25 bg-slate-200 m-3" />
 
-            <div className="grid grid-cols-4 mb-4">
+            <div className="grid grid-cols-4">
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Description & Fee</h1>
                     <p className="text-[13px] mr-12 text-[#464646]">
@@ -79,11 +91,11 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full"
+                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] bg-[#7fcffc1c] placeholder-black placeholder-[14px] rounded border-2 w-full"
                         required
                     />
                     <div className="mb-3">
-                        <div className="bg-[#7fcffc1c]">
+                        <div className="bg-[#7fcffc1c] mb-4">
                             {/* <Dropdown
                                 classNameLabel="text-[#9ca3b7] p-[3px]"
                                 options={visibilityOptions}
@@ -94,30 +106,42 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                             <DropDownSelect
                                 className="py-[6px] border border-solid border-[#F7E7E7] px-[15px] mt-3"
                                 options={visibilityOptions}
-                                //
                                 onSelectOption={(test: string) => {
-                                    // get value in here
-                                    console.log(test);
+                                    setValue("classify", test);
                                 }}
                             />
                         </div>
-                        <div>
-                            <div className="flex items-center w-[50%]">
+                        <div className="flex justify-between">
+                            <div className="w-[48%] border-[#F7E7E7] bg-[#7fcffc1c]">
+                                <DropDownSelect
+                                    className="py-[6px] border border-solid border-[#F7E7E7] px-[15px]"
+                                    options={costsOptions}
+                                    onSelectOption={(value: string) => {
+                                        setIsFreeCourse(value);
+                                    }}
+                                />
+                            </div>
+                            <div
+                                className={`flex items-center w-[48%] border-[#F7E7E7] bg-[#7fcffc1c] ${
+                                    isFreeCourse == "Free" ? "bg-[#dadada]" : "bg-[#7fcffc1c]"
+                                } p-1`}
+                            >
+                                <p className="text-[#000000] ml-[15px]">$</p>
                                 <input
                                     {...register("price")}
-                                    className="p-[3px] pl-3 outline-none w-full"
-                                    placeholder="________________"
+                                    className="pl-3 outline-none w-full bg-[#7fcffc1c] placeholder-black"
+                                    placeholder="0"
                                     type="text"
                                     required
+                                    disabled={isFreeCourse == "Free" ? true : false}
                                 />
-                                <p className="text-[#9ca3b7] w-[36px] h-[36px] p-[8px]">$</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <hr className="h-0.25 bg-slate-200 m-3" />
+            <hr className="h-0.25 bg-slate-200 mb-3" />
 
             <div className="grid grid-cols-4 mb-4">
                 <div className="col-span-2 font-semibold">

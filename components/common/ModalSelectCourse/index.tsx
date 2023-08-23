@@ -72,6 +72,7 @@ export default function ModalSelectCourse({
     };
 
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
+
         const addNewCourse = () => {
             const userId = localStorage.getItem("userId");
 

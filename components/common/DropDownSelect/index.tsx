@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../Button";
-import { AiOutlineDown } from "react-icons/ai";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface IDropDownProps {
     options: any;
@@ -41,12 +41,12 @@ const DropDownSelect = ({ className, options, onSelectOption }: IDropDownProps) 
         <div className="relative select-none" ref={dropdownRef}>
             <div className={`flex items-center cursor-pointer justify-between ${className}`} onClick={handleToggleMenu}>
                 <div className="mr-[10px] text-sm">{selectedOption}</div>
-                <AiOutlineDown />
+                <MdKeyboardArrowDown className="font-bold text-[22px]" />
             </div>
             {isActiveMenu && (
-                <ul className="absolute bg-white shadow-button px-[14px] py-4 text-slateGray text-sm animate-fadeInTop w-full shadow-md z-[10]">
+                <ul className="absolute bg-white shadow-button px-[14px] py-2 text-slateGray text-sm animate-fadeInTop w-full shadow-md z-[10]">
                     {options.map((option: any) => (
-                        <li key={option.id} className="py-2 last:py-0 hover:text-black cursor-pointer">
+                        <li key={option.id} className="py-2 hover:text-black cursor-pointer">
                             <Button onClick={() => handleSelectOption(option.name)} className="text-start">
                                 {option.name}
                             </Button>
