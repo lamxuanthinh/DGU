@@ -54,7 +54,9 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<Da
                         sameSite: "lax",
                         expires: new Date(Date.now() + TIME_EXPIRED_REFRESH_TOKEN),
                     });
-                    (res as NextApiResponse).status(200).json({ message: "SignUp successfully" });
+                    (res as NextApiResponse<DataResponse>)
+                        .status(200)
+                        .json({ message: "SignUp successfully", userId: user._id });
                     resolve(true);
                 } catch (error) {
                     (res as NextApiResponse).json({ message: "ErrorData" });

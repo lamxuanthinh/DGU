@@ -42,7 +42,7 @@ export default function Login() {
         };
         console.log("[P]::payload::", payload);
         try {
-            const { message } = await auth.login(payload);
+            const { message, userId } = await auth.login(payload);
             if (message === "Gmail already exist") {
                 setIsLoading(false);
                 setErrorMessage("Gmail already exist");
@@ -52,8 +52,8 @@ export default function Login() {
                 setIsLoading(false);
                 router.push("/404");
                 return;
-            };
-            localStorage.setItem("auth", "true");
+            }
+            localStorage.setItem("userId", `${userId}`);
             setIsLoading(false);
             router.push("/");
         } catch (error) {
@@ -62,12 +62,12 @@ export default function Login() {
     });
 
     return (
-        <div className="h-screen w-screen bg-[#c3c3c3f5] flex justify-center items-center">
-            <div className="w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pl-10 overflow-hidden">
+        <div className="h-screen w-screen bg-white md:bg-[#c3c3c3f5] flex justify-center items-center">
+            <div className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
                 <div
                     data-aos="fade-up"
                     data-aos-duration="2000"
-                    className="w-[469px] flex items-center bg-[#fff] rounded-2xl"
+                    className="w-full lg:w-[469px] flex items-center bg-[#fff] rounded-2xl"
                 >
                     <div className="w-[100%]">
                         <div className="pb-5">
@@ -125,7 +125,7 @@ export default function Login() {
                                 className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
                             >
                                 <FcGoogle className="text-2xl" />
-                                <p className="font-bold text-[20px] px-5">Login with Google</p>
+                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2">Login with Google</p>
                             </button>
                             <div className="flex justify-center py-3">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Don’t have on account? </p>

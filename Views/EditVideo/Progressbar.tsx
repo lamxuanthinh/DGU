@@ -7,6 +7,8 @@ import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi'
 import Button from '@/components/common/Button'
 
 import { VALUE_PADDING_PROGRESS, VALUE_WIDTH_POINTER, VALUE_TIME_SKIP_VIDEO } from "./constants";
+import WaveSurfer from 'wavesurfer.js'
+
 
 interface IProgressbarProps {
      dataSplit: IListDataSplitVideo,
@@ -23,8 +25,10 @@ interface IProgressbarProps {
      valueCounterPointer: number,
      setValueCounterPointer: Dispatch<SetStateAction<number>>,
      valueVolume: IValueVolumeVideo,
-     onProgressBarClick: (dataItem: IDataSplitVideo, valuePositionCursor: number) => void,
-     onProgressBarMove: (valuePointerMove: number, itemSlipt: IDataSplitVideo) => number
+     onProgressBarClick: (dataItem: IDataSplitVideo, valuePositionCursor: number) => number,
+     onProgressBarMove: (valuePointerMove: number, itemSlipt: IDataSplitVideo) => number,
+     srcMp3: Blob | undefined,
+     setDurationMp3: Dispatch<SetStateAction<number>>,
 }
 
 function Progressbar({
@@ -43,11 +47,14 @@ function Progressbar({
      duration,
      setMoveVideo,
      onProgressBarMove,
-     onProgressBarClick
+     onProgressBarClick,
+     srcMp3,
+     setDurationMp3
 }: IProgressbarProps) {
-     const { thumbVideoEdit, srcVideoEdit } = useAppContext();
+     const { thumbVideoEdit } = useAppContext();
 
      const progressRef = useRef<HTMLDivElement>(null);
+     const waveformRef = useRef<any>(null);
 
      const [valuePointerMove, setValuePointerMove] = useState<number>(0);
      const [isShouldBlurPointer, setIsShouldBlurPointer] = useState<boolean>();
@@ -55,6 +62,7 @@ function Progressbar({
      const [timeValueVirtual, setTimeValueVirtual] = useState<string>();
      const [indexActiveProgress, setIndexActiveProgress] = useState<number>(-1);
      const [isMute, setIsMute] = useState<boolean>(false);
+     const [widthWavesurfer, setWidthWavesurfer] = useState<number>(0);
 
      useEffect(() => {
           if (progressRef.current) {
@@ -62,6 +70,47 @@ function Progressbar({
                setCurrentWidthProgress(widthProgress)
           }
      }, [progressRef.current?.offsetWidth])
+
+     useEffect(() => {
+          if (waveformRef.current && srcMp3) {
+               waveformRef.current = WaveSurfer.create({
+                    container: "#test",
+                    waveColor: '#165c4f',
+                    progressColor: '#165c4f',
+                    barHeight: 2,
+                    cursorWidth: 0,
+                    interact: false,
+                    height: 30,
+                    normalize: true,
+                    mediaControls: false,
+                    autoCenter: true,
+               });
+               waveformRef.current.loadBlob(srcMp3)
+               waveformRef.current.on('ready', () => {
+                    const durationMp3 = waveformRef.current.getDuration();
+                    const valuePercentWidthWave = durationMp3 / duration * 100;
+                    setDurationMp3(durationMp3);
+                    setWidthWavesurfer(valuePercentWidthWave);
+               })
+          }
+
+          return () => {
+               if (waveformRef.current && srcMp3) {
+                    waveformRef.current.destroy();
+                    setIsPlaying(false);
+               }
+          }
+     }, [srcMp3]);
+
+     useEffect(() => {
+          if (waveformRef.current && srcMp3) {
+               if (isPlaying) {
+                    waveformRef.current.play();
+               } else {
+                    waveformRef.current.pause();
+               }
+          }
+     }, [isPlaying]);
 
      const onCalcValuePointerSkip = () => {
           const valuePercentTimeSkip = VALUE_TIME_SKIP_VIDEO / duration;
@@ -94,6 +143,8 @@ function Progressbar({
           } else {
                setValuePointer((pre) => pre - valuePointerSkip)
                setMoveVideo(currentTime - VALUE_TIME_SKIP_VIDEO);
+               const currentTimeMp3 = waveformRef.current.getCurrentTime();
+               waveformRef.current.setTime(currentTimeMp3 - VALUE_TIME_SKIP_VIDEO);
           }
      }
 
@@ -106,6 +157,8 @@ function Progressbar({
           } else {
                setValuePointer((pre) => pre + valuePointerSkip)
                setMoveVideo(currentTime + VALUE_TIME_SKIP_VIDEO)
+               const currentTimeMp3 = waveformRef.current.getCurrentTime();
+               waveformRef.current.setTime(currentTimeMp3 + VALUE_TIME_SKIP_VIDEO);
           }
      }
 
@@ -148,7 +201,10 @@ function Progressbar({
 
      const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>, dataItem: IDataSplitVideo) => {
           const valuePositionCursor = onCalcPositionPointer(event);
-          onProgressBarClick(dataItem, valuePositionCursor);
+          const timeSeparate = onProgressBarClick(dataItem, valuePositionCursor);
+          if (srcMp3) {
+               waveformRef.current.setTime(timeSeparate);
+          }
           setIsShouldBlurPointer(false);
           setIsBlurPointer(false);
           setIndexActiveProgress(dataItem.id);
@@ -202,7 +258,7 @@ function Progressbar({
                                         event.stopPropagation();
                                    }}
                                    value={valueVolume.current}
-                                   onChange={handleChangeVolume} defaultValue={100} ></input>
+                                   onChange={handleChangeVolume} />
                               {isMute ? <VscMute /> : <AiOutlineSound />}
                          </Button>
                          <Button><AiOutlineZoomOut /></Button>
@@ -212,59 +268,66 @@ function Progressbar({
                </div>
                <div className="w-full h-[1px] bg-[rgba(48,47,47,0.8)] opacity-80"></div>
                {/* wrap rule in here */}
-               {srcVideoEdit &&
-                    <div ref={progressRef} className="h-3/4 relative flex gap-2  px-4 pt-9 overflow-x-scroll overflow-y-hidden scroll-thin">
-                         {
-                              dataSplit.map((itemSlipt) => (
-                                   <div key={itemSlipt.id} style={{
-                                        width: `${itemSlipt.width}%`,
-                                        backgroundImage: `url("${thumbVideoEdit}")`,
-                                        backgroundSize: "auto 100%",
-                                   }}
-                                        className="h-3/4 rounded-[10px] relative flex-shrink-0 bg-repeat-x opacity-80"
-                                   >
-                                        <div className="w-full h-full relative cursor-pointer rounded-[4px] z-[50] hover:outline outline-1 outline-[#e0bc4e] overflow-hidden"
-                                             style={{
-                                                  outlineStyle:
-                                                       `${indexActiveProgress === itemSlipt.id ? "solid" : ""}`
-                                             }}
+               <div className='h-full overflow-x-scroll overflow-y-hidden scroll-thin '>
+                    {
+                         <div ref={progressRef} className="relative flex gap-2 px-4 h-[60%] pt-[25px]">
+                              {
+                                   dataSplit.map((itemSlipt) => (
+                                        <div key={itemSlipt.id} style={{
+                                             width: `${itemSlipt.width}%`,
+                                             backgroundImage: `url("${thumbVideoEdit}")`,
+                                             backgroundSize: "auto 100%",
+                                        }}
+                                             className="h-full rounded-[10px] relative flex-shrink-0 bg-repeat-x opacity-80 z-[10]
+                                             after:content-[''] after:absolute after:w-full after:h-[100px] after:cursor-pointer before:content-[''] before:absolute before:w-full before:h-[30px] before:bottom-[100%]"
                                              onMouseLeave={handleLeaveProgress}
                                              onMouseEnter={handleEnterProgress}
                                              onMouseMove={(event: React.MouseEvent<HTMLDivElement>) => handleProgressBarMove(event, itemSlipt)}
                                              onClick={(event: React.MouseEvent<HTMLDivElement>) => handleProgressBarClick(event, itemSlipt)}
                                         >
-                                             {indexActiveProgress === itemSlipt.id
-                                                  && <>
-                                                       <span className="absolute w-[8px] h-full bg-[#e0bc4e] left-[0px]">
-                                                            <span className="absolute h-[40%] w-[3px] bg-[#000] top-1/2 translate-y-[-50%] left-[2px] opacity-60 rounded-sm" />
-                                                       </span>
-                                                       <span className="absolute w-[8px] h-full bg-[#e0bc4e] right-0">
-                                                            <span className="absolute h-[40%] w-[3px] bg-[#000] top-1/2 translate-y-[-50%] left-[2px] opacity-60 rounded-sm" />
-                                                       </span>
-                                                  </>
-                                             }
+                                             <div className="w-full h-full relative cursor-pointer rounded-[4px] z-[50] hover:outline outline-1 outline-[#e0bc4e] overflow-hidden"
+                                                  style={{
+                                                       outlineStyle:
+                                                            `${indexActiveProgress === itemSlipt.id ? "solid" : ""}`
+                                                  }}
+                                             >
+                                                  {indexActiveProgress === itemSlipt.id
+                                                       && <>
+                                                            <span className="absolute w-[8px] h-full bg-[#e0bc4e] left-[0px]">
+                                                                 <span className="absolute h-[40%] w-[3px] bg-[#000] top-1/2 translate-y-[-50%] left-[2px] opacity-60 rounded-sm" />
+                                                            </span>
+                                                            <span className="absolute w-[8px] h-full bg-[#e0bc4e] right-0">
+                                                                 <span className="absolute h-[40%] w-[3px] bg-[#000] top-1/2 translate-y-[-50%] left-[2px] opacity-60 rounded-sm" />
+                                                            </span>
+                                                       </>
+                                                  }
+                                             </div>
+                                        </div>
+                                   ))
+                              }
+                              <div className="absolute top-[10px] bottom-0 z-50 cursor-pointer" style={{ transform: `translateX(${valuePointer + valueCounterPointer}px)` }}>
+                                   <div className="triangle absolute left-[-9px]">
+                                   </div>
+                                   <div style={{ width: `${VALUE_WIDTH_POINTER}px` }} className="h-[140px] bg-white absolute top-2 left-[0px]">
+                                   </div>
+                              </div>
+                              {
+                                   isBlurPointer &&
+                                   <div style={{ left: `${valuePointerMove}px` }} className="absolute top-[10px] bottom-0 z-50 translate-x-[-2px] cursor-pointer pointer-events-none">
+                                        <div className="absolute top-[10px] left-[16px] w-[0.2rem] h-[140px] bg-[#9b9b9b] opacity-50">
+                                        </div>
+                                        <div className="absolute left-[-2px] top-[-15px] opacity-50 select-none">
+                                             {timeValueVirtual}
                                         </div>
                                    </div>
-                              ))
-                         }
-                         <div className="absolute top-[10px] bottom-0 z-50 cursor-pointer" style={{ transform: `translateX(${valuePointer + valueCounterPointer}px)` }}>
-                              <div className="triangle absolute left-[-9px]">
-                              </div>
-                              <div style={{ width: `${VALUE_WIDTH_POINTER}px` }} className="h-[140px] bg-white absolute top-2 left-[0px]">
-                              </div>
+                              }
                          </div>
-                         {
-                              isBlurPointer &&
-                              <div style={{ left: `${valuePointerMove}px` }} className="absolute top-[10px] bottom-0 z-50 translate-x-[-2px] cursor-pointer pointer-events-none">
-                                   <div className="absolute top-[10px] left-[16px] w-[0.2rem] h-[140px] bg-[#9b9b9b] opacity-50">
-                                   </div>
-                                   <div className="absolute left-[-2px] top-[-15px] opacity-50 select-none">
-                                        {timeValueVirtual}
-                                   </div>
-                              </div>
-                         }
-                    </div>
-               }
+                    }
+                    {
+                         srcMp3 && <div id="test" style={{ width: `${widthWavesurfer}%` }} ref={waveformRef} className="mx-4 h-[30px] my-[10px] relative rounded-[4px] overflow-hidden bg-[#1d7867] outline outline-1 outline-[#83c983]">
+                         </div>
+                    }
+               </div>
           </div>
      )
 }
