@@ -4,6 +4,7 @@ import { SchemaCourse } from "@/utils/rules";
 import Dropdown from "../../Dropdown";
 import { useEffect, useState } from "react";
 import React from "react";
+import DropDownSelect from "../../DropDownSelect";
 
 type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | "price" | "image" | "author">;
 
@@ -16,9 +17,20 @@ interface ICourseItemForm {
 export default function CourseItemForm({ register, setValue, getValues }: ICourseItemForm) {
     const [visibility, setVisibility] = useState("");
     const authorRef = React.useRef<HTMLInputElement>(null);
+    // const visibilityOptions = [
+    //     { value: "beginner", label: "Beginner" },
+    //     { value: "beginner2", label: "Beginner2" },
+    // ];
+
     const visibilityOptions = [
-        { value: "beginner", label: "Beginner" },
-        { value: "beginner2", label: "Beginner2" },
+        {
+            id: 1,
+            name: "Beginner",
+        },
+        {
+            id: 2,
+            name: "Beginner2",
+        },
     ];
 
     useEffect(() => {
@@ -72,12 +84,21 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     />
                     <div className="mb-3">
                         <div className="bg-[#7fcffc1c]">
-                            <Dropdown
+                            {/* <Dropdown
                                 classNameLabel="text-[#9ca3b7] p-[3px]"
                                 options={visibilityOptions}
                                 valueSelected={visibility}
                                 setValueSelected={setVisibility}
                                 setValue={setValue}
+                            /> */}
+                            <DropDownSelect
+                                className="py-[6px] border border-solid border-[#F7E7E7] px-[15px] mt-3"
+                                options={visibilityOptions}
+                                //
+                                onSelectOption={(test: string) => {
+                                    // get value in here
+                                    console.log(test);
+                                }}
                             />
                         </div>
                         <div>
