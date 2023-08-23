@@ -132,14 +132,14 @@ export default function Video({ data }: IVideo) {
     };
 
     const handlePlayByPlayer = () => {
-        if (player) {
+        if (player && status !== "NA") {
             player.video.play();
             setStatus("Playing");
         }
     };
 
     const handlePauseByPlayer = () => {
-        if (player) {
+        if (player && status !== "NA") {
             player.video.pause();
             setStatus("Paused");
             setComment(false);

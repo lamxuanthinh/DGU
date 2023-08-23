@@ -1,24 +1,31 @@
+import { useAppContext } from "@/Context";
 import { IVideoShortPayload } from "@/model/video";
 import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import React from "react";
 import { useEffect, useRef, useState } from "react";
+import { FaPlay } from "react-icons/fa";
 import Comments from "../../Comments/Comments";
 import ActionVideo from "../ActionVideo";
 import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
+import ModalNormalVideo from "../ModalNormalVideo";
+import ModalVideo from "../ModalVideo";
 
 interface INormalVideo {
     data: IVideoShortPayload;
 }
 
 export default function NormalVideo({ data }: INormalVideo) {
+    const { isProcessPlayVideo, setProcessPlayVideo } = useAppContext();
     const [comment, setComment] = useState(false);
+    const [status, setStatus] = useState("NA");
     const [statusModal, setStatusModal] = useState("NA");
     const [currentTime, setCurrentTime] = useState(0);
-    const videoRef = React.useRef<HTMLVideoElement>(null);
     const [isOpenModalVideo, setOpenModalVideo] = useState(false);
-
-    console.log(statusModal, ":", currentTime);
+    const dataFullVideo = data.fullVideoInfo;
+    const videoRef = React.useRef<HTMLVideoElement>(null);
+    const modalVideoRef = React.useRef<HTMLVideoElement>(null);
+    const [currentTimeModal, setCurrentTimeModal] = useState(0);
 
     const options = {
         root: null,
@@ -33,18 +40,40 @@ export default function NormalVideo({ data }: INormalVideo) {
         setCurrentTime(videoElement.currentTime);
     };
 
-    const handlePlay = () => {
+    const handleStart = () => {
         if (videoRef.current) {
             videoRef.current.play();
+            setProcessPlayVideo("exist");
         }
-        setStatusModal("Playing");
+    };
+
+    const handlePlay = () => {
+        if (isProcessPlayVideo !== "NA" && videoRef.current) {
+            videoRef.current.play();
+            setStatus("Playing");
+        }
     };
 
     const handlePause = () => {
-        if (videoRef.current) {
+        if (isProcessPlayVideo !== "NA" && videoRef.current) {
             videoRef.current.pause();
+            setStatus("Paused");
         }
-        setStatusModal("Paused");
+    };
+
+    const handlePlayModal = () => {
+        if (modalVideoRef.current) {
+            modalVideoRef.current.play();
+            setStatusModal("Playing");
+        }
+    };
+
+    const handlePauseModal = () => {
+        if (modalVideoRef.current) {
+            modalVideoRef.current.pause();
+            setStatusModal("Paused");
+            setComment(false);
+        }
     };
 
     const setTimePlayer = (value: any) => {
@@ -53,21 +82,27 @@ export default function NormalVideo({ data }: INormalVideo) {
         }
     };
 
+    const setTimePlayerModal = (value: any) => {
+        if (modalVideoRef.current) {
+            modalVideoRef.current.currentTime = value;
+        }
+    };
+
     const handleCloseModal = () => {
-        // setOpenModalVideo(false);
+        setOpenModalVideo(false);
         // if (window.history.length > 2) {
         //     window.history.back();
         // }
-        // setTimePlayer(currentTime - data.break_point);
+        setTimePlayer(currentTime - data.break_point);
     };
 
     const handleOpenModal = () => {
-        // setOpenModalVideo(!isOpenModalVideo);
+        setOpenModalVideo(!isOpenModalVideo);
         // const currentPathname = window.location.pathname;
         // if (!currentPathname.includes("video/")) {
         //     window.history.pushState(null, "", `video/${data.video_id}`);
         // }
-        // setTimePlayerModal(currentTime + data.break_point);
+        setTimePlayerModal(currentTime + data.break_point);
     };
 
     useEffect(() => {
@@ -85,6 +120,13 @@ export default function NormalVideo({ data }: INormalVideo) {
                     <source src={data.pathVideo} type="video/mp4" />
                 </video>
 
+                {status !== "NA" && (
+                    <div
+                        onClick={handleOpenModal}
+                        className="absolute top-0 w-[100%] h-[100%] hover:cursor-pointer"
+                    ></div>
+                )}
+
                 <Comments isComment={comment} setComment={setComment} currentUserId="1" />
 
                 <DescriptionVideo
@@ -99,7 +141,7 @@ export default function NormalVideo({ data }: INormalVideo) {
                     setComment={setComment}
                     dataVideo={data}
                     totalTime={data.duration}
-                    statusVideo={statusModal}
+                    statusVideo={status}
                     currentTime={currentTime}
                     setCurrentTime={setCurrentTime}
                     handlePlayByPlayer={handlePlay}
@@ -118,7 +160,34 @@ export default function NormalVideo({ data }: INormalVideo) {
                     commentCount={93}
                     shareCount={57}
                 />
+
+                {isProcessPlayVideo === "NA" && (
+                    <div
+                        onClick={() => {
+                            handleStart();
+                        }}
+                        className="absolute top-0 w-[100%] h-[100%] hover:cursor-pointer flex justify-center items-center"
+                    >
+                        <div className="w-[85px] h-[85px] bg-[#00000029] hover:bg-[#0db7d5] rounded-[50%] flex items-center justify-center ">
+                            <FaPlay className="w-[37px] h-[45px] ml-1" />
+                        </div>
+                    </div>
+                )}
             </div>
+
+            {/* <ModalNormalVideo
+                dataVideo={dataFullVideo}
+                modalVideoRef={modalVideoRef}
+                statusModal={status}
+                handlePlayByPlayerModal={handlePlayModal}
+                handlePauseByPlayerModal={handlePauseModal}
+                currentTime={currentTimeModal}
+                setCurrentTime={setCurrentTimeModal}
+                setTimePlayerModal={setTimePlayerModal}
+                isOpenModalVideo={isOpenModalVideo}
+                handleCloseModal={handleCloseModal}
+                handleOpenModal={handleOpenModal}
+            /> */}
         </div>
     );
 }

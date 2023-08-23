@@ -1,14 +1,14 @@
 import { IVideoPayload } from "@/model/video";
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
+import Comments from "../../Comments/Comments";
+import ActionVideo from "../ActionVideo";
 import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
-import ActionVideo from "../ActionVideo";
-import Comments from "../../Comments/Comments";
 
-interface IModalVideo {
+interface IModalNormalVideo {
     dataVideo: IVideoPayload;
-    modalVideoRef: MutableRefObject<null>;
+    modalVideoRef: any;
     statusModal: string;
     handlePlayByPlayerModal: () => void;
     handlePauseByPlayerModal: () => void;
@@ -20,7 +20,7 @@ interface IModalVideo {
     handleOpenModal: () => void;
 }
 
-export default function ModalVideo({
+export default function ModalNormalVideo({
     dataVideo,
     modalVideoRef,
     statusModal,
@@ -32,47 +32,10 @@ export default function ModalVideo({
     isOpenModalVideo,
     handleCloseModal,
     handleOpenModal,
-}: IModalVideo) {
+}: IModalNormalVideo) {
     const [isHovered, setIsHovered] = useState(false);
     const hoverTimeoutRef: any = useRef<NodeJS.Timeout | null>(null);
     const [comment, setComment] = useState(false);
-
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.code === "Space") {
-                event.preventDefault();
-            }
-            if (event.key === "Escape") {
-                handleCloseModal();
-            }
-        };
-
-        const handleMouseMove = () => {
-            if (!isHovered) {
-                setIsHovered(true);
-                clearTimeout(hoverTimeoutRef.current);
-                hoverTimeoutRef.current = setTimeout(() => {
-                    setIsHovered(false);
-                }, 2000);
-            }
-        };
-
-        const handleMouseLeave = () => {
-            setIsHovered(false);
-            clearTimeout(hoverTimeoutRef.current);
-        };
-
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseleave", handleMouseLeave);
-        document.addEventListener("keydown", handleKeyDown);
-
-        return () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseleave", handleMouseLeave);
-            document.removeEventListener("keydown", handleKeyDown);
-            clearTimeout(hoverTimeoutRef.current);
-        };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div
@@ -110,6 +73,7 @@ export default function ModalVideo({
                     caption={dataVideo.caption}
                     hashtags={dataVideo.hashtags}
                 />
+
                 <ActionVideo
                     comment={comment}
                     setComment={setComment}
