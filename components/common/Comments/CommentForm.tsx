@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 
-interface CommentFormProps {
+interface ICommentFormProps {
     handleSubmit: (text: string, parentId?: any) => void;
     submitLabel: string;
     hasCancelButton?: boolean;
@@ -10,14 +10,14 @@ interface CommentFormProps {
     initialText?: string;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({
+const CommentForm = ({
     handleSubmit,
     submitLabel,
     hasCancelButton = false,
     handleCancel,
     initialText = "",
     isEditing,
-}) => {
+}: ICommentFormProps) => {
     const [text, setText] = useState(initialText);
     const isTextareaDisabled = text.length === 0;
 

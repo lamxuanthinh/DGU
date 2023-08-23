@@ -6,7 +6,7 @@ import ActionVideo from "./ActionVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
 import { IVideoShortPayload } from "@/model/video";
-import Comments from "../Comments/Comments";
+import Comments from "../Comments";
 
 interface IVideo {
     data: IVideoShortPayload;

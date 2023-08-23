@@ -4,7 +4,7 @@ import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
 import ActionVideo from "../ActionVideo";
-import Comments from "../../Comments/Comments";
+import Comments from "../../Comments";
 
 interface IModalVideo {
     dataVideo: IVideoPayload;

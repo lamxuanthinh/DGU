@@ -9,13 +9,13 @@ import {
 } from "@/apis/api";
 import { IComment } from "@/model/comment";
 
-interface IComments {
+interface ICommentsProps {
     currentUserId: string;
     isComment: boolean;
     setComment: Dispatch<SetStateAction<boolean>>;
 }
 
-const Comments: React.FC<IComments> = ({ currentUserId }: IComments) => {
+const Comments = ({ currentUserId }: ICommentsProps) => {
     const [backendComments, setBackendComments] = useState<IComment[]>([]);
     const [activeComment, setActiveComment] = useState<Comment | null>(null);
     const rootComments = backendComments.filter((backendComment) => backendComment.parentId === null);

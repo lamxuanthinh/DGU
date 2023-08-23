@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
 import { IComment } from "@/model/comment";
 
-interface CommentProps {
+interface ICommentProps {
     comment: IComment;
     replies: IComment[];
     setActiveComment: Dispatch<SetStateAction<any | null>>;
@@ -16,7 +16,7 @@ interface CommentProps {
     currentUserId: string;
 }
 
-const Comment: React.FC<CommentProps> = ({
+const Comment = ({
     comment,
     replies,
     setActiveComment,
@@ -26,7 +26,7 @@ const Comment: React.FC<CommentProps> = ({
     addComment,
     parentId = null,
     currentUserId,
-}) => {
+}: ICommentProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [isReplying, setIsReplying] = useState(false);
     const fiveMinutes = 300000;
