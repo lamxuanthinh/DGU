@@ -8,99 +8,99 @@ input[type="password"]:not(:placeholder-shown) ~ .input-text,
 input[type="email"]:focus ~ .input-text,
 input[type="email"]:not(:placeholder-shown) ~ .input-text,
 input[type="text"]:not(:placeholder-shown) ~ .input-text {
-  @apply text-[#848484] transform -translate-y-7 -translate-x-[-4px] scale-90;
+    @apply text-[#848484] transform -translate-y-7 -translate-x-[-4px] scale-90;
 }
 
 #my-checkbox:checked + .bg-gray-200 {
-  background-color: black;
+    background-color: black;
 }
 #my-checkbox:checked + .bg-gray-200 svg {
-  display: block;
+    display: block;
 }
 
 /* The effect after change link */
 .choose-link {
-  z-index: 2;
+    z-index: 2;
 }
 #action {
-  position: absolute;
-  top: 0;
-  border-bottom: 3px solid #333;
-  z-index: 1;
-  transition: 1s;
+    position: absolute;
+    top: 0;
+    border-bottom: 3px solid #333;
+    z-index: 1;
+    transition: 1s;
 }
 .stroke-dashoffset-0 {
-  stroke-dashoffset: 0;
+    stroke-dashoffset: 0;
 }
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 /* width */
 .scroll-thin::-webkit-scrollbar {
-  height: 8px;
+    height: 8px;
 }
 
 /* Track */
 .scroll-thin::-webkit-scrollbar-track {
-  background: #1f1f1f;
-  border-radius: 5px;
+    background: #1f1f1f;
+    border-radius: 5px;
 }
 
 /* Handle */
 .scroll-thin::-webkit-scrollbar-thumb {
-  background: #545459;
-  border-radius: 5px;
+    background: #545459;
+    border-radius: 5px;
 }
 
 /* Handle on hover */
 .scroll-thin::-webkit-scrollbar-thumb:hover {
-  background: #555;
-  cursor: pointer;
+    background: #555;
+    cursor: pointer;
 }
 
 .triangle {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid white;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
 }
 
 .input-vertical {
-  writing-mode: bt-lr; /* IE */
-  -webkit-appearance: slider-vertical; /* Chromium */
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* Chromium */
 }
 /* control progress bar modal video */
 
 .video_container:hover .control_bar {
-  transform: translateY(0);
+    transform: translateY(0);
 }
 
 .video_container:hover .descriptionVideo {
-  opacity: 100%;
+    opacity: 100%;
 }
 
 .video_container:hover .actionVideo {
-  opacity: 100%;
+    opacity: 100%;
 }
 
 .video_container:hover .closeButton {
-  opacity: 100%;
+    opacity: 100%;
 }
 
 
 .dgu-course-card {
-  transition:  0.2s all;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition:  0.2s all;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .dgu-course-card:hover {
-  transform:  scale(1.03);
-  background-color: white;
-  z-index: 5;
+    transform:  scale(1.03);
+    background-color: white;
+    z-index: 5;
 }
