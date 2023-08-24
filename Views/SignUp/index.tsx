@@ -57,22 +57,23 @@ export default function SignUp() {
             password: data.confirm_password,
         };
         try {
-            const { message, emailSent } = await auth.signUp(payload);
-            console.log("::MESSAGE::", message);
-            console.log("::EMAIL SENT::", emailSent);
+            const holdeSignUp = await auth.signUp(payload);
+            console.log("::MESSAGE::", holdeSignUp);
+            console.log("::MESSAGE::", holdeSignUp.message);
+            console.log("::EMAIL SENT::", holdeSignUp.emailSent);
 
-            if (message === "Gmail already exist") {
+            if (holdeSignUp.message === "Gmail already exist") {
                 setIsLoading(false);
                 console.log("Gmail already exist");
                 return;
             }
-            if (message === "ErrorData") {
+            if (holdeSignUp.emailSent === "ErrorData") {
                 setIsLoading(false);
                 router.push("/404");
                 return;
             }
 
-            if (!emailSent && !message) {
+            if (!holdeSignUp) {
                 setIsLoading(false);
                 router.push({
                     pathname: "/verifyemail/notification",
@@ -80,11 +81,11 @@ export default function SignUp() {
                 } as { query: QueryNotification });
             }
 
-            setIsLoading(false);
-            router.push({
-                pathname: "/verifyemail/notification",
-                query: { emailSent },
-            } as { query: QueryNotification });
+            // setIsLoading(false);
+            // router.push({
+            //     pathname: "/verifyemail/notification",
+            //     query: { emailSent },
+            // } as { query: QueryNotification });
         } catch (error) {
             console.log(error);
         }
