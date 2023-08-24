@@ -10,6 +10,10 @@ export interface IVideoPayload {
     title: string;
     description: string;
     video: string;
+    controlData: {
+        point: any;
+        duration: any;
+    };
     createdAt: string;
     updatedAt: string;
 }
@@ -25,6 +29,10 @@ export interface IShortVideoPayload {
     video: string;
     createdAt: string;
     updatedAt: string;
+    controlData: {
+        point: any;
+        duration: any;
+    };
     fullVideoInfo: IVideoPayload;
 }
 

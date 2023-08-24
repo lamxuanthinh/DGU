@@ -7,7 +7,6 @@ import { FaPlay } from "react-icons/fa";
 import Comments from "../../Comments/Comments";
 import ActionVideo from "../ActionVideo";
 import ControlsNormalVideo from "../ControlsNormalVideo";
-import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
 import ModalNormalVideo from "../ModalNormalVideo";
 
@@ -43,6 +42,7 @@ export default function NormalVideo({ data }: INormalVideo) {
     const handleStart = () => {
         if (videoRef.current) {
             videoRef.current.play();
+            setStatus("Playing");
             setProcessPlayVideo("exist");
         }
     };
@@ -64,6 +64,8 @@ export default function NormalVideo({ data }: INormalVideo) {
     const handlePlayModal = () => {
         if (isProcessPlayVideo !== "NA" && modalVideoRef.current) {
             modalVideoRef.current.play();
+            console.log(1);
+
             setStatusModal("Playing");
         }
     };
@@ -77,32 +79,39 @@ export default function NormalVideo({ data }: INormalVideo) {
     };
 
     const setTimePlayer = (value: any) => {
-        if (videoRef && videoRef.current) {
+        if (videoRef && videoRef.current && isFinite(value)) {
             videoRef.current.currentTime = value;
         }
     };
 
     const setTimePlayerModal = (value: any) => {
-        if (modalVideoRef.current) {
+        if (modalVideoRef.current && isFinite(value)) {
             modalVideoRef.current.currentTime = value;
         }
     };
 
     const handleCloseModal = () => {
         setOpenModalVideo(false);
-        // if (window.history.length > 2) {
-        //     window.history.back();
-        // }
-        // setTimePlayer(currentTime - data.break_point);
+
+        if (window.history.length > 2) {
+            window.history.back();
+        }
+        const timeUpdate = Math.round(currentTimeModal * 100) / 100 - data.controlData.point;
+
+        setTimePlayer(timeUpdate);
     };
 
     const handleOpenModal = () => {
         setOpenModalVideo(!isOpenModalVideo);
-        // const currentPathname = window.location.pathname;
-        // if (!currentPathname.includes("video/")) {
-        //     window.history.pushState(null, "", `video/${data.video_id}`);
-        // }
-        // setTimePlayerModal(currentTime + data.break_point);
+
+        const currentPathname = window.location.pathname;
+        if (!currentPathname.includes("video/")) {
+            window.history.pushState(null, "", `video/${data._id}`);
+        }
+
+        const timeUpdate = Math.round(currentTime * 100) / 100 + data.controlData.point;
+
+        setTimePlayerModal(timeUpdate);
     };
 
     useEffect(() => {
@@ -112,6 +121,16 @@ export default function NormalVideo({ data }: INormalVideo) {
             handlePause();
         }
     }, [isVisibile]);
+
+    useEffect(() => {
+        if (isOpenModalVideo) {
+            handlePlayModal();
+            handlePause();
+        } else if (!isOpenModalVideo) {
+            handlePauseModal();
+            handlePlay();
+        }
+    }, [isOpenModalVideo]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="w-full h-full select-none">
@@ -138,7 +157,7 @@ export default function NormalVideo({ data }: INormalVideo) {
 
                 <ControlsNormalVideo
                     setComment={setComment}
-                    dataVideo={data}
+                    controlData={data.controlData}
                     totalTime={videoRef.current ? videoRef.current.duration : 0}
                     statusVideo={status}
                     currentTime={currentTime}
@@ -177,7 +196,7 @@ export default function NormalVideo({ data }: INormalVideo) {
             <ModalNormalVideo
                 dataVideo={dataFullVideo}
                 modalVideoRef={modalVideoRef}
-                statusModal={status}
+                statusModal={statusModal}
                 handlePlayByPlayerModal={handlePlayModal}
                 handlePauseByPlayerModal={handlePauseModal}
                 currentTime={currentTimeModal}

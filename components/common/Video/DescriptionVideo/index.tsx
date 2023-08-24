@@ -9,7 +9,7 @@ interface IDescriptionVideo {
     setComment: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function DescriptionVideo({ title, caption, hashtags = [], setComment }: IDescriptionVideo) {
+export default function DescriptionVideo({ title, caption = "", hashtags = [], setComment }: IDescriptionVideo) {
     const [isClose, setClose] = useState(false);
     const [showFullCaption, setShowFullCaption] = useState(false);
 
