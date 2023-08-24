@@ -72,7 +72,6 @@ export default function ModalSelectCourse({
     };
 
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
-
         const addNewCourse = () => {
             const userId = localStorage.getItem("userId");
 
@@ -142,7 +141,7 @@ export default function ModalSelectCourse({
             const lengthOfListNewCourse = newCourseCreated.length - 1;
             setCourseSelected(newCourseCreated[lengthOfListNewCourse]);
         }
-    }, [newCourseCreated]);
+    }, [newCourseCreated]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">

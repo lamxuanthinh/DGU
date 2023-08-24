@@ -1,7 +1,6 @@
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import UploadImageFile from "../../UploadFile/UploadImageFile";
 import { SchemaCourse } from "@/utils/rules";
-import Dropdown from "../../Dropdown";
 import { useEffect, useState } from "react";
 import React from "react";
 import DropDownSelect from "../../DropDownSelect";
