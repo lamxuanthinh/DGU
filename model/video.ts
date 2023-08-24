@@ -3,6 +3,32 @@ interface IAuthor {
 }
 
 export interface IVideoPayload {
+    _id: string;
+    thumbnail: string;
+    userId: string;
+    videoPublicId: string;
+    title: string;
+    description: string;
+    video: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+//normal video
+export interface IShortVideoPayload {
+    _id: string;
+    thumbnail: string;
+    userId: string;
+    videoPublicId: string;
+    title: string;
+    description: string;
+    video: string;
+    createdAt: string;
+    updatedAt: string;
+    fullVideoInfo: IVideoPayload;
+}
+
+export interface IDRMVideoPayload {
     author: IAuthor;
     video_id: string;
     title: string;
@@ -12,14 +38,14 @@ export interface IVideoPayload {
     hashtags: Array<string>;
     comments: Array<string>;
     likers: number | string;
-    video_id_children: Array<IVideoShortPayload>;
+    video_id_children: Array<IDRMVideoShortPayload>;
     parent_id: number | string;
     duration: number;
     break_point: number;
     pathVideo: string;
 }
 
-export interface IVideoShortPayload {
+export interface IDRMVideoShortPayload {
     author: IAuthor;
     video_id: string;
     title: string;
@@ -29,10 +55,10 @@ export interface IVideoShortPayload {
     hashtags: Array<string>;
     comments: Array<string>;
     likers: number | string;
-    video_id_children: Array<IVideoShortPayload>;
+    video_id_children: Array<IDRMVideoShortPayload>;
     parent_id: string;
     duration: number;
     break_point: number;
     pathVideo: string;
-    fullVideoInfo: IVideoPayload;
+    fullVideoInfo: IDRMVideoPayload;
 }

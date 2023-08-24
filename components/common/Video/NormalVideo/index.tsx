@@ -1,18 +1,18 @@
 import { useAppContext } from "@/Context";
-import { IVideoShortPayload } from "@/model/video";
+import { IShortVideoPayload } from "@/model/video";
 import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import Comments from "../../Comments/Comments";
 import ActionVideo from "../ActionVideo";
+import ControlsNormalVideo from "../ControlsNormalVideo";
 import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
 import ModalNormalVideo from "../ModalNormalVideo";
-import ModalVideo from "../ModalVideo";
 
 interface INormalVideo {
-    data: IVideoShortPayload;
+    data: IShortVideoPayload;
 }
 
 export default function NormalVideo({ data }: INormalVideo) {
@@ -62,14 +62,14 @@ export default function NormalVideo({ data }: INormalVideo) {
     };
 
     const handlePlayModal = () => {
-        if (modalVideoRef.current) {
+        if (isProcessPlayVideo !== "NA" && modalVideoRef.current) {
             modalVideoRef.current.play();
             setStatusModal("Playing");
         }
     };
 
     const handlePauseModal = () => {
-        if (modalVideoRef.current) {
+        if (isProcessPlayVideo !== "NA" && modalVideoRef.current) {
             modalVideoRef.current.pause();
             setStatusModal("Paused");
             setComment(false);
@@ -93,7 +93,7 @@ export default function NormalVideo({ data }: INormalVideo) {
         // if (window.history.length > 2) {
         //     window.history.back();
         // }
-        setTimePlayer(currentTime - data.break_point);
+        // setTimePlayer(currentTime - data.break_point);
     };
 
     const handleOpenModal = () => {
@@ -102,7 +102,7 @@ export default function NormalVideo({ data }: INormalVideo) {
         // if (!currentPathname.includes("video/")) {
         //     window.history.pushState(null, "", `video/${data.video_id}`);
         // }
-        setTimePlayerModal(currentTime + data.break_point);
+        // setTimePlayerModal(currentTime + data.break_point);
     };
 
     useEffect(() => {
@@ -116,8 +116,8 @@ export default function NormalVideo({ data }: INormalVideo) {
     return (
         <div className="w-full h-full select-none">
             <div className="video_container">
-                <video ref={videoRef} controls={false} onTimeUpdate={handleTimeUpdate}>
-                    <source src={data.pathVideo} type="video/mp4" />
+                <video ref={videoRef} controls={false} loop onTimeUpdate={handleTimeUpdate}>
+                    <source src={data.video} type="video/mp4" />
                 </video>
 
                 {status !== "NA" && (
@@ -131,16 +131,15 @@ export default function NormalVideo({ data }: INormalVideo) {
 
                 <DescriptionVideo
                     setComment={setComment}
-                    key={data.video_id}
+                    key={data._id}
                     title={data.title}
-                    caption={data.caption}
-                    hashtags={data.hashtags}
+                    caption={data.description}
                 />
 
-                <ControlsVideo
+                <ControlsNormalVideo
                     setComment={setComment}
                     dataVideo={data}
-                    totalTime={data.duration}
+                    totalTime={videoRef.current ? videoRef.current.duration : 0}
                     statusVideo={status}
                     currentTime={currentTime}
                     setCurrentTime={setCurrentTime}
@@ -155,7 +154,7 @@ export default function NormalVideo({ data }: INormalVideo) {
                 <ActionVideo
                     comment={comment}
                     setComment={setComment}
-                    pathAvatar={data.author.pathAvatar}
+                    pathAvatar={data.thumbnail}
                     heartCount={100}
                     commentCount={93}
                     shareCount={57}
@@ -175,7 +174,7 @@ export default function NormalVideo({ data }: INormalVideo) {
                 )}
             </div>
 
-            {/* <ModalNormalVideo
+            <ModalNormalVideo
                 dataVideo={dataFullVideo}
                 modalVideoRef={modalVideoRef}
                 statusModal={status}
@@ -187,7 +186,7 @@ export default function NormalVideo({ data }: INormalVideo) {
                 isOpenModalVideo={isOpenModalVideo}
                 handleCloseModal={handleCloseModal}
                 handleOpenModal={handleOpenModal}
-            /> */}
+            />
         </div>
     );
 }

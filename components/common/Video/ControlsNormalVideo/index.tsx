@@ -1,10 +1,10 @@
-import { IDRMVideoPayload, IDRMVideoShortPayload } from "@/model/video";
+import { IShortVideoPayload, IVideoPayload } from "@/model/video";
 import { Dispatch, SetStateAction } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
 interface IControlsVideo {
-    dataVideo: IDRMVideoPayload | Array<IDRMVideoShortPayload>;
+    dataVideo: IVideoPayload | Array<IShortVideoPayload>;
     totalTime: number;
     statusVideo: string;
     currentTime: number;
@@ -18,7 +18,7 @@ interface IControlsVideo {
     handleOpenModal: () => void;
 }
 
-export default function ControlsVideo({
+export default function ControlsNormalVideo({
     dataVideo,
     totalTime,
     statusVideo,
@@ -59,43 +59,46 @@ export default function ControlsVideo({
                 <div className="hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
                     <div className="relative bg-opacity-50 flex items-center justify-between">
                         {Array.isArray(dataVideo) ? (
-                            dataVideo.map((item: IDRMVideoShortPayload) => {
-                                const breakPointToPercent = (item.break_point / totalTime) * 100;
-                                const breakEndPointToPercent = ((item.break_point + item.duration) / totalTime) * 100;
+                            dataVideo.map((item: IShortVideoPayload) => {
+                                console.log(item);
 
-                                const percentItemDuration = breakEndPointToPercent - breakPointToPercent;
-                                const CalcPercentWidthOfControlItemToColor = () => {
-                                    if (breakEndPointToPercent < currentTimeByPercent) {
-                                        return 100;
-                                    } else if (breakPointToPercent > currentTimeByPercent) {
-                                        return 0;
-                                    } else {
-                                        return (
-                                            ((currentTimeByPercent - breakPointToPercent) / percentItemDuration) * 100
-                                        );
-                                    }
-                                };
-                                const value = CalcPercentWidthOfControlItemToColor();
-                                return (
-                                    <div
-                                        key={item.video_id}
-                                        className="flex-1 h-1 overflow-hidden"
-                                        style={{
-                                            flexBasis: `${(item.duration / totalTime) * 100}%`,
-                                        }}
-                                    >
-                                        <div className="h-full flex">
-                                            <div className="ml-[5px] w-full h-full bg-white rounded-xl relative">
-                                                <div
-                                                    style={{
-                                                        width: value + "%",
-                                                    }}
-                                                    className="absolute h-full bg-[#a9def9] rounded-xl"
-                                                ></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
+                                return <div></div>;
+                                // const breakPointToPercent = (item.break_point / totalTime) * 100;
+                                // const breakEndPointToPercent = ((item.break_point + item.duration) / totalTime) * 100;
+
+                                // const percentItemDuration = breakEndPointToPercent - breakPointToPercent;
+                                // const CalcPercentWidthOfControlItemToColor = () => {
+                                //     if (breakEndPointToPercent < currentTimeByPercent) {
+                                //         return 100;
+                                //     } else if (breakPointToPercent > currentTimeByPercent) {
+                                //         return 0;
+                                //     } else {
+                                //         return (
+                                //             ((currentTimeByPercent - breakPointToPercent) / percentItemDuration) * 100
+                                //         );
+                                //     }
+                                // };
+                                // const value = CalcPercentWidthOfControlItemToColor();
+                                // return (
+                                //     <div
+                                //         key={item.video_id}
+                                //         className="flex-1 h-1 overflow-hidden"
+                                //         style={{
+                                //             flexBasis: `${(item.duration / totalTime) * 100}%`,
+                                //         }}
+                                //     >
+                                //         <div className="h-full flex">
+                                //             <div className="ml-[5px] w-full h-full bg-white rounded-xl relative">
+                                //                 <div
+                                //                     style={{
+                                //                         width: value + "%",
+                                //                     }}
+                                //                     className="absolute h-full bg-[#a9def9] rounded-xl"
+                                //                 ></div>
+                                //             </div>
+                                //         </div>
+                                //     </div>
+                                // );
                             })
                         ) : (
                             <div className="h-1 w-full">

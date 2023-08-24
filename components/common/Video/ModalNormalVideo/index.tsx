@@ -1,9 +1,8 @@
 import { IVideoPayload } from "@/model/video";
-import { Dispatch, MutableRefObject, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import Comments from "../../Comments/Comments";
 import ActionVideo from "../ActionVideo";
-import ControlsVideo from "../ControlsVideo";
 import DescriptionVideo from "../DescriptionVideo";
 
 interface IModalNormalVideo {
@@ -37,13 +36,21 @@ export default function ModalNormalVideo({
     const hoverTimeoutRef: any = useRef<NodeJS.Timeout | null>(null);
     const [comment, setComment] = useState(false);
 
+    const handleTimeUpdate = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+        const videoElement = event.currentTarget;
+        setCurrentTime(videoElement.currentTime);
+    };
+
     return (
         <div
             className={`fixed top-0 right-0 left-0 bottom-0 ${
                 isOpenModalVideo ? "flex" : "hidden"
             } items-center justify-center bg-black ${isHovered ? "video_container" : ""}`}
         >
-            <div className="h-full w-full relative" ref={modalVideoRef}>
+            <div className="h-full w-full relative">
+                <video ref={modalVideoRef} controls={false} loop onTimeUpdate={handleTimeUpdate}>
+                    <source src={dataVideo.video} type="video/mp4" />
+                </video>
                 <div
                     onClick={() => {
                         if (statusModal == "Playing") {
@@ -65,39 +72,6 @@ export default function ModalNormalVideo({
                 >
                     <CgClose fontSize={20} />
                 </div>
-
-                <DescriptionVideo
-                    setComment={setComment}
-                    key={dataVideo.video_id}
-                    title={dataVideo.title}
-                    caption={dataVideo.caption}
-                    hashtags={dataVideo.hashtags}
-                />
-
-                <ActionVideo
-                    comment={comment}
-                    setComment={setComment}
-                    pathAvatar={dataVideo.author.pathAvatar}
-                    heartCount={100}
-                    commentCount={93}
-                    shareCount={57}
-                />
-
-                <ControlsVideo
-                    setComment={setComment}
-                    dataVideo={dataVideo.video_id_children}
-                    totalTime={dataVideo.duration}
-                    statusVideo={statusModal}
-                    currentTime={currentTime}
-                    setCurrentTime={setCurrentTime}
-                    handlePlayByPlayer={handlePlayByPlayerModal}
-                    handlePauseByPlayer={handlePauseByPlayerModal}
-                    setTimePlayerModal={setTimePlayerModal}
-                    isOpenModalVideo={isOpenModalVideo}
-                    handleCloseModal={handleCloseModal}
-                    handleOpenModal={handleOpenModal}
-                />
-                {comment && <Comments isComment={comment} setComment={setComment} currentUserId="1" />}
             </div>
         </div>
     );

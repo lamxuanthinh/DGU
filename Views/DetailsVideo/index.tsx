@@ -1,8 +1,8 @@
 import Video from "@/components/common/Video/DRMVideo";
-import { IVideoShortPayload } from "@/model/video";
+import { IDRMVideoShortPayload } from "@/model/video";
 
 interface IDetailsVideo {
-    data: IVideoShortPayload;
+    data: IDRMVideoShortPayload;
 }
 
 export default function DetailsVideo({ data }: IDetailsVideo) {

@@ -5,11 +5,11 @@ import DescriptionVideo from "../DescriptionVideo";
 import ActionVideo from "../ActionVideo";
 import ModalVideo from "../ModalVideo";
 import ControlsVideo from "../ControlsVideo";
-import { IVideoShortPayload } from "@/model/video";
+import { IDRMVideoShortPayload } from "@/model/video";
 import Comments from "../../Comments/Comments";
 
 interface IVideo {
-    data: IVideoShortPayload;
+    data: IDRMVideoShortPayload;
 }
 
 export default function Video({ data }: IVideo) {
