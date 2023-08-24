@@ -58,6 +58,9 @@ export default function SignUp() {
         };
         try {
             const { message, emailSent } = await auth.signUp(payload);
+            console.log("::MESSAGE::", message);
+            console.log("::EMAIL SENT::", emailSent);
+
             if (message === "Gmail already exist") {
                 setIsLoading(false);
                 console.log("Gmail already exist");
