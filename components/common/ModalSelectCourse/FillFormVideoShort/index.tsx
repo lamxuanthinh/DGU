@@ -3,6 +3,7 @@ import { IListDataSplitVideo } from "@/model/editVideo";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import Button from "../../Button";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 
 const FillFormVideoShort = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -56,25 +57,33 @@ const FillFormVideoShort = () => {
                 <div className="w-[55%] shadow-softGlow rounded-[5px] overflow-hidden mr-10">
                     <video className="w-full" ref={videoRef} src={srcVideoEdit} controls></video>
                 </div>
-                <div className="flex-1">
-                    <div className="mb-4">
-                        <label className="block text-xl font-medium mb-3" htmlFor="">
-                            Enter you title short
+                <div className="flex-1 mt-5">
+                    <div className="mb-8 relative">
+                        <label
+                            className="block text-sm font-medium absolute bg-white top-[-10px] left-[40px] px-5"
+                            htmlFor=""
+                        >
+                            Title
                         </label>
                         <input
+                            placeholder="Enter the description . . ."
                             onChange={handleChangeNameShort}
-                            className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-lg"
+                            className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-sm"
                             type="text"
                             value={listDataSplitVideo[indexActiveSplit].name}
                         />
                     </div>
-                    <div>
-                        <label className="block text-xl font-medium mb-3" htmlFor="">
-                            Enter you description short
+                    <div className="relative">
+                        <label
+                            className="block text-sm font-medium absolute bg-white top-[-10px] left-[40px] px-5"
+                            htmlFor=""
+                        >
+                            Description
                         </label>
                         <textarea
+                            placeholder="Enter the description . . ."
                             onChange={handleChangeDescriptionShort}
-                            className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-lg min-h-[200px]"
+                            className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-sm min-h-[200px]"
                             value={listDataSplitVideo[indexActiveSplit].description}
                         />
                     </div>
@@ -90,8 +99,16 @@ const FillFormVideoShort = () => {
                                 }`}
                                 key={itemSplitVideo.id}
                                 onClick={() => handleActiveSplit(index, itemSplitVideo.startTime)}
-                                onDoubleClick={handleOpenFile}
                             >
+                                <Button
+                                    onClick={(e: any) => {
+                                        e.stopPropagation();
+                                        handleOpenFile();
+                                    }}
+                                    className="absolute top-1 right-1 p-1 text-[22px] bg-black/[.39] text-white rounded-[5px]"
+                                >
+                                    <AiOutlineCloudUpload />
+                                </Button>
                                 <Image
                                     className="w-[180px] h-[100px]"
                                     src={itemSplitVideo.thumbImage}

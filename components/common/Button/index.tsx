@@ -9,7 +9,7 @@ interface IButtonProps {
      type?: "primary" | "text" | "outline"
      disabled?: boolean;
      className?: any;
-     onClick?: () => void;
+     onClick?: (e: any) => void;
      href?: Url;
 }
 
