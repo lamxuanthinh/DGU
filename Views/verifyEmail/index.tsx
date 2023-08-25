@@ -15,10 +15,9 @@ export default function VerifyEmail() {
         const handleVerifyEmail = async () => {
             try {
                 const payload = { email };
-                const { message, userId } = await auth.verifyEmail(payload, token);
+                const { message } = await auth.verifyEmail(payload, token);
                 if (message === "Invalid Token") setStatusVerify(false);
                 if (message === "ErrorData") setStatusVerify(false);
-                if (userId) localStorage.setItem("userId", `${userId}`);
             } catch (e) {
                 console.log(e);
             }

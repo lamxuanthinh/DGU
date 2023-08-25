@@ -23,6 +23,8 @@ const signUpSchema = schema.pick(["email", "password", "confirm_password", "birt
 export default function SignUp() {
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
+    const [errorEmail, setErrorEmail] = useState<string>("");
+
     const {
         register,
         handleSubmit,
@@ -51,21 +53,20 @@ export default function SignUp() {
 
     const onSubmit = handleSubmit(async (data: FormData) => {
         setIsLoading(true);
+
         const payload = {
             email: data.email,
             name: data.fullName,
             password: data.confirm_password,
+            birthday: data.birthday,
+            gender: data.gender,
         };
+
         try {
             const { message, emailSent } = await auth.signUp(payload);
-            if (message === "Gmail already exist") {
-                setIsLoading(false);
-                console.log("Gmail already exist");
-                return;
-            }
             if (message === "ErrorData") {
+                setErrorEmail("Email already.");
                 setIsLoading(false);
-                router.push("/404");
                 return;
             }
 
@@ -75,6 +76,11 @@ export default function SignUp() {
                 query: { emailSent },
             } as { query: QueryNotification });
         } catch (error) {
+            setIsLoading(false);
+            router.push({
+                pathname: "/verifyemail/notification",
+                query: { emailSent: "dgu@gmail.com" },
+            } as { query: QueryNotification });
             console.log(error);
         }
     });
@@ -89,6 +95,8 @@ export default function SignUp() {
         };
 
         document.addEventListener("mousedown", handleMouseDown);
+
+        setValue("gender", 0);
 
         return () => {
             document.removeEventListener("mousedown", handleMouseDown);
@@ -118,6 +126,7 @@ export default function SignUp() {
                                         placeholder="Email"
                                         labelInput="Email"
                                         errorMessage={errors.email?.message}
+                                        errorMessageUtils={errorEmail}
                                         animationBorder
                                     />
 
@@ -160,7 +169,7 @@ export default function SignUp() {
                                                     }),
                                                     input: (base, { selectProps }) => ({
                                                         ...base,
-                                                        display: "none", // Ẩn thẻ input gây ra sự cố
+                                                        display: "none",
                                                         opacity: selectProps.menuIsOpen ? 0 : 1,
                                                         pointerEvents: selectProps.menuIsOpen ? "none" : "auto",
                                                     }),
@@ -169,9 +178,9 @@ export default function SignUp() {
                                                 defaultValue={{ value: "male", label: "Male" }}
                                                 onChange={(value) => handleGender(value)}
                                                 options={[
-                                                    { value: "male", label: "Male" },
-                                                    { value: "female", label: "Female" },
-                                                    { value: "others", label: "Others" },
+                                                    { value: "0", label: "Male" },
+                                                    { value: "1", label: "Female" },
+                                                    { value: "2", label: "Others" },
                                                 ]}
                                                 menuIsOpen={menuIsOpen}
                                                 onMenuOpen={handleMenu}

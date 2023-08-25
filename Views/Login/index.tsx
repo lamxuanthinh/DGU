@@ -19,7 +19,8 @@ const loginSchema = schema.pick(["email", "password"]);
 export default function Login() {
     const router = Router;
     const { setIsLoading } = useAppContext();
-    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [errorEmail, setErrorEmail] = useState<string>("");
+    const [errorPassword, setErrorPassword] = useState<string>("");
 
     const {
         register,
@@ -35,25 +36,18 @@ export default function Login() {
 
     const onSubmit = handleSubmit(async (data) => {
         setIsLoading(true);
-        console.log("[P]::SignUP::", data);
         const payload = {
             email: data.email,
             password: data.password,
         };
-        console.log("[P]::payload::", payload);
         try {
-            const { message, userId } = await auth.login(payload);
-            if (message === "Gmail already exist") {
-                setIsLoading(false);
-                setErrorMessage("Gmail already exist");
-                return;
-            }
+            const { message } = await auth.login(payload);
             if (message === "ErrorData") {
                 setIsLoading(false);
-                router.push("/404");
+                setErrorEmail("Gmail not already exist");
+                setErrorPassword("Password wrong");
                 return;
             }
-            localStorage.setItem("userId", `${userId}`);
             setIsLoading(false);
             router.push("/");
         } catch (error) {
@@ -71,7 +65,9 @@ export default function Login() {
                 >
                     <div className="w-[100%]">
                         <div className="pb-5">
-                            <Image width={60} src={require("@/public/Images/logo.png")} alt="logo" />
+                            <Link href={"/"}>
+                                <Image width={60} src={require("@/public/Images/logo.png")} alt="logo" />
+                            </Link>
                         </div>
                         <div className="">
                             <h1 className="font-bold text-[32px] pb-5">Welcome Back!</h1>
@@ -88,6 +84,7 @@ export default function Login() {
                                     labelInput="Email"
                                     animationBorder
                                     errorMessage={errors.email?.message}
+                                    errorMessageUtils={errorEmail}
                                 />
 
                                 <Input
@@ -99,8 +96,8 @@ export default function Login() {
                                     labelInput="Password"
                                     animationBorder
                                     errorMessage={errors.password?.message}
+                                    errorMessageUtils={errorPassword}
                                 />
-                                {errorMessage && <span className="text-[#FF0000]">{errorMessage}</span>}
                                 <div>
                                     <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium">
                                         Forget password?

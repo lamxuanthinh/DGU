@@ -1,4 +1,4 @@
-import { IVideoPayload } from "@/model/video";
+import { IDRMVideoPayload } from "@/model/video";
 import { Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import ControlsVideo from "../ControlsVideo";
@@ -7,7 +7,7 @@ import ActionVideo from "../ActionVideo";
 import Comments from "../../Comments/Comments";
 
 interface IModalVideo {
-    dataVideo: IVideoPayload;
+    dataVideo: IDRMVideoPayload;
     modalVideoRef: MutableRefObject<null>;
     statusModal: string;
     handlePlayByPlayerModal: () => void;
@@ -36,6 +36,7 @@ export default function ModalVideo({
     const [isHovered, setIsHovered] = useState(false);
     const hoverTimeoutRef: any = useRef<NodeJS.Timeout | null>(null);
     const [comment, setComment] = useState(false);
+
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.code === "Space") {

@@ -14,6 +14,7 @@ interface Props {
     labelInput?: string;
     isShowPassword?: boolean;
     animationBorder?: boolean;
+    errorMessageUtils?: any;
 }
 
 export default function Input({
@@ -28,6 +29,7 @@ export default function Input({
     labelInput,
     isShowPassword = false,
     animationBorder,
+    errorMessageUtils,
 }: Props) {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
@@ -98,9 +100,9 @@ export default function Input({
                             ry={12}
                             strokeWidth={2}
                             stroke="#ccc"
-                            className=" lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px]"
                             width={590}
                             fill="none"
+                            className=" lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px]"
                             mask="url(#border)"
                         />
                         <rect
@@ -118,7 +120,7 @@ export default function Input({
                             strokeDashoffset={0.92}
                             className={`${
                                 isFocus ? "stroke-dashoffset-0" : ""
-                            }  lg:w-[468px] h-[55px] md:h-[50px]  md:w-[590px] transi ion-stroke-dashoffset duration-700ease-in-out`}
+                            } lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px] transition-stroke-dashoffset duration-700 ease-in-out`}
                         />
                     </svg>
                 )}
@@ -157,7 +159,7 @@ export default function Input({
             </div>
             {
                 <div className="absolute bottom-[-30px] right-0 text-red-600 min-h-[1.5rem] text-sm text-right">
-                    {errorMessage}
+                    {errorMessage} {errorMessageUtils}
                 </div>
             }
         </div>

@@ -27,6 +27,10 @@ export const auth = {
         return axiosClient.post<DataResponse>("/api/login", payload).then((res) => res.data);
     },
 
+    logout: () => {
+        return axiosClient.post("/api/logout").then((res) => res.data);
+    },
+
     refreshToken: () => {
         return axiosClient.get("/api/refreshtoken").then((res) => res.data);
     },

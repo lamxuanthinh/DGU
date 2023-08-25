@@ -25,6 +25,8 @@ interface AppContextType {
     setFileVideoUpload: Dispatch<SetStateAction<File | undefined>>;
     fileThumbVideoUpload: File | null;
     setFileThumbVideoUpload: Dispatch<SetStateAction<File | null>>;
+    isProcessPlayVideo: string;
+    setProcessPlayVideo: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface IAppProviderProps {
@@ -45,6 +47,7 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
     const [listDataSplitVideo, setListDataSplitVideo] = useState<IListDataSplitVideo>([]);
     const [fileVideoUpload, setFileVideoUpload] = useState<File | undefined>(undefined);
     const [fileThumbVideoUpload, setFileThumbVideoUpload] = useState<File | null>(null);
+    const [isProcessPlayVideo, setProcessPlayVideo] = useState("NA");
 
     return (
         <AppContext.Provider
@@ -71,6 +74,8 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
                 setFileVideoUpload,
                 fileThumbVideoUpload,
                 setFileThumbVideoUpload,
+                isProcessPlayVideo,
+                setProcessPlayVideo,
             }}
         >
             {children}

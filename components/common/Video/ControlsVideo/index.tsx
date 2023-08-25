@@ -1,10 +1,10 @@
-import { IVideoPayload, IVideoShortPayload } from "@/model/video";
+import { IDRMVideoPayload, IDRMVideoShortPayload } from "@/model/video";
 import { Dispatch, SetStateAction } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
 interface IControlsVideo {
-    dataVideo: IVideoPayload | Array<IVideoShortPayload>;
+    dataVideo: IDRMVideoPayload | Array<IDRMVideoShortPayload>;
     totalTime: number;
     statusVideo: string;
     currentTime: number;
@@ -59,7 +59,7 @@ export default function ControlsVideo({
                 <div className="hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
                     <div className="relative bg-opacity-50 flex items-center justify-between">
                         {Array.isArray(dataVideo) ? (
-                            dataVideo.map((item: IVideoShortPayload) => {
+                            dataVideo.map((item: IDRMVideoShortPayload) => {
                                 const breakPointToPercent = (item.break_point / totalTime) * 100;
                                 const breakEndPointToPercent = ((item.break_point + item.duration) / totalTime) * 100;
 

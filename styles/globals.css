@@ -126,4 +126,7 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 .scroll-thin-course::-webkit-scrollbar-thumb:hover {
     background: rgb(146, 146, 146);
     cursor: pointer;
+    transform: scale(1.03);
+    background-color: white;
+    z-index: 5;
 }

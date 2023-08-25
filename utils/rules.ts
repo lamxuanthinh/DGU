@@ -7,6 +7,7 @@ export const schema = yup.object({
         .email("Email invalidate !")
         .min(5, "Length from 5-160 characters !")
         .max(160, "Length from 5-160 characters !"),
+
     password: yup
         .string()
         .required("Password is required !")
@@ -19,7 +20,7 @@ export const schema = yup.object({
         .max(160, "Length from 6-160 characters")
         .oneOf([yup.ref("password")], "Password does not match"),
     birthday: yup.string(),
-    gender: yup.string(),
+    gender: yup.number().required("Gender is required"),
     fullName: yup.string().required("FullName is required"),
 });
 
