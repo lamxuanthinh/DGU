@@ -131,15 +131,14 @@ export default function NormalVideo({ data }: INormalVideo) {
     }, [isOpenModalVideo]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className="w-full h-full select-none">
+        <div className="w-full h-full select-none lg:bg-black">
             <div className="video_container">
                 <video
-                    className="absolute left-0 top-0 h-full w-full"
+                    className="absolute left-0 top-0 h-full w-full lg:object-cover bg-black"
                     ref={videoRef}
                     controls={false}
                     loop
                     onTimeUpdate={handleTimeUpdate}
-                    style={{ objectFit: "cover" }}
                 >
                     <source src={data.video} type="video/mp4" />
                 </video>
