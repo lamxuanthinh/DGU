@@ -70,3 +70,9 @@ export interface IDRMVideoShortPayload {
     pathVideo: string;
     fullVideoInfo: IDRMVideoPayload;
 }
+
+export interface VideoDataResponse {
+    message: String;
+    status: string;
+    metaData: {};
+}

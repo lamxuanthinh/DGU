@@ -8,6 +8,10 @@ export interface IDataSplitVideo {
     width: number;
     startTime: number;
     endTime: number;
+    thumbImage: string;
+    thumbImageFile: File | null;
+    name: string;
+    description: string;
 }
 
-export interface IListDataSplitVideo extends Array<IDataSplitVideo> {}
+export type IListDataSplitVideo = IDataSplitVideo[];

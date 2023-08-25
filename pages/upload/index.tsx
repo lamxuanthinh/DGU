@@ -1,10 +1,8 @@
-import MainLayout from "@/components/layout/MainLayout"
-import Upload from "@/Views/Upload"
+import MainLayout from "@/components/layout/MainLayout";
+import Upload from "@/Views/Upload";
 
 export default function index() {
-    return (
-        <Upload />
-    )
+    return <Upload />;
 }
 
 index.Layout = MainLayout;

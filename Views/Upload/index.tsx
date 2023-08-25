@@ -1,13 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "../../components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
+import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 
 export default function Upload() {
-    const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading } = useAppContext();
+    const {
+        setSrcVideoEdit,
+        setThumbVideoEdit,
+        setIsLoading,
+        isRenderSelectCourse,
+        setRenderSelectCourse,
+        setFileVideoUpload,
+        setFileThumbVideoUpload,
+    } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
+    const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
     const [isDragging, setIsDragging] = useState(false);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -33,14 +43,30 @@ export default function Upload() {
             if (ctx && videoRef.current) {
                 ctx.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
                 setThumbVideoEdit(canvasRef.current.toDataURL());
+
+                canvasRef.current.toBlob((blob) => {
+                    if (blob) {
+                        const file = new File([blob], "image.jpg", { type: blob.type });
+                        setFileThumbVideoUpload(file);
+                    }
+                }, "image/jpeg");
             }
         }
         push("/editvideo");
         setIsLoading(false);
     };
 
+    const onOpenCloseModal = () => {
+        setIsCloseModal(false);
+        setRenderSelectCourse(false);
+    };
+
     const onCancel = () => {
         setIsModal(false);
+    };
+
+    const handleCancelCloseModal = () => {
+        setIsCloseModal(false);
     };
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -91,8 +117,9 @@ export default function Upload() {
                     };
                 }
                 setSrcVideoEdit(url);
-                sessionStorage.setItem("srcVideoEdit", url);
-                setIsModal(true);
+                setFileVideoUpload(files[0]);
+                setRenderSelectCourse(!isRenderSelectCourse);
+                // setIsModal(true);
             } else {
                 alert("This is not video file.");
                 event.target.value = "";
@@ -105,6 +132,21 @@ export default function Upload() {
             inputRef.current.click();
         }
     };
+
+    useEffect(() => {
+        if (isRenderSelectCourse) {
+            const handleBeforeUnload = (event: any) => {
+                event.preventDefault();
+                event.returnValue = "";
+            };
+
+            window.addEventListener("beforeunload", handleBeforeUnload);
+
+            return () => {
+                window.removeEventListener("beforeunload", handleBeforeUnload);
+            };
+        }
+    }, [isRenderSelectCourse]);
 
     return (
         <>
@@ -158,6 +200,21 @@ export default function Upload() {
                 </div>
             </div>
             {isModal && <Modal title="Do you want to go to the video editing step?" onOk={onOk} onCancel={onCancel} />}
+            {isCloseModal && (
+                <Modal
+                    title="Do you want to reload, changes you made may not be saved.?"
+                    onOk={onOpenCloseModal}
+                    onCancel={handleCancelCloseModal}
+                />
+            )}
+
+            {isRenderSelectCourse && (
+                <ModalSelectCourse
+                    setRenderSelectCourse={setRenderSelectCourse}
+                    setConfirmEditModal={setIsModal}
+                    setIsCloseModal={setIsCloseModal}
+                />
+            )}
             <canvas ref={canvasRef} className="fixed z-[-10] opacity-0" />
             <video ref={videoRef} className="fixed z-[-10] opacity-0" />
         </>

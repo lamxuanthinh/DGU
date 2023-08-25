@@ -21,6 +21,6 @@
       "@/*": ["./*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "apis/api.js", "components/common/ModalSelectCourse/index.ts"],
   "exclude": ["node_modules"]
 }

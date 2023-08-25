@@ -93,14 +93,40 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
     opacity: 100%;
 }
 
-
 .dgu-course-card {
-    transition:  0.2s all;
+    transition: 0.2s all;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .dgu-course-card:hover {
-    transform:  scale(1.03);
+    transform: scale(1.03);
+    background-color: white;
+    z-index: 5;
+}
+
+/* ---------------------scroll-thin-course------------------------- */
+.scroll-thin-course::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.scroll-thin-course::-webkit-scrollbar-track {
+    background: #d7d7d7;
+    border-radius: 5px;
+}
+
+/* Handle */
+.scroll-thin-course::-webkit-scrollbar-thumb {
+    background: #b7b7b7;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+/* Handle on hover */
+.scroll-thin-course::-webkit-scrollbar-thumb:hover {
+    background: rgb(146, 146, 146);
+    cursor: pointer;
+    transform: scale(1.03);
     background-color: white;
     z-index: 5;
 }

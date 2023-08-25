@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { IMenuItems } from "@/model/menuItems";
 import Button from "../Button";
@@ -17,6 +17,23 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
     const [isMenu, setIsMenu] = useState<boolean>(false);
     const lastItems = menuItems[menuItems.length - 1];
     const LastIcon: any = lastItems.icon;
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    const handleToggleMenu = () => {
+        setIsMenu(!isMenu);
+    };
+
+    useEffect(() => {
+        function handleClickOutside(event: any) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsMenu(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     const handleLogout = async () => {
         console.log("::[LOGOUT]::");
@@ -29,11 +46,10 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
     };
 
     return (
-        <div className="relative">
-            <div className="select-none" onClick={() => setIsMenu(true)}>
+        <div className="relative" ref={menuRef}>
+            <div className="select-none" onClick={handleToggleMenu}>
                 {children}
             </div>
-            {isMenu && <div className="fixed inset-0 bg-transparent z-40" onClick={() => setIsMenu(false)}></div>}
             {isMenu && (
                 <ul
                     className={`absolute top-[60px] right-[-12px] w-[230px]  shadow-menu z-50 rounded-[20px] py-[10px] max-h-[60vh] overflow-y-scroll no-scrollbar ${
