@@ -78,8 +78,8 @@ export default function Details() {
             <div className="rounded-xl w-[66%]">
                 {listLessonDetail.map((item, index) => {
                     return (
-                        <Link href={`/video/${item._id}`}>
-                            <DetailCourseItem key={index} className="flex justify-start h-[140px] pb-4">
+                        <Link href={`/video/${item._id}`} key={index}>
+                            <DetailCourseItem className="flex justify-start h-[140px] pb-4">
                                 <div className="h-full flex items-center p-3">
                                     <p className="font-bold text-[15px]">{index}</p>
                                 </div>
