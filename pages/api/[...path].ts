@@ -16,7 +16,7 @@ export default async function handlerAll(req: NextApiRequest, res: NextApiRespon
     const accessToken = cookies.get("accessToken");
     const userId = cookies.get("userId");
 
-    if (!accessToken && userId) return res.status(401).json({ message: "TokenExpired" });
+    // if (!accessToken && userId) return res.status(401).json({ message: "TokenExpired" });
 
     return new Promise(() => {
         if (accessToken && userId) {

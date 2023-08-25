@@ -51,11 +51,18 @@ export default function SignUp() {
 
     const onSubmit = handleSubmit(async (data: FormData) => {
         setIsLoading(true);
+        let gender;
+        if (data.gender === "male") gender = 0;
+        if (data.gender === "female") gender = 1;
         const payload = {
             email: data.email,
             name: data.fullName,
             password: data.confirm_password,
+            birthday: data.birthday,
+            gender,
         };
+        console.log("::PAYLOAD::", payload);
+
         try {
             const { message, emailSent } = await auth.signUp(payload);
             if (message === "Gmail already exist") {
