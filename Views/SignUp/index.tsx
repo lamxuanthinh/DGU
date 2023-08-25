@@ -65,11 +65,6 @@ export default function SignUp() {
 
         try {
             await auth.signUp(payload);
-            setIsLoading(false);
-            router.push({
-                pathname: "/verifyemail/notification",
-                query: { emailSent: "dgu@gmail.com" },
-            } as { query: QueryNotification });
 
             // if (message === "Gmail already exist") {
             //     setIsLoading(false);
@@ -96,6 +91,11 @@ export default function SignUp() {
             //     query: { emailSent },
             // } as { query: QueryNotification });
         } catch (error) {
+            setIsLoading(false);
+            router.push({
+                pathname: "/verifyemail/notification",
+                query: { emailSent: "dgu@gmail.com" },
+            } as { query: QueryNotification });
             console.log(error);
         }
     });
