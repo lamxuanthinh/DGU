@@ -13,7 +13,7 @@ export async function getStaticProps() {
 
     try {
         posts = await videoApi.getAllVideo();
-        posts = posts;
+        posts = posts.metaData;
 
         for (let i = 0; i < posts.length; i++) {
             const parentId = posts[i].parent_id;

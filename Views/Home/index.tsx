@@ -10,6 +10,7 @@ type TNormalVideoProps = {
 };
 
 export default function Home({ data }: IHomeProps) {
+
     const VideoSection = ({ data }: TNormalVideoProps) => {
         return (
             <div className="snap-start flex-shrink-0 mb-3 w-full h-full text-[#fff] overflow-hidden">
