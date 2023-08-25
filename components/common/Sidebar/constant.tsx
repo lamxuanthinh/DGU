@@ -1,7 +1,7 @@
 import { MdOutlineHistory, MdOutlineFavoriteBorder } from "react-icons/md";
-import { FaGripfire} from "react-icons/fa";
+import { FaGripfire } from "react-icons/fa";
 import { SlSettings, SlPeople } from "react-icons/sl";
-import {AiOutlineHome} from 'react-icons/ai'
+import { AiOutlineHome } from "react-icons/ai";
 
 import { NavLink } from "@/model/common/sidebarItem";
 
@@ -12,8 +12,8 @@ export const navLink: NavLink[] = [
         icon: <AiOutlineHome fontSize={"27px"} />,
     },
     {
-        name: "Server Ranking",
-        link: "/serveranking",
+        name: "Trending",
+        link: "/trending",
         icon: <FaGripfire fontSize={"27px"} />,
     },
     {
