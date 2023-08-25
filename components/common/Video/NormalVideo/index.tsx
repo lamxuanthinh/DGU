@@ -133,7 +133,14 @@ export default function NormalVideo({ data }: INormalVideo) {
     return (
         <div className="w-full h-full select-none">
             <div className="video_container">
-                <video ref={videoRef} controls={false} loop onTimeUpdate={handleTimeUpdate}>
+                <video
+                    className="absolute left-0 top-0 h-full w-full"
+                    ref={videoRef}
+                    controls={false}
+                    loop
+                    onTimeUpdate={handleTimeUpdate}
+                    style={{ objectFit: "cover" }}
+                >
                     <source src={data.video} type="video/mp4" />
                 </video>
 
