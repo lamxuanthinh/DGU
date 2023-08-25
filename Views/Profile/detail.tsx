@@ -6,7 +6,6 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { DetailCourseItem } from "@/Views/Profile/ProfileStyled";
 import profile from "@/apis/profile";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { ICourseDetail, ILessonDetail } from "@/model/profile";
 import Button from "@/components/common/Button";
 
