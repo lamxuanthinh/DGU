@@ -1,21 +1,20 @@
-import NormalVideo from "@/components/common/Video/NormalVideo";
-import { IShortVideoPayload } from "@/model/video";
+import Video from "@/components/common/Video/DRMVideo";
+import { IDRMVideoShortPayload } from "@/model/video";
 
-interface IHomeProps {
-    data: Array<IShortVideoPayload>;
+interface IVDoCipherProps {
+    data: Array<IDRMVideoShortPayload>;
 }
 
-type TNormalVideoProps = {
-    data: IShortVideoPayload;
+type TVDoCipherProps = {
+    data: IDRMVideoShortPayload;
 };
 
-export default function Home({ data }: IHomeProps) {
-
-    const VideoSection = ({ data }: TNormalVideoProps) => {
+export default function VDoCipher({ data }: IVDoCipherProps) {
+    const VideoSection = ({ data }: TVDoCipherProps) => {
         return (
             <div className="snap-start flex-shrink-0 mb-3 w-full h-full text-[#fff] overflow-hidden">
                 <div className="mb-4 relative h-full">
-                    <NormalVideo data={data} />
+                    <Video data={data} />
                 </div>
             </div>
         );

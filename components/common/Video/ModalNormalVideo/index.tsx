@@ -1,14 +1,14 @@
-import { IDRMVideoPayload } from "@/model/video";
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import { IVideoPayload } from "@/model/video";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import ControlsVideo from "../ControlsVideo";
-import DescriptionVideo from "../DescriptionVideo";
-import ActionVideo from "../ActionVideo";
 import Comments from "../../Comments/Comments";
+import ActionVideo from "../ActionVideo";
+import ControlsNormalVideo from "../ControlsNormalVideo";
+import DescriptionVideo from "../DescriptionVideo";
 
-interface IModalVideo {
-    dataVideo: IDRMVideoPayload;
-    modalVideoRef: MutableRefObject<null>;
+interface IModalNormalVideo {
+    dataVideo: IVideoPayload;
+    modalVideoRef: React.RefObject<HTMLVideoElement>;
     statusModal: string;
     handlePlayByPlayerModal: () => void;
     handlePauseByPlayerModal: () => void;
@@ -20,7 +20,7 @@ interface IModalVideo {
     handleOpenModal: () => void;
 }
 
-export default function ModalVideo({
+export default function ModalNormalVideo({
     dataVideo,
     modalVideoRef,
     statusModal,
@@ -32,20 +32,25 @@ export default function ModalVideo({
     isOpenModalVideo,
     handleCloseModal,
     handleOpenModal,
-}: IModalVideo) {
+}: IModalNormalVideo) {
     const [isHovered, setIsHovered] = useState(false);
     const hoverTimeoutRef: any = useRef<NodeJS.Timeout | null>(null);
     const [comment, setComment] = useState(false);
 
+    const handleTimeUpdate = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+        const videoElement = event.currentTarget;
+        setCurrentTime(videoElement.currentTime);
+    };
+
     useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.code === "Space") {
-                event.preventDefault();
-            }
-            if (event.key === "Escape") {
-                handleCloseModal();
-            }
-        };
+        // const handleKeyDown = (event: KeyboardEvent) => {
+        //     if (event.code === "Space") {
+        //         event.preventDefault();
+        //     }
+        //     if (event.key === "Escape") {
+        //         handleCloseModal();
+        //     }
+        // };
 
         const handleMouseMove = () => {
             if (!isHovered) {
@@ -64,12 +69,12 @@ export default function ModalVideo({
 
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseleave", handleMouseLeave);
-        document.addEventListener("keydown", handleKeyDown);
+        // document.addEventListener("keydown", handleKeyDown);
 
         return () => {
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseleave", handleMouseLeave);
-            document.removeEventListener("keydown", handleKeyDown);
+            // document.removeEventListener("keydown", handleKeyDown);
             clearTimeout(hoverTimeoutRef.current);
         };
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -80,7 +85,17 @@ export default function ModalVideo({
                 isOpenModalVideo ? "flex" : "hidden"
             } items-center justify-center bg-black ${isHovered ? "video_container" : ""}`}
         >
-            <div className="h-full w-full relative" ref={modalVideoRef}>
+            <div className="h-full w-full relative">
+                <video
+                    className="h-full w-full"
+                    ref={modalVideoRef}
+                    controls={false}
+                    loop
+                    onTimeUpdate={handleTimeUpdate}
+                >
+                    <source src={dataVideo.video} type="video/mp4" />
+                </video>
+
                 <div
                     onClick={() => {
                         if (statusModal == "Playing") {
@@ -93,36 +108,26 @@ export default function ModalVideo({
                     className={`absolute top-0 w-[100%] h-[100%]`}
                 ></div>
 
-                <div
-                    className="closeButton opacity-0 transition duration-500 ease-in-out p-[10px] rounded-[50%] absolute top-5 left-5 bg-[#92929280] hover:cursor-pointer hover:bg-[#b7b7b7]"
-                    onClick={() => {
-                        setComment(false);
-                        handleCloseModal();
-                    }}
-                >
-                    <CgClose fontSize={20} />
-                </div>
-
                 <DescriptionVideo
                     setComment={setComment}
-                    key={dataVideo.video_id}
+                    key={dataVideo._id}
                     title={dataVideo.title}
-                    caption={dataVideo.caption}
-                    hashtags={dataVideo.hashtags}
+                    caption={dataVideo.description}
                 />
+
                 <ActionVideo
                     comment={comment}
                     setComment={setComment}
-                    pathAvatar={dataVideo.author.pathAvatar}
+                    pathAvatar={dataVideo.thumbnail}
                     heartCount={100}
                     commentCount={93}
                     shareCount={57}
                 />
 
-                <ControlsVideo
+                <ControlsNormalVideo
                     setComment={setComment}
-                    dataVideo={dataVideo.video_id_children}
-                    totalTime={dataVideo.duration}
+                    controlData={dataVideo.controlData}
+                    totalTime={modalVideoRef.current ? modalVideoRef.current.duration : 0}
                     statusVideo={statusModal}
                     currentTime={currentTime}
                     setCurrentTime={setCurrentTime}
@@ -133,6 +138,17 @@ export default function ModalVideo({
                     handleCloseModal={handleCloseModal}
                     handleOpenModal={handleOpenModal}
                 />
+
+                <div
+                    className="closeButton opacity-0 transition duration-500 ease-in-out p-[10px] rounded-[50%] absolute top-5 left-5 bg-[#92929280] hover:cursor-pointer hover:bg-[#b7b7b7]"
+                    onClick={() => {
+                        setComment(false);
+                        handleCloseModal();
+                    }}
+                >
+                    <CgClose fontSize={20} />
+                </div>
+
                 {comment && <Comments isComment={comment} setComment={setComment} currentUserId="1" />}
             </div>
         </div>

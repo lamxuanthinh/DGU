@@ -1,10 +1,9 @@
-import { IDRMVideoPayload, IDRMVideoShortPayload } from "@/model/video";
 import { Dispatch, SetStateAction } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { MdFullscreen } from "react-icons/md";
 
 interface IControlsVideo {
-    dataVideo: IDRMVideoPayload | Array<IDRMVideoShortPayload>;
+    controlData: any;
     totalTime: number;
     statusVideo: string;
     currentTime: number;
@@ -18,8 +17,8 @@ interface IControlsVideo {
     handleOpenModal: () => void;
 }
 
-export default function ControlsVideo({
-    dataVideo,
+export default function ControlsNormalVideo({
+    controlData,
     totalTime,
     statusVideo,
     currentTime,
@@ -58,10 +57,10 @@ export default function ControlsVideo({
             <div className="py-1 px-4">
                 <div className="hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
                     <div className="relative bg-opacity-50 flex items-center justify-between">
-                        {Array.isArray(dataVideo) ? (
-                            dataVideo.map((item: IDRMVideoShortPayload) => {
-                                const breakPointToPercent = (item.break_point / totalTime) * 100;
-                                const breakEndPointToPercent = ((item.break_point + item.duration) / totalTime) * 100;
+                        {Array.isArray(controlData) ? (
+                            controlData.map((item: any) => {
+                                const breakPointToPercent = (item.point / totalTime) * 100;
+                                const breakEndPointToPercent = ((item.point + item.duration) / totalTime) * 100;
 
                                 const percentItemDuration = breakEndPointToPercent - breakPointToPercent;
                                 const CalcPercentWidthOfControlItemToColor = () => {
@@ -78,7 +77,7 @@ export default function ControlsVideo({
                                 const value = CalcPercentWidthOfControlItemToColor();
                                 return (
                                     <div
-                                        key={item.video_id}
+                                        key={item._id}
                                         className="flex-1 h-1 overflow-hidden"
                                         style={{
                                             flexBasis: `${(item.duration / totalTime) * 100}%`,

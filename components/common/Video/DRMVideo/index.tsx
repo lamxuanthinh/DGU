@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import useVdocipher from "@/hooks/use-vdocipher";
-import DescriptionVideo from "./DescriptionVideo";
-import ActionVideo from "./ActionVideo";
-import ModalVideo from "./ModalVideo";
-import ControlsVideo from "./ControlsVideo";
-import { IVideoShortPayload } from "@/model/video";
-import Comments from "../Comments/Comments";
+import DescriptionVideo from "../DescriptionVideo";
+import ActionVideo from "../ActionVideo";
+import ModalVideo from "../ModalVideo";
+import ControlsVideo from "../ControlsVideo";
+import { IDRMVideoShortPayload } from "@/model/video";
+import Comments from "../../Comments/Comments";
 
 interface IVideo {
-    data: IVideoShortPayload;
+    data: IDRMVideoShortPayload;
 }
 
 export default function Video({ data }: IVideo) {
@@ -132,14 +132,14 @@ export default function Video({ data }: IVideo) {
     };
 
     const handlePlayByPlayer = () => {
-        if (player) {
+        if (player && status !== "NA") {
             player.video.play();
             setStatus("Playing");
         }
     };
 
     const handlePauseByPlayer = () => {
-        if (player) {
+        if (player && status !== "NA") {
             player.video.pause();
             setStatus("Paused");
             setComment(false);
