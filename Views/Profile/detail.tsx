@@ -1,30 +1,55 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { BsFillEyeFill } from "react-icons/bs";
 
-import { dataCardDetail } from "@/Views/Profile/constant";
-
 import { DetailCourseItem } from "@/Views/Profile/ProfileStyled";
+import profile from "@/apis/profile";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { ICourseDetail, ILessonDetail } from "@/model/profile";
 
 export default function Details() {
+    const router = useRouter();
+    const [listLessonDetail, setListLessonDetail] = useState<Array<ILessonDetail>>([]);
+    const [course, setCourse] = useState<ICourseDetail>();
+
+    useEffect(() => {
+        const handleFechCourseDetail = async () => {
+            const idCourse = router.query.courseId;
+            if (idCourse) {
+                const response = await profile.getCourseDetail(idCourse);
+                const listDataVideo = response.metaData.videoPublicList;
+                setListLessonDetail(listDataVideo);
+                const course = response.metaData.course;
+                setCourse(course);
+            }
+        };
+        handleFechCourseDetail();
+    }, []);
+
     return (
         <div className="w-full h-full flex   p-[10px] zero:flex-col zero:justify-start  xl:flex-row xl:justify-center  ">
             <div className="h-full xl:w-[33%]  flex justify-center rounded-[5px] mr-2 bg-gradient-to-b from-[#B0997A] via-[rgba(206, 188, 161, 0.7)] to-[rgba(176, 153, 122, 0)]">
                 <div className="w-[99%] p-3 rounded-[5px]">
                     <div className="mb-4">
-                        <Image
-                            className="w-full rounded-[5px] "
-                            src={require("@/public/Images/Layout/Profile/main1.png")}
-                            alt="main1"
-                        />
+                        {course && (
+                            <Image
+                                className="w-full rounded-[5px] "
+                                src={course.thumbnail}
+                                alt="main1"
+                                width={100}
+                                height={100}
+                            />
+                        )}
                     </div>
                     <div>
-                        <h1 className="font-bold text-[26px] mb-4">CHỜ ĐỢI LIỆU CÓ KỊP KHÔNG ?</h1>
+                        <h1 className="font-bold text-[26px] mb-4">{course?.title}</h1>
                         <div className="flex items-center justify-between pb-4">
-                            <h4 className="text-[18px] font-bold">Tùng Tâm Lý</h4>
+                            <h4 className="text-[18px] font-bold">{course?.userId.name}</h4>
                             <div className="flex items-center">
                                 <div className=" w-[35px] h-[26px] bg-[#1a3882] rounded-[2px] flex justify-center items-center text-[#ffffff] text-[18px] font-bold  ">
-                                    16
+                                    {course?.totalVideo}
                                 </div>
                                 <p className="text-[13px] px-2 font-bold">video</p>
                             </div>
@@ -32,11 +57,7 @@ export default function Details() {
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <p className="text-[13px] pb-1 font-semibold">
-                            Trong cuộc sống, chờ đợi có thể là một thử thách khó khăn. Tuy nhiên, nếu ta kiên nhẫn và
-                            tin tưởng vào quá trình, kết quả sẽ đến. Hãy làm việc chăm chỉ, tập trung vào mục tiêu và hy
-                            vọng vào tương lai tốt đẹp.
-                        </p>
+                        <p className="text-[13px] pb-1 font-semibold">{course?.description}</p>
                         <div className="font-bold text-[13px] pb-3">
                             #thanhcong, #chodoi, #hoctap, #chodoilieucokipkhong
                         </div>
@@ -55,20 +76,34 @@ export default function Details() {
                 </div>
             </div>
             <div className="rounded-xl w-[66%]">
-                {dataCardDetail.map((item, index) => {
+                {listLessonDetail.map((item, index) => {
                     return (
-                        <DetailCourseItem
-                            key={index}
-                            className="flex justify-start h-[140px] pb-4">
-                            <div className="h-full flex items-center p-3">
-                                <p className="font-bold text-[15px]">{item.id}</p>
-                            </div>
-                            <div className="w-[200px]">{item.image}</div>
-                            <div className="flex flex-col px-2 w-[70%]">
-                                <h1 className="font-bold text-[18px]">{item.title1}</h1>
-                                <p className="font-medium text-[16px]">{item.title2}</p>
-                            </div>
-                        </DetailCourseItem>
+                        <Link href={`/video/${item._id}`}>
+                            <DetailCourseItem key={index} className="flex justify-start h-[140px] pb-4">
+                                <div className="h-full flex items-center p-3">
+                                    <p className="font-bold text-[15px]">{index}</p>
+                                </div>
+                                <div className="w-[200px]">
+                                    {item.thumbnail && (
+                                        <Image
+                                            width={100}
+                                            height={100}
+                                            className="w-full h-full"
+                                            src={item.thumbnail}
+                                            alt="image course"
+                                        />
+                                    )}
+                                </div>
+                                <div className="flex flex-col px-2 w-[70%]">
+                                    <h1 className="font-bold text-[18px]">{item.title}</h1>
+                                    <p className="font-medium text-[16px]">
+                                        {course?.userId.name} • {Math.floor(Math.random() * 900) + 100}.
+                                        {Math.floor(Math.random() * 900) + 100} views •
+                                        {Math.floor(Math.random() * 3) + 1} years
+                                    </p>
+                                </div>
+                            </DetailCourseItem>
+                        </Link>
                     );
                 })}
             </div>
