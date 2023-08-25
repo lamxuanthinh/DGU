@@ -10,7 +10,6 @@ import { GiFilmStrip } from "react-icons/gi";
 
 import {
     DATA_TRENDING_PEOPLE,
-    DATA_TRENDING_WEEK,
     DATA_FEATURED_VIDEOS,
     DATA_TOP_FEATURED_VIDEOS,
     DATA_TRENDING_COURSE,
