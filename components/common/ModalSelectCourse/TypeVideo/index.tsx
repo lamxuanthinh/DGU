@@ -11,7 +11,8 @@ import { IDataSplitVideo } from "@/model/editVideo";
 import courseApi from "@/apis/course";
 
 const TypeVideo = () => {
-    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload } = useAppContext();
+    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setIsLoading, isLoading } =
+        useAppContext();
 
     const router = useRouter();
     const [isPublic, setIsPublic] = useState<boolean>(true);
@@ -48,27 +49,18 @@ const TypeVideo = () => {
         if (fileVideoUpload) {
             formData.append("video", fileVideoUpload);
         }
-        // setStepSelected(4);
         setIsPublic(true);
-        // try {
-        //     const res = await courseApi.updateCourse(formData);
-        //     console.log("res" + res);
-        // } catch (error) {
-        //     console.log(error);
-        // }
-
-        courseApi
+        setIsLoading(true);
+        await courseApi
             .updateCourse(formData)
             .then((res) => {
                 console.log(res);
             })
             .catch((err) => console.log(err));
-
-        // .post("https://picsum.photos/1000/1000", {}, options)
-        // // Request with options as second parameter
-        // .then((res) => console.log(res))
-        // .catch((err) => console.log(err));
+        setIsLoading(false);
+        router.push("/");
     };
+    console.log(isLoading);
 
     return (
         <div className="flex flex-col items-center">
