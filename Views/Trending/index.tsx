@@ -81,25 +81,14 @@ const Trending = () => {
                 </div>
             </div>
             <div className="flex mb-10 flex-wrap">
-                <div className="flex flex-wrap w-full md:w-[60%] gap-x-[20px] md:mr-5 mb-6 md:mb-0">
+                <div className="flex flex-wrap w-full gap-x-[20px] md:mr-5 mb-6 md:mb-0">
                     {DATA_TRENDING_PEOPLE.map((item, index) => (
                         <div key={index} className="flex-1 text-center">
-                            <Image className="w-full" src={item.srcImage} alt="avatar" />
+                            <Image className="w-full max-h-[110px]" src={item.srcImage} alt="avatar" />
                             <h4 className="text-[#010101] text-lg font-semibold">{item.name}</h4>
                             <span className="text-[#7E7E7E] text-[15px] font-medium">{item.views}</span>
                         </div>
                     ))}
-                </div>
-                <div className="bg-[url('/Images/Trending/bg-trending-week.png')] flex-1 bg-no-repeat bg-cover">
-                    <div className="px-[28px] pb-[10px] flex gap-x-[18px] h-full">
-                        {DATA_TRENDING_WEEK.map((item, index) => (
-                            <div key={index} className="flex-col flex w-[30px] justify-end">
-                                <span className="text-[10px]">{item.value}</span>
-                                <div className={`h-[${item.height}px] bg-[#E1E1E0]`}></div>
-                                <span className="font-semibold text-sm">{item.label}</span>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </div>
             <div className="">
