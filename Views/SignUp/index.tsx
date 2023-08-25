@@ -64,31 +64,37 @@ export default function SignUp() {
         console.log("::PAYLOAD::", payload);
 
         try {
-            const { message, emailSent } = await auth.signUp(payload);
-            if (message === "Gmail already exist") {
-                setIsLoading(false);
-                console.log("Gmail already exist");
-                return;
-            }
-            if (message === "ErrorData") {
-                setIsLoading(false);
-                console.log("ErrorData");
-                return;
-            }
-
-            if (!emailSent && !message) {
-                setIsLoading(false);
-                router.push({
-                    pathname: "/verifyemail/notification",
-                    query: { emailSent: "dgu@gmail.com" },
-                } as { query: QueryNotification });
-            }
-
+            await auth.signUp(payload);
             setIsLoading(false);
             router.push({
                 pathname: "/verifyemail/notification",
-                query: { emailSent },
+                query: { emailSent: "dgu@gmail.com" },
             } as { query: QueryNotification });
+
+            // if (message === "Gmail already exist") {
+            //     setIsLoading(false);
+            //     console.log("Gmail already exist");
+            //     return;
+            // }
+            // if (message === "ErrorData") {
+            //     setIsLoading(false);
+            //     console.log("ErrorData");
+            //     return;
+            // }
+
+            // if (!emailSent && !message) {
+            //     setIsLoading(false);
+            //     router.push({
+            //         pathname: "/verifyemail/notification",
+            //         query: { emailSent: "dgu@gmail.com" },
+            //     } as { query: QueryNotification });
+            // }
+
+            // setIsLoading(false);
+            // router.push({
+            //     pathname: "/verifyemail/notification",
+            //     query: { emailSent },
+            // } as { query: QueryNotification });
         } catch (error) {
             console.log(error);
         }
