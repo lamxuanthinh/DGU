@@ -29,15 +29,24 @@ export const schemaCourse = yup.object({
         .string()
         .required("Title is required !")
         .min(5, "Length from 5-160 characters !")
-        .max(160, "Length from 5-160 characters !"),
+        .max(200, "Length from 5-160 characters !"),
     description: yup
         .string()
         .required("Description is required !")
         .min(5, "Length from 5-160 characters !")
-        .max(160, "Length from 5-160 characters !"),
-    price: yup.string().required("price is required !"),
-    classify: yup.string().required("classify is required !"),
-    image: yup.string().required("Image is required !"),
+        .max(1000, "Length from 5-160 characters !"),
+    price: yup.number().required("price is required !").max(200),
+    classify: yup.string().required("classify is required !").max(200),
+    image_blob: yup.string().required("Image is required !"),
+    image: yup
+        .mixed()
+        .required("Image is required!")
+        .test("fileType", "Invalid file type", function (value) {
+            if (value) {
+                return value instanceof File;
+            }
+            return false;
+        }),
 });
 
 export const schemaLesson = yup.object({
@@ -51,7 +60,17 @@ export const schemaLesson = yup.object({
         .required("Description is required !")
         .min(5, "Length from 5-160 characters !")
         .max(160, "Length from 5-160 characters !"),
-    image: yup.string().required("Image is required !"),
+    image: yup
+        .mixed()
+        .required("Image is required!")
+        .test("fileType", "Invalid file type", function (value) {
+            if (value) {
+                return value instanceof File;
+            }
+            return false;
+        }),
+    image_blob: yup.string().required("Image is required !"),
+
     author: yup.string().required("Author is required !"),
 });
 

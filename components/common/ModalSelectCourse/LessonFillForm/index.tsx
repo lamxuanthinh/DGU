@@ -2,7 +2,7 @@ import { SchemaLesson } from "@/utils/rules";
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import UploadImageFile from "../../UploadFile/UploadImageFile";
 
-type FormLessonData = Pick<SchemaLesson, "title" | "description" | "image" | "author">;
+type FormLessonData = Pick<SchemaLesson, "title" | "description" | "image" | "author" | "image_blob">;
 
 interface ILessonFillForm {
     register: UseFormRegister<FormLessonData>;

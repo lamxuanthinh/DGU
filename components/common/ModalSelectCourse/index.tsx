@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
-import LessonFillForm from "@/components/common/ModalSelectCourse/LessonFillForm";
 import CourseItemForm from "@/components/common/ModalSelectCourse/CourseItemForm";
 import PreviewCourse from "@/components/common/ModalSelectCourse/PreviewCourse";
 import SelectCourseLayout from "@/components/layout/SelectCourseLayout";
@@ -10,12 +9,12 @@ import { MdOutlineAddchart, MdOutlinePlayLesson } from "react-icons/md";
 import { BsEyeFill, BsSearch } from "react-icons/bs";
 import PreviewLesson from "@/components/common/ModalSelectCourse/PreviewLesson";
 import { useAppContext } from "@/Context";
-import { IMyCourseData } from "@/model/course";
 import courseApi from "@/apis/course";
 import TextEllipsis from "../TextEllipsis";
 import FillFormVideoShort from "./FillFormVideoShort";
 import Release from "./Release";
 import TypeVideo from "./TypeVideo";
+import LessonFillForm from "./LessonFillForm";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,8 +22,11 @@ interface IModalSelectCourse {
     setIsCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | "price" | "image" | "author">;
-type FormLessonData = Pick<SchemaCourse, "title" | "description" | "image" | "author">;
+type FormCourseData = Pick<
+    SchemaCourse,
+    "title" | "description" | "classify" | "price" | "image" | "image_blob" | "author"
+>;
+type FormLessonData = Pick<SchemaCourse, "title" | "description" | "image" | "image_blob" | "author">;
 
 export default function ModalSelectCourse({
     setConfirmEditModal,
@@ -42,7 +44,6 @@ export default function ModalSelectCourse({
     } = useAppContext();
 
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
-    const [newCourseCreated, setCourseCreated] = useState<IMyCourseData[]>([]);
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Release"];
 
     const {
@@ -74,32 +75,26 @@ export default function ModalSelectCourse({
     };
 
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
-        const addNewCourse = () => {
-            const userId = localStorage.getItem("userId");
+        const userId = localStorage.getItem("userId");
 
-            {
-                userId &&
-                    myCourseData &&
-                    setCourseCreated((prevCourses) => [
-                        ...prevCourses,
-                        {
-                            _id: prevCourses.length,
-                            title: data.title,
-                            author: data.author,
-                            description: data.description,
-                            price: data.price,
-                            level: data.classify,
-                            status: "",
-                            thumbnail: data.image,
-                            createdAt: "",
-                            updatedAt: "",
-                            userId: userId,
-                        },
-                    ]);
-            }
-        };
+        if (!userId) {
+            return;
+        }
 
-        addNewCourse();
+        console.log(data.price, ":", data.classify);
+        await courseApi.createCourse({
+            title: data.title,
+            author: data.author,
+            description: data.description,
+            price: data.price,
+            level: data.classify,
+            status: "0001",
+            thumbnail: data.image,
+        });
+
+        const myCourse = await courseApi.getCourseById(userId);
+
+        setMyCourseData(myCourse);
 
         setStepCreateCourse(0);
 
@@ -108,7 +103,7 @@ export default function ModalSelectCourse({
             classify: "",
             description: "",
             image: "",
-            price: "",
+            price: 0,
             title: "",
         });
     });
@@ -127,25 +122,19 @@ export default function ModalSelectCourse({
         const fetchMyCourseApi = async () => {
             const userId = localStorage.getItem("userId");
             const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
+
             setMyCourseData(myCourse);
+            myCourse && setCourseSelected(myCourse[0]);
         };
 
         fetchMyCourseApi();
-
-        myCourseData && setCourseSelected(myCourseData[0]);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
-        if (newCourseCreated) {
-            const lengthOfListNewCourse = newCourseCreated.length - 1;
-            setCourseSelected(newCourseCreated[lengthOfListNewCourse]);
-        }
-    }, [newCourseCreated]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">
             <SelectCourseLayout
                 setIsCloseModal={setIsCloseModal}
+                setConfirmEditModal={setConfirmEditModal}
                 setModalSelectCourse={setRenderSelectCourse}
                 stepSelected={stepSelected}
                 setStepSelected={setStepSelected}
@@ -166,41 +155,17 @@ export default function ModalSelectCourse({
                                                     onClick={() => {
                                                         setCourseSelected(item);
                                                     }}
-                                                    className={`h-[140px] p-1 rounded-md ${
-                                                        item.id == courseSelected._id &&
+                                                    className={`h-[140px] p-1 rounded-md hover:cursor-pointer ${
+                                                        item._id == courseSelected._id &&
                                                         "border-[3px] border-[#7FCFFC] transition-all duration-200"
                                                     }`}
                                                 >
-                                                    {item.image}
-                                                </div>
-                                            );
-                                        })}
-
-                                    {newCourseCreated &&
-                                        myCourseData &&
-                                        newCourseCreated.map((item, index) => {
-                                            return (
-                                                <div
-                                                    key={index}
-                                                    onClick={() => {
-                                                        setCourseSelected(item);
-                                                    }}
-                                                    className={`h-[140px] p-1 rounded-md ${
-                                                        courseSelected &&
-                                                        courseSelected._id == item._id &&
-                                                        "border-[3px] border-[#7FCFFC] transition-all duration-200"
-                                                    } hover:cursor-pointer`}
-                                                >
                                                     <Image
+                                                        alt=""
+                                                        width={100}
+                                                        height={100}
+                                                        className="w-full h-full"
                                                         src={`${item.thumbnail}`}
-                                                        width={0}
-                                                        height={0}
-                                                        style={{
-                                                            width: "100%",
-                                                            height: "100%",
-                                                            objectFit: "cover",
-                                                        }}
-                                                        alt="logo"
                                                     />
                                                 </div>
                                             );
@@ -337,12 +302,12 @@ export default function ModalSelectCourse({
                                 <PreviewCourse
                                     courseDataInput={{
                                         title: watchValueOfCourse("title"),
-                                        themenails: watchValueOfCourse("image") ? (
+                                        themenails: watchValueOfCourse("image_blob") ? (
                                             <Image
                                                 width={100}
                                                 height={100}
                                                 className="rounded-md w-full h-full"
-                                                src={`${watchValueOfCourse("image")}`}
+                                                src={`${watchValueOfCourse("image_blob")}`}
                                                 alt=""
                                             />
                                         ) : (
@@ -415,7 +380,7 @@ export default function ModalSelectCourse({
                                                 width={100}
                                                 height={100}
                                                 className="rounded-md w-full h-full"
-                                                src={`${watchValueOfLesson("image")}`}
+                                                src={`${watchValueOfLesson("image_blob")}`}
                                                 alt=""
                                             />
                                         ) : (

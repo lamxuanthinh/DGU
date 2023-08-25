@@ -136,7 +136,9 @@ export default function EditVideo() {
     const onOkModal = () => {
         setRenderSelectCourse(true);
         setStepSelected(2);
-        setListDataSplitVideo(dataSplit);
+        console.log(dataSplit);
+
+        setListDataSplitVideo([...dataSplit]);
         router.push("/upload");
     };
 
@@ -246,30 +248,36 @@ export default function EditVideo() {
     };
 
     const createImageFromTime = (time: number) => {
-        let file = null;
-        if (videoRef.current) {
-            videoRef.current.currentTime = time;
-        }
-        var canvas = document.createElement("canvas");
-        canvas.width = 170;
-        canvas.height = 100;
-        const context = canvas.getContext("2d");
-        if (context && videoRef.current) {
-            context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-        }
-
-        canvas.toBlob((blob) => {
-            if (blob) {
-                file = new File([blob], "image.jpg", { type: blob.type });
+        return new Promise((resolve, reject) => {
+            if (videoRef.current) {
+                videoRef.current.currentTime = time;
             }
-        }, "image/jpeg");
-        return {
-            fileImage: file,
-            urlImage: canvas.toDataURL("image/jpeg"),
-        };
+            const canvas = document.createElement("canvas");
+            canvas.width = 170;
+            canvas.height = 100;
+            const context = canvas.getContext("2d");
+
+            if (context && videoRef.current) {
+                context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        const file = new File([blob], "image.jpg", { type: blob.type });
+                        const result = {
+                            fileImage: file,
+                            urlImage: canvas.toDataURL("image/jpeg"),
+                        };
+                        resolve(result);
+                    } else {
+                        reject("Failed to create blob.");
+                    }
+                }, "image/jpeg");
+            } else {
+                reject("Canvas context or video reference not available.");
+            }
+        });
     };
 
-    const handleSplit = () => {
+    const handleSplit = async () => {
         const indexCurrentProgress = onFindIndexCurrentProgress(currentProgress.id);
         let startPointProgress = onCalcStartPointProgress(indexCurrentProgress);
         let positionSplit = onCalcValuePointerInnerProgress(valuePointer + valueCounterPointer, startPointProgress);
@@ -284,20 +292,20 @@ export default function EditVideo() {
             widthCurrentProgress,
         );
 
-        const { fileImage, urlImage } = createImageFromTime(separateTime);
+        const imageFile: any = await createImageFromTime(separateTime);
 
         const secondHalfProgress: IDataSplitVideo = {
             id: dataSplit.length + 1,
             width: secondHalfPercentWidthProgress,
             startTime: separateTime,
             endTime: currentProgress.endTime,
-            thumbImage: urlImage,
-            thumbImageFile: fileImage,
+            thumbImage: imageFile.urlImage,
+            thumbImageFile: imageFile.fileImage,
             name: "",
             description: "",
         };
 
-        const templeDataSplit = JSON.parse(JSON.stringify(dataSplit));
+        const templeDataSplit = dataSplit;
         templeDataSplit[indexCurrentProgress].width = firstHalfPercentWidthProgress;
         templeDataSplit[indexCurrentProgress].startTime = currentProgress.startTime;
         templeDataSplit[indexCurrentProgress].endTime = separateTime;
@@ -318,6 +326,7 @@ export default function EditVideo() {
         setCurrentIndexProgress((pre) => pre + 1);
         setValuePointer(valuePointer - VALUE_WIDTH_POINTER);
     };
+    console.log(dataSplit);
 
     return (
         <>

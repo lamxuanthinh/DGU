@@ -24,14 +24,17 @@ export default function UploadImageFile({ setValue, getValues }: IUploadImagefil
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (files != null) {
-            if (handleFileSelect(files[0]) === true) {
-                const url = URL.createObjectURL(files[0]);
+        const selectedImage = event.target.files?.[0];
+
+        if (selectedImage) {
+            setValue && setValue("image", selectedImage); // Ensure the value is a File object
+
+            if (handleFileSelect(selectedImage)) {
+                const url = URL.createObjectURL(selectedImage);
                 setSrcImageEdit(url);
-                setValue && setValue("image", url);
+                setValue && setValue("image_blob", url);
             } else {
-                alert("This is not image file.");
+                alert("This is not an image file.");
                 event.target.value = "";
             }
         }
@@ -48,12 +51,12 @@ export default function UploadImageFile({ setValue, getValues }: IUploadImagefil
             className="h-full relative flex justify-center items-center rounded border-[#b5b5b5] border-2 hover:cursor-pointer"
             onClick={handleButtonClick}
         >
-            {srcImageEdit && (
+            {srcImageEdit && getValues("image_blob") && (
                 <Image
                     width={100}
                     height={100}
                     className="absolute inset-0 w-full h-full object-cover z-20"
-                    src={getValues("image")}
+                    src={getValues("image_blob")}
                     alt="Course Avatar"
                 />
             )}

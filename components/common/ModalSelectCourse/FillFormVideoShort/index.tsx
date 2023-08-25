@@ -19,14 +19,14 @@ const FillFormVideoShort = () => {
 
     const handleChangeNameShort = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
-        const newDataSplit: IListDataSplitVideo = JSON.parse(JSON.stringify(listDataSplitVideo));
+        const newDataSplit: IListDataSplitVideo = listDataSplitVideo;
         newDataSplit[indexActiveSplit].name = value;
         setListDataSplitVideo([...newDataSplit]);
     };
 
     const handleChangeDescriptionShort = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.target;
-        const newDataSplit: IListDataSplitVideo = JSON.parse(JSON.stringify(listDataSplitVideo));
+        const newDataSplit: IListDataSplitVideo = listDataSplitVideo;
         newDataSplit[indexActiveSplit].description = value;
         setListDataSplitVideo([...newDataSplit]);
     };
@@ -34,7 +34,7 @@ const FillFormVideoShort = () => {
     const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedImage = event.target.files?.[0];
         if (selectedImage) {
-            const updatedList = JSON.parse(JSON.stringify(listDataSplitVideo));
+            const updatedList = listDataSplitVideo;
             updatedList[indexActiveSplit].thumbImageFile = selectedImage;
             const fileReader = new FileReader();
             fileReader.readAsDataURL(selectedImage);
@@ -71,6 +71,7 @@ const FillFormVideoShort = () => {
                             Title
                         </label>
                         <input
+                            required
                             placeholder="Enter the description . . ."
                             onChange={handleChangeNameShort}
                             className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-sm"

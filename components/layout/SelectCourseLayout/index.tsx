@@ -7,7 +7,7 @@ interface ISelectCourseLayoutProps {
     stepSelected: number;
     setModalSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
     setIsCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
-
+    setConfirmEditModal: React.Dispatch<React.SetStateAction<boolean>>;
     setStepSelected: Dispatch<SetStateAction<number>>;
     titleSteps: string[];
     setStepCreateCourse: Dispatch<SetStateAction<number>>;
@@ -17,6 +17,7 @@ export default function SelectCourseLayout({
     children,
     stepSelected,
     setStepSelected,
+    setConfirmEditModal,
     titleSteps,
     setStepCreateCourse,
     setIsCloseModal,
@@ -29,6 +30,7 @@ export default function SelectCourseLayout({
             <div className="h-[90%]">
                 <div className="ml-[2%] h-[10%] flex items-center">
                     <StepTransition
+                        setConfirmEditModal={setConfirmEditModal}
                         stepSelected={stepSelected}
                         setStepSelected={setStepSelected}
                         titleSteps={titleSteps}

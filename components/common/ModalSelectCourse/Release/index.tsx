@@ -3,7 +3,8 @@ import Button from "../../Button";
 
 const Release = () => {
     const { listDataSplitVideo, myCourseData, srcVideoEdit, fileVideoUpload } = useAppContext();
-    console.log("list data split video", typeof listDataSplitVideo[0].thumbImageFile);
+    console.log("list data split video", listDataSplitVideo);
+
     console.log("file video upload", fileVideoUpload);
 
     console.log("my course data", myCourseData);

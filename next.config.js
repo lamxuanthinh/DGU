@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["papik.pro", "player.vdocipher.com"],
+    domains: ["papik.pro", "player.vdocipher.com",'res.cloudinary.com'],
   },
   headers() {
     return [

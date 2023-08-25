@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import React from "react";
 import DropDownSelect from "../../DropDownSelect";
 
-type FormCourseData = Pick<SchemaCourse, "title" | "description" | "classify" | "price" | "image" | "author">;
+type FormCourseData = Pick<
+    SchemaCourse,
+    "title" | "description" | "classify" | "price" | "image" | "image_blob" | "author"
+>;
 
 interface ICourseItemForm {
     register: UseFormRegister<FormCourseData>;
@@ -45,6 +48,8 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
     ];
 
     useEffect(() => {
+        setValue("classify", visibilityOptions[0].name);
+        setValue("price", 0);
         setValue("author", authorRef.current?.value || "");
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -123,7 +128,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                                     {...register("price")}
                                     className="pl-3 outline-none w-full bg-[#7fcffc1c] placeholder-black"
                                     placeholder="0"
-                                    type="text"
+                                    type="number"
                                     required
                                     disabled={isFreeCourse == "Free" ? true : false}
                                 />

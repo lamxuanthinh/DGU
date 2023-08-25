@@ -8,6 +8,7 @@ interface IStepTransition {
     setStepSelected: Dispatch<SetStateAction<number>>;
     titleSteps: string[];
     setStepCreateCourse: Dispatch<SetStateAction<number>>;
+    setConfirmEditModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function StepTransition({
@@ -15,6 +16,7 @@ export default function StepTransition({
     setStepSelected,
     titleSteps,
     setStepCreateCourse,
+    setConfirmEditModal,
 }: IStepTransition) {
     const { courseSelected } = useAppContext();
 
@@ -22,6 +24,7 @@ export default function StepTransition({
         setStepSelected(index);
         setStepCreateCourse(0);
     };
+    console.log("index:", stepSelected);
 
     return (
         <div className="flex">
@@ -38,7 +41,11 @@ export default function StepTransition({
                             }
                         }`}
                             onClick={() => {
-                                courseSelected && handleStepSelected(index);
+                                if (courseSelected && index != 2) {
+                                    handleStepSelected(index);
+                                } else if (courseSelected && index == 2) {
+                                    setConfirmEditModal(true);
+                                }
                             }}
                         >
                             {stepSelected > index ? (
