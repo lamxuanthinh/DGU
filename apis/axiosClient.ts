@@ -22,10 +22,10 @@ axiosClient.interceptors.response.use(
     },
     async (error) => {
         // let refreshTokenRequest = null;
-        const response = error.response;
+        // const response = error.response;
         console.log("::ERROR::", error);
-        console.log("::STATUS::", response.status);
-        console.log("::MESSAGE::", response.data.message);
+        // console.log("::STATUS::", response.status);
+        // console.log("::MESSAGE::", response.data.message);
         // const originalRequest = error.config;
         // console.log("::check::", !originalRequest._retry);
         // if (response.status === 401 && response.data.message === "TokenExpired" && !originalRequest._retry) {
