@@ -1,4 +1,3 @@
-
 export interface IUser {
     _id: string;
     name: string;
@@ -11,6 +10,7 @@ export interface ICourseDetail {
     totalVideo: number;
     description: string;
     userId: IUser;
+    price: string;
 }
 
 export interface ILessonDetail {
