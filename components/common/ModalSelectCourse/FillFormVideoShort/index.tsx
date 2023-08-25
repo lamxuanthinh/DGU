@@ -8,7 +8,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 const FillFormVideoShort = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const { listDataSplitVideo, setListDataSplitVideo, srcVideoEdit } = useAppContext();
+    const { listDataSplitVideo, setListDataSplitVideo, srcVideoEdit, setStepSelected } = useAppContext();
     const [indexActiveSplit, setIndexActiveSplit] = useState(0);
     const handleActiveSplit = (id: number, time: number) => {
         setIndexActiveSplit(id);
@@ -45,10 +45,15 @@ const FillFormVideoShort = () => {
         }
     };
 
-    const handleOpenFile = () => {
+    const handleOpenFile = (index: number) => {
+        setIndexActiveSplit(index);
         if (inputRef.current) {
             inputRef.current.click();
         }
+    };
+
+    const handleNext = () => {
+        setStepSelected(3);
     };
 
     return (
@@ -103,7 +108,7 @@ const FillFormVideoShort = () => {
                                 <Button
                                     onClick={(e: any) => {
                                         e.stopPropagation();
-                                        handleOpenFile();
+                                        handleOpenFile(index);
                                     }}
                                     className="absolute top-1 right-1 p-1 text-[22px] bg-black/[.39] text-white rounded-[5px]"
                                 >
@@ -125,8 +130,11 @@ const FillFormVideoShort = () => {
                     <Button className="text-[#777777] border border-solid border-[#949494] text-sm font-bold p-2 min-w-[98px]">
                         Previous
                     </Button>
-                    <Button className="text-[#3983AC] bg-[#7FCFFC]/[.35] text-sm font-bold p-2 min-w-[98px]">
-                        Done
+                    <Button
+                        className="text-[#3983AC] bg-[#7FCFFC]/[.35] text-sm font-bold p-2 min-w-[98px]"
+                        onClick={handleNext}
+                    >
+                        Next
                     </Button>
                 </div>
             </div>

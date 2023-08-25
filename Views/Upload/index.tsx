@@ -6,8 +6,15 @@ import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 
 export default function Upload() {
-    const { setSrcVideoEdit, setThumbVideoEdit, setIsLoading, isRenderSelectCourse, setRenderSelectCourse } =
-        useAppContext();
+    const {
+        setSrcVideoEdit,
+        setThumbVideoEdit,
+        setIsLoading,
+        isRenderSelectCourse,
+        setRenderSelectCourse,
+        setFileVideoUpload,
+        setFileThumbVideoUpload,
+    } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
@@ -36,6 +43,13 @@ export default function Upload() {
             if (ctx && videoRef.current) {
                 ctx.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
                 setThumbVideoEdit(canvasRef.current.toDataURL());
+
+                canvasRef.current.toBlob((blob) => {
+                    if (blob) {
+                        const file = new File([blob], "image.jpg", { type: blob.type });
+                        setFileThumbVideoUpload(file);
+                    }
+                }, "image/jpeg");
             }
         }
         push("/editvideo");
@@ -103,6 +117,7 @@ export default function Upload() {
                     };
                 }
                 setSrcVideoEdit(url);
+                setFileVideoUpload(files[0]);
                 setRenderSelectCourse(!isRenderSelectCourse);
                 // setIsModal(true);
             } else {

@@ -14,6 +14,8 @@ import { IMyCourseData } from "@/model/course";
 import courseApi from "@/apis/course";
 import TextEllipsis from "../TextEllipsis";
 import FillFormVideoShort from "./FillFormVideoShort";
+import Release from "./Release";
+import TypeVideo from "./TypeVideo";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,7 +43,7 @@ export default function ModalSelectCourse({
 
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
     const [newCourseCreated, setCourseCreated] = useState<IMyCourseData[]>([]);
-    const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Preview video short"];
+    const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Release"];
 
     const {
         register: courseRegister,
@@ -113,7 +115,6 @@ export default function ModalSelectCourse({
 
     const onSubmitLessonItemForm = handleLessonSubmit(async (data) => {
         setLessonCreated(data);
-        handleNextStep();
         resetLessonData({
             description: "",
             image: "",
@@ -126,8 +127,6 @@ export default function ModalSelectCourse({
         const fetchMyCourseApi = async () => {
             const userId = localStorage.getItem("userId");
             const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
-            console.log(userId);
-
             setMyCourseData(myCourse);
         };
 
@@ -294,7 +293,8 @@ export default function ModalSelectCourse({
                     <div className="h-full flex justify-between">
                         <form
                             className="w-[58%] flex flex-col justify-between px-5"
-                            onSubmit={() => {
+                            onSubmit={(e) => {
+                                e.preventDefault();
                                 onSubmitCourseItemForm();
                             }}
                         >
@@ -367,7 +367,8 @@ export default function ModalSelectCourse({
                     <div className="flex justify-between h-full">
                         <form
                             className="w-[55%] flex flex-col justify-between"
-                            onSubmit={() => {
+                            onSubmit={(e) => {
+                                e.preventDefault();
                                 onSubmitLessonItemForm();
                             }}
                         >
@@ -436,7 +437,9 @@ export default function ModalSelectCourse({
                         </div>
                     </div>
                 )}
-                {stepSelected == 3 && <FillFormVideoShort />}
+                {stepSelected == 2 && <FillFormVideoShort />}
+                {stepSelected == 3 && <TypeVideo />}
+                {stepSelected == 4 && <Release />}
             </SelectCourseLayout>
         </div>
     );

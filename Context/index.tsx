@@ -21,6 +21,10 @@ interface AppContextType {
     setRenderSelectCourse: Dispatch<SetStateAction<boolean>>;
     listDataSplitVideo: IListDataSplitVideo;
     setListDataSplitVideo: Dispatch<SetStateAction<IListDataSplitVideo>>;
+    fileVideoUpload: File | undefined;
+    setFileVideoUpload: Dispatch<SetStateAction<File | undefined>>;
+    fileThumbVideoUpload: File | null;
+    setFileThumbVideoUpload: Dispatch<SetStateAction<File | null>>;
 }
 
 interface IAppProviderProps {
@@ -39,6 +43,8 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
     const [stepSelected, setStepSelected] = useState<number>(0);
     const [isRenderSelectCourse, setRenderSelectCourse] = useState<boolean>(false);
     const [listDataSplitVideo, setListDataSplitVideo] = useState<IListDataSplitVideo>([]);
+    const [fileVideoUpload, setFileVideoUpload] = useState<File | undefined>(undefined);
+    const [fileThumbVideoUpload, setFileThumbVideoUpload] = useState<File | null>(null);
 
     return (
         <AppContext.Provider
@@ -61,6 +67,10 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
                 setRenderSelectCourse,
                 listDataSplitVideo,
                 setListDataSplitVideo,
+                fileVideoUpload,
+                setFileVideoUpload,
+                fileThumbVideoUpload,
+                setFileThumbVideoUpload,
             }}
         >
             {children}

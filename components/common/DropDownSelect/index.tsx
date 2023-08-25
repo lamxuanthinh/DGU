@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../Button";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface IDropDownProps {
@@ -46,10 +45,12 @@ const DropDownSelect = ({ className, options, onSelectOption }: IDropDownProps) 
             {isActiveMenu && (
                 <ul className="absolute bg-white shadow-button px-[14px] py-2 text-slateGray text-sm animate-fadeInTop w-full shadow-md z-[10]">
                     {options.map((option: any) => (
-                        <li key={option.id} className="py-2 hover:text-black cursor-pointer">
-                            <Button onClick={() => handleSelectOption(option.name)} className="text-start">
-                                {option.name}
-                            </Button>
+                        <li
+                            onClick={() => handleSelectOption(option.name)}
+                            key={option.id}
+                            className="py-3 hover:text-black cursor-pointer"
+                        >
+                            <span className="text-start">{option.name}</span>
                         </li>
                     ))}
                 </ul>

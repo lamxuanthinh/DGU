@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import ffmpeg from "@ffmpeg/ffmpeg";
 import { useAppContext } from "@/Context";
 import Modal from "../../components/common/Modal";
 import Navbar from "./Navbar";
@@ -13,8 +12,14 @@ import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 
 export default function EditVideo() {
-    const { thumbVideoEdit, setRenderSelectCourse, setStepSelected, setListDataSplitVideo, srcVideoEdit } =
-        useAppContext();
+    const {
+        thumbVideoEdit,
+        setRenderSelectCourse,
+        setStepSelected,
+        setListDataSplitVideo,
+        srcVideoEdit,
+        fileThumbVideoUpload,
+    } = useAppContext();
     const router = useRouter();
     const videoRef = useRef<HTMLVideoElement>(null);
     const runCursorRef = useRef<number | null>(null);
@@ -39,7 +44,7 @@ export default function EditVideo() {
             startTime: 0,
             endTime: duration,
             thumbImage: thumbVideoEdit,
-            thumbImageFile: null,
+            thumbImageFile: fileThumbVideoUpload,
             name: "",
             description: "",
         },
@@ -58,7 +63,7 @@ export default function EditVideo() {
                 startTime: 0,
                 endTime: duration,
                 thumbImage: thumbVideoEdit,
-                thumbImageFile: null,
+                thumbImageFile: fileThumbVideoUpload,
                 name: "",
                 description: "",
             },
@@ -130,7 +135,7 @@ export default function EditVideo() {
 
     const onOkModal = () => {
         setRenderSelectCourse(true);
-        setStepSelected(3);
+        setStepSelected(2);
         setListDataSplitVideo(dataSplit);
         router.push("/upload");
     };
@@ -241,7 +246,7 @@ export default function EditVideo() {
     };
 
     const createImageFromTime = (time: number) => {
-        //here you can set anytime you want
+        let file = null;
         if (videoRef.current) {
             videoRef.current.currentTime = time;
         }
@@ -252,7 +257,16 @@ export default function EditVideo() {
         if (context && videoRef.current) {
             context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
         }
-        return canvas.toDataURL("image/jpeg");
+
+        canvas.toBlob((blob) => {
+            if (blob) {
+                file = new File([blob], "image.jpg", { type: blob.type });
+            }
+        }, "image/jpeg");
+        return {
+            fileImage: file,
+            urlImage: canvas.toDataURL("image/jpeg"),
+        };
     };
 
     const handleSplit = () => {
@@ -269,15 +283,16 @@ export default function EditVideo() {
             positionSplit,
             widthCurrentProgress,
         );
-        const secondHalfThumbImage = createImageFromTime(separateTime);
+
+        const { fileImage, urlImage } = createImageFromTime(separateTime);
 
         const secondHalfProgress: IDataSplitVideo = {
             id: dataSplit.length + 1,
             width: secondHalfPercentWidthProgress,
             startTime: separateTime,
             endTime: currentProgress.endTime,
-            thumbImage: secondHalfThumbImage,
-            thumbImageFile: null,
+            thumbImage: urlImage,
+            thumbImageFile: fileImage,
             name: "",
             description: "",
         };
@@ -287,6 +302,7 @@ export default function EditVideo() {
         templeDataSplit[indexCurrentProgress].startTime = currentProgress.startTime;
         templeDataSplit[indexCurrentProgress].endTime = separateTime;
         templeDataSplit[indexCurrentProgress].thumbImage = currentProgress.thumbImage;
+        templeDataSplit[indexCurrentProgress].thumbImageFile = currentProgress.thumbImageFile;
 
         const newDataSplit = [...templeDataSplit];
         newDataSplit.splice(indexCurrentProgress + 1, 0, secondHalfProgress);
@@ -303,37 +319,6 @@ export default function EditVideo() {
         setValuePointer(valuePointer - VALUE_WIDTH_POINTER);
     };
 
-    const handleEditVideo = async () => {
-        const { createFFmpeg, fetchFile } = ffmpeg;
-        const ffmpegInstance = createFFmpeg({ log: true });
-        // error
-        await ffmpegInstance.load();
-        if (true) {
-            ffmpegInstance.FS("writeFile", "input.mp4", await fetchFile(""));
-
-            //   await ffmpegInstance.run(
-            //     "-i",
-            //     "input.mp4",
-            //     "-ss",
-            //     "00:00:00",
-            //     "-t",
-            //     "60",
-            //     "output.mp4"
-            //   );
-
-            //   const data = ffmpegInstance.FS("readFile", "final_output.mp4");
-            //   const videoUrl = URL.createObjectURL(
-            //     new Blob([data.buffer], { type: "video/mp4" })
-            //   );
-            //   console.log(videoUrl);
-            // }
-            // if () {
-            // } else {
-            //   console.log("::[P}:: ==> Please Input Video And Audio");
-            // }
-        }
-    };
-
     return (
         <>
             <div className="w-full h-screen bg-[#000] flex flex-col p-[10px]">
@@ -343,7 +328,6 @@ export default function EditVideo() {
                     onRedu={onRedoProgress}
                     isUndo={isUndo}
                     isRedo={isRedo}
-                    handleEditVideo={handleEditVideo}
                 />
                 <div className="flex flex-grow-[1] gap-[5px] overflow-hidden items-center mb-[5px]">
                     <Toolbar handleSplit={handleSplit} setSrcMp3={setSrcMp3} />

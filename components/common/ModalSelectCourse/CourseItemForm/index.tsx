@@ -90,18 +90,11 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] bg-[#7fcffc1c] placeholder-black placeholder-[14px] rounded border-2 w-full"
+                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] bg-[#7fcffc1c] placeholder-black placeholder-[14px] rounded border-2 w-full outline-none"
                         required
                     />
                     <div className="mb-3">
                         <div className="bg-[#7fcffc1c] mb-4">
-                            {/* <Dropdown
-                                classNameLabel="text-[#9ca3b7] p-[3px]"
-                                options={visibilityOptions}
-                                valueSelected={visibility}
-                                setValueSelected={setVisibility}
-                                setValue={setValue}
-                            /> */}
                             <DropDownSelect
                                 className="py-[6px] border border-solid border-[#F7E7E7] px-[15px] mt-3"
                                 options={visibilityOptions}

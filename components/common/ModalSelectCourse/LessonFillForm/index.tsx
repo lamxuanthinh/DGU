@@ -31,7 +31,7 @@ export default function LessonFillForm({ register, setValue, getValues }: ILesso
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 font-semibold py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full"
+                        className="h-[120px] col-span-3 font-semibold py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full outline-none"
                         required
                     />
                 </div>

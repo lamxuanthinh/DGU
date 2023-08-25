@@ -12,7 +12,6 @@ interface INavbarProps {
   setIsModal: Dispatch<SetStateAction<boolean>>,
   isUndo: boolean,
   isRedo: boolean,
-  handleEditVideo: () => void;
 }
 
 function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
