@@ -1,4 +1,4 @@
-import videoApi from "@/apis/video";
+import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
 import DetailsVideo from "@/Views/DetailsVideo";
 
@@ -10,16 +10,16 @@ export const getStaticPaths = async () => {
     let posts: any;
 
     try {
-        posts = await videoApi.getAllVideo();
+        posts = await videoShortApi.getAllPublicVideo();
     } catch (error) {
         console.error("Error fetching posts:", error);
         posts = [];
     }
 
     const paths =
-        posts?.metaData?.map((item: any) => {
+        posts?.metaData?.PublicVideoList.map((item: any) => {
             return {
-                params: { postId: item.video_id },
+                params: { postId: item._id },
             };
         }) || [];
 
@@ -31,15 +31,31 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
     const postId = context.params.postId;
+
     let post: any;
 
+    const extractVideoData = (data: any[]) => {
+        return data.map((item) => {
+            const numbers = item.split(":").map(Number);
+            const point = numbers[0];
+            const duration = numbers[1] - numbers[0];
+
+            return {
+                point,
+                duration,
+            };
+        });
+    };
+
     try {
-        post = await videoApi.getVideoById(postId);
-        post = post.metaData;
+        post = await videoShortApi.getVideoById(postId);
 
-        const parentResponse: any = await videoApi.getVideoById(post.parent_id);
+        post = post.metaData.publicVideo;
+        const parentId = post._id;
+        const parentResponse: any = await videoShortApi.getVideoById(parentId);
 
-        post.fullVideoInfo = parentResponse.metaData;
+        post.fullVideoInfo = parentResponse.metaData.publicVideo;
+        post.fullVideoInfo.controlData = extractVideoData(post.fullVideoInfo.shortTimeLine);
     } catch (error) {
         console.error("Error fetching posts:", error);
         post = {};

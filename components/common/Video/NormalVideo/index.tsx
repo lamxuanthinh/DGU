@@ -106,7 +106,7 @@ export default function NormalVideo({ data }: INormalVideo) {
 
         const currentPathname = window.location.pathname;
         if (!currentPathname.includes("video/")) {
-            window.history.pushState(null, "", `video/${data._id}`);
+            window.history.pushState(null, "", `video/${dataFullVideo._id}`);
         }
 
         const timeUpdate = Math.round(currentTime * 100) / 100 + data.controlData.point;
