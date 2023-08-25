@@ -14,7 +14,6 @@ const Header = () => {
     useEffect(() => {
         const userId: any = localStorage.getItem("userId");
         setCheckAuth(userId);
-        console.log("userId", userId);
     }, []);
 
     return (

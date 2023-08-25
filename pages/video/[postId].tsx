@@ -51,11 +51,12 @@ export const getStaticProps = async (context: any) => {
         post = await videoShortApi.getVideoById(postId);
 
         post = post.metaData.publicVideo;
+        post.controlData = extractVideoData(post.shortTimeLine);
         const parentId = post._id;
         const parentResponse: any = await videoShortApi.getVideoById(parentId);
 
         post.fullVideoInfo = parentResponse.metaData.publicVideo;
-        post.fullVideoInfo.controlData = extractVideoData(post.fullVideoInfo.shortTimeLine);
+        post.fullVideoInfo.controlData = extractVideoData(post.shortTimeLine);
     } catch (error) {
         console.error("Error fetching posts:", error);
         post = {};

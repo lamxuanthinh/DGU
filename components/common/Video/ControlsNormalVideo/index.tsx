@@ -59,8 +59,8 @@ export default function ControlsNormalVideo({
                     <div className="relative bg-opacity-50 flex items-center justify-between">
                         {Array.isArray(controlData) ? (
                             controlData.map((item: any) => {
-                                const breakPointToPercent = (item.break_point / totalTime) * 100;
-                                const breakEndPointToPercent = ((item.break_point + item.duration) / totalTime) * 100;
+                                const breakPointToPercent = (item.point / totalTime) * 100;
+                                const breakEndPointToPercent = ((item.point + item.duration) / totalTime) * 100;
 
                                 const percentItemDuration = breakEndPointToPercent - breakPointToPercent;
                                 const CalcPercentWidthOfControlItemToColor = () => {

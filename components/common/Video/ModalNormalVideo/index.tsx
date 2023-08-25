@@ -8,7 +8,7 @@ import DescriptionVideo from "../DescriptionVideo";
 
 interface IModalNormalVideo {
     dataVideo: IVideoPayload;
-    modalVideoRef: any;
+    modalVideoRef: React.RefObject<HTMLVideoElement>;
     statusModal: string;
     handlePlayByPlayerModal: () => void;
     handlePauseByPlayerModal: () => void;
@@ -98,14 +98,9 @@ export default function ModalNormalVideo({
 
                 <div
                     onClick={() => {
-                        console.log(statusModal);
-
                         if (statusModal == "Playing") {
-
                             handlePauseByPlayerModal();
                         } else if (statusModal == "Paused") {
-                            console.log(2);
-
                             handlePlayByPlayerModal();
                         }
                         setComment(false);

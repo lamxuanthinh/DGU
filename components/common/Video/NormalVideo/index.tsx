@@ -64,8 +64,6 @@ export default function NormalVideo({ data }: INormalVideo) {
     const handlePlayModal = () => {
         if (isProcessPlayVideo !== "NA" && modalVideoRef.current) {
             modalVideoRef.current.play();
-            console.log(1);
-
             setStatusModal("Playing");
         }
     };
@@ -120,7 +118,7 @@ export default function NormalVideo({ data }: INormalVideo) {
         } else if (!isVisibile) {
             handlePause();
         }
-    }, [isVisibile]);
+    }, [isVisibile]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (isOpenModalVideo) {
