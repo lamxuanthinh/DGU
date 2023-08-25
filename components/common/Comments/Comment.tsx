@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import CommentForm from "@/components/common/Comments/CommentForm";
 import Image from "next/image";
 import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
 import { IComment } from "@/model/comment";
 
-interface CommentProps {
+interface ICommentProps {
     comment: IComment;
-    replies: any;
-    setActiveComment: any;
-    activeComment: any;
+    replies: IComment[];
+    setActiveComment: Dispatch<SetStateAction<any | null>>;
+    activeComment: Comment | null;
     updateComment: (text: string, commentId: string) => void;
     deleteComment: (commentId: string) => void;
     addComment: (text: string, parentId: string | null) => void;
@@ -16,7 +16,7 @@ interface CommentProps {
     currentUserId: string;
 }
 
-const Comment: React.FC<CommentProps> = ({
+const Comment = ({
     comment,
     replies,
     setActiveComment,
@@ -26,7 +26,7 @@ const Comment: React.FC<CommentProps> = ({
     addComment,
     parentId = null,
     currentUserId,
-}) => {
+}: ICommentProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [isReplying, setIsReplying] = useState(false);
     const fiveMinutes = 300000;
@@ -120,7 +120,9 @@ const Comment: React.FC<CommentProps> = ({
                             <div className="text-[#5357B6] text-[13px] font-medium">{createdAt}</div>
                         </div>
                         {!isEditing && (
-                            <div className="text-[16px] w-[95%] font-normal text-[#67727E]">{comment.body}</div>
+                            <div className="text-[16px] w-[95%] font-normal text-[#67727E] break-all">
+                                {comment.body}
+                            </div>
                         )}
                         {isEditing && (
                             <CommentForm

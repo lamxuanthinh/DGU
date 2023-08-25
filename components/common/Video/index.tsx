@@ -6,7 +6,7 @@ import ActionVideo from "./ActionVideo";
 import ModalVideo from "./ModalVideo";
 import ControlsVideo from "./ControlsVideo";
 import { IVideoShortPayload } from "@/model/video";
-import Comments from "../Comments/Comments";
+import Comments from "../Comments";
 
 interface IVideo {
     data: IVideoShortPayload;
@@ -132,14 +132,14 @@ export default function Video({ data }: IVideo) {
     };
 
     const handlePlayByPlayer = () => {
-        if (player) {
+        if (player && status !== "NA") {
             player.video.play();
             setStatus("Playing");
         }
     };
 
     const handlePauseByPlayer = () => {
-        if (player) {
+        if (player && status !== "NA") {
             player.video.pause();
             setStatus("Paused");
             setComment(false);
@@ -185,8 +185,6 @@ export default function Video({ data }: IVideo) {
                     ></div>
                 )}
 
-                <Comments isComment={comment} setComment={setComment} currentUserId="1" />
-
                 <ControlsVideo
                     setComment={setComment}
                     dataVideo={data}
@@ -218,6 +216,8 @@ export default function Video({ data }: IVideo) {
                     commentCount={93}
                     shareCount={57}
                 />
+
+                {comment && <Comments isComment={comment} setComment={setComment} currentUserId="1" />}
             </div>
 
             <ModalVideo
