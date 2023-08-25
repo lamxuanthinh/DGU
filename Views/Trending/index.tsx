@@ -35,7 +35,7 @@ const Trending = () => {
 
     return (
         <section className="py-4 px-5 w-full">
-            <h2 className="text-[32px] text-[#757474] font-semibold mb-4">Discover</h2>
+            <h2 className="text-[32px] text-[#757474] font-semibold mb-4">Trending</h2>
             <div className="flex mb-20">
                 <div className="w-full 2xl:w-[60%]">
                     <div className="bg-[#5B2A07] relative md:mr-2 rounded-[5px] h-full max-h-[350px]">
@@ -104,7 +104,7 @@ const Trending = () => {
             </div>
             <div className="">
                 <h2 className="mb-6 text-[#757474] text-lg font-semibold">Top featured videos</h2>
-                <div className="flex flex-wrap mb-4">
+                <div className="flex flex-wrap mb-4 mx-[-12px]">
                     {DATA_FEATURED_VIDEOS.map((item, index) => (
                         <div key={index} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 p-3">
                             <div className="flex flex-col shadow-lg rounded-[5px] lg:h-full 2xl:h-auto">
@@ -164,7 +164,7 @@ const Trending = () => {
             </div>
             <div className="mb-10">
                 <h2 className="mb-6 text-[#757474] text-lg font-semibold">Top featured videos</h2>
-                <div className="flex mb-4 flex-wrap">
+                <div className="flex mb-4 flex-wrap mx-[-12px]">
                     {DATA_TOP_FEATURED_VIDEOS.map((item, index) => (
                         <div key={index} className="2xl:w-1/5 xl:w-1/3 md:w-1/2 w-full p-3">
                             <div className="min-w-[300px]">
@@ -190,7 +190,7 @@ const Trending = () => {
             </div>
             <div className="">
                 <h2 className="mb-6 text-[#757474] text-lg font-semibold">Top trending programing courses</h2>
-                <div className="flex flex-wrap mb-4">
+                <div className="flex flex-wrap mb-4 mx-[-12px]">
                     {DATA_TRENDING_COURSE.map((item, index) => (
                         <div key={index} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 p-3">
                             <div className="flex flex-col shadow-lg overflow-hidden rounded-[5px]">
@@ -248,7 +248,7 @@ const Trending = () => {
                     Show More
                 </Button>
             </div>
-            <div className="relative bg-white px-2 md:px-[30px] py-[8px] mb-20">
+            <div className="relative bg-white py-[8px] mb-20">
                 <div className="flex items-center text-[#8a8a8a] mb-4">
                     <GiFilmStrip className="text-2xl" />
                     <h5 className="font-semibold text-xl ml-2">Shorts</h5>
