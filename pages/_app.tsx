@@ -10,15 +10,15 @@ import "@/styles/common/comments.css";
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const Layout = Component.Layout ?? EmptyLayout;
 
-  return (
-    <AppProvider>
-      <Layout>
-        <GlobalStyled />
-        <AOSInitializer />
-        <Component {...pageProps} />
-      </Layout>
-    </AppProvider>
-  );
+    return (
+        <AppProvider>
+            <Layout>
+                <GlobalStyled />
+                <AOSInitializer />
+                <Component {...pageProps} />
+            </Layout>
+        </AppProvider>
+    );
 }
 
 export default MyApp;
