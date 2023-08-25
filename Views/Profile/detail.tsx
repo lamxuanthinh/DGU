@@ -6,8 +6,8 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { DetailCourseItem } from "@/Views/Profile/ProfileStyled";
 import profile from "@/apis/profile";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { ICourseDetail, ILessonDetail } from "@/model/profile";
+import Button from "@/components/common/Button";
 
 export default function Details() {
     const router = useRouter();
@@ -27,6 +27,14 @@ export default function Details() {
         };
         handleFechCourseDetail();
     }, []);
+
+    const handleCheckTypeVideo = (id: string) => {
+        if (course?.price === "0") {
+            router.push(`/video/${id}`);
+        } else {
+            router.push(`/video/private/${id}`);
+        }
+    };
 
     return (
         <div className="w-full h-full flex   p-[10px] zero:flex-col zero:justify-start  xl:flex-row xl:justify-center  ">
@@ -53,7 +61,11 @@ export default function Details() {
                                 </div>
                                 <p className="text-[13px] px-2 font-bold">video</p>
                             </div>
-                            <div className="text-[24px] font-bold text-[#007621]">FREE</div>
+                            {course?.price === "0" ? (
+                                <div className="text-[24px] font-bold text-[#007621]">FREE</div>
+                            ) : (
+                                <div className="text-[24px] font-bold text-[#007621]">{course?.price} $</div>
+                            )}
                         </div>
                     </div>
                     <div className="flex flex-col">
@@ -78,7 +90,7 @@ export default function Details() {
             <div className="rounded-xl w-[66%]">
                 {listLessonDetail.map((item, index) => {
                     return (
-                        <Link href={`/video/${item._id}`} key={index}>
+                        <Button onClick={() => handleCheckTypeVideo(item._id)} key={index}>
                             <DetailCourseItem className="flex justify-start h-[140px] pb-4">
                                 <div className="h-full flex items-center p-3">
                                     <p className="font-bold text-[15px]">{index}</p>
@@ -103,7 +115,7 @@ export default function Details() {
                                     </p>
                                 </div>
                             </DetailCourseItem>
-                        </Link>
+                        </Button>
                     );
                 })}
             </div>

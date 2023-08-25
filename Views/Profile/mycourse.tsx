@@ -122,12 +122,18 @@ export default function MyCourse() {
                                                 </div>
                                                 <div className="w-full h-[25px]  flex flex-wrap justify-evenly items-center ">
                                                     <div className="flex flex-wrap justify-evenly items-center">
-                                                        <p className="text-[12px] text-[#000000] font-semibold">
-                                                            $75.99
-                                                        </p>
-                                                        <p className="text-[10px] text-[#8B8B8B] font-semibold">
-                                                            /lifetime
-                                                        </p>
+                                                        {item.price === "0" ? (
+                                                            <span className="text-black font-semibold">Free</span>
+                                                        ) : (
+                                                            <>
+                                                                <p className="text-[12px] text-[#000000] font-semibold">
+                                                                    $75.99
+                                                                </p>
+                                                                <p className="text-[10px] text-[#8B8B8B] font-semibold">
+                                                                    /lifetime
+                                                                </p>
+                                                            </>
+                                                        )}
                                                     </div>
                                                     <div className="bg-[#000000] flex justify-start items-center h-[25px] rounded-[20px] ">
                                                         <p className="text-[10px] text-[#ffffff] font-bold p-2 ">
