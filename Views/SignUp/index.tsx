@@ -69,6 +69,14 @@ export default function SignUp() {
                 return;
             }
 
+            if (!emailSent && !message) {
+                setIsLoading(false);
+                router.push({
+                    pathname: "/verifyemail/notification",
+                    query: { emailSent: "dgu@gmail.com" },
+                } as { query: QueryNotification });
+            }
+
             setIsLoading(false);
             router.push({
                 pathname: "/verifyemail/notification",

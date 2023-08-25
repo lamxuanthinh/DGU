@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { IMenuItems } from "@/model/menuItems";
+import Button from "../Button";
+import { useRouter } from "next/router";
 
 interface IMenuProps {
     className?: string;
@@ -10,9 +12,17 @@ interface IMenuProps {
 }
 
 function Menu({ menuItems, children, theme, className }: IMenuProps) {
+    const router = useRouter();
     const [isMenu, setIsMenu] = useState<boolean>(false);
     const lastItems = menuItems[menuItems.length - 1];
     const LastIcon: any = lastItems.icon;
+
+    const handleLogout = () => {
+        console.log("::[LOGOUT]::");
+        localStorage.setItem("userId", "");
+        router.push("/login");
+    };
+
     return (
         <div className="relative">
             <div className="select-none" onClick={() => setIsMenu(true)}>
@@ -52,21 +62,13 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
                                     ${theme === "black" ? "hover:bg-[#7b7b7b08]" : "hover:bg-[#16182308]"}
                                    `}
                             >
-                                <Link
+                                <Button
+                                    onClick={handleLogout}
                                     className="flex items-center text-base  font-medium px-[14px] py-[10px]"
-                                    href={lastItems.href}
                                 >
                                     <LastIcon fontSize="22px" />
-                                    <span
-                                        onClick={() => {
-                                            console.log("::[LOGOUT]::");
-                                            localStorage.setItem("userId", "");
-                                        }}
-                                        className="ml-4"
-                                    >
-                                        {lastItems.name}
-                                    </span>
-                                </Link>
+                                    <span className="ml-4">{lastItems.name}</span>
+                                </Button>
                             </li>
                         </>
                     )}

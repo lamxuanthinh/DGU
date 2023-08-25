@@ -9,11 +9,11 @@ export default function ProfileHeader() {
 
     return (
         <>
-            <div className="xl:w-full xl:h-[230px] lg:h-[180px]  flex  items-center justify-center ">
-                <div className="xl:w-[700px] xl:h-[230px] lg:w-[500px] lg:h-[180px]  flex justify-start items-center ">
+            <div className="xl:w-full xl:h-[230px] lg:h-[180px]  flex  items-center justify-center flex-wrap sm:flex-nowrap">
+                <div className="xl:w-[700px] xl:h-[230px] lg:w-[500px] lg:h-[180px]  flex justify-start items-center mt-8 sm:mt-0 pl-6 md:pl-0 mb-6 sm:mb-0">
                     <div className="xl:w-[170px] xl:h-[230px] lg:h-[180px]  flex items-center justify-center mr-[0.5rem] ">
                         <div className="xl:w-[170px] xl:h-[150px] lg:w-[130px] lg:h-[120px]  flex items-center justify-center relative">
-                            <div className="xl:w-[150px] xl:h-[150px] lg:w-[120px] lg:h-[120px]  sm:w-[100px] sm:h-[100px] bg-[#727272dd] rounded-[50%] overflow-hidden">
+                            <div className="xl:w-[150px] xl:h-[150px] lg:w-[120px] lg:h-[120px]  w-[100px] sm:h-[100px] bg-[#727272dd] rounded-[50%] overflow-hidden">
                                 <Image 
                                 src={require("@/public/Images/Profile/Infomation/boy_thoi_trang.png")}
                                 style={{ 
@@ -29,7 +29,7 @@ export default function ProfileHeader() {
                         </div>
                     </div>
                     <div className="xl:w-[400px] xl:h-[150px] lg:w-[300px] lg:h-[100px]  ml-[1rem] flex flex-col items-start justify-evenly " >
-                        <div className="flex flex-col items-start justify-center" >
+                        <div className="flex flex-col items-start justify-center mb-3 sm:mb-0" >
                             <div className="xl:w-full xl:h-[40px] lg:h-[30px]   flex flex-nowrap items-center ">
                                 <p className="xl:text-[35px] lg:text-[30px] font-bold  " > 
                                 DGU TEAM
@@ -40,12 +40,12 @@ export default function ProfileHeader() {
                                     style={{ marginLeft: "2rem" }}
                                 />
                             </div>
-                            <div className="xl:w-full xl:h-[22px] lg:h-[20px]  flex items-center ">
+                            <div className="xl:w-full xl:h-[22px] lg:h-[20px]  flex items-center">
                                 <p className="xl:text-[20px] lg:text-[15px] font-bold ">dgu@gmail.com</p>
                             </div>
                         </div>
-                        <div className="w-full xl:h-[50px] lg:h-[30px] flex flex-nowrap items-center ">
-                            <div className="w-auto xl:h-[35px] lg:h-full flex flex-nowrap items-center mr-[0.5rem] ">
+                        <div className="w-full xl:h-[50px] lg:h-[30px] flex sm:flex-nowrap items-center flex-wrap">
+                            <div className="w-auto h-[24px] sm:xl:h-[35px] lg:h-full flex flex-nowrap items-center mr-[0.5rem] ">
                                 <p className="font-bold xl:text-[20px] lg:text-[15px] flex  items-center justify-center">
                                 31K
                                 </p>
@@ -53,7 +53,7 @@ export default function ProfileHeader() {
                                 Followers
                                 </p>
                             </div>
-                            <div className="w-auto h-[35px] flex flex-nowrap items-center mr-[0.5rem] ">
+                            <div className="w-auto h-[24px] sm:h-[35px] flex flex-nowrap items-center mr-[0.5rem] ">
                                 <p className="font-bold xl:text-[20px] lg:text-[15px] flex  items-center justify-center">
                                 18
                                 </p>
@@ -61,7 +61,7 @@ export default function ProfileHeader() {
                                 Courses
                                 </p>
                             </div>
-                            <div className="w-auto h-[35px] flex flex-nowrap items-center mr-[0.5rem] ">
+                            <div className="w-auto h-[24px] sm:h-[35px] flex flex-nowrap items-center mr-[0.5rem] ">
                                 <p className="font-bold xl:text-[20px] lg:text-[15px] flex  items-center justify-center">
                                 12K
                                 </p>
@@ -72,7 +72,7 @@ export default function ProfileHeader() {
                         </div>
                     </div>
                 </div>
-                <div className="w-[200px] h-[150px]  flex flex-col justify-evenly items-center ">
+                <div className="sm:w-[200px] sm:h-[150px] h-[115px] flex sm:flex-col justify-evenly items-center w-full flex-wrap sm:flex-nowrap">
                     <div className="w-[200px] h-[50px] flex items-start justify-between ">
                         <div className="w-[200px] h-[50px] flex justify-evenly items-center ">
                             <div className="w-[40px] h-[40px] cursor-pointer  border-[2px] border-[#6E6E6E] rounded-[10px] flex  items-center justify-center" >

@@ -38,7 +38,8 @@ const MainLayout = (props: LayoutProps) => {
       {isTabletLayout ? (
         <div className="w-screen h-screen bg-[#DBDBDB] flex justify-center items-center ">
           <BigLayout>
-            <div className="w-full h-full bg-[#DBDBDB] flex justify-between rounded-[10px] relative" >
+            <div className="w-full h-full bg-white sm:bg-[#DBDBDB] flex justify-between rounded-[10px] relative" >
+              <div className="absolute w-full h-[1px] bg-black/[0.1] top-[70px]"></div>
               <Content className={``}>
                 <SidebarHeader active={false} />
                 <MainContent>
