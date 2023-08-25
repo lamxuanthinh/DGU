@@ -72,7 +72,7 @@ export default function SignUp() {
             }
             if (message === "ErrorData") {
                 setIsLoading(false);
-                router.push("/404");
+                console.log("ErrorData");
                 return;
             }
 
