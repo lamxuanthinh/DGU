@@ -1,9 +1,23 @@
 import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
+import Head from "next/head";
 
 const Index = ({ posts }: any) => {
-    return <Home data={posts} />;
+    return (
+        <>
+            <Head>
+                <title>DGU</title>
+                <link rel="icon" href="/icon?<generated>" type="image/<generated>" sizes="<generated>" />
+                <link
+                    rel="shortcut icon"
+                    href="https://res.cloudinary.com/dqa5ffq01/image/upload/v1692990728/Public/Logo/logo_qu2mwg.png"
+                />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <Home data={posts} />
+        </>
+    );
 };
 
 Index.Layout = MainLayout;

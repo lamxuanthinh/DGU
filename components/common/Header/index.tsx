@@ -1,4 +1,4 @@
-import { SectionLogin, SectionCreateVideo } from "@/components/common/Header/headerStyled";
+import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/headerStyled";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
 import Image from "next/image";
@@ -7,13 +7,22 @@ import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar";
+import { ProfileUser } from "@/model";
+import { user } from "@/apis/user";
 
 const Header = () => {
-    const [checkAuth, setCheckAuth] = useState();
-
+    const [profile, setProfile] = useState<ProfileUser>();
     useEffect(() => {
-        const userId: any = localStorage.getItem("userId");
-        setCheckAuth(userId);
+        try {
+            const fetchProfile = async () => {
+                const holdProfile = await user.profile();
+                localStorage.setItem("userId", `${holdProfile.metaData.profile._id}`);
+                setProfile(holdProfile.metaData.profile);
+            };
+            fetchProfile();
+        } catch (error) {
+            console.log("ERROR", error);
+        }
     }, []);
 
     return (
@@ -42,11 +51,11 @@ const Header = () => {
                         </div>
                     </Link>
                 </SectionCreateVideo>
-                {checkAuth ? (
+                {profile ? (
                     <Menu menuItems={dataMenuNav}>
                         <div className="flex gap-3 ml-1 cursor-pointer">
                             <Image
-                                src={require("@/public/Images/Profile/Infomation/boy_thoi_trang.png")}
+                                src={`${profile.avatar}`}
                                 width={40}
                                 height={40}
                                 className="rounded-full bg-[#727272dd] "

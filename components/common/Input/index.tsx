@@ -14,6 +14,7 @@ interface Props {
     labelInput?: string;
     isShowPassword?: boolean;
     animationBorder?: boolean;
+    errorMessageUtils?: any;
 }
 
 export default function Input({
@@ -28,6 +29,7 @@ export default function Input({
     labelInput,
     isShowPassword = false,
     animationBorder,
+    errorMessageUtils,
 }: Props) {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
@@ -157,7 +159,7 @@ export default function Input({
             </div>
             {
                 <div className="absolute bottom-[-30px] right-0 text-red-600 min-h-[1.5rem] text-sm text-right">
-                    {errorMessage}
+                    {errorMessage} {errorMessageUtils}
                 </div>
             }
         </div>
