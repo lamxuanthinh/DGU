@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient";
 
 export const auth = {
     signUp: (payload: SignUpPayload) => {
-        return axiosClient.post<DataResponse>("/api/signup", payload).then((res) => res.data);
+        return axiosClient.post<DataResponse>("/signup", payload).then((res) => res.data);
     },
 
     verifyEmail: (payload: VerifyEmailPayload, token: String) => {
@@ -20,18 +20,18 @@ export const auth = {
                 },
             );
         }
-        return axiosClient.post<DataResponse>("/api/signup", payload).then((res) => res.data);
+        return axiosClient.post<DataResponse>("/signup", payload).then((res) => res.data);
     },
 
     login: (payload: LoginPayload) => {
-        return axiosClient.post<DataResponse>("/api/login", payload).then((res) => res.data);
+        return axiosClient.post<DataResponse>("/login", payload).then((res) => res.data);
     },
 
     logout: () => {
-        return axiosClient.post("/api/logout").then((res) => res.data);
+        return axiosClient.post("/logout").then((res) => res.data);
     },
 
     refreshToken: () => {
-        return axiosClient.get("/api/refreshtoken").then((res) => res.data);
+        return axiosClient.get("/refreshtoken").then((res) => res.data);
     },
 };
