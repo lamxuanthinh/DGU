@@ -3,7 +3,7 @@ import axiosClient from "./axiosClient";
 
 const courseApi = {
     getCourseById: async (id: number | string) => {
-        const dataResponse = await axiosClient.get<DataResponse>(`/api/courses/${id}`).then((res) => res.data);
+        const dataResponse = await axiosClient.get<DataResponse>(`/courses/${id}`).then((res) => res.data);
 
         return dataResponse.metaData.courseList;
     },
@@ -30,7 +30,7 @@ const courseApi = {
             return config;
         });
 
-        return axiosClient.post("/api/publicvideo", payload).then((res) => res.data);
+        return axiosClient.post("/publicvideo", payload).then((res) => res.data);
     },
 };
 

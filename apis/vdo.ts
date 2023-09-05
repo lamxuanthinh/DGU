@@ -3,7 +3,7 @@ import axiosClient from "./axiosClient";
 
 export const vdo = {
     getDataCloud: async (payload: DataCloudVdoPayload) => {
-        return Object.create(await axiosClient.put(`/api/videos?title=${payload.titleVideo}`));
+        return Object.create(await axiosClient.put(`/videos?title=${payload.titleVideo}`));
     },
 
     uploadCloud: async (uploadVdoPayload: UploadVdoPayload) => {

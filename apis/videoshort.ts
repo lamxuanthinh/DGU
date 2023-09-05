@@ -2,15 +2,15 @@ import axiosClient from "./axiosClient";
 
 const videoShortApi = {
     getAllVideoShort: () => {
-        return axiosClient.get("/api/shortvideo").then((res) => res.data);
+        return axiosClient.get("/shortvideo").then((res) => res.data);
     },
 
     getAllPublicVideo: () => {
-        return axiosClient.get("/api/publicvideo").then((res) => res.data);
+        return axiosClient.get("/publicvideo").then((res) => res.data);
     },
 
     getVideoById: (id: number | string) => {
-        return axiosClient.get(`/api/publicvideo/${id}`).then((res) => res.data);
+        return axiosClient.get(`/publicvideo/${id}`).then((res) => res.data);
     },
 };
 
