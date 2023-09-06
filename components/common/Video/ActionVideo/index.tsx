@@ -8,6 +8,8 @@ import { TiPlus } from "react-icons/ti";
 interface IActionVideoProps {
     comment: boolean;
     setComment: Dispatch<SetStateAction<boolean>>;
+    ai: boolean;
+    setAI: Dispatch<SetStateAction<boolean>>;
     pathAvatar: string;
     heartCount: string | number;
     commentCount: string | number;
@@ -21,6 +23,8 @@ export default function ActionVideo({
     shareCount = 52,
     comment,
     setComment,
+    ai,
+    setAI,
 }: IActionVideoProps) {
     const [heart, setHeart] = useState(false);
     const [share, setShare] = useState(false);
@@ -42,6 +46,7 @@ export default function ActionVideo({
                         onClick={() => {
                             setHeart(!heart);
                             setComment(false);
+                            setAI(false);
                         }}
                         fontSize={"30px"}
                         fill={heart ? "rgb(254 44 85)" : "white"}
@@ -55,6 +60,7 @@ export default function ActionVideo({
                         className="hover:cursor-pointer"
                         onClick={() => {
                             setComment(!comment);
+                            setAI(false);
                         }}
                         fontSize={"25px"}
                         fill={comment ? "#EEEEEE" : "white"}
@@ -66,6 +72,7 @@ export default function ActionVideo({
                 className="mb-5 relative"
                 onClick={() => {
                     setShare(!share);
+                    setAI(false);
                 }}
             >
                 <div className="flex justify-center">
@@ -84,6 +91,7 @@ export default function ActionVideo({
             <div
                 className="mb-5"
                 onClick={() => {
+                    setAI(!ai);
                     setComment(false);
                 }}
             >

@@ -14,6 +14,7 @@ interface IVideo {
 
 export default function Video({ data }: IVideo) {
     const [comment, setComment] = useState(false);
+    const [ai, setAI] = useState(false);
     const [status, setStatus] = useState("NA");
     const [statusModal, setStatusModal] = useState("NA");
     const [player, setPlayer] = useState<any>(null);
@@ -213,6 +214,8 @@ export default function Video({ data }: IVideo) {
                 <ActionVideo
                     comment={comment}
                     setComment={setComment}
+                    ai={ai}
+                    setAI={setAI}
                     pathAvatar={data.author.pathAvatar}
                     heartCount={100}
                     commentCount={93}
