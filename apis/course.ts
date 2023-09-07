@@ -22,7 +22,7 @@ const courseApi = {
             config.headers["Content-Type"] = "multipart/form-data;";
             return config;
         });
-        return axiosClient.post("/api/courses", payload).then((res) => res.data);
+        return axiosClient.post("/courses", payload).then((res) => res.data);
     },
     updateCourse: (payload: FormData) => {
         axiosClient.interceptors.request.use((config) => {

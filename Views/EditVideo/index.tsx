@@ -136,7 +136,6 @@ export default function EditVideo() {
     const onOkModal = () => {
         setRenderSelectCourse(true);
         setStepSelected(2);
-        console.log(dataSplit);
 
         setListDataSplitVideo([...dataSplit]);
         router.push("/upload");
