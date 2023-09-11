@@ -58,7 +58,7 @@ const TypeVideo = () => {
             })
             .catch((err) => console.log(err));
         setIsLoading(false);
-        router.push("/");
+        // router.push("/");
     };
 
     return (

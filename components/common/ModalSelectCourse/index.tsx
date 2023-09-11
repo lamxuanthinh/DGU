@@ -164,8 +164,8 @@ export default function ModalSelectCourse({
                                                 >
                                                     <Image
                                                         alt=""
-                                                        width={100}
-                                                        height={100}
+                                                        width={300}
+                                                        height={300}
                                                         className="w-full h-full object-cover"
                                                         src={`${item.thumbnail}`}
                                                     />

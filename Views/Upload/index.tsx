@@ -119,7 +119,6 @@ export default function Upload() {
                 setSrcVideoEdit(url);
                 setFileVideoUpload(files[0]);
                 setRenderSelectCourse(!isRenderSelectCourse);
-                // setIsModal(true);
             } else {
                 alert("This is not video file.");
                 event.target.value = "";
