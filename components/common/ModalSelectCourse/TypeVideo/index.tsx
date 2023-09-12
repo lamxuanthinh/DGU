@@ -11,7 +11,7 @@ import { IDataSplitVideo } from "@/model/editVideo";
 import courseApi from "@/apis/course";
 
 const TypeVideo = () => {
-    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setIsLoading, isLoading } =
+    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setIsLoading } =
         useAppContext();
 
     const router = useRouter();
@@ -58,9 +58,8 @@ const TypeVideo = () => {
             })
             .catch((err) => console.log(err));
         setIsLoading(false);
-        router.push("/");
+        // router.push("/");
     };
-    console.log(isLoading);
 
     return (
         <div className="flex flex-col items-center">

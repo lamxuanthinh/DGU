@@ -21,9 +21,11 @@ export default function EditVideo() {
         fileThumbVideoUpload,
     } = useAppContext();
     const router = useRouter();
+
     const videoRef = useRef<HTMLVideoElement>(null);
     const runCursorRef = useRef<number | null>(null);
     const startTimestampRef = useRef<number | null>(0);
+
     const [isPlaying, setIsPlaying] = useState(false);
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -49,7 +51,6 @@ export default function EditVideo() {
             description: "",
         },
     ]);
-
     const [currentProgress, setCurrentProgress] = useState<IDataSplitVideo>(dataSplit[0]);
     const [valueVolume, setValueVolume] = useState<IValueVolumeVideo>({
         current: "100",
@@ -79,6 +80,12 @@ export default function EditVideo() {
         });
         setDataSplit(dataSplit);
     }, [duration]);
+
+    useEffect(() => {
+        if (!isPlaying) {
+            startTimestampRef.current = 0;
+        }
+    }, [valuePointer]);
 
     useEffect(() => {
         const currentValuePointer = valueCounterPointer + valuePointer;
@@ -127,16 +134,9 @@ export default function EditVideo() {
         };
     }, [isPlaying]);
 
-    useEffect(() => {
-        if (!isPlaying) {
-            startTimestampRef.current = 0;
-        }
-    }, [valuePointer]);
-
     const onOkModal = () => {
         setRenderSelectCourse(true);
         setStepSelected(2);
-        console.log(dataSplit);
 
         setListDataSplitVideo([...dataSplit]);
         router.push("/upload");
@@ -305,12 +305,12 @@ export default function EditVideo() {
             description: "",
         };
 
-        const templeDataSplit = dataSplit;
-        templeDataSplit[indexCurrentProgress].width = firstHalfPercentWidthProgress;
+        const templeDataSplit = JSON.parse(JSON.stringify(dataSplit));
         templeDataSplit[indexCurrentProgress].startTime = currentProgress.startTime;
         templeDataSplit[indexCurrentProgress].endTime = separateTime;
-        templeDataSplit[indexCurrentProgress].thumbImage = currentProgress.thumbImage;
+        templeDataSplit[indexCurrentProgress].width = firstHalfPercentWidthProgress;
         templeDataSplit[indexCurrentProgress].thumbImageFile = currentProgress.thumbImageFile;
+        templeDataSplit[indexCurrentProgress].thumbImage = currentProgress.thumbImage;
 
         const newDataSplit = [...templeDataSplit];
         newDataSplit.splice(indexCurrentProgress + 1, 0, secondHalfProgress);
@@ -326,7 +326,6 @@ export default function EditVideo() {
         setCurrentIndexProgress((pre) => pre + 1);
         setValuePointer(valuePointer - VALUE_WIDTH_POINTER);
     };
-    console.log(dataSplit);
 
     return (
         <>
@@ -373,7 +372,7 @@ export default function EditVideo() {
             </div>
             {isModal && <Modal title="Are you want to next step?" onOk={onOkModal} onCancel={onCancelModal} />}
             {isSuccess && <MenuSuccess toHref="/upload" onClick={onCancelModalSuccess} />}
-            <video ref={videoRef} src={srcVideoEdit}></video>
+            <video className="hidden" ref={videoRef} src={srcVideoEdit}></video>
         </>
     );
 }

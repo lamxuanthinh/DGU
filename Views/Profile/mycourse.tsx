@@ -30,8 +30,8 @@ export default function MyCourse() {
                                     <div className=" dgu-course-card h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer  ">
                                         <div className="w-full h-[180px] flex justify-center items-center relative">
                                             <Image
-                                                width={100}
-                                                height={100}
+                                                width={360}
+                                                height={360}
                                                 src={`${item.thumbnail}`}
                                                 style={{
                                                     width: "100%",
