@@ -22,17 +22,17 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<Da
 
         const handleLoginResponse: ProxyResCallback = (proxyRes, req, res) => {
             let body = "";
-            proxyRes.on("data", function (chunk) {
+            proxyRes.on("data", function(chunk) {
                 body += chunk;
             });
 
-            proxyRes.on("end", function () {
+            proxyRes.on("end", function() {
                 try {
                     const {
                         message,
                         metaData: { user, tokens },
-                    } = JSON.parse(body);
-                    if (!tokens.accessToken) {
+                    } = JSON.parse(body) || {};
+                    if (!tokens) {
                         (res as NextApiResponse).json({ message });
                     }
                     const cookies = new Cookies(req, res, {
@@ -59,7 +59,7 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<Da
                         .json({ message: "SignUp successfully", userId: user._id });
                     resolve(true);
                 } catch (error) {
-                    (res as NextApiResponse).json({ message: "ErrorData" });
+                    (res as NextApiResponse).json({ message: error });
                 }
             });
         };

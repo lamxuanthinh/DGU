@@ -49,7 +49,7 @@ export default function Login() {
                 return;
             }
             setIsLoading(false);
-            router.push("/");
+            await router.push("/");
         } catch (error) {
             console.log(error);
         }
@@ -57,7 +57,8 @@ export default function Login() {
 
     return (
         <div className="h-screen w-screen bg-white md:bg-[#c3c3c3f5] flex justify-center items-center">
-            <div className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
+            <div
+                className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
                 <div
                     data-aos="fade-up"
                     data-aos-duration="2000"
@@ -114,7 +115,7 @@ export default function Login() {
                         <div className="">
                             <div className="flex items-center justify-around pb-5">
                                 <div className="bg-[#C5BCBC] h-[1px] w-[30%]"></div>
-                                <div className="text-[#888585]">or continute </div>
+                                <div className="text-[#888585]">or continute</div>
                                 <div className="bg-[#C5BCBC] h-[1px] w-[30%]"></div>
                             </div>
                             <button
