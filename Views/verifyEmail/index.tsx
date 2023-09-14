@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRouter, NextRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { auth } from "@/apis/auth";
 import { QueryVerifyEmail } from "@/model";
 import verifySuccessfulImage from "@/public/Images/Verify/verify_successful.png";

@@ -18,3 +18,11 @@ export interface DataResponse {
     message?: string;
     userId?: string;
 }
+
+export interface SignupResponse {
+    code: number;
+    metaData: {
+        emailSent?: string;
+    };
+}
+
