@@ -52,9 +52,7 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
             </div>
             {isMenu && (
                 <ul
-                    className={`absolute top-[60px] right-[-12px] w-[230px]  shadow-menu z-50 rounded-[20px] py-[10px] max-h-[60vh] overflow-y-scroll no-scrollbar ${
-                        theme === "black" ? "bg-[#1F1F1F] text-white" : "bg-white text-black"
-                    } ${className}`}
+                    className={`bg-white dark:bg-[#2C2C2C] absolute top-[60px] right-[-12px] w-[230px]  shadow-menu z-50 rounded-[20px] py-[10px] max-h-[60vh] overflow-y-scroll no-scrollbar  ${className}`}
                 >
                     {menuItems.slice(0, -1).map((item) => {
                         const Icon: any = item.icon;

@@ -17,19 +17,7 @@ export const BaseNavigationItem = styled.div`
     cursor: pointer;
 `;
 
-export const NavigationItem = styled(BaseNavigationItem)`
-    width: 100%;
-    transition: 0.3s;
-
-    &:hover {
-        /* background-color: #7FCFFC; */
-        color: black;
-    }
-`;
-
 export const SideNav = styled.div`
-    transition: 0.3s all;
-
     @media (max-width: 1024px) {
         display: none;
 

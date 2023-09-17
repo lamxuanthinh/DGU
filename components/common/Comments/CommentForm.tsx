@@ -34,7 +34,9 @@ const CommentForm: React.FC<CommentFormProps> = ({
     return (
         <form
             onSubmit={onSubmit}
-            className={`${isEditing ? "" : "my-4 p-3"} flex items-center justify-between bg-white rounded-xl`}
+            className={`bg-white dark:bg-[#393939] ${
+                isEditing ? "" : "my-4 p-3"
+            } flex items-center justify-between  rounded-xl`}
         >
             <div className="h-full ml-3">
                 {!isEditing && (
@@ -48,7 +50,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
                 )}
             </div>
             <input
-                className="text-black w-[75%] rounded-xl p-3 border border-solid border-green-500"
+                className="text-black w-[75%] dark:text-white rounded-xl p-3 border border-solid border-green-500 dark:border-white"
                 value={text}
                 onChange={(e: any) => {
                     onTextChange(e);
