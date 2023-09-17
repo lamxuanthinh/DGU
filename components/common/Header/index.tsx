@@ -83,13 +83,13 @@ const Header = () => {
                     <SectionLogin>
                         <Link
                             href={"/login"}
-                            className="bg-[#A9DEF9] rounded-[15px] flex justify-center items-cente py-2 px-4"
+                            className="bg-[#7FCFFC] rounded-[15px] flex justify-center items-cente py-2 px-4"
                         >
                             <div className="flex justify-center items-center pr-3">
                                 <p className="font-bold">Sign in now</p>
                             </div>
                             <div className="flex justify-start items-center">
-                                <BiLogIn color="#000000" fontSize={"25px"} />
+                                <BiLogIn fontSize={"25px"} />
                             </div>
                         </Link>
                     </SectionLogin>
