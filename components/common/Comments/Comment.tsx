@@ -80,7 +80,7 @@ const Comment: React.FC<CommentProps> = ({
     return (
         <div key={comment.id} className="flex my-2 select-none">
             <div className="w-full">
-                <div className="bg-white dark:bg-[#393939] text-[#5357B6] dark:text-[white] flex justify-start items-center p-6 rounded-2xl">
+                <div className="bg-white dark:bg-[#393939] text-[#5357B6] dark:text-white flex justify-start items-center p-6 rounded-2xl">
                     <div className="w-[50px] p-3 rounded-2xl h-full">
                         <p className="text-[20px] text-center hover:cussor-pointer">{comment.countLiked}</p>
                         {isLiked ? (

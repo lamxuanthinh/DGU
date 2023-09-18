@@ -25,7 +25,6 @@ const Header = () => {
             setTheme("light");
         }
 
-        // Bắt đầu animation
         setIsAnimating(true);
         setTimeout(() => {
             setIsAnimating(false);
