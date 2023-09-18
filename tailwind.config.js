@@ -11,6 +11,16 @@ module.exports = {
     darkMode: "class",
     theme: {
         extend: {
+            keyframes: {
+                pulse: {
+                    "0%": { transform: "scale(1)" },
+                    "50%": { transform: "scale(0.9)" },
+                    "100%": { transform: "scale(1)" },
+                },
+            },
+            animation: {
+                pulse: "pulse 0.1s ease-in-out",
+            },
             boxShadow: {
                 "inset-white": "0 0 0px 1000px white inset",
                 menu: "0px 4px 16px rgba(0, 0, 0, 0.12)",

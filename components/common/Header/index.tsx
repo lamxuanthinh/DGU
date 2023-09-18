@@ -15,6 +15,22 @@ import { useTheme } from "next-themes";
 const Header = () => {
     const [profile, setProfile] = useState<ProfileUser>();
     const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    const toggleTheme = () => {
+        if (theme == "light") {
+            setTheme("dark");
+        } else {
+            setTheme("light");
+        }
+
+        // Bắt đầu animation
+        setIsAnimating(true);
+        setTimeout(() => {
+            setIsAnimating(false);
+        }, 300);
+    };
 
     useEffect(() => {
         try {
@@ -23,11 +39,15 @@ const Header = () => {
                 localStorage.setItem("userId", `${holdProfile.metaData.profile._id}`);
                 setProfile(holdProfile.metaData.profile);
             };
+            setMounted(true);
+
             fetchProfile();
         } catch (error) {
             console.log("ERROR", error);
         }
     }, []);
+
+    if (!mounted) return null;
 
     return (
         <div className="flex items-center justify-between bg-[#fff] dark:bg-[#2C2C2C] rounded-[5px] py-3 px-3 h-[65px]">
@@ -37,15 +57,15 @@ const Header = () => {
             <div className="flex flex-nowrap items-center text-black dark:text-white ">
                 <div className="flex items-center ">
                     <div
-                        className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer"
-                        onClick={() => {
-                            theme == "light" ? setTheme("dark") : setTheme("light");
-                        }}
+                        className={`mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer ${
+                            isAnimating ? "animate-pulse" : ""
+                        }`}
+                        onClick={toggleTheme}
                     >
                         {theme == "light" ? (
-                            <FiSun data-aos="flip-up" fontSize={"22px"} className="hover:text-[#636363]" />
+                            <FiSun fontSize={"22px"} className="text-[#000000]" />
                         ) : (
-                            <BiMoon data-aos="flip-up" fontSize={"22px"} className="hover:text-[#bcbcbc]" />
+                            <BiMoon fontSize={"22px"} className="text-[#bcbcbc]" />
                         )}
                     </div>
                     <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer">
