@@ -1,4 +1,3 @@
-import Router from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
@@ -17,7 +16,7 @@ type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
 
 export default function Login() {
-    const router = Router;
+    // const router = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
     const [errorPassword, setErrorPassword] = useState<string>("");
@@ -41,15 +40,16 @@ export default function Login() {
             password: data.password,
         };
         try {
-            const { message } = await auth.login(payload);
-            if (message === "ErrorData") {
+            const holdLoginRes = await auth.login(payload);
+            console.log("RESPONSE PROXY:::::", holdLoginRes);
+            if (false) {
                 setIsLoading(false);
                 setErrorEmail("Gmail not already exist");
                 setErrorPassword("Password wrong");
                 return;
             }
             setIsLoading(false);
-            await router.push("/");
+            // await router.push("/");
         } catch (error) {
             console.log(error);
         }
