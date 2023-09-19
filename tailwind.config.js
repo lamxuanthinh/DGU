@@ -10,6 +10,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            colors: {
+                primary: "#7FCFFC",
+            },
             boxShadow: {
                 "inset-white": "0 0 0px 1000px white inset",
                 menu: "0px 4px 16px rgba(0, 0, 0, 0.12)",

@@ -24,7 +24,6 @@ export default function StepTransition({
         setStepSelected(index);
         setStepCreateCourse(0);
     };
-    console.log("index:", stepSelected);
 
     return (
         <div className="flex">

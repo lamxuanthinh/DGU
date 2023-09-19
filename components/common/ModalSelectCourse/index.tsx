@@ -81,7 +81,6 @@ export default function ModalSelectCourse({
             return;
         }
 
-        console.log(data.price, ":", data.classify);
         await courseApi.createCourse({
             title: data.title,
             author: data.author,
