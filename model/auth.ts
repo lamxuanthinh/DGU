@@ -14,6 +14,8 @@ export interface LoginPayload {
 }
 
 export interface DataResponse {
+    metaData: any;
+    code: number;
     emailSent?: string;
     message?: string;
     userId?: string;

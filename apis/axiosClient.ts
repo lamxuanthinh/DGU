@@ -1,4 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
+// import { HEADER } from "@/utils/nameHeaders";
+
 
 const axiosClient: AxiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -9,6 +11,8 @@ const axiosClient: AxiosInstance = axios.create({
 
 axiosClient.interceptors.request.use(
     (config) => {
+        // config.headers[HEADER.AUTHORIZATION] = `Bearer ${tokens.accessToken}`;
+        // config.headers[HEADER.CLIENT_ID] = `Bearer ${tokens.refreshToken}`;
         return config;
     },
     (error) => {
@@ -21,26 +25,6 @@ axiosClient.interceptors.response.use(
         return response;
     },
     async (error) => {
-        // let refreshTokenRequest = null;
-        console.log("::ERROR::", error);
-        const response = error.response;
-        console.log("::STATUS::", response.status);
-        // console.log("::MESSAGE::", response.data.message);
-        // const originalRequest = error.config;
-        // console.log("::check::", !originalRequest._retry);
-        // if (response.status === 401 && response.data.message === "TokenExpired" && !originalRequest._retry) {
-        //     originalRequest._retry = true;
-        //     // refreshTokenRequest = refreshTokenRequest ? refreshTokenRequest : auth.refreshToken();
-        //     try {
-        //         // const holdRefreshToken = await refreshTokenRequest;
-        //         const holdRefreshToken = await auth.refreshToken();
-        //         console.log("holdRefreshToken", holdRefreshToken);
-        //         // refreshTokenRequest = null;
-        //     } catch (error) {
-        //         console.log("::[ERROR REFRESH TOKEN]::", error);
-        //     }
-        //     return axiosClient(originalRequest);
-        // }
         return Promise.reject(error);
     },
 );

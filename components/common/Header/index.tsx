@@ -1,29 +1,15 @@
-import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/headerStyled";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/headerStyled";
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
-import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar";
-import { ProfileUser } from "@/model";
-import { user } from "@/apis/user";
 
 const Header = () => {
-    const [profile, setProfile] = useState<ProfileUser>();
-    useEffect(() => {
-        try {
-            const fetchProfile = async () => {
-                const holdProfile = await user.profile();
-                localStorage.setItem("userId", `${holdProfile.metaData.profile._id}`);
-                setProfile(holdProfile.metaData.profile);
-            };
-            fetchProfile();
-        } catch (error) {
-            console.log("ERROR", error);
-        }
-    }, []);
+    const { data: session } = useSession();
 
     return (
         <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
@@ -51,11 +37,11 @@ const Header = () => {
                         </div>
                     </Link>
                 </SectionCreateVideo>
-                {profile ? (
+                {session && session.user.avatar ? (
                     <Menu menuItems={dataMenuNav}>
                         <div className="flex gap-3 ml-1 cursor-pointer">
                             <Image
-                                src={`${profile.avatar}`}
+                                src={`${session.user.avatar}`}
                                 width={40}
                                 height={40}
                                 className="rounded-full bg-[#727272dd] "

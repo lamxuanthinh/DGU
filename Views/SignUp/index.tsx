@@ -63,8 +63,11 @@ export default function SignUp() {
         };
 
         try {
-            const { code, metaData: { emailSent } } = await auth.signUp(payload) || {};
-            console.log("code", code, "metadata", emailSent);
+            const {
+                code,
+                metaData: { emailSent },
+            } = (await auth.signUp(payload)) || {};
+
             if (code === 4999) {
                 setErrorEmail("Email already");
                 setIsLoading(false);
@@ -80,7 +83,6 @@ export default function SignUp() {
             }
         } catch (error) {
             console.log(error);
-            // await router.push("/404");
         }
     });
 
@@ -104,8 +106,7 @@ export default function SignUp() {
 
     return (
         <div className="h-screen w-screen lg:bg-[#c3c3c3f5] flex justify-center items-center">
-            <div
-                className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
+            <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
                 <SlideLogin />
                 <div data-aos="fade-up" data-aos-duration="2000" className="w-full lg:w-[469px] flex items-center z-2">
                     <div className="w-[100%]">

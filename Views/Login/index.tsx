@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema, Schema } from "@/utils/rules";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import Router, { NextRouter } from "next/router";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { schema, Schema } from "@/utils/rules";
 import { FcGoogle } from "react-icons/fc";
-import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 import Input from "@/components/common/Input";
 import { useAppContext } from "@/Context";
@@ -16,7 +17,7 @@ type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
 
 export default function Login() {
-    // const router = Router;
+    const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
     const [errorPassword, setErrorPassword] = useState<string>("");
@@ -35,30 +36,26 @@ export default function Login() {
 
     const onSubmit = handleSubmit(async (data) => {
         setIsLoading(true);
-        const payload = {
+        const { status }: any = await signIn("credentials", {
             email: data.email,
             password: data.password,
-        };
-        try {
-            const holdLoginRes = await auth.login(payload);
-            console.log("RESPONSE PROXY:::::", holdLoginRes);
-            if (false) {
-                setIsLoading(false);
-                setErrorEmail("Gmail not already exist");
-                setErrorPassword("Password wrong");
-                return;
-            }
+            redirect: false,
+        });
+
+        if (status !== 200) {
             setIsLoading(false);
-            // await router.push("/");
-        } catch (error) {
-            console.log(error);
+            setErrorEmail("Gmail not already exist");
+            setErrorPassword("Password wrong");
+            return;
         }
+
+        await router.push("/");
+        setIsLoading(false);
     });
 
     return (
         <div className="h-screen w-screen bg-white md:bg-[#c3c3c3f5] flex justify-center items-center">
-            <div
-                className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
+            <div className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
                 <div
                     data-aos="fade-up"
                     data-aos-duration="2000"
