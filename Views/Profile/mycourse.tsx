@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BiCommentDetail, BiLockAlt } from "react-icons/bi";
+import { BiCommentDetail } from "react-icons/bi";
 import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import { useEffect, useState } from "react";
 import profile from "@/apis/profile";
