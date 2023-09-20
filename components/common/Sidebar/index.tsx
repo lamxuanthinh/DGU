@@ -13,7 +13,7 @@ const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
         <SideNav
             className={`${active ? "active" : ""} w-[285px] flex items-center flex-col bg-[#ffffff] rounded-[5px]`}
         >
-            <div className="h-[76px] w-[100%] p-[13px] flex justify-start items-center">
+            <div className=" h-[76px] w-[100%] p-[13px] flex justify-start items-center">
                 <Link href={"/"}>
                     <Image
                         className="ml-[26px] cursor-pointer"
