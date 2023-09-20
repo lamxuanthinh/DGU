@@ -4,19 +4,16 @@ import ProfileHeader from "@/components/common/ProfileHeader";
 import MainLayout from "../MainLayout";
 
 export default function ProfileLayout(props: LayoutProps) {
-  return (
-    <MainLayout>
-      <div className="w-full rounded-[20px]">
-        <ProfileHeader />
+    return (
+        <MainLayout>
+            <div className="w-full rounded-[20px]">
+                <ProfileHeader />
 
-        <div className=" w-full  rounded-[20px]">
-          <div className="">
-            <NavigationProfile />
-          </div>
-          {props.children}
-        </div>
-      </div>
-    </MainLayout>
-  );
+                <div className=" w-full  rounded-[20px]">
+                    <NavigationProfile />
+                    {props.children}
+                </div>
+            </div>
+        </MainLayout>
+    );
 }
-
