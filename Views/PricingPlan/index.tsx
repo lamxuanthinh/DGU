@@ -1,100 +1,24 @@
+import { useState } from "react";
 import Button from "@/components/common/Button";
 import Image from "next/image";
-import leavesYellowImage from "@/public/Images/leaves-yellow.svg";
-import leavesGreenImage from "@/public/Images/leaves-green.svg";
-import leavesOrangeImage from "@/public/Images/leaves-orange.svg";
-import subAvt1 from "@/public/Images/Profile/Infomation/boy_thanh_lich.png";
-import subAvt2 from "@/public/Images/Profile/Infomation/boy_thoi_trang.png";
-import subAvt3 from "@/public/Images/Profile/Infomation/cool_green.jpg";
 import startIcon from "@/public/Images/start.svg";
-import { useState } from "react";
+import { listPricingPlan, menu, listAvatar } from "./constants";
 
 const PricingPlan = () => {
     const [indexActiveMenu, setIndexActiveMenu] = useState<number>(2);
-    const menu = [
-        {
-            id: 1,
-            name: "Monthly",
-        },
-        {
-            id: 2,
-            name: "Yearly",
-        },
-        {
-            id: 3,
-            name: "Lifetime",
-        },
-    ];
 
     const handleActiveIndexMenu = (index: number) => {
         setIndexActiveMenu(index);
     };
 
-    const listAvatar = [subAvt1, subAvt2, subAvt3];
-
-    const listPricingPlan = [
-        {
-            key: "1",
-            icon: leavesYellowImage,
-            background: "#A3C4F3",
-            type: "Basic",
-            title: "Includes family sharing",
-            price: "$75.99",
-            bestOffer: false,
-            time: "/Per Year",
-            features: [
-                "Full access to all premium lessons and content",
-                "Advanced interactive exercises.",
-                "Personalization and custom recommendations",
-            ],
-        },
-        {
-            key: "2",
-            icon: leavesGreenImage,
-            background: "#90DBF4",
-            type: "Popular",
-            price: "$175.99",
-            bestOffer: true,
-            time: "/Per Year",
-            features: [
-                "Full access to all  premium lessons and content",
-                "Advanced interactive exercise.",
-                "Personalization and custom recommandations",
-                "Full access to all  premium lessons and content",
-                "Advanced interactive exercise",
-            ],
-        },
-        {
-            key: "3",
-            icon: leavesOrangeImage,
-            background: "#8EECF5",
-            type: "Pro",
-            price: "$775.99",
-            bestOffer: false,
-            time: "/Per Year",
-            features: [
-                "Full access to all  premium lessons and content",
-                "Advanced interactive exercise.",
-                "Personalization and custom recommandations",
-                "Full access to all  premium lessons and content",
-                "Advanced interactive exercise.",
-                "Personalization and custom recommandations",
-                "Full access to all  premium lessons and content",
-                "Advanced interactive exercise.",
-                "Personalization and custom recommandations",
-            ],
-        },
-    ];
-
     return (
         <div className="mb-24 pt-10 px-5">
             <div className="flex flex-col items-center pb-10">
                 <h1 className="text-4xl font-bold text-black mb-5">Pricing Plans</h1>
-                <p className="text-[#616161]/[.60] text-[15px] mb-5">
+                <p className="text-[#616161]/[.8] text-base mb-5 text-center">
                     Our pricing plans are designed to be affordable, flexible, and tailored to your unique neeeds
                 </p>
                 <div className="flex items-center mb-5">
-                    {/* list avatar */}
                     <ul className="flex items-center translate-x-8">
                         {listAvatar.map((itemAvt, index) => (
                             <li key={index} style={{ transform: `translateX(-${index * 12}px)` }}>
@@ -111,17 +35,19 @@ const PricingPlan = () => {
                             </span>
                         </li>
                     </ul>
-                    <span className="text-sm text-black font-bold bg-[#F5F6F7] py-[8px] px-2 rounded-[5px]">
+                    <span className="text-center text-sm text-black font-bold bg-[#F5F6F7] py-[8px] px-2 rounded-[5px]">
                         1,810M +
                     </span>
                     <span className="text-[#C5C5C6] font-bold ml-2">customers</span>
                 </div>
-                <div className="flex bg-[#F7F7F7]">
+                <div className="flex bg-[#F7F7F7] shadow-sm">
                     {menu.map((menuItem) => (
                         <Button
                             onClick={() => handleActiveIndexMenu(menuItem.id)}
-                            className={`text-xl font-semibold px-[34px] py-[11px] ${
-                                menuItem.id === indexActiveMenu ? "text-[#3983AC] bg-[#7FCFFC]" : "text-[#5A5A5A]"
+                            className={`text-base lg:text-lg xl:text-xl font-semibold px-5 xl:px-[34px] py-[11px] ${
+                                menuItem.id === indexActiveMenu
+                                    ? "text-[#3983AC] bg-[#7FCFFC] rounded-md"
+                                    : "text-[#5A5A5A]"
                             }`}
                             key={menuItem.id}
                         >
@@ -134,12 +60,11 @@ const PricingPlan = () => {
                 {listPricingPlan.map((item) => (
                     <div
                         key={item.key}
-                        className="px-6 pb-[60px] flex flex-col justify-between"
-                        style={{ background: item.background }}
+                        className="px-6 pb-[60px] flex flex-col justify-between xl:justify-start bg-[url('/Images/bg-pricing-plan.png')] bg-no-repeat bg-cover bg-center shadow-lg"
                     >
                         <div>
                             <div className="mt-[60px] mb-5 flex justify-between">
-                                <Image src={item.icon} alt="leaves yellow" />
+                                <Image src={item.icon} alt="icons pricing plan" />
                                 {item.bestOffer && (
                                     <Button
                                         className="bg-white py-2 px-3"

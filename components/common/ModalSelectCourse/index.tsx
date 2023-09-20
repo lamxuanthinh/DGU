@@ -379,8 +379,8 @@ export default function ModalSelectCourse({
                                         title: watchValueOfLesson("title"),
                                         themenails: watchValueOfLesson("image") ? (
                                             <Image
-                                                width={100}
-                                                height={100}
+                                                width={400}
+                                                height={200}
                                                 className="rounded-md w-full h-full"
                                                 src={`${watchValueOfLesson("image_blob")}`}
                                                 alt=""
