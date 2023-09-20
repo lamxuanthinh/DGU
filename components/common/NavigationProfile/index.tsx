@@ -16,7 +16,7 @@ export default function NavigationProfile() {
     ];
 
     return (
-        <div className=" flex justify-between items-center w-full">
+        <div className="mx-[50px] flex justify-between items-center w-full">
             <div className=" flex justify-center w-[240px] ml-[4rem] relative ">
                 {navPathProfile.map((item, index) => {
                     return (
