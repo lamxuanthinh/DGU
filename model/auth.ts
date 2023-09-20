@@ -14,9 +14,10 @@ export interface LoginPayload {
 }
 
 export interface DataResponse {
-    emailSent?: String;
+    emailSent?: string;
     message?: string;
     userId?: string;
+    body?: any;
 }
 
 export interface SignupResponse {

@@ -56,10 +56,10 @@ export default function handleLogin(req: NextApiRequest, res: NextApiResponse<Da
                     });
                     (res as NextApiResponse<DataResponse>)
                         .status(200)
-                        .json({ message: "SignUp successfully", userId: user._id });
+                        .json({ message: "SignUp successfully", userId: user._id, body: JSON.parse(body) });
                     resolve(true);
                 } catch (error) {
-                    (res as NextApiResponse).json({ message: error });
+                    (res as NextApiResponse).json({ message: `Hot Bug::${error}`, body: JSON.parse(body) });
                 }
             });
         };

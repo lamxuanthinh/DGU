@@ -53,7 +53,7 @@ export async function getStaticProps() {
 
     try {
         posts = await videoShortApi.getAllVideoShort();
-        posts = posts.metaData.shortList;
+        posts = posts.metaData.shortList.slice(0, 10);
 
         for (let i = 0; i < posts.length; i++) {
             const parentId = posts[i].videoPublicId;
@@ -73,5 +73,6 @@ export async function getStaticProps() {
         props: {
             posts,
         },
+        revalidate: 60,
     };
 }
