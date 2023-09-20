@@ -32,7 +32,7 @@ export default function MyCourse() {
                                 return (
                                     <Link key={item._id} href={`/profile/detail/${item._id}`}>
                                         <div className=" dgu-course-card flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer  ">
-                                            <div className="w-full h-[180px] flex justify-center items-center relative">
+                                            <div className=" w-full h-[180px] flex justify-center items-center relative">
                                                 <Image
                                                     width={360}
                                                     height={360}
