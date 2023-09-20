@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import courseApi from "@/apis/course";
 
 const Release = () => {
-    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setStepSelected } =
+    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload } =
         useAppContext();
     const router = useRouter();
 
@@ -51,10 +51,6 @@ const Release = () => {
         if (listDataSplitVideo.length > 0 && fileVideoUpload && fileThumbVideoUpload) {
             handleUploadVideo();
         }
-
-        return () => {
-            setStepSelected(0);
-        };
     }, []);
 
     return (
