@@ -11,7 +11,7 @@ function ItemCardCourse({ dataCard }: IItemCardCourseProps) {
         <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 p-3 cursor-pointer">
             <div className="flex flex-col shadow-lg rounded-[5px] h-full 2xl:h-auto">
                 <div className="h-[50%] relative">
-                    <Image src={dataCard.srcImage} alt="course image" className="w-full h-full"></Image>
+                    <Image width={400} height={400} src={dataCard.srcImage} alt="course image" className="w-full h-full xl:max-h-[200px]"/>
                     <div className="flex absolute gap-x-1 bottom-[10px] left-3">
                         <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] font-semibold text-xs 2xl:text-sm">
                             {dataCard.info[0].lesson} Lesson
