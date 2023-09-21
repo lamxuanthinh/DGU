@@ -1,7 +1,8 @@
+import { ConfigAuthType } from "@/model";
 import axiosClient from "./axiosClient";
 
-export const user = {
-    profile: () => {
-        return axiosClient.get("/profile").then((res) => res.data);
+export const userServices = {
+    profile: async (config: ConfigAuthType) => {
+        return axiosClient.get("/profile", config).then((res) => res.data);
     },
 };

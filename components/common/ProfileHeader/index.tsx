@@ -1,26 +1,29 @@
-import { user } from "@/apis/user";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { BsFillPatchCheckFill } from "react-icons/bs";
-import { ProfileUser } from "@/model";
 import { useSession } from "next-auth/react";
+import { ProfileUser } from "@/model";
+import { configAuth } from "@/apis/configAuth";
+import { userServices } from "@/apis/user";
 
 export default function ProfileHeader() {
-    const checkUser = useSession();
-    console.log("checkUser", checkUser);
+    const { data: session } = useSession() || {};
     const [profile, setProfile] = useState<ProfileUser>();
+
     useEffect(() => {
         try {
-            const fetchProfile = async () => {
-                const holdProfile = await user.profile();
-                setProfile(holdProfile.metaData.profile);
-            };
-            fetchProfile();
+            if (session) {
+                const holdProfile = async () => {
+                    const holdProfile = await userServices.profile(configAuth(session));
+                    setProfile(holdProfile.metaData.profile);
+                };
+                holdProfile();
+            }
         } catch (error) {
-            console.log("ERROR", error);
+            console.log(":::ERROR PROFILE:::", error);
         }
-    }, []);
+    }, [session]);
 
     return (
         <div className="mx-[90px] w-full h-[260px] flex items-center">
