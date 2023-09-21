@@ -14,9 +14,12 @@ export interface LoginPayload {
 }
 
 export interface DataResponse {
-    emailSent?: String;
+    metaData: any;
+    code: number;
+    emailSent?: string;
     message?: string;
     userId?: string;
+    body?: any;
 }
 
 export interface SignupResponse {
@@ -26,3 +29,10 @@ export interface SignupResponse {
     };
 }
 
+export type ConfigAuthType = {
+    headers: {
+        "x-api-client": string;
+        authorization: string;
+        "x-refresh-token": string;
+    };
+};
