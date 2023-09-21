@@ -111,8 +111,8 @@ export default function SignUp() {
                 <div data-aos="fade-up" data-aos-duration="2000" className="w-full lg:w-[469px] flex items-center z-2">
                     <div className="w-[100%]">
                         <div className="pb-8 pt-4">
-                            <h1 className="font-bold text-[32px] pb-3">Welcome you to DGU!</h1>
-                            <p className="text-[14px] font-semibold">
+                            <h1 className="font-bold text-[32px] pb-3 dark:text-black">Welcome you to DGU!</h1>
+                            <p className="text-[14px] font-semibold dark:text-black">
                                 Please fill in form below to become member of DGU
                             </p>
                         </div>
@@ -233,7 +233,7 @@ export default function SignUp() {
                                 <div className="flex justify-start">
                                     <div className="flex justify-center items-center">
                                         <CheckboxInput />
-                                        <p className="px-2">Do you want to save the password?</p>
+                                        <p className="px-2 dark:text-black">Do you want to save the password?</p>
                                     </div>
                                 </div>
                                 <button
@@ -247,7 +247,7 @@ export default function SignUp() {
                         <div className="">
                             <div className="flex justify-center py-5">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Already have an account?</p>
-                                <Link href="login" className="font-bold pr-2 text-[13px]">
+                                <Link href="login" className="font-bold pr-2 text-[13px] dark:text-black">
                                     Login
                                 </Link>
                             </div>
