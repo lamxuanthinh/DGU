@@ -12,7 +12,6 @@ import {
     DATA_TRENDING_PEOPLE,
     DATA_FEATURED_VIDEOS,
     DATA_TOP_FEATURED_VIDEOS,
-    DATA_TRENDING_COURSE,
     DATA_SHORTS,
 } from "./constants";
 import ItemCardCourse from "@/components/common/ItemCardCourse";
@@ -115,7 +114,7 @@ const Trending = () => {
                         <h5 className="font-semibold text-xl ml-2">Shorts</h5>
                     </div>
                     <ul className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-7 mb-3">
-                        {DATA_SHORTS.map((item) => (
+                        {courseShowArray.map((item) => (
                           <ItemCardShort key={item.id} dataShort={item}/>
                         ))}
                     </ul>
