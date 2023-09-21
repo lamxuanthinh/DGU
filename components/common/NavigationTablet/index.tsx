@@ -1,14 +1,14 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
+// import { useRouter } from "next/router";
+// import Link from "next/link";
 
-import { navLink } from "./constant";
+// import { navLink } from "./constant";
 
 const NavigationTablet = () => {
-    const router = useRouter();
+    // const router = useRouter();
 
     return (
         <>
-            <div className="sm:absolute fixed w-full bottom-0  sm:w-[500px] h-[76px] flex flex-wrap justify-between px-8 sm:px-0 sm:justify-center items-center sm:rounded-[10px] bg-[#ffffff] sm:bottom-2 left-0 sm:left-1/2 transform sm:-translate-x-1/2">
+            {/* <div className="sm:absolute fixed w-full bottom-0  sm:w-[500px] h-[76px] flex flex-wrap justify-between px-8 sm:px-0 sm:justify-center items-center sm:rounded-[10px] bg-[#ffffff] sm:bottom-2 left-0 sm:left-1/2 transform sm:-translate-x-1/2">
                 {navLink.map(({ name, link, icon }, index) => {
                     if (router.pathname === link) {
                         return (
@@ -41,7 +41,7 @@ const NavigationTablet = () => {
                         );
                     }
                 })}
-            </div>
+            </div> */}
         </>
     );
 };

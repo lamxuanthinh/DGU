@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface studying {
     _id: string;
     title: string;
@@ -62,4 +64,15 @@ export interface DataResponse {
     metaData: {
         courseList: IMyCourseData[];
     };
+} 
+
+export interface IDataCardCourse {
+    srcImage: string | StaticImageData;
+    info: [{ lesson: number }, { time: string }, { comment: number }];
+    title: string;
+    level: string;
+    avatar: string[] | StaticImageData[];
+    price: string;
+    priceType: string;
+    author: string;
 }
