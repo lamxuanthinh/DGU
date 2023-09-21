@@ -29,3 +29,10 @@ export interface SignupResponse {
     };
 }
 
+export type ConfigAuthType = {
+    headers: {
+        "x-api-client": string;
+        authorization: string;
+        "x-refresh-token": string;
+    };
+};
