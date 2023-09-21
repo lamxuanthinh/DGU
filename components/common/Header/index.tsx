@@ -1,4 +1,5 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { useEffect, useState } from "react";
 import { BiLogIn, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
 import { FiSun } from "react-icons/fi";
 import { useTheme } from "next-themes";
@@ -9,7 +10,6 @@ import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/hea
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import SearchBar from "../SearchBar";
-
 
 const Header = () => {
     const { data: session } = useSession();
@@ -29,6 +29,10 @@ const Header = () => {
             setIsAnimating(false);
         }, 300);
     };
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     if (!mounted) return null;
 

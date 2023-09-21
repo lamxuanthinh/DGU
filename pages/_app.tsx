@@ -10,23 +10,21 @@ import "@/styles/common/animation.css";
 import "@/styles/common/comments.css";
 import "@/styles/common/shadow.css";
 
-
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const Layout = Component.Layout ?? EmptyLayout;
 
     return (
         <SessionProvider session={pageProps.session}>
             <AppProvider>
-            <ThemeProvider attribute="class">
-                <Layout>
-                    <GlobalStyled />
-                    <AOSInitializer />
-                    <Component {...pageProps} />
-                </Layout>
-              </AppProvider>
-            </ThemeProvider>
-          </AppProvider>
-       </SessionProvider>
+                <ThemeProvider attribute="class">
+                    <Layout>
+                        <GlobalStyled />
+                        <AOSInitializer />
+                        <Component {...pageProps} />
+                    </Layout>
+                </ThemeProvider>
+            </AppProvider>
+        </SessionProvider>
     );
 }
 

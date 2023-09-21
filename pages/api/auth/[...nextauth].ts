@@ -12,13 +12,11 @@ const authOption: NextAuthOptions = {
             type: "credentials",
             credentials: {},
             async authorize(credentials): Promise<any> {
-                console.log("credentials", credentials);
                 const { email, password } = credentials as LoginPayload;
 
-                const holdLoginResponse = await auth.login({ email, password });
-                console.log("holdLoginResponse", holdLoginResponse);
-                if (holdLoginResponse.code !== 200) return null;
-                return holdLoginResponse.metaData;
+                const { code, metaData } = (await auth.login({ email, password })) || {};
+                if (code !== 200) return null;
+                return metaData;
             },
         }),
     ],
