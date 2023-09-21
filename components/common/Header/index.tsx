@@ -1,5 +1,7 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { BiLogIn, BiMessageRounded, BiVideoPlus } from "react-icons/bi";
+import { BiLogIn, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
+import { FiSun } from "react-icons/fi";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -8,28 +10,59 @@ import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import SearchBar from "../SearchBar";
 
+
 const Header = () => {
     const { data: session } = useSession();
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    const toggleTheme = () => {
+        if (theme == "light") {
+            setTheme("dark");
+        } else {
+            setTheme("light");
+        }
+
+        setIsAnimating(true);
+        setTimeout(() => {
+            setIsAnimating(false);
+        }, 300);
+    };
+
+    if (!mounted) return null;
 
     return (
-        <div className="flex items-center justify-between bg-[#fff] rounded-[5px] py-3 px-3 h-[65px]">
+        <div className="flex items-center justify-between bg-[#fff] dark:bg-[#2C2C2C] rounded-[5px] py-3 px-3 h-[65px]">
             <div className="relative w-[50%] flex flex-nowrap rounded-2xl p-2">
                 <SearchBar />
             </div>
-            <div className="flex flex-nowrap items-center">
-                <div className="flex items-center">
-                    <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
-                        <IoMdNotificationsOutline color="#000000" fontSize={"25px"} />
+            <div className="flex flex-nowrap items-center text-black dark:text-white ">
+                <div className="flex items-center ">
+                    <div
+                        className={`mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer ${
+                            isAnimating ? "animate-pulse" : ""
+                        }`}
+                        onClick={toggleTheme}
+                    >
+                        {theme == "light" ? (
+                            <FiSun fontSize={"22px"} className="text-[#000000]" />
+                        ) : (
+                            <BiMoon fontSize={"22px"} className="text-[#bcbcbc]" />
+                        )}
                     </div>
-                    <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] flex justify-center items-center cursor-pointer">
-                        <BiMessageRounded color="#000000" fontSize={"25px"} />
+                    <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer">
+                        <IoMdNotificationsOutline fontSize={"25px"} />
+                    </div>
+                    <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer">
+                        <BiMessageRounded fontSize={"25px"} />
                     </div>
                 </div>
                 <SectionCreateVideo>
                     <Link href="/upload" className="cursor-pointer">
-                        <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center">
+                        <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center">
                             <div className="flex justify-center items-center pr-3">
-                                <BiVideoPlus color="#000000" fontSize={"25px"} />
+                                <BiVideoPlus fontSize={"25px"} />
                             </div>
                             <div className="flex justify-center items-center">
                                 <p className="font-bold">Create Video</p>
@@ -53,13 +86,13 @@ const Header = () => {
                     <SectionLogin>
                         <Link
                             href={"/login"}
-                            className="bg-[#A9DEF9] rounded-[15px] flex justify-center items-cente py-2 px-4"
+                            className="bg-[#7FCFFC] rounded-[15px] flex justify-center items-cente py-2 px-4"
                         >
                             <div className="flex justify-center items-center pr-3">
                                 <p className="font-bold">Sign in now</p>
                             </div>
                             <div className="flex justify-start items-center">
-                                <BiLogIn color="#000000" fontSize={"25px"} />
+                                <BiLogIn fontSize={"25px"} />
                             </div>
                         </Link>
                     </SectionLogin>

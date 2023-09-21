@@ -26,6 +26,5 @@ export  const Content = styled.div`
 export  const MainContent = styled.div`
     height: calc(100% - 70px);
     margin-top: 5px;
-    background: #fff;
     border-radius: 5px;
 `;
