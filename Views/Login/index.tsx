@@ -68,8 +68,8 @@ export default function Login() {
                             </Link>
                         </div>
                         <div className="">
-                            <h1 className="font-bold text-[32px] pb-5">Welcome Back!</h1>
-                            <p className="pb-7 text-[14px] font-semibold">Please enter log in detail below</p>
+                            <h1 className="font-bold text-[32px] pb-5 dark:text-black">Welcome Back!</h1>
+                            <p className="pb-7 text-[14px] font-semibold dark:text-black">Please enter log in detail below</p>
                         </div>
                         <div className="pb-5">
                             <form onSubmit={onSubmit} className="w-full">
@@ -97,7 +97,7 @@ export default function Login() {
                                     errorMessageUtils={errorPassword}
                                 />
                                 <div>
-                                    <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium">
+                                    <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium dark:text-black">
                                         Forget password?
                                     </p>
                                 </div>
@@ -120,11 +120,11 @@ export default function Login() {
                                 className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
                             >
                                 <FcGoogle className="text-2xl" />
-                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2">Login with Google</p>
+                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black">Login with Google</p>
                             </button>
                             <div className="flex justify-center py-3">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Don’t have on account? </p>
-                                <Link href="signup" className="font-bold pr-2 text-[13px]">
+                                <Link href="signup" className="font-bold pr-2 text-[13px] dark:text-black">
                                     Sign up
                                 </Link>
                             </div>
