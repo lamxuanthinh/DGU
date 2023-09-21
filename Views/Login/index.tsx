@@ -1,14 +1,14 @@
-import Router from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema, Schema } from "@/utils/rules";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import Router, { NextRouter } from "next/router";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { schema, Schema } from "@/utils/rules";
 import { FcGoogle } from "react-icons/fc";
-import { auth } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 import Input from "@/components/common/Input";
 import { useAppContext } from "@/Context";
@@ -17,7 +17,7 @@ type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
 
 export default function Login() {
-    const router = Router;
+    const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
     const [errorPassword, setErrorPassword] = useState<string>("");
@@ -36,29 +36,26 @@ export default function Login() {
 
     const onSubmit = handleSubmit(async (data) => {
         setIsLoading(true);
-        const payload = {
+        const { status }: any = await signIn("credentials", {
             email: data.email,
             password: data.password,
-        };
-        try {
-            const { message } = await auth.login(payload);
-            if (message === "ErrorData") {
-                setIsLoading(false);
-                setErrorEmail("Gmail not already exist");
-                setErrorPassword("Password wrong");
-                return;
-            }
+            redirect: false,
+        });
+
+        if (status !== 200) {
             setIsLoading(false);
-            await router.push("/");
-        } catch (error) {
-            console.log(error);
+            setErrorEmail("Gmail not already exist");
+            setErrorPassword("Password wrong");
+            return;
         }
+
+        await router.push("/");
+        setIsLoading(false);
     });
 
     return (
         <div className="h-screen w-screen bg-white md:bg-[#c3c3c3f5] flex justify-center items-center">
-            <div
-                className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
+            <div className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
                 <div
                     data-aos="fade-up"
                     data-aos-duration="2000"
@@ -71,8 +68,8 @@ export default function Login() {
                             </Link>
                         </div>
                         <div className="">
-                            <h1 className="font-bold text-[32px] pb-5">Welcome Back!</h1>
-                            <p className="pb-7 text-[14px] font-semibold">Please enter log in detail below</p>
+                            <h1 className="font-bold text-[32px] pb-5 dark:text-black">Welcome Back!</h1>
+                            <p className="pb-7 text-[14px] font-semibold dark:text-black">Please enter log in detail below</p>
                         </div>
                         <div className="pb-5">
                             <form onSubmit={onSubmit} className="w-full">
@@ -100,7 +97,7 @@ export default function Login() {
                                     errorMessageUtils={errorPassword}
                                 />
                                 <div>
-                                    <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium">
+                                    <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium dark:text-black">
                                         Forget password?
                                     </p>
                                 </div>
@@ -123,11 +120,11 @@ export default function Login() {
                                 className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
                             >
                                 <FcGoogle className="text-2xl" />
-                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2">Login with Google</p>
+                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black">Login with Google</p>
                             </button>
                             <div className="flex justify-center py-3">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Don’t have on account? </p>
-                                <Link href="signup" className="font-bold pr-2 text-[13px]">
+                                <Link href="signup" className="font-bold pr-2 text-[13px] dark:text-black">
                                     Sign up
                                 </Link>
                             </div>

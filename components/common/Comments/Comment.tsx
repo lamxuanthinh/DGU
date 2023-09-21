@@ -80,18 +80,15 @@ const Comment: React.FC<CommentProps> = ({
     return (
         <div key={comment.id} className="flex my-2 select-none">
             <div className="w-full">
-                <div className="bg-white flex justify-start items-center p-6 rounded-2xl">
-                    <div className="w-[50px] p-3 rounded-2xl h-full bg-[#F5F6FA]">
-                        <p className="text-[#5357B6] text-[20px] text-center hover:cussor-pointer">
-                            {comment.countLiked}
-                        </p>
+                <div className="bg-white dark:bg-[#393939] text-[#5357B6] dark:text-white flex justify-start items-center p-6 rounded-2xl">
+                    <div className="w-[50px] p-3 rounded-2xl h-full">
+                        <p className="text-[20px] text-center hover:cussor-pointer">{comment.countLiked}</p>
                         {isLiked ? (
                             <AiOutlineLike
                                 onClick={() => {
                                     handleLikeButton();
                                 }}
                                 className="my-2 hover:cursor-pointer"
-                                color="#5357B6"
                                 fontSize={25}
                             />
                         ) : (
@@ -100,7 +97,6 @@ const Comment: React.FC<CommentProps> = ({
                                     handleLikeButton();
                                 }}
                                 className="my-2 hover:cursor-pointer"
-                                color="#5357B6"
                                 fontSize={25}
                             />
                         )}
@@ -115,12 +111,14 @@ const Comment: React.FC<CommentProps> = ({
                                     className="rounded-2xl"
                                     src={require(`@/public/${comment.avatar}`)}
                                 />
-                                <div className="text-[16px] text-[#334253] font-medium mx-3">{comment.username}</div>
+                                <div className="text-[16px] font-medium mx-3">{comment.username}</div>
                             </div>
-                            <div className="text-[#5357B6] text-[13px] font-medium">{createdAt}</div>
+                            <div className="text-[13px] font-medium">{createdAt}</div>
                         </div>
                         {!isEditing && (
-                            <div className="text-[16px] w-[95%] font-normal text-[#67727E]">{comment.body}</div>
+                            <div className="text-[16px] w-[95%] font-normal text-[#67727E] dark:text-white">
+                                {comment.body}
+                            </div>
                         )}
                         {isEditing && (
                             <CommentForm
@@ -140,7 +138,7 @@ const Comment: React.FC<CommentProps> = ({
                             {canReply && (
                                 <div className="w-full">
                                     <div
-                                        className="comment-action w-full text-[#6357b6] font-semibold"
+                                        className="comment-action w-full text-[#6357b6] dark:text-white font-semibold"
                                         onClick={handleReply}
                                     >
                                         Reply
@@ -150,13 +148,16 @@ const Comment: React.FC<CommentProps> = ({
                         </div>
                         <div className="flex justify-center">
                             {canEdit && (
-                                <div className="comment-action text-[#6357b6] font-semibold" onClick={handleEdit}>
+                                <div
+                                    className="comment-action text-[#6357b6] dark:text-white font-semibold"
+                                    onClick={handleEdit}
+                                >
                                     Edit
                                 </div>
                             )}
                             {canDelete && (
                                 <div
-                                    className="comment-action text-[#6357b6] font-semibold"
+                                    className="comment-action text-[#6357b6] dark:text-white font-semibold"
                                     onClick={handleDeleteComment}
                                 >
                                     Delete
@@ -168,7 +169,7 @@ const Comment: React.FC<CommentProps> = ({
                 </div>
 
                 {replies.length > 0 && (
-                    <div className="bg-[#F5F6FA] ml-[8%]">
+                    <div className="ml-[8%]">
                         {replies.map((reply: any) => (
                             <Comment
                                 comment={reply}

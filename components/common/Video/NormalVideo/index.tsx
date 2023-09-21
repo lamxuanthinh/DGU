@@ -150,14 +150,14 @@ export default function NormalVideo({ data }: INormalVideo) {
                     ></div>
                 )}
 
-                <Comments isComment={comment} setComment={setComment} currentUserId="1" />
-
                 <DescriptionVideo
                     setComment={setComment}
                     key={data._id}
                     title={data.title}
                     caption={data.description}
                 />
+
+                <Comments isComment={comment} setComment={setComment} currentUserId="1" />
 
                 <ControlsNormalVideo
                     setComment={setComment}
