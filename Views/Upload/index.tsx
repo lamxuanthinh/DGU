@@ -152,11 +152,11 @@ export default function Upload() {
             <div className="w-[100%] h-[100%] flex flex-col justify-center items-center">
                 <div className="sm:w-[80%] h-[100%] flex flex-col w-full">
                     <div className="h-[100px]  flex justify-start items-center mt-[20px] w-full">
-                        <p className="font-bold text-[25px] w-[85%] mx-auto">Upload your file below</p>
+                        <p className="font-bold text-[25px] w-full mx-auto">Upload your file below</p>
                     </div>
                     <div className="w-[100%] h-[70%] flex justify-center items-center">
                         <div
-                            className={`w-[85%] h-[95%] border-dashed border-2 border-black flex justify-center items-center drag-drop-area 
+                            className={`w-full h-[95%] border-dashed border-2 border-black flex justify-center items-center drag-drop-area 
                             ${isDragging ? "dragging" : ""}
                             `}
                             onDragOver={handleDragOver}
@@ -188,7 +188,7 @@ export default function Upload() {
                                     />
                                     <div
                                         onClick={handleButtonClick}
-                                        className="w-[180px] h-[70px] border-2 border-solid boder-[#000000] flex justify-center items-center cursor-pointer"
+                                        className="w-[180px] h-[70px] border-2 border-solid border-[#000000] flex justify-center items-center cursor-pointer"
                                     >
                                         <p className="font-bold text-[25px]">Browser</p>
                                     </div>

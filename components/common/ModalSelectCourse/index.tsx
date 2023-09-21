@@ -190,7 +190,7 @@ export default function ModalSelectCourse({
                             </div>
                             <div className="w-[35%]">
                                 {courseSelected && (
-                                    <div className="p-4 mx-5 border border-[#c3c3c3] rounded-md text-[#000]">
+                                    <div className="p-4 mx-5 rounded-lg text-[#000] shadow-md">
                                         <div className="flex justify-start mb-4">
                                             <MdOutlinePlayLesson fontSize={28} className="text-[#3983AC] mr-4" />
                                             <TextEllipsis
@@ -242,16 +242,16 @@ export default function ModalSelectCourse({
                                 </div>
                             </div>
                             <button
-                                className={`flex items-center text-[16px] ${
+                                className={`flex items-center text-[16px] justify-center min-w-[100px] ${
                                     courseSelected
-                                        ? "text-[#3983AC] bg-[#a8dfff] hover:cursor-pointer"
+                                        ? "text-[#3983AC] bg-[#7FCFFC]/[.3] hover:cursor-pointer"
                                         : "text-[#959595] bg-[#dddddd] hover:cursor-none"
-                                } py-2 px-4 rounded`}
+                                } py-2 px-4 rounded-sm`}
                                 onClick={() => {
                                     courseSelected && handleNextStep();
                                 }}
                             >
-                                <p className="font-semibold">Select</p>
+                                <p className="font-bold">Select</p>
                             </button>
                         </div>
                     </div>
@@ -272,30 +272,23 @@ export default function ModalSelectCourse({
                             />
                             <div className="flex justify-between">
                                 <div
-                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 border border-[#a4a4a4] rounded hover:cursor-pointer"
+                                    className="flex items-center text-[16px] text-[#949494] py-2 px-4 border border-[#a4a4a4] rounded-sm hover:cursor-pointer"
                                     onClick={() => {
                                         setStepCreateCourse(0);
                                     }}
                                 >
-                                    <p className="pl-2 font-semibold">Previous</p>
+                                    <p className="pl-2 font-bold">Previous</p>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded"
+                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded-sm min-w-[100px] justify-center"
                                 >
-                                    <p className="font-semibold">Next</p>
+                                    <p className="font-bold">Next</p>
                                 </button>
                             </div>
                         </form>
-                        <div
-                            className="w-[40%] flex justify-center items-center relative"
-                            style={{
-                                backgroundImage: `url(/Images/CreateCourse/background.png)`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                            }}
-                        >
+                        <div className="w-[40%] flex justify-center items-center relative bg-upload-video">
                             <div className="w-[80%]">
                                 <div className="flex justify-center items-center">
                                     <BsEyeFill className="mr-3" />
@@ -344,31 +337,24 @@ export default function ModalSelectCourse({
                                 setValue={setValueOfLesson}
                                 getValues={getValueOfLesson}
                             />
-                            <div className="flex justify-between">
+                            <div className="flex justify-between mr-[35px]">
                                 <button
-                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded"
+                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#949494] rounded-sm justify-center min-w-[100px]"
                                     onClick={() => {
                                         handleBackStep();
                                     }}
                                 >
-                                    <p className="pl-2 font-semibold">Previous</p>
+                                    <p className="font-bold text-[#777]">Previous</p>
                                 </button>
                                 <button
-                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded"
+                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#7FCFFC]/[.3] py-2 px-4 rounded-sm justify-center min-w-[100px]"
                                     type="submit"
                                 >
-                                    <p className="font-semibold">Next</p>
+                                    <p className="font-bold">Next</p>
                                 </button>
                             </div>
                         </form>
-                        <div
-                            className="w-[45%] flex justify-center items-center relative"
-                            style={{
-                                backgroundImage: `url(/Images/CreateCourse/background.png)`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                            }}
-                        >
+                        <div className="w-[45%] flex justify-center items-center relative bg-upload-video rounded">
                             <div className="w-[70%]">
                                 <div className="flex justify-center items-center">
                                     <BsEyeFill className="mr-3" />

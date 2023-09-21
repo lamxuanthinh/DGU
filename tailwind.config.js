@@ -25,6 +25,7 @@ module.exports = {
                 "inset-white": "0 0 0px 1000px white inset",
                 menu: "0px 4px 16px rgba(0, 0, 0, 0.12)",
                 softGlow: "0 5px 15px 0 rgba(0,0,0,.3)",
+                cardUploadVideo:"5px 5px 4px 0px rgba(127, 207, 252, 0.25)"
             },
             transitionProperty: {
                 "stroke-dashoffset": "stroke-dashoffset",
@@ -32,6 +33,8 @@ module.exports = {
             backgroundImage: {
                 "modal-gradient":
                     "linear-gradient(180deg, rgba(0, 0, 0, 0.74) 7.29%, rgba(0, 0, 0, 0.9) 99.99%, rgba(0, 0, 0, 0) 100%)",
+                "upload-video":
+                    "linear-gradient(139deg, rgba(225, 244, 255, 0.65) 8.55%, rgba(255, 255, 255, 0.09) 29.97%, rgba(229, 239, 255, 0.64) 50.65%, rgba(255, 255, 255, 0.64) 65.08%, rgba(254, 254, 255, 0.27) 78.54%, rgba(0, 163, 255, 0.07) 100.85%)",
             },
             screens: {
                 zero: "300px",

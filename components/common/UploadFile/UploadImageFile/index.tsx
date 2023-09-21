@@ -48,7 +48,7 @@ export default function UploadImageFile({ setValue, getValues }: IUploadImagefil
 
     return (
         <div
-            className="h-full relative flex justify-center items-center rounded border-[#b5b5b5] border-2 hover:cursor-pointer"
+            className="h-full relative flex justify-center items-center rounded border-[#F7E7E7] border hover:cursor-pointer"
             onClick={handleButtonClick}
         >
             {srcImageEdit && getValues("image_blob") && (
