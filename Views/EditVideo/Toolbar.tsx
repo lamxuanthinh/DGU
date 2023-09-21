@@ -28,7 +28,6 @@ function Toolbar({ handleSplit, setSrcMp3 }: IToolbarProps) {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileObj = event.target.files && event.target.files[0];
-    console.log(fileObj);
     if (fileObj && onCheckFileMp3(fileObj)) {
       const blob = new Blob([fileObj], { type: 'audio/mpeg' });
       setSrcMp3(blob);
