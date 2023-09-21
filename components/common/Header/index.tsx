@@ -1,19 +1,18 @@
-import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/headerStyled";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { BiLogIn, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
-import Image from "next/image";
-import Link from "next/link";
-import Menu from "../Menu";
-import { dataMenuNav } from "../Menu/constants";
 import { useEffect, useState } from "react";
-import SearchBar from "../SearchBar";
-import { ProfileUser } from "@/model";
-import { user } from "@/apis/user";
+import { BiLogIn, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
 import { FiSun } from "react-icons/fi";
 import { useTheme } from "next-themes";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/headerStyled";
+import Menu from "../Menu";
+import { dataMenuNav } from "../Menu/constants";
+import SearchBar from "../SearchBar";
 
 const Header = () => {
-    const [profile, setProfile] = useState<ProfileUser>();
+    const { data: session } = useSession();
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -32,18 +31,7 @@ const Header = () => {
     };
 
     useEffect(() => {
-        try {
-            const fetchProfile = async () => {
-                const holdProfile = await user.profile();
-                localStorage.setItem("userId", `${holdProfile.metaData.profile._id}`);
-                setProfile(holdProfile.metaData.profile);
-            };
-            setMounted(true);
-
-            fetchProfile();
-        } catch (error) {
-            console.log("ERROR", error);
-        }
+        setMounted(true);
     }, []);
 
     if (!mounted) return null;
@@ -86,11 +74,11 @@ const Header = () => {
                         </div>
                     </Link>
                 </SectionCreateVideo>
-                {profile ? (
+                {session && session.user.avatar ? (
                     <Menu menuItems={dataMenuNav}>
                         <div className="flex gap-3 ml-1 cursor-pointer">
                             <Image
-                                src={`${profile.avatar}`}
+                                src={`${session.user.avatar}`}
                                 width={40}
                                 height={40}
                                 className="rounded-full bg-[#727272dd] "

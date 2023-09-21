@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import { ProfileUser } from "@/model";
+import { useSession } from "next-auth/react";
 
 export default function ProfileHeader() {
+    const checkUser = useSession();
+    console.log("checkUser", checkUser);
     const [profile, setProfile] = useState<ProfileUser>();
     useEffect(() => {
         try {
