@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 interface IAuthor {
     pathAvatar: string;
 }
@@ -75,4 +77,13 @@ export interface VideoDataResponse {
     message: String;
     status: string;
     metaData: {};
+}
+
+
+export interface IVideoData {
+    srcImage: StaticImageData;
+    title: string;
+    author: string;
+    view: string;
+    timeCreate: string;
 }
