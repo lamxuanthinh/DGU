@@ -1,4 +1,3 @@
-import { Navigation, SideNav } from "@/components/common/Sidebar/sidebarStyled";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +9,7 @@ const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
     const router = useRouter();
 
     return (
-        <SideNav
+        <div
             className={`${
                 active ? "active" : ""
             } w-[285px] flex items-center flex-col bg-[#ffffff] dark:bg-[#2C2C2C] rounded-[5px]`}
@@ -35,7 +34,7 @@ const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
                 </Link>
             </div>
             <div className="h-[76%] w-[100%] flex justify-center items-center mt-[20px]">
-                <Navigation>
+                <div className="h-full w-[calc(100%-26px)] flex flex-col items-center">
                     {navLink.map(({ name, link, icon }, index) => (
                         <div className="w-[100%]" key={index}>
                             <Link key={name} href={link}>
@@ -54,9 +53,9 @@ const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
                             </Link>
                         </div>
                     ))}
-                </Navigation>
+                </div>
             </div>
-        </SideNav>
+        </div>
     );
 };
 

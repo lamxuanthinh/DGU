@@ -6,7 +6,6 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { SectionCreateVideo, SectionLogin } from "@/components/common/Header/headerStyled";
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import SearchBar from "../SearchBar";
@@ -62,7 +61,7 @@ const Header = () => {
                         <BiMessageRounded fontSize={"25px"} />
                     </div>
                 </div>
-                <SectionCreateVideo>
+                <div className="w-[182px] h-full flex justify-center items-center">
                     <Link href="/upload" className="cursor-pointer">
                         <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center">
                             <div className="flex justify-center items-center pr-3">
@@ -73,7 +72,7 @@ const Header = () => {
                             </div>
                         </div>
                     </Link>
-                </SectionCreateVideo>
+                </div>
                 {session && session.user.avatar ? (
                     <Menu menuItems={dataMenuNav}>
                         <div className="flex gap-3 ml-1 cursor-pointer">
@@ -87,7 +86,7 @@ const Header = () => {
                         </div>
                     </Menu>
                 ) : (
-                    <SectionLogin>
+                    <div className="w-[176px] h-full flex justify-center items-center">
                         <Link
                             href={"/login"}
                             className="bg-[#7FCFFC] rounded-[15px] flex justify-center items-cente py-2 px-4"
@@ -99,7 +98,7 @@ const Header = () => {
                                 <BiLogIn fontSize={"25px"} />
                             </div>
                         </Link>
-                    </SectionLogin>
+                    </div>
                 )}
             </div>
         </div>
