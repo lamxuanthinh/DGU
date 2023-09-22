@@ -11,6 +11,9 @@ module.exports = {
     darkMode: "class",
     theme: {
         extend: {
+            colors: {
+                primary: "#7FCFFC",
+            },
             keyframes: {
                 pulse: {
                     "0%": { transform: "scale(1)" },
@@ -25,7 +28,7 @@ module.exports = {
                 "inset-white": "0 0 0px 1000px white inset",
                 menu: "0px 4px 16px rgba(0, 0, 0, 0.12)",
                 softGlow: "0 5px 15px 0 rgba(0,0,0,.3)",
-                cardUploadVideo:"5px 5px 4px 0px rgba(127, 207, 252, 0.25)"
+                cardUploadVideo: "5px 5px 4px 0px rgba(127, 207, 252, 0.25)",
             },
             transitionProperty: {
                 "stroke-dashoffset": "stroke-dashoffset",

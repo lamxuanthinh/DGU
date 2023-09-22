@@ -14,6 +14,7 @@ export default function Upload() {
         setRenderSelectCourse,
         setFileVideoUpload,
         setFileThumbVideoUpload,
+        setStepSelected
     } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
@@ -118,6 +119,7 @@ export default function Upload() {
                 }
                 setSrcVideoEdit(url);
                 setFileVideoUpload(files[0]);
+                setStepSelected(0);
                 setRenderSelectCourse(!isRenderSelectCourse);
             } else {
                 alert("This is not video file.");

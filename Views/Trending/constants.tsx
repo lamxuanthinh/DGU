@@ -14,8 +14,6 @@ import avatar4 from "@/public/Images/Trending/avt-trending-4.png";
 import avatar5 from "@/public/Images/Trending/newCourse/image1.jpg";
 import avatar6 from "@/public/Images/Trending/newCourse/image5.jpg";
 import avatar7 from "@/public/Images/Trending/avatar/avt5.jpg";
-import avatar8 from "@/public/Images/Trending/avatar/avt6.jpg";
-import avatar9 from "@/public/Images/Trending/avatar/avt7.jpg";
 import subAvt1 from "@/public/Images/Profile/Infomation/boy_thanh_lich.png";
 import subAvt2 from "@/public/Images/Profile/Infomation/boy_thoi_trang.png";
 import subAvt3 from "@/public/Images/Profile/Infomation/cool_green.jpg";
@@ -37,6 +35,9 @@ import short1 from "@/public/Images/Trending/course/short-1.png";
 import short2 from "@/public/Images/Trending/course/short-2.png";
 import short3 from "@/public/Images/Trending/course/short-3.png";
 import short4 from "@/public/Images/Trending/course/short-4.png";
+import { IDataCardCourse } from "@/model/course";
+import { IVideoData } from "@/model/video";
+import { IListShort } from "@/model";
 
 export const DATA_TRENDING_PEOPLE = [
     {
@@ -75,16 +76,6 @@ export const DATA_TRENDING_PEOPLE = [
         name: "Eira",
         views: "100.000",
     },
-    {
-        srcImage: avatar8,
-        name: "Kim Ji Won",
-        views: "140.000",
-    },
-    {
-        srcImage: avatar9,
-        name: "Dr. Jean",
-        views: "300.000",
-    },
 ];
 
 export const DATA_TRENDING_WEEK = [
@@ -95,7 +86,7 @@ export const DATA_TRENDING_WEEK = [
     { value: "50.111", label: "Eden", height: 10 },
 ];
 
-export const DATA_FEATURED_VIDEOS = [
+export const DATA_FEATURED_VIDEOS: IDataCardCourse[] = [
     {
         srcImage: course1,
         info: [{ lesson: 10 }, { time: "2h 10m" }, { comment: 10 }],
@@ -188,7 +179,7 @@ export const DATA_FEATURED_VIDEOS = [
     },
 ];
 
-export const DATA_TOP_FEATURED_VIDEOS = [
+export const DATA_TOP_FEATURED_VIDEOS: IVideoData[] = [
     {
         srcImage: video1,
         title: "Tập 1: Javascript là gì? | Lập trình Javascript cơ bản - Hoang Tu",
@@ -226,7 +217,7 @@ export const DATA_TOP_FEATURED_VIDEOS = [
     },
 ];
 
-export const DATA_TRENDING_COURSE = [
+export const DATA_TRENDING_COURSE: IDataCardCourse[] = [
     {
         srcImage: trending1,
         info: [{ lesson: 10 }, { time: "2h 10m" }, { comment: 10 }],
@@ -319,29 +310,33 @@ export const DATA_TRENDING_COURSE = [
     },
 ];
 
-export const DATA_SHORTS = [
+export const DATA_SHORTS: IListShort = [
     {
+        id: 1,
         srcImage: short1,
         title: "How to set up góc làm việc?",
-        hastag: " #setup #job #decor",
-        view: "471 K views",
+        hashtag: " #setup #job #decor",
+        view: 471,
     },
     {
+        id: 2,
         srcImage: short2,
         title: "Quick and Easy Breakfast Ideas",
         hashtag: "#recipes #food",
-        view: "812 K views",
+        view: 812,
     },
     {
+        id: 3,
         srcImage: short3,
         title: "Beautiful Sunset Timelapse",
         hashtag: "#nature #sunset",
-        view: "1.2 M views",
+        view: 1200,
     },
     {
+        id: 4,
         srcImage: short4,
         title: "Learn to Dance in 5 Minutes",
         hashtag: "#dance #tutorial",
-        view: "645 K views",
+        view: 645,
     },
 ];

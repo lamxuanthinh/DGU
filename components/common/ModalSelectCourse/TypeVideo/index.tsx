@@ -7,12 +7,9 @@ import { BsFileEarmarkLock } from "react-icons/bs";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useAppContext } from "@/Context";
-import { IDataSplitVideo } from "@/model/editVideo";
-import courseApi from "@/apis/course";
 
 const TypeVideo = () => {
-    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setIsLoading } =
-        useAppContext();
+    const { setStepSelected } = useAppContext();
 
     const router = useRouter();
     const [isPublic, setIsPublic] = useState<boolean>(true);
@@ -22,43 +19,8 @@ const TypeVideo = () => {
         router.push("/pricing-plan");
     };
 
-    const handleClickPublic = async () => {
-        const formData = new FormData();
-        if (courseSelected) {
-            formData.append("course", courseSelected?._id);
-            formData.append("title", courseSelected?.title);
-            formData.append("description", courseSelected?.description);
-        }
-        listDataSplitVideo.map((item: IDataSplitVideo) => {
-            formData.append("shortTimeLine", `${item.startTime}:${item.endTime}`);
-        });
-        listDataSplitVideo.map((item: IDataSplitVideo) => {
-            formData.append("shortTitle", item.name);
-        });
-        listDataSplitVideo.map((item: IDataSplitVideo) => {
-            formData.append("shortDescription", item.description);
-        });
-        listDataSplitVideo.map((item: IDataSplitVideo) => {
-            if (item.thumbImageFile) {
-                formData.append("shortThumbnail", item.thumbImageFile);
-            }
-        });
-        if (fileThumbVideoUpload) {
-            formData.append("thumbnail", fileThumbVideoUpload);
-        }
-        if (fileVideoUpload) {
-            formData.append("video", fileVideoUpload);
-        }
-        setIsPublic(true);
-        setIsLoading(true);
-        await courseApi
-            .updateCourse(formData)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => console.log(err));
-        setIsLoading(false);
-        // router.push("/");
+    const handleClickPublic = () => {
+        setStepSelected(4);
     };
 
     return (
