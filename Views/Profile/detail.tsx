@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
 import { BsFillEyeFill } from "react-icons/bs";
-
-import { DetailCourseItem } from "@/Views/Profile/ProfileStyled";
 import profile from "@/apis/profile";
 import { useRouter } from "next/router";
 import { ICourseDetail, ILessonDetail } from "@/model/profile";
@@ -91,7 +88,7 @@ export default function Details() {
                 {listLessonDetail.map((item, index) => {
                     return (
                         <Button onClick={() => handleCheckTypeVideo(item._id)} key={index}>
-                            <DetailCourseItem className="flex justify-start h-[140px] pb-4">
+                            <div className="cursor-pointer transition-all duration-200 transform hover:scale-105 hover:z-10 flex justify-start h-[140px] pb-4">
                                 <div className="h-full flex items-center p-3">
                                     <p className="font-bold text-[15px]">{index}</p>
                                 </div>
@@ -114,7 +111,7 @@ export default function Details() {
                                         {Math.floor(Math.random() * 3) + 1} years
                                     </p>
                                 </div>
-                            </DetailCourseItem>
+                            </div>
                         </Button>
                     );
                 })}

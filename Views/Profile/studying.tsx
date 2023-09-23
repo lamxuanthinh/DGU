@@ -1,14 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import { BiChevronRight } from "react-icons/bi";
-
-import {
-    StudyingCourseItem,
-    StudyingCourseItemTitle,
-    StudyingCourseItemDescription,
-} from "@/Views/Profile/ProfileStyled";
-
 import { CourseData } from "@/Views/Profile/constant";
 
 export default function Studying() {
@@ -19,19 +11,19 @@ export default function Studying() {
                     {CourseData.map(({ title, link, themenails, process }) => (
                         <Link key={title} href={link} className={` w-[92%] `}>
                             <div className="dgu-course-card w-full h-[140px] flex flex-wrap justify-between items-center  rounded-[10px] mb-[10px] overflow-hidden hover:cursor-pointer  ">
-                                <StudyingCourseItem className=" flex flex-wrap justify-start items-center   ">
+                                <div className="w-[calc(100%-60px)] flex flex-wrap justify-start items-center   ">
                                     <div className="w-[140px] h-[140px] flex justify-center items-center">
                                         <div className="w-[120px] h-[120px] border-[3px] border-[#828282] overflow-hidden rounded-[10px]  flex justify-center items-center">
                                             {themenails}
                                         </div>
                                     </div>
                                     <div className="w-[250px] ml-[1rem] flex flex-col justify-evenly items-center ">
-                                        <StudyingCourseItemTitle>
+                                        <div className="w-full h-12 overflow-hidden whitespace-pre-wrap">
                                             <p className="text-[16px] font-bold  ">{title}</p>
-                                        </StudyingCourseItemTitle>
-                                        <StudyingCourseItemDescription>
+                                        </div>
+                                        <div className="w-full h-5 overflow-hidden whitespace-pre-wrap">
                                             <p className="text-[12px] font-bold text-[#878787]  ">{title}</p>
-                                        </StudyingCourseItemDescription>
+                                        </div>
                                     </div>
                                     <div className="flex flex-wrap justify-start items-center w-[85px]  m-[2rem] ">
                                         <div className="flex flex-wrap justify-start items-center h-[25px] ">
@@ -90,7 +82,7 @@ export default function Studying() {
                                             {process}
                                         </div>
                                     </div>
-                                </StudyingCourseItem>
+                                </div>
 
                                 <div className="w-[60px] h-full flex justify-center items-center">
                                     <BiChevronRight fontSize={"24px"} />

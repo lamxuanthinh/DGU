@@ -1,4 +1,3 @@
-import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import Image from "next/image";
 import { BiCommentDetail } from "react-icons/bi";
 import TextEllipsis from "../../TextEllipsis";
@@ -11,7 +10,6 @@ interface IPreviewCourse {
 }
 
 export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
-
     return (
         <div className="w-full dgu-course-card bg-white h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer">
             <div className="w-full h-[180px] flex justify-center items-center relative">
@@ -33,7 +31,7 @@ export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
             </div>
 
             <div className="w-full h-[160px] flex justify-center items-center">
-                <CourseCardInfo className=" flex flex-col justify-evenly items-center ">
+                <div className="w-[calc(100%-3rem)] h-[calc(100%-10px)] flex flex-col justify-evenly items-center ">
                     <TextEllipsis
                         content={courseDataInput.title}
                         styleContent={{ maxHeight: "48px", textSize: "16px" }}
@@ -92,7 +90,7 @@ export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
                             <p className="text-[10px] text-[#ffffff] font-bold p-2 ">Joinclass now</p>
                         </div>
                     </div>
-                </CourseCardInfo>
+                </div>
             </div>
         </div>
     );

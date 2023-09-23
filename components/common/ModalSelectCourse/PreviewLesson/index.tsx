@@ -1,4 +1,3 @@
-import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import Image from "next/image";
 import TextEllipsis from "../../TextEllipsis";
 
@@ -19,7 +18,7 @@ export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
             </div>
 
             <div className="w-full h-[160px] flex justify-center items-center">
-                <CourseCardInfo className=" flex flex-col justify-around items-center">
+                <div className="w-[calc(100%-3rem)] h-[calc(100%-10px)] flex flex-col justify-around items-center">
                     <TextEllipsis
                         content={lessonDataInput.title}
                         styleContent={{ maxHeight: "48px", textSize: "16px" }}
@@ -47,7 +46,7 @@ export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
                             <p>1 months ago</p>
                         </div>
                     </div>
-                </CourseCardInfo>
+                </div>
             </div>
         </div>
     );
