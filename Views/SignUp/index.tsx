@@ -1,21 +1,20 @@
-import Router, {NextRouter} from "next/router";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
-import {schema, Schema} from "@/utils/rules";
+import Router, { NextRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import DatePicker from "@/components/common/DatePicker.tsx";
 import moment from "moment";
-import {FaTransgender} from "react-icons/fa";
+import { FaTransgender } from "react-icons/fa";
 import Link from "next/link";
 import Select from "react-select";
 import "aos/dist/aos.css";
 import CheckboxInput from "@/components/common/CheckboxInput";
-import {authServices} from "@/apis/auth";
+import { authServices } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
-import {useAppContext} from "@/Context";
-import {IQueryNotification} from "@/model";
-
+import { useAppContext } from "@/Context";
+import { IQueryNotification } from "@/model";
 
 type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
@@ -23,7 +22,7 @@ const signUpSchema = schema.pick(["email", "password", "confirm_password", "birt
 
 export default function SignUp() {
     const router: NextRouter = Router;
-    const {setIsLoading} = useAppContext();
+    const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
     const selectRef = useRef<HTMLDivElement | null>(null);
     const [birthday, setBirthday] = useState("");
@@ -47,7 +46,7 @@ export default function SignUp() {
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: { errors },
         setValue,
     } = useForm<FormData>({
         resolver: yupResolver(signUpSchema),
@@ -80,8 +79,8 @@ export default function SignUp() {
         };
 
         try {
-            const {code, metaData} = (await authServices.signUp(payload)) || {};
-            const {emailSent} = metaData || {};
+            const { code, metaData } = (await authServices.signUp(payload)) || {};
+            const { emailSent } = metaData || {};
 
             if (code === 4999) {
                 setErrorEmail("Email already");
@@ -92,7 +91,7 @@ export default function SignUp() {
                 setIsLoading(false);
                 await router.push({
                     pathname: "/verifyemail/notification",
-                    query: {emailSent},
+                    query: { emailSent },
                 } as { query: IQueryNotification });
             }
         } catch (error) {
@@ -101,9 +100,8 @@ export default function SignUp() {
     });
     return (
         <div className="h-screen w-screen lg:bg-[#c3c3c3f5] flex justify-center items-center">
-            <div
-                className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
-                <SlideLogin/>
+            <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
+                <SlideLogin />
                 <div data-aos="fade-up" data-aos-duration="2000" className="w-full lg:w-[469px] flex items-center z-2">
                     <div className="w-[100%]">
                         <div className="pb-8 pt-4">
@@ -164,7 +162,7 @@ export default function SignUp() {
                                                         backgroundColor: "white",
                                                         color: "black",
                                                     }),
-                                                    input: (base, {selectProps}) => ({
+                                                    input: (base, { selectProps }) => ({
                                                         ...base,
                                                         display: "none",
                                                         opacity: selectProps.menuIsOpen ? 0 : 1,
@@ -172,12 +170,12 @@ export default function SignUp() {
                                                     }),
                                                 }}
                                                 className=""
-                                                defaultValue={{value: "male", label: "Male"}}
+                                                defaultValue={{ value: "male", label: "Male" }}
                                                 onChange={(value) => handleGender(value)}
                                                 options={[
-                                                    {value: "0", label: "Male"},
-                                                    {value: "1", label: "Female"},
-                                                    {value: "2", label: "Others"},
+                                                    { value: "0", label: "Male" },
+                                                    { value: "1", label: "Female" },
+                                                    { value: "2", label: "Others" },
                                                 ]}
                                                 menuIsOpen={menuIsOpen}
                                                 onMenuOpen={handleMenu}
@@ -185,9 +183,9 @@ export default function SignUp() {
                                                 components={{
                                                     IndicatorSeparator: null,
 
-                                                    SingleValue: ({data}) => (
+                                                    SingleValue: ({ data }) => (
                                                         <div className="flex items-center" onClick={handleMenu}>
-                                                            <FaTransgender className="text-xl mx-2"/>
+                                                            <FaTransgender className="text-xl mx-2" />
                                                             <span className="">{data.label}</span>
                                                         </div>
                                                     ),
@@ -228,7 +226,7 @@ export default function SignUp() {
                                 </div>
                                 <div className="flex justify-start">
                                     <div className="flex justify-center items-center">
-                                        <CheckboxInput/>
+                                        <CheckboxInput />
                                         <p className="px-2 dark:text-black">Do you want to save the password?</p>
                                     </div>
                                 </div>

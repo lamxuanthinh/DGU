@@ -13,7 +13,7 @@ import SearchBar from "../SearchBar";
 
 const Header = () => {
     const { data: session } = useSession();
-    console.log("session", session)
+    console.log("session", session);
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);

@@ -14,7 +14,7 @@ export default function Upload() {
         setRenderSelectCourse,
         setFileVideoUpload,
         setFileThumbVideoUpload,
-        setStepSelected
+        setStepSelected,
     } = useAppContext();
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);

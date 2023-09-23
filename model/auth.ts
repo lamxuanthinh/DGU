@@ -1,4 +1,4 @@
-import {IApiResponse} from "@/model";
+import { IApiResponse } from "@/model";
 
 export interface ISignUpPayload {
     email: string;
@@ -36,8 +36,7 @@ export interface ISignInApiResponse extends IApiResponse {
     };
 }
 
-export interface IVerifyEmailApiResponse extends ISignUpApiResponse {
-}
+export interface IVerifyEmailApiResponse extends ISignUpApiResponse {}
 
 export type IConfigAuthType = {
     headers: {
@@ -48,8 +47,8 @@ export type IConfigAuthType = {
 };
 
 export interface IAuthorize {
-    error?: string,
-    ok?: boolean,
-    status?: string
-    url?: string
+    error?: string;
+    ok?: boolean;
+    status?: string;
+    url?: string;
 }

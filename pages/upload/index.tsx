@@ -1,14 +1,14 @@
 import MainLayout from "@/components/layout/MainLayout";
 import Upload from "@/Views/Upload";
-import {useSession} from "next-auth/react";
-import {useEffect} from "react";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 import Router from "next/router";
 
 export default function Index() {
-    const {status} = useSession();
+    const { status } = useSession();
 
     useEffect(() => {
-        if (status === "unauthenticated") Router.replace("/signin")
+        if (status === "unauthenticated") Router.replace("/signin");
     }, [status]);
 
     if (status === "authenticated") {
