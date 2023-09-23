@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import Router from "next/router";
 
-export default function Index() {
+export default function UploadPage() {
     const { status } = useSession();
 
     useEffect(() => {
@@ -14,4 +14,4 @@ export default function Index() {
     return <Upload />;
 }
 
-Index.Layout = MainLayout;
+UploadPage.Layout = MainLayout;

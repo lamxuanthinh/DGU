@@ -1,5 +1,5 @@
 import SignUp from "@/Views/SignUp";
 
-export default function index() {
-  return <SignUp />;
+export default function SignUpPage() {
+    return <SignUp />;
 }
