@@ -59,7 +59,7 @@ const MainLayout = (props: LayoutProps) => {
                                 <Header />
                                 <MainContent>
                                     <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px] bg-white dark:bg-[#2C2C2C]">
-                                        <div className="h-full flex justify-center">{props.children}</div>
+                                        <div className="flex justify-center">{props.children}</div>
                                     </div>
                                 </MainContent>
                             </Content>

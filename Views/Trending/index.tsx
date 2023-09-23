@@ -70,7 +70,7 @@ const Trending = () => {
                         {DATA_TRENDING_PEOPLE.map((item, index) => (
                             <div
                                 key={index}
-                                className="flex-1 text-center flex flex-col items-center border border-solid border-black/[.13] pb-2 rounded-md min-w-[125px] max-w-[200px] cursor-pointer"
+                                className="flex-1 text-center flex flex-col items-center border border-solid border-black/[.13] pb-2 rounded-md min-w-[125px] max-w-[200px] cursor-pointer hover:-translate-y-2 transition-transform duration-500"
                             >
                                 <Image
                                     width={200}
@@ -79,7 +79,7 @@ const Trending = () => {
                                     src={item.srcImage}
                                     alt="avatar"
                                 />
-                                <h4 className="text-[#010101] text-lg font-semibold">{item.name}</h4>
+                                <h4 className="text-[#010101] dark:text-white dark:shadow-2xl text-lg font-semibold">{item.name}</h4>
                                 <span className="text-[#7E7E7E] text-[15px] font-medium">{item.views}</span>
                             </div>
                         ))}
@@ -108,7 +108,7 @@ const Trending = () => {
                     </Button>
                 </div>
 
-                <div className="relative bg-white py-[8px] mb-20">
+                <div className="relative py-[8px] mb-20">
                     <div className="flex items-center text-[#8a8a8a] mb-4">
                         <GiFilmStrip className="text-2xl" />
                         <h5 className="font-semibold text-xl ml-2">Shorts</h5>
