@@ -8,15 +8,8 @@ import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { GiFilmStrip } from "react-icons/gi";
 
-import {
-    DATA_TRENDING_PEOPLE,
-    DATA_FEATURED_VIDEOS,
-    DATA_TOP_FEATURED_VIDEOS,
-    DATA_SHORTS,
-} from "./constants";
-import ItemCardCourse from "@/components/common/ItemCardCourse";
-import ItemCardVideo from "@/components/common/ItemCardVideo";
-import ItemCardShort from "@/components/common/IteamCardShort";
+import { DATA_TRENDING_PEOPLE, DATA_FEATURED_VIDEOS, DATA_TOP_FEATURED_VIDEOS, DATA_SHORTS } from "./constants";
+import { ItemCardCourse, ItemCardVideo, ItemCardShort } from "@/components";
 
 const Trending = () => {
     const [courseShowArray, setCourseShowArray] = useState<Array<any>>(DATA_SHORTS.slice(0, 5));
@@ -89,7 +82,11 @@ const Trending = () => {
                     <h2 className="mb-5 text-[#757474] text-lg font-semibold">Top Trending courses</h2>
                     <div className="flex flex-wrap m-[-12px]">
                         {DATA_FEATURED_VIDEOS.map((item, index) => (
-                            <ItemCardCourse key={index} dataCard={item} />
+                            <ItemCardCourse
+                                className="w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 p-3"
+                                key={index}
+                                dataCard={item}
+                            />
                         ))}
                     </div>
                     <Button className="mx-auto mt-8 font-semibold" rightIcon={<AiOutlineDown />}>
@@ -115,7 +112,7 @@ const Trending = () => {
                     </div>
                     <ul className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-7 mb-3">
                         {courseShowArray.map((item) => (
-                          <ItemCardShort key={item.id} dataShort={item}/>
+                            <ItemCardShort key={item.id} dataShort={item} />
                         ))}
                     </ul>
                     <Button className="mx-auto text-2xl px-5 py-2 mt-1" onClick={handleToggleMoreCourse}>
