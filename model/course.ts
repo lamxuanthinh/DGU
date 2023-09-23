@@ -28,17 +28,18 @@ export interface detailData {
 // }
 
 export interface IMyCourseData {
-    _id: string;
-    userId: string;
+    _id?: string;
+    userId?: string;
     title: string;
     author: string;
-    description: string;
-    price: string;
+    description?: string;
+    price: string | number;
     level: string;
-    status: string;
-    thumbnail: any;
-    createdAt: string;
-    updatedAt: string;
+    status?: string;
+    thumbnail: string | StaticImageData;
+    createdAt?: string;
+    updatedAt?: string;
+    info?: [{ lesson: number }, { time: string }, { comment: number }];
 }
 
 export interface MyCoursePayload {
@@ -64,15 +65,4 @@ export interface DataResponse {
     metaData: {
         courseList: IMyCourseData[];
     };
-} 
-
-export interface IDataCardCourse {
-    srcImage: string | StaticImageData;
-    info: [{ lesson: number }, { time: string }, { comment: number }];
-    title: string;
-    level: string;
-    avatar: string[] | StaticImageData[];
-    price: string;
-    priceType: string;
-    author: string;
 }

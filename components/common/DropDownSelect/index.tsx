@@ -39,7 +39,7 @@ const DropDownSelect = ({ className, options, onSelectOption }: IDropDownProps) 
     return (
         <div className="relative select-none" ref={dropdownRef}>
             <div className={`flex items-center cursor-pointer justify-between ${className}`} onClick={handleToggleMenu}>
-                <div className="mr-[10px] text-sm">{selectedOption}</div>
+                <div className="mr-[10px] text-sm text-[#888888]">{selectedOption}</div>
                 <MdKeyboardArrowDown className="font-bold text-[22px]" />
             </div>
             {isActiveMenu && (
@@ -48,7 +48,7 @@ const DropDownSelect = ({ className, options, onSelectOption }: IDropDownProps) 
                         <li
                             onClick={() => handleSelectOption(option.name)}
                             key={option.id}
-                            className="py-3 hover:text-black cursor-pointer"
+                            className="py-3 hover:text-black cursor-pointer text-[#888888]"
                         >
                             <span className="text-start">{option.name}</span>
                         </li>

@@ -5,7 +5,7 @@ interface ICardShortProps {
     dataShort: IShort;
 }
 
-function ItemCardShort({ dataShort }: ICardShortProps) {
+export function ItemCardShort({ dataShort }: ICardShortProps) {
     const { srcImage, title, hashtag, view } = dataShort;
     return (
         <li className="w-full place-content-center cursor-pointer shadow-md rounded">
@@ -18,5 +18,3 @@ function ItemCardShort({ dataShort }: ICardShortProps) {
         </li>
     );
 }
-
-export default ItemCardShort;
