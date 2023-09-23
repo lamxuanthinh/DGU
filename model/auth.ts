@@ -41,7 +41,7 @@ export interface IVerifyEmailApiResponse extends ISignUpApiResponse {}
 export type IConfigAuthType = {
     headers: {
         "x-api-client": string;
-        authorization: string;
+        "authorization": string;
         "x-refresh-token": string;
     };
 };
