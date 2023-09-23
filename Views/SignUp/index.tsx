@@ -11,10 +11,10 @@ import Link from "next/link";
 import Select from "react-select";
 import "aos/dist/aos.css";
 import CheckboxInput from "@/components/common/CheckboxInput";
-import { auth } from "@/apis/auth";
+import { authServices } from "@/apis/auth";
 import SlideLogin from "@/components/common/SlideLogin";
 import { useAppContext } from "@/Context";
-import { QueryNotification } from "@/model";
+import { IQueryNotification } from "@/model";
 
 type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
@@ -24,6 +24,24 @@ export default function SignUp() {
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
+    const selectRef = useRef<HTMLDivElement | null>(null);
+    const [birthday, setBirthday] = useState("");
+
+    useEffect(() => {
+        const handleMouseDown = (event: any) => {
+            if (!selectRef.current?.contains(event.target)) {
+                setMenuIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleMouseDown);
+
+        setValue("gender", 0);
+
+        return () => {
+            document.removeEventListener("mousedown", handleMouseDown);
+        };
+    }, []);
 
     const {
         register,
@@ -38,8 +56,6 @@ export default function SignUp() {
     const handleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
     };
-
-    const [birthday, setBirthday] = useState("");
 
     const handleDateBirthday = (value: any) => {
         const formattedValue = moment(value).format("YYYY-MM-DD");
@@ -63,47 +79,25 @@ export default function SignUp() {
         };
 
         try {
-            const {
-                code,
-                metaData: { emailSent },
-            } = (await auth.signUp(payload)) || {};
+            const { code, metaData } = (await authServices.signUp(payload)) || {};
+            const { emailSent } = metaData || {};
 
             if (code === 4999) {
                 setErrorEmail("Email already");
                 setIsLoading(false);
                 return;
             }
-            setIsLoading(false);
-
             if (emailSent) {
+                setIsLoading(false);
                 await router.push({
                     pathname: "/verifyemail/notification",
                     query: { emailSent },
-                } as { query: QueryNotification });
+                } as { query: IQueryNotification });
             }
         } catch (error) {
-            console.log(error);
+            console.log("Error during sign-up API call :", error);
         }
     });
-
-    const selectRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        const handleMouseDown = (event: any) => {
-            if (!selectRef.current?.contains(event.target)) {
-                setMenuIsOpen(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleMouseDown);
-
-        setValue("gender", 0);
-
-        return () => {
-            document.removeEventListener("mousedown", handleMouseDown);
-        };
-    }, []);
-
     return (
         <div className="h-screen w-screen lg:bg-[#c3c3c3f5] flex justify-center items-center">
             <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
@@ -247,8 +241,8 @@ export default function SignUp() {
                         <div className="">
                             <div className="flex justify-center py-5">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Already have an account?</p>
-                                <Link href="login" className="font-bold pr-2 text-[13px] dark:text-black">
-                                    Login
+                                <Link href="signin" className="font-bold pr-2 text-[13px] dark:text-black">
+                                    Sign in
                                 </Link>
                             </div>
                         </div>

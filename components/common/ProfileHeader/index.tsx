@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import { useSession } from "next-auth/react";
-import { ProfileUser } from "@/model";
+import { IProfileUser } from "@/model";
 import { configAuth } from "@/apis/configAuth";
 import { userServices } from "@/apis/user";
 
 export default function ProfileHeader() {
     const { data: session } = useSession() || {};
-    const [profile, setProfile] = useState<ProfileUser>();
+    const [profile, setProfile] = useState<IProfileUser>();
 
     useEffect(() => {
         try {
             if (session) {
                 const holdProfile = async () => {
-                    const holdProfile = await userServices.profile(configAuth(session));
-                    setProfile(holdProfile.metaData.profile);
+                    const { metaData }: any = await userServices.profile(configAuth(session));
+                    setProfile(metaData.profile);
                 };
                 holdProfile();
             }

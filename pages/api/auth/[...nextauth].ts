@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { LoginPayload } from "@/model";
-import { auth } from "@/apis/auth";
+import { authServices } from "@/apis";
+import { ISignInPayload } from "@/model";
 
 const authOption: NextAuthOptions = {
     session: {
@@ -12,9 +12,16 @@ const authOption: NextAuthOptions = {
             type: "credentials",
             credentials: {},
             async authorize(credentials): Promise<any> {
-                const { email, password } = credentials as LoginPayload;
+                const { email, password, token } = credentials as ISignInPayload;
 
-                const { code, metaData } = (await auth.login({ email, password })) || {};
+                if (token && email) {
+                    const payload = { email };
+                    const { code, metaData } = (await authServices.verifyEmail(payload, token)) || {};
+                    if (code !== 200) return null;
+                    return metaData;
+                }
+
+                const { code, metaData } = (await authServices.signIn({ email, password })) || {};
                 if (code !== 200) return null;
                 return metaData;
             },
@@ -34,4 +41,3 @@ const authOption: NextAuthOptions = {
 };
 
 export default NextAuth(authOption);
-// export { handler as POST, handler as GET };

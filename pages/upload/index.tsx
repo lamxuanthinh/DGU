@@ -8,10 +8,12 @@ export default function Index() {
     const { status } = useSession();
 
     useEffect(() => {
-        if (status === "unauthenticated") Router.replace("/login");
+        if (status === "unauthenticated") Router.replace("/signin");
     }, [status]);
 
-    return <Upload />;
+    if (status === "authenticated") {
+        return <Upload />;
+    }
 }
 
 Index.Layout = MainLayout;
