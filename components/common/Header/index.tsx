@@ -13,6 +13,7 @@ import SearchBar from "../SearchBar";
 
 const Header = () => {
     const { data: session } = useSession();
+    console.log("session", session)
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -89,7 +90,7 @@ const Header = () => {
                 ) : (
                     <SectionLogin>
                         <Link
-                            href={"/login"}
+                            href={"/signin"}
                             className="bg-[#7FCFFC] rounded-[15px] flex justify-center items-cente py-2 px-4"
                         >
                             <div className="flex justify-center items-center pr-3">

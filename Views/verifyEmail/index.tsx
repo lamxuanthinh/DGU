@@ -1,29 +1,25 @@
-import { useEffect, useState } from "react";
-import { NextRouter, useRouter } from "next/router";
-import { auth } from "@/apis/auth";
-import { QueryVerifyEmail } from "@/model";
+import {useEffect, useState} from "react";
+import {NextRouter, useRouter} from "next/router";
+import {IQueryVerifyEmail} from "@/model";
 import verifySuccessfulImage from "@/public/Images/Verify/verify_successful.png";
 import verifyErrorImage from "@/public/Images/Verify/verify_error.png";
 import VerifyAuth from "@/components/common/VerifyAuth";
+import {signIn} from "next-auth/react";
+
 
 export default function VerifyEmail() {
-    const [statusVerify, setStatusVerify] = useState<boolean>(true);
     const router: NextRouter = useRouter();
-    const { email, token } = router.query as QueryVerifyEmail;
+    const [statusVerify, setStatusVerify] = useState<boolean>();
+    const {email, token} = (router.query as IQueryVerifyEmail) || {};
 
     useEffect(() => {
-        const handleVerifyEmail = async () => {
-            try {
-                const payload = { email };
-                const { message } = (await auth.verifyEmail(payload, token)) || {};
-                if (message === "Invalid Token") setStatusVerify(false);
-                if (message === "ErrorData") setStatusVerify(false);
-            } catch (e) {
-                console.log(e);
-            }
-        };
         if (email && token) {
-            handleVerifyEmail();
+            const handleApiVerifyEmail = async () => {
+                const {status}: any = await signIn("credentials", {email: email, token: token, redirect: false});
+                if (status !== 200) setStatusVerify(false);
+                setStatusVerify(true);
+            };
+            handleApiVerifyEmail();
         }
     }, [email, token]);
 

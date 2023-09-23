@@ -6,19 +6,22 @@ import { useEffect, useState } from "react";
 import profile from "@/apis/profile";
 import TextEllipsis from "@/components/common/TextEllipsis";
 import { FaLock } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 
 export default function MyCourse() {
     const [myCourseData, setMyCourseData] = useState<any>(null);
+    const { data: session } = useSession() || {};
 
     useEffect(() => {
-        const fetchMyCourseApi = async () => {
-            const userId = localStorage.getItem("userId");
-            const myCourse = (userId && (await profile.getAllMyCourse(userId))) || undefined;
-            setMyCourseData(myCourse.metaData.courseList);
-        };
-
-        fetchMyCourseApi();
-    }, []);
+        const userId = session?.user._id;
+        if (userId) {
+            const fetchMyCourseApi = async () => {
+                const { metaData }: any = (await profile.getAllMyCourse(userId)) || {};
+                setMyCourseData(metaData.courseList);
+            };
+            fetchMyCourseApi();
+        }
+    }, [session]);
 
     return (
         <div className="w-[100%] h-[100%] flex flex-col overflow-hidden p-[10px] ">
