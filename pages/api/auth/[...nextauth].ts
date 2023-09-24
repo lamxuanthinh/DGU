@@ -1,4 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authServices } from "@/apis";
 import { ISignInPayload } from "@/model";
@@ -30,7 +31,8 @@ const authOption: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }: any) {
             if (user) return { ...token, ...user };
-            return token;
+            if (new Date().getTime() < token.expiresIn) return token;
+            return await handleRefreshToken(token);
         },
         async session({ token, session }: any) {
             session.user = token.user;
@@ -38,6 +40,28 @@ const authOption: NextAuthOptions = {
             return session;
         },
     },
+    pages: {
+        signIn: "/signin",
+    },
+};
+
+const handleRefreshToken = async (token: JWT): Promise<JWT> => {
+    const { metaData } =
+        (await authServices.refreshToken({
+            headers: {
+                "x-api-client": `${token.user.userId}`,
+                "x-refresh-token": `Refresh ${token.tokens.refreshToken}`,
+            },
+        })) || {};
+    if (!metaData) return token;
+
+    const { user, tokens, expiresIn } = metaData;
+    return {
+        ...token,
+        user,
+        tokens,
+        expiresIn,
+    };
 };
 
 export default NextAuth(authOption);

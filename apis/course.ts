@@ -1,6 +1,6 @@
 import { DataResponse } from "@/model/course";
 import axiosClient from "./axiosClient";
-import { IConfigAuthType } from "@/model";
+import { IConfigAuth } from "@/model";
 
 const courseApi = {
     getCourseById: async (id: number | string) => {
@@ -8,7 +8,7 @@ const courseApi = {
 
         return dataResponse.metaData.courseList;
     },
-    createCourse: (payload: any, config: IConfigAuthType) => {
+    createCourse: (payload: any, config: IConfigAuth) => {
         const formData = new FormData();
         formData.append("title", payload.title);
         formData.append("author", payload.author);
@@ -24,7 +24,7 @@ const courseApi = {
         });
         return axiosClient.post("/courses", payload, config).then((res) => res.data);
     },
-    updateCourse: (payload: FormData, config: IConfigAuthType) => {
+    updateCourse: (payload: FormData, config: IConfigAuth) => {
         axiosClient.interceptors.request.use((config) => {
             config.headers["Content-Type"] = "multipart/form-data;";
             return config;

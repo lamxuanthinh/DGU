@@ -1,12 +1,12 @@
-import {IConfigAuthType, ISessionAuth} from "@/model";
+import { IConfigAuth, ISessionAuth } from "@/model";
 
-export const configAuth = (session: ISessionAuth): IConfigAuthType => {
+export const configAuth = (session: ISessionAuth): IConfigAuth => {
     const { user, tokens } = session;
+
     return {
         headers: {
-            "x-api-client": `${user._id}`,
+            "x-api-client": `${user.userId}`,
             "authorization": `Bearer ${tokens.accessToken}`,
-            "x-refresh-token": `Bearer ${tokens.refreshToken}`,
         },
     };
 };

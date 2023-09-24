@@ -76,28 +76,27 @@ export default function ModalSelectCourse({
     };
 
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
-        const userId = session?.user._id;
+        const { userId } = session?.user || {};
 
-        if (!userId) {
-            return;
+        if (session) {
+            await courseApi.createCourse(
+                {
+                    title: data.title,
+                    author: data.author,
+                    description: data.description,
+                    price: data.price,
+                    level: data.classify,
+                    status: "0001",
+                    thumbnail: data.image,
+                },
+                configAuth(session),
+            );
         }
 
-        await courseApi.createCourse(
-            {
-                title: data.title,
-                author: data.author,
-                description: data.description,
-                price: data.price,
-                level: data.classify,
-                status: "0001",
-                thumbnail: data.image,
-            },
-            configAuth(session),
-        );
-
-        const myCourse = await courseApi.getCourseById(userId);
-
-        setMyCourseData(myCourse);
+        if (userId) {
+            const myCourse = await courseApi.getCourseById(userId);
+            setMyCourseData(myCourse);
+        }
 
         setStepCreateCourse(0);
 
@@ -123,7 +122,7 @@ export default function ModalSelectCourse({
 
     useEffect(() => {
         const fetchMyCourseApi = async () => {
-            const userId = session?.user._id;
+            const { userId } = session?.user || {};
             const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
 
             setMyCourseData(myCourse);
