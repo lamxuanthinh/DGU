@@ -65,7 +65,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                 <div className="col-span-2">
                     <input
                         {...register("title")}
-                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded-md placeholder-black"
+                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded placeholder-[#888888] border border-solid border-[#F7E7E7]"
                         placeholder="Enter your title ..."
                         type="text"
                         required
@@ -73,7 +73,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
 
                     <input
                         ref={authorRef}
-                        className="p-[3px] pl-3 col-span-3 w-full text-[#888888] bg-[#7fcffc1c] rounded-md"
+                        className="p-[3px] pl-3 col-span-3 w-full text-[#888888] bg-[#7fcffc1c] rounded border border-solid border-[#F7E7E7]"
                         value="Giana Schelea"
                         type="text"
                         disabled
@@ -95,13 +95,13 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#d8d8d8] bg-[#7fcffc1c] placeholder-black placeholder-[14px] rounded border-2 w-full outline-none"
+                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#F7E7E7] bg-[#7fcffc1c] placeholder-[#888888] placeholder-[14px] rounded border w-full outline-none"
                         required
                     />
                     <div className="mb-3">
                         <div className="bg-[#7fcffc1c] mb-4">
                             <DropDownSelect
-                                className="py-[6px] border border-solid border-[#F7E7E7] px-[15px] mt-3"
+                                className="py-[6px] border border-solid border-[#F7E7E7] px-[15px] mt-3 rounded"
                                 options={visibilityOptions}
                                 onSelectOption={(test: string) => {
                                     setValue("classify", test);
@@ -111,7 +111,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                         <div className="flex justify-between">
                             <div className="w-[48%] border-[#F7E7E7] bg-[#7fcffc1c]">
                                 <DropDownSelect
-                                    className="py-[6px] border border-solid border-[#F7E7E7] px-[15px]"
+                                    className="py-[6px] border border-solid border-[#F7E7E7] px-[15px] rounded"
                                     options={costsOptions}
                                     onSelectOption={(value: string) => {
                                         setIsFreeCourse(value);
@@ -119,14 +119,14 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                                 />
                             </div>
                             <div
-                                className={`flex items-center w-[48%] border-[#F7E7E7] bg-[#7fcffc1c] ${
+                                className={`flex items-center w-[48%] border-[#F7E7E7] bg-[#7fcffc1c] border border-solid ${
                                     isFreeCourse == "Free" ? "bg-[#dadada]" : "bg-[#7fcffc1c]"
                                 } p-1`}
                             >
                                 <p className="text-[#000000] ml-[15px]">$</p>
                                 <input
                                     {...register("price")}
-                                    className="pl-3 outline-none w-full bg-[#7fcffc1c] placeholder-black"
+                                    className="pl-3 outline-none w-full bg-[#7fcffc1c] placeholder-[#888888] text-[#888888]"
                                     placeholder="0"
                                     type="number"
                                     required

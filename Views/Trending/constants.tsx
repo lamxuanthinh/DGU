@@ -14,9 +14,6 @@ import avatar4 from "@/public/Images/Trending/avt-trending-4.png";
 import avatar5 from "@/public/Images/Trending/newCourse/image1.jpg";
 import avatar6 from "@/public/Images/Trending/newCourse/image5.jpg";
 import avatar7 from "@/public/Images/Trending/avatar/avt5.jpg";
-import subAvt1 from "@/public/Images/Profile/Infomation/boy_thanh_lich.png";
-import subAvt2 from "@/public/Images/Profile/Infomation/boy_thoi_trang.png";
-import subAvt3 from "@/public/Images/Profile/Infomation/cool_green.jpg";
 import video1 from "@/public/Images/Trending/newCourse/rails.jpg";
 import video2 from "@/public/Images/Trending/newCourse/digital-marketing-banner.png";
 import video3 from "@/public/Images/Trending/newCourse/laravel.jpg";
@@ -35,7 +32,7 @@ import short1 from "@/public/Images/Trending/course/short-1.png";
 import short2 from "@/public/Images/Trending/course/short-2.png";
 import short3 from "@/public/Images/Trending/course/short-3.png";
 import short4 from "@/public/Images/Trending/course/short-4.png";
-import { IDataCardCourse } from "@/model/course";
+import { IMyCourseData } from "@/model/course";
 import { IVideoData } from "@/model/video";
 import { IListShort } from "@/model";
 
@@ -86,95 +83,77 @@ export const DATA_TRENDING_WEEK = [
     { value: "50.111", label: "Eden", height: 10 },
 ];
 
-export const DATA_FEATURED_VIDEOS: IDataCardCourse[] = [
+export const DATA_FEATURED_VIDEOS: IMyCourseData[] = [
     {
-        srcImage: course1,
+        thumbnail: course1,
         info: [{ lesson: 10 }, { time: "2h 10m" }, { comment: 10 }],
         title: "Khoas hoc tieng han danh cho nguoi moi",
         level: "Beginner",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$75.99",
-        priceType: "lifetime",
         author: "Thomas Tump",
     },
     {
-        srcImage: course2,
+        thumbnail: course2,
         info: [{ lesson: 15 }, { time: "3h 30m" }, { comment: 5 }],
         title: "Advanced Python Programming",
         level: "Advanced",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$99.99",
-        priceType: "subscription",
         author: "Jennifer Johnson",
     },
     {
-        srcImage: course3,
+        thumbnail: course3,
         info: [{ lesson: 8 }, { time: "1h 45m" }, { comment: 20 }],
         title: "Introduction to Digital Marketing",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$49.99",
-        priceType: "lifetime",
         author: "Michael Smith",
     },
     {
-        srcImage: course4,
+        thumbnail: course4,
         info: [{ lesson: 12 }, { time: "2h 15m" }, { comment: 8 }],
         title: "Artificial Intelligence Fundamentals",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$59.99",
-        priceType: "lifetime",
         author: "Emily Brown",
     },
     {
-        srcImage: course5,
+        thumbnail: course5,
         info: [{ lesson: 20 }, { time: "4h 30m" }, { comment: 15 }],
         title: "Mastering Guitar Techniques",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$69.99",
-        priceType: "lifetime",
         author: "Alex Turner",
     },
     {
-        srcImage: course6,
+        thumbnail: course6,
         info: [{ lesson: 5 }, { time: "1h 30m" }, { comment: 3 }],
         title: "Photography for Beginners",
         level: "Beginner",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$39.99",
-        priceType: "lifetime",
         author: "Sophia Clark",
     },
     {
-        srcImage: course7,
+        thumbnail: course7,
         info: [{ lesson: 18 }, { time: "3h 45m" }, { comment: 12 }],
         title: "Web Development Bootcamp",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$89.99",
-        priceType: "subscription",
         author: "Daniel Roberts",
     },
     {
-        srcImage: course8,
+        thumbnail: course8,
         info: [{ lesson: 7 }, { time: "1h 20m" }, { comment: 6 }],
         title: "Introduction to Spanish",
         level: "Beginner",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$29.99",
-        priceType: "lifetime",
         author: "Isabella Martinez",
     },
     {
-        srcImage: course9,
+        thumbnail: course9,
         info: [{ lesson: 10 }, { time: "2h 30m" }, { comment: 8 }],
         title: "Yoga and Mindfulness",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$49.99",
-        priceType: "lifetime",
         author: "Elena Johnson",
     },
 ];
@@ -217,95 +196,77 @@ export const DATA_TOP_FEATURED_VIDEOS: IVideoData[] = [
     },
 ];
 
-export const DATA_TRENDING_COURSE: IDataCardCourse[] = [
+export const DATA_TRENDING_COURSE: IMyCourseData[] = [
     {
-        srcImage: trending1,
+        thumbnail: trending1,
         info: [{ lesson: 10 }, { time: "2h 10m" }, { comment: 10 }],
         title: "Khoas hoc tieng han danh cho nguoi moi",
         level: "Beginner",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$75.99",
-        priceType: "lifetime",
         author: "Thomas Tump",
     },
     {
-        srcImage: trending2,
+        thumbnail: trending2,
         info: [{ lesson: 15 }, { time: "3h 30m" }, { comment: 5 }],
         title: "Advanced Python Programming",
         level: "Advanced",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$99.99",
-        priceType: "subscription",
         author: "Jennifer Johnson",
     },
     {
-        srcImage: trending3,
+        thumbnail: trending3,
         info: [{ lesson: 8 }, { time: "1h 45m" }, { comment: 20 }],
         title: "Introduction to Digital Marketing",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$49.99",
-        priceType: "lifetime",
         author: "Michael Smith",
     },
     {
-        srcImage: trending4,
+        thumbnail: trending4,
         info: [{ lesson: 12 }, { time: "2h 15m" }, { comment: 8 }],
         title: "Artificial Intelligence Fundamentals",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$59.99",
-        priceType: "lifetime",
         author: "Emily Brown",
     },
     {
-        srcImage: trending5,
+        thumbnail: trending5,
         info: [{ lesson: 20 }, { time: "4h 30m" }, { comment: 15 }],
         title: "Mastering Guitar Techniques",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$69.99",
-        priceType: "lifetime",
         author: "Alex Turner",
     },
     {
-        srcImage: trending6,
+        thumbnail: trending6,
         info: [{ lesson: 5 }, { time: "1h 30m" }, { comment: 3 }],
         title: "Photography for Beginners",
         level: "Beginner",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$39.99",
-        priceType: "lifetime",
         author: "Sophia Clark",
     },
     {
-        srcImage: trending7,
+        thumbnail: trending7,
         info: [{ lesson: 18 }, { time: "3h 45m" }, { comment: 12 }],
         title: "Web Development Bootcamp",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$89.99",
-        priceType: "subscription",
         author: "Daniel Roberts",
     },
     {
-        srcImage: trending8,
+        thumbnail: trending8,
         info: [{ lesson: 7 }, { time: "1h 20m" }, { comment: 6 }],
         title: "Introduction to Spanish",
         level: "Beginner",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$29.99",
-        priceType: "lifetime",
         author: "Isabella Martinez",
     },
     {
-        srcImage: trending9,
+        thumbnail: trending9,
         info: [{ lesson: 10 }, { time: "2h 30m" }, { comment: 8 }],
         title: "Yoga and Mindfulness",
         level: "Intermediate",
-        avatar: [subAvt1, subAvt2, subAvt3],
         price: "$49.99",
-        priceType: "lifetime",
         author: "Elena Johnson",
     },
 ];

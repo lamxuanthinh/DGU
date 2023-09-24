@@ -1,4 +1,4 @@
-import ItemCardCourse from "@/components/common/ItemCardCourse";
+import { ItemCardCourse } from "@/components";
 import { DATA_TRENDING_COURSE } from "../Trending/constants";
 import Button from "@/components/common/Button";
 import { AiOutlineDown } from "react-icons/ai";

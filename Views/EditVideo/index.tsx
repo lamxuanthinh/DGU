@@ -6,7 +6,6 @@ import Navbar from "./Navbar";
 import Video from "./Video";
 import Toolbar from "./Toolbar";
 import Progressbar from "./Progressbar";
-import MenuSuccess from "@/components/common/ModalSuccess";
 import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/editVideo";
 
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
@@ -28,7 +27,6 @@ export default function EditVideo() {
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [isModal, setIsModal] = useState<boolean>(false);
-    const [isSuccess, setIsSuccess] = useState<boolean>(false);
     const [moveVideo, setMoveVideo] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
     const [valuePointer, setValuePointer] = useState<number>(0);
@@ -144,10 +142,6 @@ export default function EditVideo() {
 
     const onCancelModal = () => {
         setIsModal(false);
-    };
-
-    const onCancelModalSuccess = () => {
-        setIsSuccess(false);
     };
 
     const onUndoProgress = () => {
@@ -371,7 +365,6 @@ export default function EditVideo() {
                 />
             </div>
             {isModal && <Modal title="Are you want to next step?" onOk={onOkModal} onCancel={onCancelModal} />}
-            {isSuccess && <MenuSuccess toHref="/upload" onClick={onCancelModalSuccess} />}
             <video className="hidden" ref={videoRef} src={srcVideoEdit}></video>
         </>
     );

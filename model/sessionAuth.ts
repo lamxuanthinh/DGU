@@ -1,4 +1,4 @@
-export interface SessionAuthType {
+export interface ISessionAuth {
     user: {
         _id: string;
     };

@@ -6,7 +6,7 @@ interface ICardShortProps {
     className?: string;
 }
 
-function ItemCardShort({ dataShort, className }: ICardShortProps) {
+export function ItemCardShort({ dataShort, className }: ICardShortProps) {
     const { srcImage, title, hashtag, view } = dataShort;
     return (
         <li className={`w-full place-content-center cursor-pointer rounded animate-pulse dark:shadow-2xl hover:scale-105 transition-transform duration-500 ${className}`}>
@@ -25,5 +25,3 @@ function ItemCardShort({ dataShort, className }: ICardShortProps) {
         </li>
     );
 }
-
-export default ItemCardShort;

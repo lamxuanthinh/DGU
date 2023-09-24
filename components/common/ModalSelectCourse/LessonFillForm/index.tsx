@@ -12,7 +12,7 @@ interface ILessonFillForm {
 
 export default function LessonFillForm({ register, setValue, getValues }: ILessonFillForm) {
     return (
-        <div className="px-5 pt-5 pb-2 h-full rounded">
+        <div className="pl-5 pr-[35px] pt-5 pb-2 h-full rounded">
             <div className="grid grid-cols-4 mb-4">
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Lesson Title & Description</h1>
@@ -23,7 +23,7 @@ export default function LessonFillForm({ register, setValue, getValues }: ILesso
                 <div className="col-span-2">
                     <input
                         {...register("title")}
-                        className="p-[2px] pl-3 outline-none mb-4 w-full"
+                        className="py-2 px-4 pl-3 outline-none mb-4 w-full border border-solid border-[#F7E7E7] rounded"
                         placeholder="Enter your title"
                         type="text"
                         required
@@ -31,7 +31,7 @@ export default function LessonFillForm({ register, setValue, getValues }: ILesso
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 font-semibold py-2 px-3 text-[16px] border-[#d8d8d8] rounded border-2 w-full outline-none"
+                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border border-solid border-[#F7E7E7] rounded w-full outline-none"
                         required
                     />
                 </div>
