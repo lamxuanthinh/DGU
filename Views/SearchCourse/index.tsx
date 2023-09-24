@@ -9,7 +9,7 @@ function SearchCourse() {
             <h1 className="text-xl text-[#757474] p-2.5">Result Search Course</h1>
             <div className="flex flex-wrap">
                 {DATA_TRENDING_COURSE.map((item, index) => (
-                    <ItemCardCourse key={index} dataCard={item} />
+                    <ItemCardCourse className="w-full sm:w-1/2 xl:w-1/3 2xl:w-1/4 p-3" key={index} dataCard={item} />
                 ))}
             </div>
             <Button className="mx-auto mt-4 font-semibold" rightIcon={<AiOutlineDown />}>
