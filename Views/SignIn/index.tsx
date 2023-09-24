@@ -16,7 +16,7 @@ import { useAppContext } from "@/Context";
 type FormData = Pick<Schema, "email" | "password">;
 const loginSchema = schema.pick(["email", "password"]);
 
-export default function Login() {
+export default function SignIn() {
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
@@ -69,7 +69,9 @@ export default function Login() {
                         </div>
                         <div className="">
                             <h1 className="font-bold text-[32px] pb-5 dark:text-black">Welcome Back!</h1>
-                            <p className="pb-7 text-[14px] font-semibold dark:text-black">Please enter log in detail below</p>
+                            <p className="pb-7 text-[14px] font-semibold dark:text-black">
+                                Please enter sign in detail below
+                            </p>
                         </div>
                         <div className="pb-5">
                             <form onSubmit={onSubmit} className="w-full">
@@ -105,7 +107,7 @@ export default function Login() {
                                     type="submit"
                                     className="w-full font-bold text-[20px] bg-primary text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
                                 >
-                                    Login
+                                    Sign in
                                 </button>
                             </form>
                         </div>
@@ -120,7 +122,9 @@ export default function Login() {
                                 className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
                             >
                                 <FcGoogle className="text-2xl" />
-                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black">Login with Google</p>
+                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black">
+                                    Sign in with Google
+                                </p>
                             </button>
                             <div className="flex justify-center py-3">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Don’t have on account? </p>

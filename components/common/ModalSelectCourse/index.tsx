@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import CourseItemForm from "@/components/common/ModalSelectCourse/CourseItemForm";
-import PreviewCourse from "@/components/common/ModalSelectCourse/PreviewCourse";
 import SelectCourseLayout from "@/components/layout/SelectCourseLayout";
 import { SchemaCourse } from "@/utils/rules";
-import { MdOutlineAddchart, MdOutlinePlayLesson } from "react-icons/md";
+import { MdOutlineAddchart } from "react-icons/md";
 import { BsEyeFill, BsSearch } from "react-icons/bs";
-import PreviewLesson from "@/components/common/ModalSelectCourse/PreviewLesson";
 import { useAppContext } from "@/Context";
 import courseApi from "@/apis/course";
-import TextEllipsis from "../TextEllipsis";
 import FillFormVideoShort from "./FillFormVideoShort";
 import Release from "./Release";
 import TypeVideo from "./TypeVideo";
 import LessonFillForm from "./LessonFillForm";
+import { ItemCardCourse } from "@/components";
+import { useSession } from "next-auth/react";
+import { configAuth } from "@/apis/configAuth";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,6 +44,7 @@ export default function ModalSelectCourse({
     } = useAppContext();
 
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
+    const { data: session } = useSession();
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Release"];
 
     const {
@@ -75,21 +76,24 @@ export default function ModalSelectCourse({
     };
 
     const onSubmitCourseItemForm = handleCourseSubmit(async (data) => {
-        const userId = localStorage.getItem("userId");
+        const userId = session?.user._id;
 
         if (!userId) {
             return;
         }
 
-        await courseApi.createCourse({
-            title: data.title,
-            author: data.author,
-            description: data.description,
-            price: data.price,
-            level: data.classify,
-            status: "0001",
-            thumbnail: data.image,
-        });
+        await courseApi.createCourse(
+            {
+                title: data.title,
+                author: data.author,
+                description: data.description,
+                price: data.price,
+                level: data.classify,
+                status: "0001",
+                thumbnail: data.image,
+            },
+            configAuth(session),
+        );
 
         const myCourse = await courseApi.getCourseById(userId);
 
@@ -119,7 +123,7 @@ export default function ModalSelectCourse({
 
     useEffect(() => {
         const fetchMyCourseApi = async () => {
-            const userId = localStorage.getItem("userId");
+            const userId = session?.user._id;
             const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
 
             setMyCourseData(myCourse);
@@ -189,40 +193,7 @@ export default function ModalSelectCourse({
                             </div>
                             <div className="w-[35%]">
                                 {courseSelected && (
-                                    <div className="p-4 mx-5 border border-[#c3c3c3] rounded-md text-[#000]">
-                                        <div className="flex justify-start mb-4">
-                                            <MdOutlinePlayLesson fontSize={28} className="text-[#3983AC] mr-4" />
-                                            <TextEllipsis
-                                                content={courseSelected.title}
-                                                styleContent={{ maxHeight: "48px", textSize: "16px" }}
-                                            />
-                                        </div>
-                                        <div className="text-[14px] font-semibold text-[#4F4E4E] mb-4">
-                                            {courseSelected.description}
-                                        </div>
-                                        <div className="flex justify-between items-center mb-4">
-                                            <div className="px-4 py-1 rounded-[50px] bg-[#FCF8BA]">Beginner</div>
-                                            <div className="flex items-center">
-                                                <p className="text-[18px] font-bold pr-2">
-                                                    {myCourseData && myCourseData.length}
-                                                </p>
-                                                <p className="text-[14px] font-semibold">video</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-between items-center">
-                                            <div className="flex">
-                                                <div className="text-[14px] font-semibold pr-2">
-                                                    {courseSelected.price}
-                                                </div>
-                                                <div className="text-[#8B8B8B] text-[14px] font-semibold">
-                                                    / lifetime
-                                                </div>
-                                            </div>
-                                            <button className="bg-black px-4 py-1 font-semibold rounded-[50px] text-white">
-                                                Joinclass now
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <ItemCardCourse className="max-w-[370px] mx-auto" dataCard={courseSelected} />
                                 )}
                             </div>
                         </div>
@@ -241,16 +212,16 @@ export default function ModalSelectCourse({
                                 </div>
                             </div>
                             <button
-                                className={`flex items-center text-[16px] ${
+                                className={`flex items-center text-[16px] justify-center min-w-[100px] ${
                                     courseSelected
-                                        ? "text-[#3983AC] bg-[#a8dfff] hover:cursor-pointer"
+                                        ? "text-[#3983AC] bg-[#7FCFFC]/[.3] hover:cursor-pointer"
                                         : "text-[#959595] bg-[#dddddd] hover:cursor-none"
-                                } py-2 px-4 rounded`}
+                                } py-2 px-4 rounded-sm`}
                                 onClick={() => {
                                     courseSelected && handleNextStep();
                                 }}
                             >
-                                <p className="font-semibold">Select</p>
+                                <p className="font-bold">Select</p>
                             </button>
                         </div>
                     </div>
@@ -271,58 +242,36 @@ export default function ModalSelectCourse({
                             />
                             <div className="flex justify-between">
                                 <div
-                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 border border-[#a4a4a4] rounded hover:cursor-pointer"
+                                    className="flex items-center text-[16px] text-[#949494] py-2 px-4 border border-[#a4a4a4] rounded-sm hover:cursor-pointer"
                                     onClick={() => {
                                         setStepCreateCourse(0);
                                     }}
                                 >
-                                    <p className="pl-2 font-semibold">Previous</p>
+                                    <p className="pl-2 font-bold">Previous</p>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded"
+                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded-sm min-w-[100px] justify-center"
                                 >
-                                    <p className="font-semibold">Next</p>
+                                    <p className="font-bold">Next</p>
                                 </button>
                             </div>
                         </form>
-                        <div
-                            className="w-[40%] flex justify-center items-center relative"
-                            style={{
-                                backgroundImage: `url(/Images/CreateCourse/background.png)`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                            }}
-                        >
+                        <div className="w-[40%] flex justify-center items-center relative bg-upload-video">
                             <div className="w-[80%]">
-                                <div className="flex justify-center items-center">
+                                <div className="flex justify-center items-center mb-4">
                                     <BsEyeFill className="mr-3" />
                                     <p className="font-semibold">Course Card preview</p>
                                 </div>
-                                <PreviewCourse
-                                    courseDataInput={{
-                                        title: watchValueOfCourse("title"),
-                                        themenails: watchValueOfCourse("image_blob") ? (
-                                            <Image
-                                                width={100}
-                                                height={100}
-                                                className="rounded-md w-full h-full"
-                                                src={`${watchValueOfCourse("image_blob")}`}
-                                                alt=""
-                                            />
-                                        ) : (
-                                            <Image
-                                                src={require("@/public/Images/CreateCourse/image_not_found.png")}
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    objectFit: "cover",
-                                                }}
-                                                alt="logo"
-                                            />
-                                        ),
+                                <ItemCardCourse
+                                    className="max-w-[370px] mx-auto"
+                                    dataCard={{
+                                        thumbnail: watchValueOfCourse("image_blob"),
+                                        author: "Hoangtu",
                                         price: watchValueOfCourse("price"),
+                                        title: watchValueOfCourse("title"),
+                                        level: watchValueOfCourse("classify"),
                                     }}
                                 />
                             </div>
@@ -343,60 +292,37 @@ export default function ModalSelectCourse({
                                 setValue={setValueOfLesson}
                                 getValues={getValueOfLesson}
                             />
-                            <div className="flex justify-between">
+                            <div className="flex justify-between mr-[35px]">
                                 <button
-                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded"
+                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#949494] rounded-sm justify-center min-w-[100px]"
                                     onClick={() => {
                                         handleBackStep();
                                     }}
                                 >
-                                    <p className="pl-2 font-semibold">Previous</p>
+                                    <p className="font-bold text-[#777]">Previous</p>
                                 </button>
                                 <button
-                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded"
+                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#7FCFFC]/[.3] py-2 px-4 rounded-sm justify-center min-w-[100px]"
                                     type="submit"
                                 >
-                                    <p className="font-semibold">Next</p>
+                                    <p className="font-bold">Next</p>
                                 </button>
                             </div>
                         </form>
-                        <div
-                            className="w-[45%] flex justify-center items-center relative"
-                            style={{
-                                backgroundImage: `url(/Images/CreateCourse/background.png)`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                            }}
-                        >
+                        <div className="w-[45%] flex justify-center items-center relative bg-upload-video rounded">
                             <div className="w-[70%]">
-                                <div className="flex justify-center items-center">
+                                <div className="flex justify-center items-center mb-4">
                                     <BsEyeFill className="mr-3" />
                                     <p className="font-semibold">Course Card preview</p>
                                 </div>
-                                <PreviewLesson
-                                    lessonDataInput={{
-                                        title: watchValueOfLesson("title"),
-                                        themenails: watchValueOfLesson("image") ? (
-                                            <Image
-                                                width={400}
-                                                height={200}
-                                                className="rounded-md w-full h-full"
-                                                src={`${watchValueOfLesson("image_blob")}`}
-                                                alt=""
-                                            />
-                                        ) : (
-                                            <Image
-                                                src={require("@/public/Images/CreateCourse/image_not_found.png")}
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    objectFit: "cover",
-                                                }}
-                                                alt="logo"
-                                            />
-                                        ),
-                                        price: watchValueOfCourse("price"),
+                                <ItemCardCourse
+                                    className="max-w-[370px] mx-auto"
+                                    dataCard={{
+                                        thumbnail: watchValueOfLesson("image_blob"),
                                         author: "Hoangtu",
+                                        price: courseSelected.price,
+                                        title: watchValueOfLesson("title"),
+                                        level: courseSelected.level,
                                     }}
                                 />
                             </div>

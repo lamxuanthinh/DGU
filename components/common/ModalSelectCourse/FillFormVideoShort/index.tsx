@@ -79,7 +79,7 @@ const FillFormVideoShort = () => {
                             required
                             placeholder="Enter the description . . ."
                             onChange={handleChangeNameShort}
-                            className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-sm"
+                            className="border border-solid border-[#F7E7E7] outline-none w-full px-3 py-2 text-sm rounded"
                             type="text"
                             value={listDataSplitVideo[indexActiveSplit].name}
                         />
@@ -94,7 +94,7 @@ const FillFormVideoShort = () => {
                         <textarea
                             placeholder="Enter the description . . ."
                             onChange={handleChangeDescriptionShort}
-                            className="border border-solid border-x-slate-200 outline-none w-full px-3 py-2 text-sm min-h-[200px]"
+                            className="border border-solid border-[#F7E7E7] outline-none w-full px-3 py-2 text-sm min-h-[200px]"
                             value={listDataSplitVideo[indexActiveSplit].description}
                         />
                     </div>
@@ -133,11 +133,11 @@ const FillFormVideoShort = () => {
                 </div>
                 <input className="hidden" ref={inputRef} type="file" onChange={handleChangeImage} />
                 <div className="flex justify-between mt-4">
-                    <Button className="text-[#777777] border border-solid border-[#949494] text-sm font-bold p-2 min-w-[98px]">
+                    <Button className="text-[#777777] border border-solid border-[#949494] text-sm font-bold p-2 min-w-[100px]">
                         Previous
                     </Button>
                     <Button
-                        className="text-[#3983AC] bg-[#7FCFFC]/[.35] text-sm font-bold p-2 min-w-[98px]"
+                        className="text-[#3983AC] bg-[#7FCFFC]/[.3] text-sm font-bold p-2 min-w-[100px]"
                         onClick={handleNext}
                     >
                         Next

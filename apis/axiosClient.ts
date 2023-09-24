@@ -1,5 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
-// import { HEADER } from "@/utils/nameHeaders";
+import axios, {AxiosInstance} from "axios";
 
 
 const axiosClient: AxiosInstance = axios.create({
@@ -11,8 +10,6 @@ const axiosClient: AxiosInstance = axios.create({
 
 axiosClient.interceptors.request.use(
     (config) => {
-        // config.headers[HEADER.AUTHORIZATION] = `Bearer ${tokens.accessToken}`;
-        // config.headers[HEADER.CLIENT_ID] = `Bearer ${tokens.refreshToken}`;
         return config;
     },
     (error) => {
@@ -20,12 +17,13 @@ axiosClient.interceptors.request.use(
     },
 );
 
+
 axiosClient.interceptors.response.use(
-    (response: AxiosResponse<any>) => {
-        return response;
+    async (response) => {
+        return response.data;
     },
     async (error) => {
-        return Promise.reject(error);
+        return error.response.data;
     },
 );
 

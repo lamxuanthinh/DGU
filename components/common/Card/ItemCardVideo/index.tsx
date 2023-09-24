@@ -4,7 +4,7 @@ interface IItemCardVideoProps {
     dataVideo: any;
 }
 
-function ItemCardVideo({ dataVideo }: IItemCardVideoProps) {
+export function ItemCardVideo({ dataVideo }: IItemCardVideoProps) {
     const { srcImage, title, author, view, timeCreate } = dataVideo;
 
     return (
@@ -26,5 +26,3 @@ function ItemCardVideo({ dataVideo }: IItemCardVideoProps) {
         </div>
     );
 }
-
-export default ItemCardVideo;

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { IMenuItems } from "@/model/menuItems";
 import Button from "../Button";
 import { useRouter } from "next/router";
-import { auth } from "@/apis/auth";
+import { authServices } from "@/apis/auth";
 
 interface IMenuProps {
     className?: string;
@@ -36,13 +36,12 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
     }, []);
 
     const handleLogout = async () => {
-        console.log("::[LOGOUT]::");
         try {
-            await auth.logout();
+            await authServices.logout();
         } catch (error) {
             console.log("ERROR", error);
         }
-        router.push("/login");
+        await router.push("/signin");
     };
 
     return (

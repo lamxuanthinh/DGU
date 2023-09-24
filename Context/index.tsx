@@ -7,8 +7,8 @@ interface AppContextType {
     setSrcVideoEdit: Dispatch<SetStateAction<string>>;
     isLoading: boolean;
     setIsLoading: Dispatch<SetStateAction<boolean>>;
-    courseSelected: IMyCourseData | undefined;
-    setCourseSelected: React.Dispatch<React.SetStateAction<IMyCourseData | undefined>>;
+    courseSelected: IMyCourseData;
+    setCourseSelected: React.Dispatch<React.SetStateAction<IMyCourseData>>;
     lessonCreated: ILessonData | undefined;
     setLessonCreated: React.Dispatch<React.SetStateAction<ILessonData | undefined>>;
     myCourseData: IMyCourseData[] | undefined;
@@ -40,7 +40,13 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
     const [thumbVideoEdit, setThumbVideoEdit] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [lessonCreated, setLessonCreated] = useState<ILessonData>();
-    const [courseSelected, setCourseSelected] = useState<IMyCourseData>();
+    const [courseSelected, setCourseSelected] = useState<IMyCourseData>({
+        title: "",
+        thumbnail: "",
+        level: "",
+        price: 0,
+        author: "",
+    });
     const [myCourseData, setMyCourseData] = useState<Array<IMyCourseData> | undefined>([]);
     const [stepSelected, setStepSelected] = useState<number>(0);
     const [isRenderSelectCourse, setRenderSelectCourse] = useState<boolean>(false);
