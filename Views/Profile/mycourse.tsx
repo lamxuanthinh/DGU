@@ -13,7 +13,7 @@ export default function MyCourse() {
     const { data: session } = useSession() || {};
 
     useEffect(() => {
-        const userId = session?.user._id;
+        const { userId } = session?.user || {};
         if (userId) {
             const fetchMyCourseApi = async () => {
                 const { metaData }: any = (await profile.getAllMyCourse(userId)) || {};

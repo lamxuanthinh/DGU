@@ -25,23 +25,52 @@ export interface ISignUpApiResponse extends IApiResponse {
 export interface ISignInApiResponse extends IApiResponse {
     metaData?: {
         user: {
-            _id: string;
-            email: string;
+            userId: string;
             avatar: string;
         };
         tokens: {
             accessToken: string;
             refreshToken: string;
         };
+        expiresIn: string;
+    };
+}
+
+export interface ILogoutApiResponse extends IApiResponse {
+    metaData?: {
+        logout: {
+            acknowledged: boolean;
+            deletedCount: number;
+        };
     };
 }
 
 export interface IVerifyEmailApiResponse extends ISignUpApiResponse {}
 
-export type IConfigAuthType = {
+export interface IRefreshTokenApiResponse extends IApiResponse {
+    metaData?: {
+        user: {
+            userId: string;
+            avatar: string;
+        };
+        tokens: {
+            accessToken: string;
+            refreshToken: string;
+        };
+        expiresIn: string;
+    };
+}
+
+export type IConfigAuth = {
     headers: {
         "x-api-client": string;
-        "authorization": string;
+        authorization: string;
+    };
+};
+
+export type IConfigResfreshToken = {
+    headers: {
+        "x-api-client": string;
         "x-refresh-token": string;
     };
 };
