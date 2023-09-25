@@ -1,3 +1,5 @@
+import { IApiResponse, IMyCourseData } from "@/model";
+
 export interface IUser {
     _id: string;
     name: string;
@@ -18,4 +20,17 @@ export interface ILessonDetail {
     title: string;
     thumbnail: string;
     createAt: string;
+}
+
+export interface ICourseDetailApiResponse extends IApiResponse {
+    metaData: {
+        course: ICourseDetail;
+        videoPublicList: ILessonDetail[];
+    };
+}
+
+export interface ICourseListApiResponse extends IApiResponse {
+    metaData: {
+        courseList: IMyCourseData[];
+    };
 }

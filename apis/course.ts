@@ -1,12 +1,9 @@
-import { DataResponse } from "@/model/course";
+import { ICourseApiResponse, IConfigAuth, IApiResponse } from "@/model";
 import axiosClient from "./axiosClient";
-import { IConfigAuth } from "@/model";
 
 const courseApi = {
-    getCourseById: async (id: number | string) => {
-        const dataResponse = await axiosClient.get<DataResponse>(`/courses/${id}`).then((res) => res.data);
-
-        return dataResponse.metaData.courseList;
+    getCourseById: async (id: number | string): Promise<ICourseApiResponse> => {
+        return axiosClient.get(`/courses/${id}`);
     },
     createCourse: (payload: any, config: IConfigAuth) => {
         const formData = new FormData();
@@ -22,15 +19,15 @@ const courseApi = {
             config.headers["Content-Type"] = "multipart/form-data;";
             return config;
         });
-        return axiosClient.post("/courses", payload, config).then((res) => res.data);
+        return axiosClient.post("/courses", payload, config);
     },
-    updateCourse: (payload: FormData, config: IConfigAuth) => {
+    updateCourse: (payload: FormData, config: IConfigAuth):Promise<IApiResponse > => {
         axiosClient.interceptors.request.use((config) => {
             config.headers["Content-Type"] = "multipart/form-data;";
             return config;
         });
 
-        return axiosClient.post("/publicvideo", payload, config).then((res) => res.data);
+        return axiosClient.post("/publicvideo", payload, config);
     },
 };
 

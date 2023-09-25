@@ -53,8 +53,12 @@ const Release = () => {
                     .updateCourse(formData, configAuth(session))
                     .then((res) => {
                         console.log(res);
-                        router.push("/");
-                        setRenderSelectCourse(false);
+                        if (res.code === 201) {
+                            router.push("/");
+                            setRenderSelectCourse(false);
+                        } else {
+                            console.log("lỗi");
+                        }
                     })
                     .catch((err) => console.log(err));
             }

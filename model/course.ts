@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import { IApiResponse } from "@/model";
 
 export interface studying {
     _id: string;
@@ -16,16 +17,6 @@ export interface detailData {
     title1: string;
     title2: string;
 }
-
-// export interface IMyCourseData {
-
-//     id: string | number;
-//     title: string;
-//     content: string;
-//     quantity: string | number;
-//     price: string;
-//     image: any;
-// }
 
 export interface IMyCourseData {
     _id?: string;
@@ -59,9 +50,7 @@ export interface ILessonData {
     author: string;
 }
 
-export interface DataResponse {
-    message: String;
-    status: string;
+export interface ICourseApiResponse extends IApiResponse {
     metaData: {
         courseList: IMyCourseData[];
     };

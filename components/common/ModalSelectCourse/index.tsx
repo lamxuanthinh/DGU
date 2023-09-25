@@ -94,8 +94,8 @@ export default function ModalSelectCourse({
         }
 
         if (userId) {
-            const myCourse = await courseApi.getCourseById(userId);
-            setMyCourseData(myCourse);
+            const { metaData } = (await courseApi.getCourseById(userId)) || {};
+            setMyCourseData(metaData.courseList);
         }
 
         setStepCreateCourse(0);
@@ -123,11 +123,14 @@ export default function ModalSelectCourse({
     useEffect(() => {
         const fetchMyCourseApi = async () => {
             const { userId } = session?.user || {};
-            const myCourse = (userId && (await courseApi.getCourseById(userId))) || undefined;
+            const { metaData } = (userId && (await courseApi.getCourseById(userId))) || {};
 
-            setMyCourseData(myCourse);
-            if (!courseSelected) {
-                myCourse && setCourseSelected(myCourse[0]);
+            if (metaData) {
+                const { courseList } = metaData;
+                setMyCourseData(courseList);
+                if (!courseSelected) {
+                    metaData && setCourseSelected(courseList[0]);
+                }
             }
         };
 

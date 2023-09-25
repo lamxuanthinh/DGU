@@ -61,7 +61,7 @@ const FillFormVideoShort = () => {
             <div className="flex mb-5 xl:mb-10">
                 <div className="w-[55%] shadow-softGlow rounded-[5px] overflow-hidden mr-10 ">
                     <video
-                        className="w-full max-h-[50vh] 2xl:max-h-[55vh]"
+                        className="w-full max-h-[50vh]"
                         ref={videoRef}
                         src={srcVideoEdit}
                         controls
