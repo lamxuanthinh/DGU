@@ -7,17 +7,22 @@ import profile from "@/apis/profile";
 import TextEllipsis from "@/components/common/TextEllipsis";
 import { FaLock } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import { IMyCourseData } from "@/model";
 
 export default function MyCourse() {
-    const [myCourseData, setMyCourseData] = useState<any>(null);
+    const [myCourseData, setMyCourseData] = useState<IMyCourseData[]>([]);
     const { data: session } = useSession() || {};
 
     useEffect(() => {
         const { userId } = session?.user || {};
         if (userId) {
             const fetchMyCourseApi = async () => {
-                const { metaData }: any = (await profile.getAllMyCourse(userId)) || {};
-                setMyCourseData(metaData.courseList);
+                try {
+                    const { metaData } = (await profile.getAllMyCourse(userId)) || {};
+                    setMyCourseData(metaData.courseList);
+                } catch (error) {
+                    console.log(error);
+                }
             };
             fetchMyCourseApi();
         }

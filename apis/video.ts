@@ -2,11 +2,11 @@ import axiosClient from "./axiosClient";
 
 const videoApi = {
     getAllVideo: () => {
-        return axiosClient.get("/video/").then((res) => res.data);
+        return axiosClient.get("/video/");
     },
     getVideoById: (id: number | string) => {
-        return axiosClient.get(`/video/${id}`).then((res) => res.data);
-    },
+        return axiosClient.get(`/video/${id}`);
+    }, 
 };
 
 export default videoApi;

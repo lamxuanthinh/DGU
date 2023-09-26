@@ -15,17 +15,21 @@ export default function Details() {
     const [course, setCourse] = useState<ICourseDetail>();
 
     useEffect(() => {
-        const handleFechCourseDetail = async () => {
+        const handleFetchCourseDetail = async () => {
             const idCourse = router.query.courseId;
             if (idCourse) {
-                const response = await profile.getCourseDetail(idCourse);
-                const listDataVideo = response.metaData.videoPublicList;
-                setListLessonDetail(listDataVideo);
-                const course = response.metaData.course;
-                setCourse(course);
+                try {
+                    const { metaData } = (await profile.getCourseDetail(idCourse)) || {};
+                    const { videoPublicList, course } = metaData;
+                    const listDataVideo = videoPublicList;
+                    setListLessonDetail(listDataVideo);
+                    setCourse(course);
+                } catch (error) {
+                    console.log(error);
+                }
             }
         };
-        handleFechCourseDetail();
+        handleFetchCourseDetail();
     }, []);
 
     const handleCheckTypeVideo = (id: string) => {

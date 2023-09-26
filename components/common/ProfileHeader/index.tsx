@@ -15,8 +15,12 @@ export default function ProfileHeader() {
         try {
             if (session) {
                 const holdProfile = async () => {
-                    const { metaData }: any = await userServices.profile(configAuth(session));
-                    setProfile(metaData.profile);
+                    try {
+                        const { metaData } = await userServices.profile(configAuth(session));
+                        setProfile(metaData.profile);
+                    } catch (error) {
+                        console.log(error);
+                    }
                 };
                 holdProfile();
             }
