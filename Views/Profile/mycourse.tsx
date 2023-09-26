@@ -21,7 +21,7 @@ export default function MyCourse() {
                     const { metaData } = (await profile.getAllMyCourse(userId)) || {};
                     setMyCourseData(metaData.courseList);
                 } catch (error) {
-                    console.log(error);
+                    console.log("Error during profile:", error)
                 }
             };
             fetchMyCourseApi();

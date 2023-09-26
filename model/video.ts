@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import { IApiResponse } from "@/model";
 
 interface IAuthor {
     pathAvatar: string;
@@ -79,11 +80,76 @@ export interface VideoDataResponse {
     metaData: {};
 }
 
-
 export interface IVideoData {
     srcImage: StaticImageData;
     title: string;
     author: string;
     view: string;
     timeCreate: string;
+}
+
+export interface IVideoShortData {
+    _id: string;
+    userId: {
+        _id: string;
+        avatar: string;
+    };
+    videoPublicId: string;
+    title: string;
+    description: string;
+    thumbnail: string;
+    video: string;
+    shortTimeLine: Array<string>;
+    createdAt: string;
+    updatedAt: string;
+}
+
+interface IVideoByIdData {
+    _id: string;
+    userId: {
+        _id: string;
+        avatar: string;
+    };
+    course: string;
+    title: string;
+    description: string;
+    thumbnail: string;
+    video: string;
+    shortTimeLine: Array<string>;
+    createdAt: string;
+    updatedAt: string;
+}
+
+interface IVideoPublicData {
+    _id: string;
+    userId: {
+        _id: string;
+        avatar: string;
+    };
+    course: string;
+    title: string;
+    description: string;
+    thumbnail: string;
+    video: string;
+    shortTimeLine: string[];
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface IVideoShortApiResponse extends IApiResponse {
+    metaData: {
+        shortList: IVideoShortData[];
+    };
+}
+
+export interface IVideoByIdApiResponse extends IApiResponse {
+    metaData: {
+        publicVideo: IVideoByIdData;
+    };
+}
+
+export interface IPublicVideoApiResponse extends IApiResponse {
+    metaData: {
+        PublicVideoList: IVideoPublicData[];
+    };
 }
