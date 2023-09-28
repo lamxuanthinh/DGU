@@ -12,7 +12,7 @@ interface IPreviewCourse {
 
 export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
     return (
-        <div className="w-full dgu-course-card bg-white h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer">
+        <div className="w-full bg-white h-[340px] flex flex-col rounded-[10px] mx-[5px] my-[10px] overflow-hidden hover:cursor-pointer shadow-cardUploadVideo">
             <div className="w-full h-[180px] flex justify-center items-center relative">
                 {lessonDataInput.themenails}
             </div>

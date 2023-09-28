@@ -1,8 +1,8 @@
-import { ConfigAuthType } from "@/model";
+import { IConfigAuth, IUserApiResponse } from "@/model";
 import axiosClient from "./axiosClient";
 
 export const userServices = {
-    profile: async (config: ConfigAuthType) => {
-        return axiosClient.get("/profile", config).then((res) => res.data);
+    profile: async (config: IConfigAuth): Promise<IUserApiResponse> => {
+        return axiosClient.get("/profile", config);
     },
 };

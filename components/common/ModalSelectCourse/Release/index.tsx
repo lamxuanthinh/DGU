@@ -5,19 +5,28 @@ import { useAppContext } from "@/Context";
 import { IDataSplitVideo } from "@/model/editVideo";
 import { useRouter } from "next/router";
 import courseApi from "@/apis/course";
+import { configAuth } from "@/apis/configAuth";
+import { useSession } from "next-auth/react";
 
 const Release = () => {
-    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload } =
+    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setRenderSelectCourse } =
         useAppContext();
     const router = useRouter();
+    const { data: session } = useSession();
 
     useEffect(() => {
         const handleUploadVideo = async () => {
             const formData = new FormData();
             if (courseSelected) {
-                formData.append("course", courseSelected?._id);
-                formData.append("title", courseSelected?.title);
-                formData.append("description", courseSelected?.description);
+                if (courseSelected?._id) {
+                    formData.append("course", courseSelected?._id);
+                }
+                if (courseSelected.title) {
+                    formData.append("title", courseSelected?.title);
+                }
+                if (courseSelected.description) {
+                    formData.append("description", courseSelected?.description);
+                }
             }
             listDataSplitVideo.map((item: IDataSplitVideo) => {
                 formData.append("shortTimeLine", `${item.startTime}:${item.endTime}`);
@@ -39,13 +48,20 @@ const Release = () => {
             if (fileVideoUpload) {
                 formData.append("video", fileVideoUpload);
             }
-            await courseApi
-                .updateCourse(formData)
-                .then((res) => {
-                    console.log(res);
-                    router.push("/");
-                })
-                .catch((err) => console.log(err));
+            if (session) {
+                await courseApi
+                    .updateCourse(formData, configAuth(session))
+                    .then((res) => {
+                        console.log(res);
+                        if (res.code === 201) {
+                            router.push("/");
+                            setRenderSelectCourse(false);
+                        } else {
+                            console.log("lỗi");
+                        }
+                    })
+                    .catch((err) => console.log(err));
+            }
         };
 
         if (listDataSplitVideo.length > 0 && fileVideoUpload && fileThumbVideoUpload) {

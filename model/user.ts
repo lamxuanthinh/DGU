@@ -1,4 +1,6 @@
-export interface ProfileUser {
+import { IApiResponse } from "@/model";
+
+export interface IProfileUser {
     _id: string;
     email: string;
     name: string;
@@ -7,4 +9,10 @@ export interface ProfileUser {
     avatar: string;
     status: string;
     roles: [];
+}
+
+export interface IUserApiResponse extends IApiResponse {
+    metaData: {
+        profile: IProfileUser;
+    };
 }

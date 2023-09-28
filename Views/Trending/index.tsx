@@ -8,15 +8,8 @@ import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { GiFilmStrip } from "react-icons/gi";
 
-import {
-    DATA_TRENDING_PEOPLE,
-    DATA_FEATURED_VIDEOS,
-    DATA_TOP_FEATURED_VIDEOS,
-    DATA_SHORTS,
-} from "./constants";
-import ItemCardCourse from "@/components/common/ItemCardCourse";
-import ItemCardVideo from "@/components/common/ItemCardVideo";
-import ItemCardShort from "@/components/common/IteamCardShort";
+import { DATA_TRENDING_PEOPLE, DATA_FEATURED_VIDEOS, DATA_TOP_FEATURED_VIDEOS, DATA_SHORTS } from "./constants";
+import { ItemCardCourse, ItemCardVideo, ItemCardShort } from "@/components";
 
 const Trending = () => {
     const [courseShowArray, setCourseShowArray] = useState<Array<any>>(DATA_SHORTS.slice(0, 5));
@@ -70,7 +63,7 @@ const Trending = () => {
                         {DATA_TRENDING_PEOPLE.map((item, index) => (
                             <div
                                 key={index}
-                                className="flex-1 text-center flex flex-col items-center border border-solid border-black/[.13] pb-2 rounded-md min-w-[125px] max-w-[200px] cursor-pointer"
+                                className="flex-1 text-center flex flex-col items-center border border-solid border-black/[.13] pb-2 rounded-md min-w-[125px] max-w-[200px] cursor-pointer hover:-translate-y-2 transition-transform duration-500"
                             >
                                 <Image
                                     width={200}
@@ -79,7 +72,7 @@ const Trending = () => {
                                     src={item.srcImage}
                                     alt="avatar"
                                 />
-                                <h4 className="text-[#010101] text-lg font-semibold">{item.name}</h4>
+                                <h4 className="text-[#010101] dark:text-white dark:shadow-2xl text-lg font-semibold">{item.name}</h4>
                                 <span className="text-[#7E7E7E] text-[15px] font-medium">{item.views}</span>
                             </div>
                         ))}
@@ -89,7 +82,11 @@ const Trending = () => {
                     <h2 className="mb-5 text-[#757474] text-lg font-semibold">Top Trending courses</h2>
                     <div className="flex flex-wrap m-[-12px]">
                         {DATA_FEATURED_VIDEOS.map((item, index) => (
-                            <ItemCardCourse key={index} dataCard={item} />
+                            <ItemCardCourse
+                                className="w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 p-3"
+                                key={index}
+                                dataCard={item}
+                            />
                         ))}
                     </div>
                     <Button className="mx-auto mt-8 font-semibold" rightIcon={<AiOutlineDown />}>
@@ -108,14 +105,14 @@ const Trending = () => {
                     </Button>
                 </div>
 
-                <div className="relative bg-white py-[8px] mb-20">
+                <div className="relative py-[8px] mb-20">
                     <div className="flex items-center text-[#8a8a8a] mb-4">
                         <GiFilmStrip className="text-2xl" />
                         <h5 className="font-semibold text-xl ml-2">Shorts</h5>
                     </div>
                     <ul className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-7 mb-3">
                         {courseShowArray.map((item) => (
-                          <ItemCardShort key={item.id} dataShort={item}/>
+                            <ItemCardShort key={item.id} dataShort={item} />
                         ))}
                     </ul>
                     <Button className="mx-auto text-2xl px-5 py-2 mt-1" onClick={handleToggleMoreCourse}>

@@ -1,42 +1,41 @@
-import { HEADER } from "@/utils/nameHeaders";
-import { DataResponse, LoginPayload, SignUpPayload, SignupResponse, VerifyEmailPayload } from "@/model/auth";
+import {
+    IVerifyEmailApiResponse,
+    ISignInPayload,
+    ISignUpPayload,
+    ISignUpApiResponse,
+    IVerifyEmailPayload,
+    ISignInApiResponse,
+    IConfigAuth,
+    IConfigResfreshToken,
+    IRefreshTokenApiResponse,
+    ILogoutApiResponse,
+} from "@/model";
 import axiosClient from "./axiosClient";
+import { AxiosRequestConfig } from "axios";
 
-export const auth = {
-    signUp: async (payload: SignUpPayload) => {
-        const res = await axiosClient.post<SignupResponse>("/signup", payload);
-        return res.data;
+export const authServices = {
+    signUp: async (payload: ISignUpPayload): Promise<ISignUpApiResponse> => {
+        return axiosClient.post("/signup", payload);
     },
 
-    verifyEmail: async (payload: VerifyEmailPayload, token: String) => {
-        if (token) {
-            axiosClient.interceptors.request.use(
-                (config) => {
-                    config.headers["Content-Type"] = "application/json";
-                    config.headers[HEADER.VERIFY_EMAIL_TOKEN] = token;
-                    return config;
-                },
-                (error) => {
-                    return Promise.reject(error);
-                },
-            );
-        }
-        const res = await axiosClient.post<DataResponse>("/verifysignup", payload);
-        return res.data;
+    verifyEmail: async (payload: IVerifyEmailPayload, token: String): Promise<IVerifyEmailApiResponse> => {
+        const config: AxiosRequestConfig = {
+            headers: {
+                "verify-email-token": `${token}`,
+            },
+        };
+        return axiosClient.post("/verifysignup", payload, config);
     },
 
-    login: async (payload: LoginPayload) => {
-        const res = await axiosClient.post<DataResponse>("/login", payload);
-        return res.data;
+    signIn: async (payload: ISignInPayload): Promise<ISignInApiResponse> => {
+        return axiosClient.post("/login", payload);
     },
 
-    logout: async () => {
-        const res = await axiosClient.post("/logout");
-        return res.data;
+    logout: async (config: IConfigAuth): Promise<ILogoutApiResponse> => {
+        return axiosClient.get("/logout", config);
     },
 
-    refreshToken: async () => {
-        const res = await axiosClient.get("/refreshtoken");
-        return res.data;
+    refreshToken: async (config: IConfigResfreshToken): Promise<IRefreshTokenApiResponse> => {
+        return axiosClient.get("/refreshtoken", config);
     },
 };

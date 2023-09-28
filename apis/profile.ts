@@ -1,11 +1,12 @@
+import { ICourseDetailApiResponse, ICourseListApiResponse } from "@/model";
 import axiosClient from "./axiosClient";
 
 const profile = {
-    getAllMyCourse: (id: number | string) => {
-        return axiosClient.get(`/courses/${id}`).then((res) => res.data);
+    getAllMyCourse: (id: number | string): Promise<ICourseListApiResponse> => {
+        return axiosClient.get(`/courses/${id}`);
     },
-    getCourseDetail: (id: string | string[]) => {
-        return axiosClient.get(`/publicvideo/course/${id}`).then((res) => res.data);
+    getCourseDetail: (id: string | string[]): Promise<ICourseDetailApiResponse> => {
+        return axiosClient.get(`/publicvideo/course/${id}`);
     },
 };
 

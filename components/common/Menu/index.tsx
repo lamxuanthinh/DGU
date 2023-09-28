@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 import { IMenuItems } from "@/model/menuItems";
 import Button from "../Button";
+import { authServices, configAuth } from "@/apis";
 import { useRouter } from "next/router";
-import { auth } from "@/apis/auth";
 
 interface IMenuProps {
     className?: string;
@@ -13,6 +14,7 @@ interface IMenuProps {
 }
 
 function Menu({ menuItems, children, theme, className }: IMenuProps) {
+    const { data: session } = useSession() || {};
     const router = useRouter();
     const [isMenu, setIsMenu] = useState<boolean>(false);
     const lastItems = menuItems[menuItems.length - 1];
@@ -36,13 +38,16 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
     }, []);
 
     const handleLogout = async () => {
-        console.log("::[LOGOUT]::");
-        try {
-            await auth.logout();
-        } catch (error) {
-            console.log("ERROR", error);
+        if (session?.user.userId) {
+            try {
+                const { code } = await authServices.logout(configAuth(session));
+                if (code !== 200) router.push("/404");
+                await signOut({ redirect: false });
+                router.push("/signin");
+            } catch (error) {
+                console.log("Error during log-out API call :", error);
+            }
         }
-        router.push("/login");
     };
 
     return (

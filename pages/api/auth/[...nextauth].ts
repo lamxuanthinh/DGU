@@ -1,7 +1,8 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { LoginPayload } from "@/model";
-import { auth } from "@/apis/auth";
+import { authServices } from "@/apis";
+import { ISignInPayload } from "@/model";
 
 const authOption: NextAuthOptions = {
     session: {
@@ -12,9 +13,16 @@ const authOption: NextAuthOptions = {
             type: "credentials",
             credentials: {},
             async authorize(credentials): Promise<any> {
-                const { email, password } = credentials as LoginPayload;
+                const { email, password, token } = credentials as ISignInPayload;
 
-                const { code, metaData } = (await auth.login({ email, password })) || {};
+                if (token && email) {
+                    const payload = { email };
+                    const { code, metaData } = (await authServices.verifyEmail(payload, token)) || {};
+                    if (code !== 200) return null;
+                    return metaData;
+                }
+
+                const { code, metaData } = (await authServices.signIn({ email, password })) || {};
                 if (code !== 200) return null;
                 return metaData;
             },
@@ -23,7 +31,8 @@ const authOption: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }: any) {
             if (user) return { ...token, ...user };
-            return token;
+            if (new Date().getTime() < token.expiresIn) return token;
+            return await handleRefreshToken(token);
         },
         async session({ token, session }: any) {
             session.user = token.user;
@@ -31,7 +40,28 @@ const authOption: NextAuthOptions = {
             return session;
         },
     },
+    pages: {
+        signIn: "/signin",
+    },
+};
+
+const handleRefreshToken = async (token: JWT): Promise<JWT> => {
+    const { metaData } =
+        (await authServices.refreshToken({
+            headers: {
+                "x-api-client": `${token.user.userId}`,
+                "x-refresh-token": `Refresh ${token.tokens.refreshToken}`,
+            },
+        })) || {};
+    if (!metaData) return token;
+
+    const { user, tokens, expiresIn } = metaData;
+    return {
+        ...token,
+        user,
+        tokens,
+        expiresIn,
+    };
 };
 
 export default NextAuth(authOption);
-// export { handler as POST, handler as GET };

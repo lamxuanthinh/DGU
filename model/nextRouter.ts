@@ -1,10 +1,10 @@
 import { ParsedUrlQuery } from "querystring";
 
-export interface QueryVerifyEmail extends ParsedUrlQuery {
+export interface IQueryVerifyEmail extends ParsedUrlQuery {
     email: string;
     token: string;
 }
 
-export interface QueryNotification extends ParsedUrlQuery {
-    emailSent: any;
+export interface IQueryNotification extends ParsedUrlQuery {
+    emailSent: string;
 }
