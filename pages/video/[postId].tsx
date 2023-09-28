@@ -7,26 +7,21 @@ export default function Post({ post }: any) {
 }
 
 export const getStaticPaths = async () => {
-    let posts: any;
-
     try {
-        posts = await videoShortApi.getAllPublicVideo();
+        const { metaData } = await videoShortApi.getAllPublicVideo();
+        const paths =
+            metaData?.PublicVideoList.map((item) => {
+                return {
+                    params: { postId: item._id },
+                };
+            }) || [];
+        return {
+            paths,
+            fallback: false,
+        };
     } catch (error) {
-        console.error("Error fetching posts:", error);
-        posts = [];
+        console.log("Error during video:", error);
     }
-
-    const paths =
-        posts?.metaData?.PublicVideoList.map((item: any) => {
-            return {
-                params: { postId: item._id },
-            };
-        }) || [];
-
-    return {
-        paths,
-        fallback: false,
-    };
 };
 
 export const getStaticProps = async (context: any) => {
@@ -53,12 +48,12 @@ export const getStaticProps = async (context: any) => {
         post = post.metaData.publicVideo;
         post.controlData = extractVideoData(post.shortTimeLine);
         const parentId = post._id;
-        const parentResponse: any = await videoShortApi.getVideoById(parentId);
+        const { metaData } = await videoShortApi.getVideoById(parentId);
 
-        post.fullVideoInfo = parentResponse.metaData.publicVideo;
+        post.fullVideoInfo = metaData.publicVideo;
         post.fullVideoInfo.controlData = extractVideoData(post.shortTimeLine);
     } catch (error) {
-        console.error("Error fetching posts:", error);
+        console.log("Error during video by id:", error);
         post = {};
     }
 

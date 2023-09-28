@@ -52,20 +52,22 @@ export async function getStaticProps() {
     };
 
     try {
-        posts = await videoShortApi.getAllVideoShort();
-        posts = posts.metaData.shortList.slice(0, 10);
+        const { metaData } = await videoShortApi.getAllVideoShort();
+
+        posts = metaData.shortList.slice(0, 10);
 
         for (let i = 0; i < posts.length; i++) {
             const parentId = posts[i].videoPublicId;
             posts[i].controlData = extractStringVideoData(posts[i].shortTimeLine);
 
-            const parentResponse: any = await videoShortApi.getVideoById(parentId);
-            posts[i].fullVideoInfo = parentResponse.metaData.publicVideo;
+            const { metaData } = await videoShortApi.getVideoById(parentId);
+
+            posts[i].fullVideoInfo = metaData.publicVideo;
 
             posts[i].fullVideoInfo.controlData = extractVideoData(posts[i].fullVideoInfo.shortTimeLine);
         }
     } catch (error) {
-        console.error("Error fetching posts:", error);
+        console.log("Error during video home:", error);
         posts = [];
     }
 
