@@ -9,12 +9,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { schema, Schema } from "@/utils/rules";
 import { FcGoogle } from "react-icons/fc";
-import SlideLogin from "@/components/common/SlideLogin";
+import SlideSignIn from "@/components/common/SlideSignIn";
 import Input from "@/components/common/Input";
 import { useAppContext } from "@/Context";
 
 type FormData = Pick<Schema, "email" | "password">;
-const loginSchema = schema.pick(["email", "password"]);
+const signInSchema = schema.pick(["email", "password"]);
 
 export default function SignIn() {
     const router: NextRouter = Router;
@@ -27,7 +27,7 @@ export default function SignIn() {
         handleSubmit,
         formState: { errors },
     } = useForm<FormData>({
-        resolver: yupResolver(loginSchema),
+        resolver: yupResolver(signInSchema),
     });
 
     useEffect(() => {
@@ -135,7 +135,7 @@ export default function SignIn() {
                         </div>
                     </div>
                 </div>
-                <SlideLogin />
+                <SlideSignIn />
             </div>
         </div>
     );

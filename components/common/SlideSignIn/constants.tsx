@@ -1,4 +1,4 @@
-export const dataSlideLogin = [
+export const dataSlideSignIn = [
   {
     key: 3,
     title: "Knowledge is power 1.",

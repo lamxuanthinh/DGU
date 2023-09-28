@@ -31,7 +31,7 @@ export const dataMenuNav: Array<IMenuItems> = [
     {
         key: 5,
         name: "Logout",
-        href: "/login",
+        href: "/signin",
         icon: BiLogOut,
     },
 ];
