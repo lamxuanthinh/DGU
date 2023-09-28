@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { authServices } from "@/apis";
 import { ISignInPayload } from "@/model";
 
@@ -9,6 +10,10 @@ const authOption: NextAuthOptions = {
         strategy: "jwt",
     },
     providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID || "",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+        }),
         CredentialsProvider({
             type: "credentials",
             credentials: {},

@@ -53,6 +53,11 @@ export default function SignIn() {
         setIsLoading(false);
     });
 
+    const handleSignInWithGoogle = async () => {
+        const a = await signIn("google");
+        console.log("google reponse", a);
+    };
+
     return (
         <div className="h-screen w-screen bg-white md:bg-[#c3c3c3f5] flex justify-center items-center">
             <div className="max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-10 md:p-5 md:pl-10 overflow-hidden">
@@ -122,7 +127,10 @@ export default function SignIn() {
                                 className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
                             >
                                 <FcGoogle className="text-2xl" />
-                                <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black">
+                                <p
+                                    className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black"
+                                    onClick={handleSignInWithGoogle}
+                                >
                                     Sign in with Google
                                 </p>
                             </button>
