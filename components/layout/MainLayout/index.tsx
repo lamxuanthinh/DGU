@@ -4,7 +4,6 @@ import Loading from "@/components/common/Loading";
 import SidebarHeader from "@/components/common/SidebarHeader";
 import Sidebar from "@/components/common/Sidebar";
 import NavigationTablet from "@/components/common/NavigationTablet";
-import { BigLayout, Content, MainContent } from "@/components/layout/MainLayout/mainLayoutStyled";
 import { LayoutProps } from "@/model";
 import { useEffect, useState } from "react";
 
@@ -35,36 +34,36 @@ const MainLayout = (props: LayoutProps) => {
             {isLoading && <Loading />}
             {isTabletLayout ? (
                 <div className="w-screen h-screen bg-[#DBDBDB] flex justify-center items-center ">
-                    <BigLayout>
+                    <div className="w-[calc(100%-10px)] h-[calc(100%-10px)] m-[5px] flex justify-center items-center">
                         <div className="w-full h-full bg-white sm:bg-[#DBDBDB] flex justify-between rounded-[10px] relative">
                             <div className="absolute w-full h-[1px] bg-black/[0.1] top-[70px]"></div>
-                            <Content>
+                            <div className="w-[calc(100%-290px)] flex flex-col lg:w-full lg:active:w-[calc(100%-295px)]">
                                 <SidebarHeader active={false} />
-                                <MainContent>
+                                <div className="h-[calc(100%-70px)] mt-[5px] rounded-[5px]">
                                     <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px]">
                                         <div className="h-full flex justify-center">{props.children}</div>
                                     </div>
-                                </MainContent>
-                            </Content>
+                                </div>
+                            </div>
                             <NavigationTablet />
                         </div>
-                    </BigLayout>
+                    </div>
                 </div>
             ) : (
                 <div className="w-screen h-screen bg-[#DBDBDB] dark:bg-black flex justify-center items-center">
-                    <BigLayout>
+                    <div className="w-[calc(100%-10px)] h-[calc(100%-10px)] m-1 flex justify-center items-center">
                         <div className="w-full h-full flex justify-between rounded-[10px]">
                             <Sidebar active={false} />
-                            <Content>
+                            <div className="w-[calc(100%-290px)] flex flex-col">
                                 <Header />
-                                <MainContent>
+                                <div className="h-[calc(100%-70px)] mt-[5px] rounded-[5px]">
                                     <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px] bg-white dark:bg-[#2C2C2C]">
                                         <div className="flex justify-center">{props.children}</div>
                                     </div>
-                                </MainContent>
-                            </Content>
+                                </div>
+                            </div>
                         </div>
-                    </BigLayout>
+                    </div>
                 </div>
             )}
         </>

@@ -1,15 +1,15 @@
 import { useState } from "react";
 import Image from "next/image";
-import { dataSlideLogin } from "./constants";
+import { dataSlideSignIn } from "./constants";
 
-export default function SlideLogin() {
-     const [currentSlide, setCurrentSlide] = useState(dataSlideLogin[0].key);
+export default function SlideSignIn() {
+     const [currentSlide, setCurrentSlide] = useState(dataSlideSignIn[0].key);
      return <div
           data-aos="fade-left"
           data-aos-duration="1500"
           className="w-[469px] bg-[#000000] rounded-xl rounded-br-[50px] z-3 hidden lg:block"
      >
-          {dataSlideLogin.map((itemSlide) => {
+          {dataSlideSignIn.map((itemSlide) => {
                return (
                     itemSlide.key === currentSlide && ( 
                          <div key={itemSlide.key}>
@@ -41,7 +41,7 @@ export default function SlideLogin() {
           })}
           <div className="w-[100%] flex justify-center">
                <ul className="bg-[#3c3b3bd2] w-[110px] h-[30px] rounded-xl flex px-2 items-center justify-around">
-                    {dataSlideLogin.map((slideItem) => {
+                    {dataSlideSignIn.map((slideItem) => {
                          return (
                               <li
                                    key={slideItem.key}

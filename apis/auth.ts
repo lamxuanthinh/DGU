@@ -28,7 +28,7 @@ export const authServices = {
     },
 
     signIn: async (payload: ISignInPayload): Promise<ISignInApiResponse> => {
-        return axiosClient.post("/login", payload);
+        return axiosClient.post("/signin", payload);
     },
 
     logout: async (config: IConfigAuth): Promise<ILogoutApiResponse> => {

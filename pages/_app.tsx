@@ -1,6 +1,6 @@
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
-import { EmptyLayout, GlobalStyled } from "../components";
+import { EmptyLayout } from "../components";
 import { AppPropsWithLayout } from "../model";
 import AOSInitializer from "../components/AOSInitializer";
 import { AppProvider } from "@/Context";
@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             <AppProvider>
                 <ThemeProvider attribute="class">
                     <Layout>
-                        <GlobalStyled />
                         <AOSInitializer />
                         <Component {...pageProps} />
                     </Layout>

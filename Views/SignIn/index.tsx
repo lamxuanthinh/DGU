@@ -9,12 +9,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { schema, Schema } from "@/utils/rules";
 import { FcGoogle } from "react-icons/fc";
-import SlideLogin from "@/components/common/SlideLogin";
+import SlideSignIn from "@/components/common/SlideSignIn";
 import Input from "@/components/common/Input";
 import { useAppContext } from "@/Context";
 
 type FormData = Pick<Schema, "email" | "password">;
-const loginSchema = schema.pick(["email", "password"]);
+const signInSchema = schema.pick(["email", "password"]);
 
 export default function SignIn() {
     const router: NextRouter = Router;
@@ -27,7 +27,7 @@ export default function SignIn() {
         handleSubmit,
         formState: { errors },
     } = useForm<FormData>({
-        resolver: yupResolver(loginSchema),
+        resolver: yupResolver(signInSchema),
     });
 
     useEffect(() => {
@@ -105,7 +105,7 @@ export default function SignIn() {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full font-bold text-[20px] bg-primary text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
+                                    className="w-full font-bold text-[20px] text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
                                 >
                                     Sign in
                                 </button>
@@ -119,7 +119,7 @@ export default function SignIn() {
                             </div>
                             <button
                                 type="submit"
-                                className="border-[#52525233] border-2 rounded-xl w-full bg-primary bg-white px-5 py-3 flex flex-row justify-center items-center"
+                                className="border-[#52525233] border-2 rounded-xl w-full bg-white px-5 py-3 flex flex-row justify-center items-center"
                             >
                                 <FcGoogle className="text-2xl" />
                                 <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 dark:text-black">
@@ -135,7 +135,7 @@ export default function SignIn() {
                         </div>
                     </div>
                 </div>
-                <SlideLogin />
+                <SlideSignIn />
             </div>
         </div>
     );

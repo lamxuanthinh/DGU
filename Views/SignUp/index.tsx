@@ -12,7 +12,7 @@ import Select from "react-select";
 import "aos/dist/aos.css";
 import CheckboxInput from "@/components/common/CheckboxInput";
 import { authServices } from "@/apis/auth";
-import SlideLogin from "@/components/common/SlideLogin";
+import SlideSignIn from "@/components/common/SlideSignIn";
 import { useAppContext } from "@/Context";
 import { IQueryNotification } from "@/model";
 
@@ -101,7 +101,7 @@ export default function SignUp() {
     return (
         <div className="h-screen w-screen lg:bg-[#c3c3c3f5] flex justify-center items-center">
             <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
-                <SlideLogin />
+                <SlideSignIn />
                 <div data-aos="fade-up" data-aos-duration="2000" className="w-full lg:w-[469px] flex items-center z-2">
                     <div className="w-[100%]">
                         <div className="pb-8 pt-4">

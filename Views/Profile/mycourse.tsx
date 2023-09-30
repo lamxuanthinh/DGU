@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BiCommentDetail } from "react-icons/bi";
-import { CourseCardInfo } from "@/Views/Profile/ProfileStyled";
 import { useEffect, useState } from "react";
 import profile from "@/apis/profile";
 import TextEllipsis from "@/components/common/TextEllipsis";
@@ -73,7 +72,7 @@ export default function MyCourse() {
                                             </div>
 
                                             <div className="w-full h-[130px] flex justify-center items-center">
-                                                <CourseCardInfo className="flex flex-col justify-evenly items-center">
+                                                <div className="w-[calc(100%-3rem)] h-[calc(100%-10px)] flex flex-col justify-evenly items-center">
                                                     <TextEllipsis
                                                         content={item.title}
                                                         styleContent={{ maxHeight: "48px", textSize: "16px" }}
@@ -141,7 +140,7 @@ export default function MyCourse() {
                                                             </p>
                                                         </div>
                                                     </div>
-                                                </CourseCardInfo>
+                                                </div>
                                             </div>
                                         </div>
                                     </Link>
