@@ -1,6 +1,9 @@
 import { ILessonData, IMyCourseData } from "@/model/course";
 import { IListDataSplitVideo } from "@/model/editVideo";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import React, { createContext, useState, useContext, Dispatch, SetStateAction } from "react";
+import { ISessionAuth } from "@/model";
 
 interface AppContextType {
     srcVideoEdit: string | undefined;
@@ -27,6 +30,7 @@ interface AppContextType {
     setFileThumbVideoUpload: Dispatch<SetStateAction<File | null>>;
     isProcessPlayVideo: string;
     setProcessPlayVideo: React.Dispatch<React.SetStateAction<string>>;
+    session: ISessionAuth | null;
 }
 
 interface IAppProviderProps {
@@ -36,6 +40,12 @@ interface IAppProviderProps {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: IAppProviderProps) => {
+    const router = useRouter();
+    const { data: session } = useSession();
+    if (session) {
+        if (new Date().getTime() > parseInt(session.expires)) router.refresh();
+    }
+
     const [srcVideoEdit, setSrcVideoEdit] = useState<string>("");
     const [thumbVideoEdit, setThumbVideoEdit] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -82,6 +92,7 @@ export const AppProvider = ({ children }: IAppProviderProps) => {
                 setFileThumbVideoUpload,
                 isProcessPlayVideo,
                 setProcessPlayVideo,
+                session,
             }}
         >
             {children}
@@ -94,7 +105,6 @@ export const useAppContext = (): AppContextType => {
     if (!context) {
         throw new Error("useAppContext must be used within AppProvider");
     }
-
     return context;
 };
 

@@ -19,7 +19,7 @@ export default function ProfileHeader() {
                         const { metaData } = await userServices.profile(configAuth(session));
                         setProfile(metaData.profile);
                     } catch (error) {
-                        console.log("Error during profile header:", error)
+                        console.log("Error during profile header:", error);
                     }
                 };
                 holdProfile();
