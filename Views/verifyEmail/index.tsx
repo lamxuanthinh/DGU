@@ -11,15 +11,18 @@ export default function VerifyEmail() {
     const router: NextRouter = useRouter();
     const [statusVerify, setStatusVerify] = useState<boolean>(false);
     const { email, token } = (router.query as IQueryVerifyEmail) || {};
-    const [isVerify, setIsVerify] = useState<boolean>(false);
+    const [isFetchVerify, setIsFetchVerify] = useState<boolean>(false);
 
     useEffect(() => {
         if (email && token) {
-            setIsVerify(true);
             const handleApiVerifyEmail = async () => {
                 const { status }: any = await signIn("credentials", { email: email, token: token, redirect: false });
-                if (status !== 200) setStatusVerify(false);
-                setStatusVerify(true);
+                if (status !== 200) {
+                    setStatusVerify(false);
+                } else {
+                    setStatusVerify(true);
+                }
+                setIsFetchVerify(true);
             };
             handleApiVerifyEmail();
         }
@@ -27,22 +30,26 @@ export default function VerifyEmail() {
 
     return (
         <>
-            {isVerify ? (
+            {email && token ? (
                 <>
-                    {statusVerify ? (
-                        <VerifyAuth
-                            isVerifySuccess
-                            heading="Verify Successful!"
-                            description="Verify successful! Thanks for verify your email address. You can access the full features of our website."
-                            srcImage={verifySuccessfulImage}
-                        />
-                    ) : (
-                        <VerifyAuth
-                            isVerifyError
-                            heading="Verify Fail!"
-                            description="Verify unsucessful! Your email address invalid or proviously authenticated."
-                            srcImage={verifyErrorImage}
-                        />
+                    {isFetchVerify && (
+                        <>
+                            {statusVerify ? (
+                                <VerifyAuth
+                                    isVerifySuccess
+                                    heading="Verify Successful!"
+                                    description="Verify successful! Thanks for verify your email address. You can access the full features of our website."
+                                    srcImage={verifySuccessfulImage}
+                                />
+                            ) : (
+                                <VerifyAuth
+                                    isVerifyError
+                                    heading="Verify Fail!"
+                                    description="Verify unsucessful! Your email address invalid or proviously authenticated."
+                                    srcImage={verifyErrorImage}
+                                />
+                            )}
+                        </>
                     )}
                 </>
             ) : (
