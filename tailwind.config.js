@@ -20,9 +20,14 @@ module.exports = {
                     "50%": { transform: "scale(0.9)" },
                     "100%": { transform: "scale(1)" },
                 },
+                fadeIn: {
+                    "0%": { opacity: 0 },
+                    "100%": { opacity: 1 },
+                },
             },
             animation: {
                 pulse: "pulse 0.1s ease-in-out",
+                falseIn: "fadeIn 0.3s ease-in-out",
             },
             boxShadow: {
                 "inset-white": "0 0 0px 1000px white inset",

@@ -6,23 +6,28 @@ import verifyErrorImage from "@/public/Images/Verify/verify_error.png";
 import VerifyAuth from "@/components/common/VerifyAuth";
 import { signIn } from "next-auth/react";
 import Page404 from "../Page404";
+import Loading from "@/components/common/Loading";
 
 export default function VerifyEmail() {
     const router: NextRouter = useRouter();
     const [statusVerify, setStatusVerify] = useState<boolean>(false);
     const { email, token } = (router.query as IQueryVerifyEmail) || {};
-    const [isFetchVerify, setIsFetchVerify] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        new Promise((resolve) =>
+            setTimeout(() => {
+                resolve(setIsLoading(false));
+            }, 1000),
+        );
         if (email && token) {
             const handleApiVerifyEmail = async () => {
-                const { status }: any = await signIn("credentials", { email: email, token: token, redirect: false });
+                const { status }:any = await signIn("credentials", { email: email, token: token, redirect: false });
                 if (status !== 200) {
                     setStatusVerify(false);
                 } else {
                     setStatusVerify(true);
                 }
-                setIsFetchVerify(true);
             };
             handleApiVerifyEmail();
         }
@@ -30,9 +35,11 @@ export default function VerifyEmail() {
 
     return (
         <>
-            {email && token ? (
+            {isLoading ? (
+                <Loading />
+            ) : (
                 <>
-                    {isFetchVerify && (
+                    {email && token ? (
                         <>
                             {statusVerify ? (
                                 <VerifyAuth
@@ -50,10 +57,10 @@ export default function VerifyEmail() {
                                 />
                             )}
                         </>
+                    ) : (
+                        <Page404 />
                     )}
                 </>
-            ) : (
-                <Page404 />
             )}
         </>
     );
