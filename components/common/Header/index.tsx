@@ -4,15 +4,14 @@ import { BiLogIn, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
 import { FiSun } from "react-icons/fi";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
 import SearchBar from "../SearchBar";
+import { useAppContext } from "@/Context";
 
 const Header = () => {
-    const { data: session } = useSession();
-    console.log("session", session);
+    const { session } = useAppContext();
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
