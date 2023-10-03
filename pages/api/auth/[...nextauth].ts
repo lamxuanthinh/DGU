@@ -14,29 +14,38 @@ const authOption: NextAuthOptions = {
             credentials: {},
             async authorize(credentials): Promise<any> {
                 const { email, password, token } = credentials as ISignInPayload;
+                try {
+                    if (token && email) {
+                        const payload = { email };
+                        const { code, metaData } = await authServices.verifyEmail(payload, token);
+                        if (code !== 200) return null;
+                        return metaData;
+                    }
 
-                if (token && email) {
-                    const payload = { email };
-                    const { code, metaData } = (await authServices.verifyEmail(payload, token)) || {};
+                    const { code, metaData } = await authServices.signIn({ email, password });
                     if (code !== 200) return null;
                     return metaData;
+                } catch (error) {
+                    console.log("Error during authentication API call :", error);
                 }
-
-                const { code, metaData } = (await authServices.signIn({ email, password })) || {};
-                if (code !== 200) return null;
-                return metaData;
             },
         }),
     ],
     callbacks: {
         async jwt({ token, user }: any) {
             if (user) return { ...token, ...user };
-            if (new Date().getTime() < token.expiresIn) return token;
-            return await handleRefreshToken(token);
+            if (new Date().getTime() < token.expiresIn) {
+                return token;
+            }
+
+            const newToken = await handleRefreshToken(token);
+            if (!newToken) return null;
+            return newToken;
         },
         async session({ token, session }: any) {
             session.user = token.user;
             session.tokens = token.tokens;
+            session.expires = token.expiresIn;
             return session;
         },
     },
@@ -45,23 +54,26 @@ const authOption: NextAuthOptions = {
     },
 };
 
-const handleRefreshToken = async (token: JWT): Promise<JWT> => {
-    const { metaData } =
-        (await authServices.refreshToken({
+const handleRefreshToken = async (token: JWT) => {
+    try {
+        const { code, metaData } = await authServices.refreshToken({
             headers: {
                 "x-api-client": `${token.user.userId}`,
                 "x-refresh-token": `Refresh ${token.tokens.refreshToken}`,
             },
-        })) || {};
-    if (!metaData) return token;
+        });
+        if (code !== 200) return null;
 
-    const { user, tokens, expiresIn } = metaData;
-    return {
-        ...token,
-        user,
-        tokens,
-        expiresIn,
-    };
+        const { user, tokens, expiresIn } = metaData || {};
+        return {
+            ...token,
+            user,
+            tokens,
+            expiresIn,
+        };
+    } catch (error) {
+        console.log("Error during refresh token API call :", error);
+    }
 };
 
 export default NextAuth(authOption);
