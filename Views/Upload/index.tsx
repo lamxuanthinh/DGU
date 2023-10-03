@@ -21,8 +21,6 @@ export default function Upload() {
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
 
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const videoRef = useRef<HTMLVideoElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
     function handleFileSelect(videoFile: File): boolean {
@@ -39,20 +37,6 @@ export default function Upload() {
 
     const onOk = () => {
         setIsLoading(true);
-        if (canvasRef.current) {
-            let ctx = canvasRef.current.getContext("2d");
-            if (ctx && videoRef.current) {
-                ctx.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
-                setThumbVideoEdit(canvasRef.current.toDataURL());
-
-                canvasRef.current.toBlob((blob) => {
-                    if (blob) {
-                        const file = new File([blob], "image.jpg", { type: blob.type });
-                        setFileThumbVideoUpload(file);
-                    }
-                }, "image/jpeg");
-            }
-        }
         push("/editvideo");
         setIsLoading(false);
     };
@@ -70,27 +54,50 @@ export default function Upload() {
         setIsCloseModal(false);
     };
 
+    const handleGetInfoFileVideo = async (files: FileList) => {
+        const blob = new Blob([files[0]], { type: "image/png" });
+        const url = URL.createObjectURL(blob);
+        const video = document.createElement("video");
+        const canvas = document.createElement("canvas");
+
+        video.src = URL.createObjectURL(blob);
+        video.muted = true;
+        video.onloadedmetadata = () => {
+            if (video) {
+                video.currentTime = video.duration / 2;
+            }
+        };
+        await video.play();
+        await video.pause();
+
+        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth;
+        const ctx = canvas.getContext("2d");
+
+        if (ctx) {
+            ctx.drawImage(video, 0, 0);
+            const thumbnail = canvas.toDataURL("image/png");
+            setThumbVideoEdit(thumbnail);
+            canvas.toBlob((blob) => {
+                if (blob) {
+                    const file = new File([blob], "image.jpg", { type: blob.type });
+                    setFileThumbVideoUpload(file);
+                }
+            }, "image/jpeg");
+        }
+
+        setSrcVideoEdit(url);
+        setFileVideoUpload(files[0]);
+        setStepSelected(0);
+        setRenderSelectCourse(!isRenderSelectCourse);
+    };
+
     const handleDrop = async (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         const files = event.dataTransfer.files;
-        if (files != null) {
-            if (handleFileSelect(files[0]) === true) {
-                const blob = new Blob([files[0]], { type: "image/png" });
-                const url = URL.createObjectURL(blob);
-                if (videoRef.current) {
-                    videoRef.current.src = URL.createObjectURL(blob);
-                    videoRef.current.load();
-                    videoRef.current.onloadeddata = () => {
-                        if (canvasRef.current && videoRef.current) {
-                            canvasRef.current.width = videoRef.current.videoWidth;
-                            canvasRef.current.height = videoRef.current.videoHeight;
-                        }
-                    };
-                }
-                setSrcVideoEdit(url);
-                setFileVideoUpload(files[0]);
-                setStepSelected(0);
-                setRenderSelectCourse(!isRenderSelectCourse);
+        if (files !== null) {
+            if (handleFileSelect(files[0])) {
+                handleGetInfoFileVideo(files);
             } else {
                 alert("This is not video file.");
             }
@@ -99,24 +106,9 @@ export default function Upload() {
 
     const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
-        if (files != null) {
-            if (handleFileSelect(files[0]) === true) {
-                const blob = new Blob([files[0]], { type: "image/png" });
-                const url = URL.createObjectURL(blob);
-                if (videoRef.current) {
-                    videoRef.current.src = URL.createObjectURL(blob);
-                    videoRef.current.load();
-                    videoRef.current.onloadeddata = () => {
-                        if (canvasRef.current && videoRef.current) {
-                            canvasRef.current.width = videoRef.current.videoWidth;
-                            canvasRef.current.height = videoRef.current.videoHeight;
-                        }
-                    };
-                }
-                setSrcVideoEdit(url);
-                setFileVideoUpload(files[0]);
-                setStepSelected(0);
-                setRenderSelectCourse(!isRenderSelectCourse);
+        if (files !== null) {
+            if (handleFileSelect(files[0])) {
+                handleGetInfoFileVideo(files);
             } else {
                 alert("This is not video file.");
                 event.target.value = "";
@@ -189,8 +181,6 @@ export default function Upload() {
                     setIsCloseModal={setIsCloseModal}
                 />
             )}
-            <canvas ref={canvasRef} className="fixed z-[-10] opacity-0" />
-            <video ref={videoRef} className="fixed z-[-10] opacity-0" />
         </>
     );
 }
