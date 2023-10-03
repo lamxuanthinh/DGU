@@ -8,6 +8,10 @@
     box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
 }
 
+.dark .rdtPicker {
+    background-color: #1c1c1c !important;
+}
+
 .rdtPicker table thead {
     height: 73px;
 }
@@ -26,16 +30,38 @@
     border-radius: 30px;
 }
 
+.dark .rdtPicker .rdtDays .rdtPrev:hover,
+.dark .rdtPicker .rdtDays .rdtSwitch:hover,
+.dark .rdtPicker .rdtDays .rdtNext:hover {
+    background-color: #7c7c7c49 !important;
+}
+
 .rdtPicker .rdtDay:hover {
     color: white !important;
     transition-duration: 0.2s;
     background-color: #1c8bea !important;
 }
 
+.dark .rdtPicker .rdtDay:hover {
+    color: white !important;
+    transition-duration: 0.2s;
+    background-color: #7c7c7c !important;
+}
+
 /* month  */
 
 .rdtPicker .rdtMonth:hover {
     border-radius: 10px;
+}
+
+.dark .rdtPicker .rdtMonth:hover {
+    background-color: #7c7c7c !important;
+}
+
+.dark .rdtPicker .rdtMonths .rdtPrev:hover,
+.dark .rdtPicker .rdtMonths .rdtSwitch:hover,
+.dark .rdtPicker .rdtMonths .rdtNext:hover {
+    background-color: #7c7c7c49 !important;
 }
 
 .rdtPicker .rdtMonths table thead {
@@ -56,6 +82,16 @@
 
 .rdtPicker .rdtYear:hover {
     border-radius: 10px;
+}
+
+.dark .rdtPicker .rdtYears .rdtPrev:hover,
+.dark .rdtPicker .rdtYears .rdtSwitch:hover,
+.dark .rdtPicker .rdtYears .rdtNext:hover {
+    background-color: #7c7c7c49 !important;
+}
+
+.dark .rdtPicker .rdtYear:hover {
+    background-color: #7c7c7c !important;
 }
 
 .rdtPicker .rdtYears table thead {

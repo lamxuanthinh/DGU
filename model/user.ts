@@ -16,3 +16,13 @@ export interface IUserApiResponse extends IApiResponse {
         profile: IProfileUser;
     };
 }
+
+export interface IGenderOption {
+    value: number;
+    label: string;
+}
+
+export interface IOptionDropdown {
+    value: string | number;
+    label: string | number;
+}

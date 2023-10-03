@@ -127,7 +127,7 @@ export default function Input({
                 <input
                     type={type == "password" ? (isPasswordVisible ? "text" : "password") : type}
                     className={`
-             bg-[#fff] shadow-inset-white text-[14px] px-5 py-3 w-full text-black rounded-md outline-none placeholder-gray-300 placeholder-opacity-0 transition duration-200
+             shadow-inset-white dark:shadow-[#1a1a1a] text-[14px] px-5 py-3 w-full text-black dark:text-white rounded-md outline-none placeholder-gray-300 placeholder-opacity-0 transition duration-200
              ${type == "password" ? "font-bold" : ""}
              ${animationBorder ? "py-[6px] " : ""}
              ${className}`}
@@ -152,7 +152,7 @@ export default function Input({
                     ))}
                 <label
                     htmlFor={name}
-                    className={`text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-[14px] transition duration-300 input-text h-7 z-2`}
+                    className={`text-[14px] px-3 text-black dark:text-white bg-white dark:bg-[#1c1c1c] text-opacity-80 absolute left-4 top-[14px] transition duration-300 input-text h-7 z-2`}
                 >
                     {labelInput}
                 </label>
