@@ -1,12 +1,13 @@
-import { IGenderOption, IOptionDropdown } from "@/model";
+import { IDropdownOption } from "@/model";
 import { useEffect, useRef, useState } from "react";
+
 interface IDropdownProps {
     classOptions?: string;
     className?: string;
     classDropdown?: string;
-    menuItems: Array<IOptionDropdown>;
+    menuItems: Array<IDropdownOption>;
     children: string | React.ReactNode;
-    setItemSelected: (item: IGenderOption) => void;
+    setItemSelected: (item: IDropdownOption) => void;
 }
 
 export default function Dropdown({
@@ -24,17 +25,18 @@ export default function Dropdown({
         setIsDropdown(!isDropdown);
     };
 
-    const handleItemSelected = (item: any) => {
+    const handleItemSelected = (item: IDropdownOption) => {
         setItemSelected(item);
         setIsDropdown(false);
     };
 
     useEffect(() => {
-        function handleClickOutside(event: any) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setIsDropdown(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -53,7 +55,7 @@ export default function Dropdown({
                 <ul
                     className={`bg-white dark:bg-[#2C2C2C] flex flex-col gap-2 absolute top-[55px] left-0 w-full  shadow-menu z-50 rounded-[10px] py-[10px] px-[20px] max-h-[60vh] overflow-y-scroll no-scrollbar  ${classOptions}`}
                 >
-                    {menuItems?.map((item: IOptionDropdown, index: number) => {
+                    {menuItems?.map((item, index) => {
                         return (
                             <li
                                 key={index}

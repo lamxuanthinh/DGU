@@ -18,7 +18,7 @@ export default function SlideSignIn({ keyCurrentSlide }: ISlideSignIn) {
             });
         }, 5000);
 
-        return () => clearInterval(interval); // This will clear the timer when the component is unmounted.
+        return () => clearInterval(interval); 
     }, []);
 
     return (

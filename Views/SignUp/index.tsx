@@ -13,7 +13,7 @@ import CheckboxInput from "@/components/common/CheckboxInput";
 import { authServices } from "@/apis/auth";
 import SlideSignIn from "@/components/common/SlideSignIn";
 import { useAppContext } from "@/Context";
-import { IGenderOption, IQueryNotification } from "@/model";
+import { IDropdownOption, IGenderOption, IQueryNotification } from "@/model";
 import { IoIosArrowDown } from "react-icons/io";
 import Dropdown from "@/components/common/Dropdown";
 
@@ -53,9 +53,10 @@ export default function SignUp() {
         setValue("birthday", formattedValue);
     };
 
-    const handleGender = (item: IGenderOption) => {
-        setGenderSelected(item);
-        setValue("gender", item.value);
+    const handleGender = (item: IDropdownOption) => {
+        const genderItem = item as IGenderOption;
+        setGenderSelected(genderItem);
+        setValue("gender", genderItem.value);
     };
 
     const onSubmit = handleSubmit(async (data: FormData) => {
@@ -68,8 +69,6 @@ export default function SignUp() {
             birthday: data.birthday,
             gender: data.gender,
         };
-
-        console.log(payload);
 
         try {
             const { code, metaData } = (await authServices.signUp(payload)) || {};

@@ -17,12 +17,12 @@ export interface IUserApiResponse extends IApiResponse {
     };
 }
 
-export interface IGenderOption {
-    value: number;
-    label: string;
-}
-
-export interface IOptionDropdown {
+export interface IDropdownOption {
     value: string | number;
     label: string | number;
+}
+
+export interface IGenderOption extends IDropdownOption {
+    value: number;
+    label: string;
 }
