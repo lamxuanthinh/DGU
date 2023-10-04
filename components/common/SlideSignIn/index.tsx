@@ -1,9 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { dataSlideSignIn } from "./constants";
 
-export default function SlideSignIn() {
-    const [currentSlide, setCurrentSlide] = useState(dataSlideSignIn[0].key);
+interface ISlideSignIn {
+    keyCurrentSlide?: number;
+}
+
+export default function SlideSignIn({ keyCurrentSlide }: ISlideSignIn) {
+    const [currentSlide, setCurrentSlide] = useState(keyCurrentSlide || dataSlideSignIn[0].key);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prevSlide) => {
+                const nextSlideIndex =
+                    (dataSlideSignIn.findIndex((slide) => slide.key === prevSlide) + 1) % dataSlideSignIn.length;
+                return dataSlideSignIn[nextSlideIndex].key;
+            });
+        }, 5000);
+
+        return () => clearInterval(interval); // This will clear the timer when the component is unmounted.
+    }, []);
+
     return (
         <div
             data-aos="fade-left"

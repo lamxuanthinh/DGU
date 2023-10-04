@@ -142,12 +142,12 @@ export default function Input({
                     (isPasswordVisible ? (
                         <BsFillEyeFill
                             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                            className="absolute top-4 right-4"
+                            className="absolute top-[50%] right-4 -translate-y-1/2"
                         />
                     ) : (
                         <BsFillEyeSlashFill
                             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                            className="absolute top-4 right-4"
+                            className="absolute top-[50%] right-4 -translate-y-1/2"
                         />
                     ))}
                 <label
