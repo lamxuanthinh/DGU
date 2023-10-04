@@ -15,3 +15,8 @@ export interface IDataSplitVideo {
 }
 
 export type IListDataSplitVideo = IDataSplitVideo[];
+
+export interface IThumbInfo {
+    urlImage: string;
+    fileImage: File | null;
+}

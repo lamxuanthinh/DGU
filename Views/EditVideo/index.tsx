@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import Video from "./Video";
 import Toolbar from "./Toolbar";
 import Progressbar from "./Progressbar";
-import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo } from "@/model/editVideo";
+import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo, IThumbInfo } from "@/model";
 
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 
@@ -242,9 +242,12 @@ export default function EditVideo() {
     };
 
     const createImageFromTime = (time: number) => {
-        return new Promise((resolve, reject) => {
+        return new Promise<IThumbInfo>(async (resolve, reject) => {
             if (videoRef.current) {
                 videoRef.current.currentTime = time;
+                videoRef.current.muted = true;
+                await videoRef.current.play();
+                await videoRef.current.pause();
             }
             const canvas = document.createElement("canvas");
             canvas.width = 170;
@@ -256,7 +259,7 @@ export default function EditVideo() {
                 canvas.toBlob((blob) => {
                     if (blob) {
                         const file = new File([blob], "image.jpg", { type: blob.type });
-                        const result = {
+                        const result: IThumbInfo = {
                             fileImage: file,
                             urlImage: canvas.toDataURL("image/jpeg"),
                         };
@@ -286,7 +289,7 @@ export default function EditVideo() {
             widthCurrentProgress,
         );
 
-        const imageFile: any = await createImageFromTime(separateTime);
+        const imageFile: IThumbInfo = await createImageFromTime(separateTime);
 
         const secondHalfProgress: IDataSplitVideo = {
             id: dataSplit.length + 1,
