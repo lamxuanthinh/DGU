@@ -15,14 +15,13 @@ export default function VerifyEmail() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        new Promise((resolve) =>
-            setTimeout(() => {
-                resolve(setIsLoading(false));
-            }, 1000),
-        );
+        const timerWait = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+
         if (email && token) {
             const handleApiVerifyEmail = async () => {
-                const { status }:any = await signIn("credentials", { email: email, token: token, redirect: false });
+                const { status }: any = await signIn("credentials", { email: email, token: token, redirect: false });
                 if (status !== 200) {
                     setStatusVerify(false);
                 } else {
@@ -31,12 +30,16 @@ export default function VerifyEmail() {
             };
             handleApiVerifyEmail();
         }
+
+        return () => {
+            clearTimeout(timerWait);
+        };
     }, [email, token]);
 
     return (
         <>
             {isLoading ? (
-                <Loading />
+                <Loading isIcon={false} />
             ) : (
                 <>
                     {email && token ? (
