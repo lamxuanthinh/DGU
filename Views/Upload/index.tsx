@@ -151,7 +151,7 @@ export default function Upload() {
                 <h1 className="text-[25px] font-bold mb-11">Upload your file bellow</h1>
                 <div
                     onDrop={handleDrop}
-                    className="relative flex flex-col items-center gap-y-5 w-full border-2 border-black border-dashed h-full pt-[70px] pb-20"
+                    className="relative flex flex-col items-center gap-y-5 w-full border border-black border-dashed dark:border-white h-full pt-[70px] pb-20"
                 >
                     <div className="w-[140px]">
                         <FaCloudUploadAlt className="w-full h-full flex items-center justify-center opacity-60" />
@@ -167,7 +167,7 @@ export default function Upload() {
                     />
                     <Button
                         onClick={handleButtonClick}
-                        className="border-2 border-solid border-black w-[180px] h-[70px] text-[25px] font-bold"
+                        className="border-2 border-solid border-black dark:border-white w-[180px] h-[70px] text-[25px] font-bold"
                     >
                         Browser
                     </Button>
