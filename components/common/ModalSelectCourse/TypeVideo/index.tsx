@@ -31,13 +31,13 @@ const TypeVideo = () => {
     };
 
     return (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full 2xl:justify-start 2xl:gap-y-4">
             <div className="flex flex-col items-center">
                 <h1 className="text-[26px] font-bold my-6">Do you want choose type video upload ?</h1>
                 <div className="mb-8">
                     <Image src={switchImage} alt="switch image" />
                 </div>
-                <p className="max-w-[680px] text-center mb-16 text-[#7A7A7A]/[.6] dark:text-white/[.8]">
+                <p className="max-w-[680px] text-center mb-8 lg:mb-2 xl:mb-6 text-[#7A7A7A]/[.6] dark:text-white/[.8] line-clamp-3">
                     Unlock the versatility of video uploads with our two distinct options: Public and Private. With the
                     Public option, users can freely share their videos, fostering a sense of community and
                     collaboration. Meanwhile, the Private option offers an added layer of security, ensuring that only
