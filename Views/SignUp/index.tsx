@@ -130,7 +130,7 @@ export default function SignUp() {
 
                                     <div className="flex justify-between">
                                         <Dropdown
-                                            className="w-[35%]"
+                                            className="w-[35%] mr-2 sm:mr-0"
                                             menuItems={genderOptions}
                                             setItemSelected={handleGender}
                                         >
@@ -141,7 +141,7 @@ export default function SignUp() {
                                             <IoIosArrowDown className="hover:cursor-pointer text-[27px] px-1 font-extrabold text-[#38383844] dark:text-[#fff] hover:text-[#999]" />
                                         </Dropdown>
                                         <DatePicker
-                                            classBirthday="border-[#52525233] dark:border-[#fff] border-2"
+                                            classBirthday="border-[#52525233] dark:border-[#9f9f9f] border-2"
                                             name="birthday"
                                             value={birthday}
                                             onChange={handleDateBirthday}

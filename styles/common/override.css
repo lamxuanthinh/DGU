@@ -6,6 +6,21 @@
     height: 325px;
     border-radius: 6px;
     box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
+
+    @media (max-width: 1020px) {
+        width: 540px;
+    }
+
+    @media (max-width: 600px) {
+        width: 460px;
+    }
+
+    @media (max-width: 500px) {
+        width: 330px;
+    }
+    @media (max-width: 376px) {
+        width: 315px;
+    }
 }
 
 .dark .rdtPicker {

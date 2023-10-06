@@ -46,7 +46,7 @@ export default function Dropdown({
     return (
         <div className={`relative ${className}`} ref={dropdownRef}>
             <div
-                className={`select-none hover:cursor-pointer bg-white dark:bg-[#1a1a1a] flex justify-between items-center px-[20px] sm:mr-0 h-[48px] rounded-xl text-[14px] border-[#52525233] dark:border-[#fff] border-2 ${classDropdown}`}
+                className={`select-none hover:cursor-pointer bg-white dark:bg-[#1a1a1a] flex justify-between items-center px-[20px] sm:mr-0 h-[48px] rounded-xl text-[14px] border-[#52525233] dark:border-[#9f9f9f] border-2 ${classDropdown}`}
                 onClick={handleDropdown}
             >
                 {children}
