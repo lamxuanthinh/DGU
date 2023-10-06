@@ -16,7 +16,7 @@ export function ItemCardCourse({ dataCard, className }: IItemCardCourseProps) {
     const { thumbnail, title, level, price, author } = dataCard;
     return (
         <div className={`cursor-pointer hover:scale-105 transition-transform duration-500 ${className}`}>
-            <div className="flex flex-col shadow-lg rounded-[5px] h-full">
+            <div className="flex flex-col shadow-lg rounded-[5px] overflow-hidden h-full dark:bg-[#454545]">
                 <div className="h-[50%] relative">
                     <Image
                         width={400}
@@ -26,13 +26,13 @@ export function ItemCardCourse({ dataCard, className }: IItemCardCourseProps) {
                         className="w-full h-full xl:h-[200px] object-cover"
                     />
                     <div className="flex absolute gap-x-1 bottom-[10px] left-3">
-                        <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] font-semibold text-xs 2xl:text-sm">
+                        <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] dark:bg-white/[.9] dark:text-[#4B4B4B] font-semibold text-xs 2xl:text-sm">
                             0 Lesson
                         </span>
-                        <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] font-semibold text-xs 2xl:text-sm">
+                        <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] dark:bg-white/[.9] dark:text-[#4B4B4B] font-semibold text-xs 2xl:text-sm">
                             0 Time
                         </span>
-                        <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] font-semibold text-xs 2xl:text-sm">
+                        <span className="py-2 px-2 2xl:px-3 rounded-[20px] bg-[#f3f3f3] dark:bg-white/[.9] dark:text-[#4B4B4B] font-semibold text-xs 2xl:text-sm">
                             0 Comments
                         </span>
                     </div>

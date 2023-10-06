@@ -72,7 +72,7 @@ export default function UploadImageFile({ setValue, getValues }: IUploadImagefil
                 <div className="flex justify-center">
                     <FaCloudUploadAlt size={30} />
                 </div>
-                <p className="font-semibold">Upload avatar course</p>
+                <p className="font-semibold dark:text-white">Upload avatar course</p>
             </div>
         </div>
     );

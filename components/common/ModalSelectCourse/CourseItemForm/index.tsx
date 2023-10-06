@@ -58,14 +58,14 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
             <div className="grid grid-cols-4 mb-4">
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Lesson Title & Author</h1>
-                    <p className="text-[13px] mr-16 text-[#464646]">
+                    <p className="text-[13px] mr-16 text-[#464646] dark:text-[#CFCFCF]">
                         Put an attention-grabbing title and shorten the video&apos;s content description.
                     </p>
                 </div>
                 <div className="col-span-2">
                     <input
                         {...register("title")}
-                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded placeholder-[#888888] border border-solid border-[#F7E7E7]"
+                        className="p-[2px] pl-3 outline-none mb-4 w-full bg-[#7fcffc1c] rounded placeholder-[#888888] border border-solid border-[#F7E7E7] dark:placeholder-white"
                         placeholder="Enter your title ..."
                         type="text"
                         required
@@ -73,7 +73,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
 
                     <input
                         ref={authorRef}
-                        className="p-[3px] pl-3 col-span-3 w-full text-[#888888] bg-[#7fcffc1c] rounded border border-solid border-[#F7E7E7]"
+                        className="p-[3px] pl-3 col-span-3 w-full text-[#888888] bg-[#7fcffc1c] rounded border border-solid border-[#F7E7E7] dark:text-white"
                         value="Giana Schelea"
                         type="text"
                         disabled
@@ -82,12 +82,12 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                 </div>
             </div>
 
-            <hr className="h-0.25 bg-slate-200 m-3" />
+            <hr className="h-0.25 bg-slate-200 my-3" />
 
             <div className="grid grid-cols-4">
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Description & Fee</h1>
-                    <p className="text-[13px] mr-12 text-[#464646]">
+                    <p className="text-[13px] mr-12 text-[#464646] dark:text-[#CFCFCF]">
                         Provide a detailed description of the video&apos;s content and goals.
                     </p>
                 </div>
@@ -95,7 +95,7 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                     <textarea
                         {...register("description")}
                         placeholder="Enter your description ..."
-                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#F7E7E7] bg-[#7fcffc1c] placeholder-[#888888] placeholder-[14px] rounded border w-full outline-none"
+                        className="h-[120px] col-span-3 py-2 px-3 text-[16px] border-[#F7E7E7] bg-[#7fcffc1c] placeholder-[#888888] placeholder-[14px] rounded border w-full outline-none dark:placeholder-white"
                         required
                     />
                     <div className="mb-3">
@@ -119,14 +119,14 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                                 />
                             </div>
                             <div
-                                className={`flex items-center w-[48%] border-[#F7E7E7] bg-[#7fcffc1c] border border-solid ${
-                                    isFreeCourse == "Free" ? "bg-[#dadada]" : "bg-[#7fcffc1c]"
+                                className={`flex items-center w-[48%] border-[#F7E7E7] border border-solid rounded bg-[#7fcffc1c] ${
+                                    isFreeCourse == "Free" ? "bg-[#dadada] dark:bg-[#7fcffc1c] opacity-60" : "bg-[#7fcffc1c]"
                                 } p-1`}
                             >
-                                <p className="text-[#000000] ml-[15px]">$</p>
+                                <p className="text-[#000000] ml-[15px] dark:text-white">$</p>
                                 <input
                                     {...register("price")}
-                                    className="pl-3 outline-none w-full bg-[#7fcffc1c] placeholder-[#888888] text-[#888888]"
+                                    className="pl-3 outline-none w-full bg-transparent placeholder-[#888888] text-[#888888] dark:text-white"
                                     placeholder="0"
                                     type="number"
                                     required
@@ -138,16 +138,16 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                 </div>
             </div>
 
-            <hr className="h-0.25 bg-slate-200 mb-3" />
+            <hr className="h-0.25 bg-slate-200 mb-3 dark:bg-[#888888]" />
 
             <div className="grid grid-cols-4 mb-4">
                 <div className="col-span-2 font-semibold">
                     <h1 className="text-[20px]">Thumbnail</h1>
-                    <p className="text-[13px] mr-12 text-[#464646]">
+                    <p className="text-[13px] mr-12 text-[#464646] dark:text-[#CFCFCF]">
                         Create a compelling and interesting avatar to attract viewers.
                     </p>
                 </div>
-                <div className="col-span-2 h-[140px]">
+                <div className="col-span-2 h-[140px] bg-[#7fcffc1c]">
                     <UploadImageFile setValue={setValue} getValues={getValues} />
                 </div>
             </div>

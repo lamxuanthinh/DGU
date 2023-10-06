@@ -1,8 +1,7 @@
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import { GrDocumentStore } from "react-icons/gr";
+import { BiCopy } from "react-icons/bi";
 
 interface ISelectCourseHeader {
-    
     setIsCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -14,22 +13,22 @@ export default function SelectCourseHeader({ setIsCloseModal }: ISelectCourseHea
                 <h1 className="mx-4 text-[16px] font-bold">ADD NEW VIDEO</h1>
             </div>
             <div className="flex">
-                <button className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded">
-                    <GrDocumentStore className="text-[#a4a4a4]" />
+                <button className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#DEDEDE] rounded dark:text-white dark:border-white">
+                    <BiCopy className="text-[#a4a4a4] dark:text-white" />
                     <p className="pl-2 font-semibold">Storage draft</p>
                 </button>
                 <button
                     onClick={() => {
                         setIsCloseModal(true);
                     }}
-                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#a4a4a4] rounded"
+                    className="flex items-center text-[16px] text-[#a4a4a4] dark:text-white dark:border-white py-2 px-4 mx-3 border border-[#DEDEDE] rounded"
                 >
                     <AiOutlineClose />
                     <p className="pl-2 font-semibold">Cancel</p>
                 </button>
-                <button className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 mx-3 rounded">
+                <button className="flex items-center text-[16px] text-[#3983AC] bg-primary/[.36] py-2 px-4 mx-3 rounded dark:text-white dark:bg-[#54ACDD]">
                     <AiOutlineCheck />
-                    <p className="pl-2 font-semibold">Save draft</p>
+                    <p className="pl-2 font-bold">Save draft</p>
                 </button>
             </div>
         </div>

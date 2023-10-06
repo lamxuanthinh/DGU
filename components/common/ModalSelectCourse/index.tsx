@@ -138,7 +138,7 @@ export default function ModalSelectCourse({
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085]">
+        <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-[#00000085] dark:bg-[#7A7A7A]/[.5]">
             <SelectCourseLayout
                 setIsCloseModal={setIsCloseModal}
                 setConfirmEditModal={setConfirmEditModal}
@@ -152,7 +152,7 @@ export default function ModalSelectCourse({
                     <div className="flex flex-col h-full justify-between">
                         <div className="flex h-[90%] pt-5">
                             <div className="w-[65%]">
-                                <div className="grid grid-cols-3 gap-1 overflow-y-auto scrollbar-none max-h-[450px]">
+                                <div className="grid grid-cols-3 gap-2 overflow-y-auto scrollbar-none max-h-[450px]">
                                     {myCourseData &&
                                         courseSelected &&
                                         myCourseData.map((item: any, index: number) => {
@@ -179,7 +179,7 @@ export default function ModalSelectCourse({
                                         })}
 
                                     <div
-                                        className={`h-[140px] flex items-center justify-center p-1 rounded-md text-[#3983AC] bg-[#f4fbff] hover:cursor-pointer hover:border-[3px] hover:border-[#7FCFFC] transition-all duration-200`}
+                                        className={`h-[140px] flex items-center justify-center p-1 rounded-md text-[#3983AC] bg-[#f4fbff] hover:cursor-pointer hover:border-[3px] hover:border-[#7FCFFC] transition-all duration-200 dark:bg-primary/[.1]`}
                                         onClick={() => {
                                             setStepCreateCourse(1);
                                         }}
@@ -202,21 +202,21 @@ export default function ModalSelectCourse({
                         <div className="flex justify-between">
                             <div className="w-[50%] flex flex-nowrap rounded-2xl p-2">
                                 <div className="w-[50px] flex justify-center items-center ">
-                                    <BsSearch color="#909090" fontSize={"15px"} fontWeight={700} />
+                                    <BsSearch className="text-[#909090] dark:text-white" fontSize={"15px"} fontWeight={700} />
                                 </div>
                                 <div className="w-full flex justify-center items-center">
                                     <input
                                         type="text"
                                         name="search"
                                         placeholder="Which course do you want to select ?"
-                                        className="w-[100%] bg-transparent border-none outline-none"
+                                        className="w-[100%] bg-transparent border-none outline-none dark:placeholder-white"
                                     />
                                 </div>
                             </div>
                             <button
                                 className={`flex items-center text-[16px] justify-center min-w-[100px] ${
                                     courseSelected
-                                        ? "text-[#3983AC] bg-[#7FCFFC]/[.3] hover:cursor-pointer"
+                                        ? "text-[#3983AC] bg-[#7FCFFC]/[.3] hover:cursor-pointer dark:bg-[#54ACDD] dark:text-white"
                                         : "text-[#959595] bg-[#dddddd] hover:cursor-none"
                                 } py-2 px-4 rounded-sm`}
                                 onClick={() => {
@@ -244,7 +244,7 @@ export default function ModalSelectCourse({
                             />
                             <div className="flex justify-between">
                                 <div
-                                    className="flex items-center text-[16px] text-[#949494] py-2 px-4 border border-[#a4a4a4] rounded-sm hover:cursor-pointer"
+                                    className="flex items-center text-[16px] text-[#949494] py-2 px-4 border border-[#949494] rounded-sm hover:cursor-pointer dark:text-white"
                                     onClick={() => {
                                         setStepCreateCourse(0);
                                     }}
@@ -254,7 +254,7 @@ export default function ModalSelectCourse({
 
                                 <button
                                     type="submit"
-                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded-sm min-w-[100px] justify-center"
+                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded-sm min-w-[100px] justify-center dark:text-white dark:bg-primary"
                                 >
                                     <p className="font-bold">Next</p>
                                 </button>
@@ -296,15 +296,15 @@ export default function ModalSelectCourse({
                             />
                             <div className="flex justify-between mr-[35px]">
                                 <button
-                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#949494] rounded-sm justify-center min-w-[100px]"
+                                    className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#949494] rounded-sm justify-center min-w-[100px] dark:border-white"
                                     onClick={() => {
                                         handleBackStep();
                                     }}
                                 >
-                                    <p className="font-bold text-[#777]">Previous</p>
+                                    <p className="font-bold text-[#777] dark:text-white">Previous</p>
                                 </button>
                                 <button
-                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#7FCFFC]/[.3] py-2 px-4 rounded-sm justify-center min-w-[100px]"
+                                    className="flex items-center text-[16px] text-[#3983AC] bg-[#7FCFFC]/[.3] py-2 px-4 rounded-sm justify-center min-w-[100px] dark:bg-primary dark:text-white"
                                     type="submit"
                                 >
                                     <p className="font-bold">Next</p>
