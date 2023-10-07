@@ -2,24 +2,21 @@
 .rdtPicker {
     margin-top: 8px !important;
     right: -2px;
-    width: 469px;
+    width: 322px;
     height: 325px;
     border-radius: 6px;
     box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
 
-    @media (max-width: 1020px) {
-        width: 540px;
+    @media (min-width: 375px) {
+        width: 337px;
     }
 
-    @media (max-width: 600px) {
+    @media (min-width: 640px) {
         width: 460px;
     }
 
-    @media (max-width: 500px) {
-        width: 330px;
-    }
-    @media (max-width: 376px) {
-        width: 315px;
+    @media (min-width: 1024px) {
+        width: 469px;
     }
 }
 
