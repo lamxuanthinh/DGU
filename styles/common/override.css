@@ -1,11 +1,11 @@
 /* override date picker  */
-.rdtPicker {
-    margin-top: 8px !important;
+.rdt .rdtPicker {
+    margin-top: 8px;
     right: -2px;
     width: 322px;
     height: 325px;
     border-radius: 6px;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1);
 
     @media (min-width: 375px) {
         width: 337px;
@@ -21,7 +21,7 @@
 }
 
 .dark .rdtPicker {
-    background-color: #1c1c1c !important;
+    background-color: #1c1c1c;
 }
 
 .rdtPicker table thead {
@@ -48,14 +48,14 @@
     background-color: #7c7c7c49;
 }
 
-.rdtPicker .rdtDay:hover {
-    color: white !important;
+.rdt .rdtPicker .rdtDay:hover {
+    color: white;
     transition-duration: 0.2s;
-    background-color: #1c8bea !important;
+    background-color: #1c8bea;
 }
 
 .dark .rdtPicker .rdtDay:hover {
-    background-color: #7c7c7c !important;
+    background-color: #7c7c7c;
 }
 
 /* month  */
@@ -74,7 +74,7 @@
 }
 
 .rdtPicker .rdtMonths table thead {
-    height: 37px !important;
+    height: 37px;
 }
 
 .rdtPicker .rdtMonths table:nth-child(2) {
@@ -104,7 +104,7 @@
 }
 
 .rdtPicker .rdtYears table thead {
-    height: 37px !important;
+    height: 37px;
 }
 
 .rdtPicker .rdtYears table:nth-child(2) {
