@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Menu from "../Menu";
 import { dataMenuNav } from "../Menu/constants";
+
 import SearchBar from "../SearchBar";
 import { useAppContext } from "@/Context";
 import Message from "../Message";
@@ -56,14 +57,14 @@ const Header = () => {
                             <BiMoon fontSize={"22px"} className="text-[#bcbcbc]" />
                         )}
                     </div>
-                    <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer">
-                        <IoMdNotificationsOutline fontSize={"25px"} />
-                    </div>
                     <Message dataMessage={dataMessage}>
                         <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer">
                             <BiMessageRounded fontSize={"25px"} />
                         </div>
                     </Message>
+                    <div className="mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer">
+                        <IoMdNotificationsOutline fontSize={"25px"} />
+                    </div>
                 </div>
                 <div className="w-[182px] h-full flex justify-center items-center">
                     <Link href="/upload" className="cursor-pointer">
