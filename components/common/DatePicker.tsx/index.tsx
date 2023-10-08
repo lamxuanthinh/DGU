@@ -42,17 +42,17 @@ export default function DatePicker({ className, errorMessage, classBirthday, val
                 ref={inputRef}
                 readOnly
                 value={internalValue ? moment(internalValue).format("YYYY-MM-DD") : "Enter date of birth"}
-                className="hover:cursor-pointer focus-visible:outline-none py-3 text-[14px] w-full"
+                className="dark:bg-[#1a1a1a] hover:cursor-pointer focus-visible:outline-none py-3 text-[14px] w-full"
             />
             <div onClick={handleIconClick} className="pr-2">
-                <IoIosArrowDown className="hover:cursor-pointer text-[27px] px-1 font-extrabold text-[#38383844] hover:text-[#999]" />
+                <IoIosArrowDown className="hover:cursor-pointer text-[27px] px-1 font-extrabold text-[#38383844] dark:text-white hover:text-[#999]" />
             </div>
         </div>
     );
 
     return (
         <div className={className}>
-            <div className={`${classBirthday} flex justify-center rounded-xl items-center bg-white`}>
+            <div className={`${classBirthday} flex justify-center rounded-xl items-center bg-white dark:bg-[#1c1c1c]`}>
                 <Datetime
                     className="rounded text-gray focus-visible:outline-none w-full"
                     renderInput={renderInput}
@@ -61,7 +61,7 @@ export default function DatePicker({ className, errorMessage, classBirthday, val
                     closeOnSelect
                 />
             </div>
-            <div className="mt-1 px-5 text-red-600 min-h-[1.5rem] text-sm">{errorMessage}</div>
+            <div className="mt-1 text-right text-red-600 min-h-[1.5rem] text-sm">{errorMessage}</div>
         </div>
     );
 }

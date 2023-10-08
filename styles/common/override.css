@@ -1,11 +1,27 @@
 /* override date picker  */
-.rdtPicker {
-    margin-top: 8px !important;
+.rdt .rdtPicker {
+    margin-top: 8px;
     right: -2px;
-    width: 469px;
+    width: 322px;
     height: 325px;
     border-radius: 6px;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1) !important;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1);
+
+    @media (min-width: 375px) {
+        width: 337px;
+    }
+
+    @media (min-width: 640px) {
+        width: 460px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 469px;
+    }
+}
+
+.dark .rdtPicker {
+    background-color: #1c1c1c;
 }
 
 .rdtPicker table thead {
@@ -26,20 +42,39 @@
     border-radius: 30px;
 }
 
-.rdtPicker .rdtDay:hover {
-    color: white !important;
+.dark .rdtPicker .rdtDays .rdtPrev:hover,
+.dark .rdtPicker .rdtDays .rdtSwitch:hover,
+.dark .rdtPicker .rdtDays .rdtNext:hover {
+    background-color: #7c7c7c49;
+}
+
+.rdt .rdtPicker .rdtDay:hover {
+    color: white;
     transition-duration: 0.2s;
-    background-color: #1c8bea !important;
+    background-color: #1c8bea;
+}
+
+.dark .rdtPicker .rdtDay:hover {
+    background-color: #7c7c7c;
 }
 
 /* month  */
-
 .rdtPicker .rdtMonth:hover {
     border-radius: 10px;
 }
 
+.dark .rdtPicker .rdtMonth:hover {
+    background-color: #7c7c7c;
+}
+
+.dark .rdtPicker .rdtMonths .rdtPrev:hover,
+.dark .rdtPicker .rdtMonths .rdtSwitch:hover,
+.dark .rdtPicker .rdtMonths .rdtNext:hover {
+    background-color: #7c7c7c49;
+}
+
 .rdtPicker .rdtMonths table thead {
-    height: 37px !important;
+    height: 37px;
 }
 
 .rdtPicker .rdtMonths table:nth-child(2) {
@@ -58,8 +93,18 @@
     border-radius: 10px;
 }
 
+.dark .rdtPicker .rdtYears .rdtPrev:hover,
+.dark .rdtPicker .rdtYears .rdtSwitch:hover,
+.dark .rdtPicker .rdtYears .rdtNext:hover {
+    background-color: #7c7c7c49;
+}
+
+.dark .rdtPicker .rdtYear:hover {
+    background-color: #7c7c7c;
+}
+
 .rdtPicker .rdtYears table thead {
-    height: 37px !important;
+    height: 37px;
 }
 
 .rdtPicker .rdtYears table:nth-child(2) {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RegisterOptions, UseFormRegister } from "react-hook-form";
 import { BsFillEyeSlashFill, BsFillEyeFill } from "react-icons/bs";
 
@@ -33,22 +33,6 @@ export default function Input({
 }: Props) {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
-    const [isTablet, setIsTablet] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth <= 768) setIsMobile(true);
-            else setIsMobile(false);
-            if (window.innerWidth <= 1024) setIsTablet(true);
-            else setIsTablet(false);
-        };
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
 
     const handleFocus = () => {
         setIsFocus(true);
@@ -57,19 +41,16 @@ export default function Input({
     const handleBlur = () => {
         setIsFocus(false);
     };
+
     return (
         <div className={`relative cursor-pointer mb-8`}>
             <div
-                className={`flex items-center h-[52px] rounded-xl overflow-hidden p-1 border border-solid border-black sm:border-none ${
+                className={`flex items-center h-[52px] rounded-xl overflow-hidden p-1 ${
                     !animationBorder ? "border-2 border-opacity-50 border-[#52525233] focus-within:border-black" : ""
                 }`}
             >
                 {animationBorder && (
-                    <svg
-                        height={52}
-                        viewBox={isTablet ? (isMobile ? "0 0 610 55" : "0 0 600 50") : "0 0 470 52"}
-                        className="absolute w-full left-0 top-0 pointer-events-none sm:block hidden"
-                    >
+                    <svg height={50} className="absolute w-full left-0 top-0 pointer-events-none">
                         <defs>
                             <linearGradient id="gradient" gradientTransform="rotate(10)">
                                 <stop offset="5%" stopColor="#29fb65" />
@@ -83,8 +64,7 @@ export default function Input({
                                     ry={12}
                                     strokeWidth={2}
                                     stroke="#ccc"
-                                    className=" lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px]"
-                                    width={590}
+                                    className="customInputRect"
                                     fill="none"
                                     pathLength={1}
                                     strokeDasharray={1}
@@ -100,9 +80,8 @@ export default function Input({
                             ry={12}
                             strokeWidth={2}
                             stroke="#ccc"
-                            width={590}
                             fill="none"
-                            className=" lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px]"
+                            className="customInputRect"
                             mask="url(#border)"
                         />
                         <rect
@@ -112,7 +91,6 @@ export default function Input({
                             ry={12}
                             strokeWidth={2}
                             stroke={"url(#gradient)"}
-                            width={590}
                             fill="none"
                             mask="url(#border)"
                             pathLength={1}
@@ -120,14 +98,14 @@ export default function Input({
                             strokeDashoffset={0.92}
                             className={`${
                                 isFocus ? "stroke-dashoffset-0" : ""
-                            } lg:w-[468px] h-[55px] md:h-[50px] md:w-[590px] transition-stroke-dashoffset duration-700 ease-in-out`}
+                            } transition-stroke-dashoffset duration-700 ease-in-out customInputRect`}
                         />
                     </svg>
                 )}
                 <input
                     type={type == "password" ? (isPasswordVisible ? "text" : "password") : type}
                     className={`
-             bg-[#fff] shadow-inset-white text-[14px] px-5 py-3 w-full text-black rounded-md outline-none placeholder-gray-300 placeholder-opacity-0 transition duration-200
+             shadow-inset-white dark:shadow-[#1a1a1a] text-[14px] px-5 py-3 w-full text-black dark:text-white rounded-md outline-none placeholder-gray-300 placeholder-opacity-0 transition duration-200
              ${type == "password" ? "font-bold" : ""}
              ${animationBorder ? "py-[6px] " : ""}
              ${className}`}
@@ -142,17 +120,17 @@ export default function Input({
                     (isPasswordVisible ? (
                         <BsFillEyeFill
                             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                            className="absolute top-4 right-4"
+                            className="absolute top-[50%] right-4 -translate-y-1/2"
                         />
                     ) : (
                         <BsFillEyeSlashFill
                             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                            className="absolute top-4 right-4"
+                            className="absolute top-[50%] right-4 -translate-y-1/2"
                         />
                     ))}
                 <label
                     htmlFor={name}
-                    className={`text-[14px] px-3 text-black text-opacity-80 bg-[#fff] absolute left-4 top-[14px] transition duration-300 input-text h-7 z-2`}
+                    className={`text-[14px] px-3 text-black dark:text-white bg-white dark:bg-[#1c1c1c] text-opacity-80 absolute left-4 top-[14px] transition duration-300 input-text h-7 z-2`}
                 >
                     {labelInput}
                 </label>
