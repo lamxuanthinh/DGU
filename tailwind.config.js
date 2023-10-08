@@ -32,6 +32,7 @@ module.exports = {
             boxShadow: {
                 "inset-white": "0 0 0px 1000px white inset",
                 menu: "0px 4px 16px rgba(0, 0, 0, 0.12)",
+                darkMenu: "0px 3px 16px rgba(255, 255, 255, 0.1)",
                 softGlow: "0 5px 15px 0 rgba(0,0,0,.3)",
                 cardUploadVideo: "5px 5px 4px 0px rgba(127, 207, 252, 0.25)",
             },

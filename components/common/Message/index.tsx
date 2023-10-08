@@ -33,7 +33,7 @@ export default function Message({ dataMessage, className, children }: IMessagePr
             </div>
             {isMessage && (
                 <ul
-                    className={`bg-white dark:bg-[#2C2C2C] absolute top-[55px] right-0 w-[330px] lg:w-[500px] z-50 rounded-[10px] py-3 px-4 shadow-menu overflow-y-scroll no-scrollbar  ${className}`}
+                    className={`bg-white dark:bg-[#2C2C2C] absolute top-[55px] right-0 w-[330px] lg:w-[500px] z-50 rounded-[10px] py-3 px-4 shadow-menu dark:shadow-darkMenu overflow-y-scroll no-scrollbar  ${className}`}
                 >
                     <div className="flex justify-between pb-4">
                         <div className="lg:text-[18px] font-bold text-[#868585]">Chat</div>
