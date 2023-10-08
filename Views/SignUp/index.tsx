@@ -3,44 +3,39 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema, Schema } from "@/utils/rules";
 import Input from "@/components/common/Input";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "@/components/common/DatePicker.tsx";
 import moment from "moment";
 import { FaTransgender } from "react-icons/fa";
 import Link from "next/link";
-import Select from "react-select";
 import "aos/dist/aos.css";
 import CheckboxInput from "@/components/common/CheckboxInput";
 import { authServices } from "@/apis/auth";
 import SlideSignIn from "@/components/common/SlideSignIn";
 import { useAppContext } from "@/Context";
-import { IQueryNotification } from "@/model";
+import { IDropdownOption, IGenderOption, IQueryNotification } from "@/model";
+import { IoIosArrowDown } from "react-icons/io";
+import Dropdown from "@/components/common/Dropdown";
 
 type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
-const signUpSchema = schema.pick(["email", "password", "confirm_password", "birthday", "gender"]);
+const signUpSchema = schema.pick(["email", "password", "confirm_password", "birthday", "gender", "fullName"]);
 
 export default function SignUp() {
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
-    const selectRef = useRef<HTMLDivElement | null>(null);
     const [birthday, setBirthday] = useState("");
+    const genderOptions = [
+        { value: 0, label: "Male" },
+        { value: 1, label: "Female" },
+        { value: 2, label: "Other" },
+    ];
+    const [genderSelected, setGenderSelected] = useState<IGenderOption>({ value: 0, label: "Male" });
 
     useEffect(() => {
-        const handleMouseDown = (event: any) => {
-            if (!selectRef.current?.contains(event.target)) {
-                setMenuIsOpen(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleMouseDown);
-
         setValue("gender", 0);
-
-        return () => {
-            document.removeEventListener("mousedown", handleMouseDown);
-        };
+        setGenderSelected(genderOptions[0]);
     }, []);
 
     const {
@@ -52,19 +47,16 @@ export default function SignUp() {
         resolver: yupResolver(signUpSchema),
     });
 
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const handleMenu = () => {
-        setMenuIsOpen(!menuIsOpen);
-    };
-
-    const handleDateBirthday = (value: any) => {
+    const handleDateBirthday = (value: string | Date) => {
         const formattedValue = moment(value).format("YYYY-MM-DD");
         setBirthday(formattedValue);
         setValue("birthday", formattedValue);
     };
 
-    const handleGender = (value: any) => {
-        setValue("gender", value.value);
+    const handleGender = (item: IDropdownOption) => {
+        const genderItem = item as IGenderOption;
+        setGenderSelected(genderItem);
+        setValue("gender", genderItem.value);
     };
 
     const onSubmit = handleSubmit(async (data: FormData) => {
@@ -99,14 +91,16 @@ export default function SignUp() {
         }
     });
     return (
-        <div className="h-screen w-screen lg:bg-[#c3c3c3f5] flex justify-center items-center">
-            <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] flex justify-between p-5 pr-10 overflow-hidden">
-                <SlideSignIn />
+        <div className="h-screen w-screen lg:bg-[#c3c3c3f5] dark:bg-[#363636] flex justify-center items-center">
+            <div className="lg:mx-6 max-w-[600px] lg:max-w-none w-full lg:w-[1056px] h-[700px] rounded-2xl bg-[#fff] dark:bg-[#1a1a1a] flex justify-between p-5 lg:pr-10 overflow-hidden">
+                <SlideSignIn keyCurrentSlide={2} />
                 <div data-aos="fade-up" data-aos-duration="2000" className="w-full lg:w-[469px] flex items-center z-2">
                     <div className="w-[100%]">
-                        <div className="pb-8 pt-4">
-                            <h1 className="font-bold text-[32px] pb-3 dark:text-black">Welcome you to DGU!</h1>
-                            <p className="text-[14px] font-semibold dark:text-black">
+                        <div className="py-4 lg:pb-8 text-black dark:text-white">
+                            <h1 className="font-bold text-[27px] lg:text-[32px] text-center lg:text-left pb-3">
+                                Welcome you to DGU!
+                            </h1>
+                            <p className="text-[14px] font-semibold hidden lg:flex">
                                 Please fill in form below to become member of DGU
                             </p>
                         </div>
@@ -127,76 +121,33 @@ export default function SignUp() {
 
                                     <Input
                                         name="fullName"
-                                        labelInput="fullName"
+                                        labelInput="Fullname"
                                         register={register}
                                         type="text"
                                         autoComplete="on"
                                         placeholder="full name"
+                                        errorMessage={errors.fullName?.message}
                                         animationBorder
                                     />
 
                                     <div className="flex justify-between">
-                                        <div
-                                            ref={selectRef}
-                                            className="bg-white mr-2 sm:mr-0 w-[35%] flex justify-start items-center h-[48px] rounded-xl text-[14px] border-[#52525233] border-2"
+                                        <Dropdown
+                                            className="w-[35%] mr-2 sm:mr-0"
+                                            menuItems={genderOptions}
+                                            setItemSelected={handleGender}
                                         >
-                                            <Select
-                                                styles={{
-                                                    container: (base) => ({
-                                                        ...base,
-                                                        width: "100%",
-                                                        height: "100%",
-                                                        display: "flex",
-                                                        alignItems: "center",
-                                                    }),
-                                                    control: (base) => ({
-                                                        ...base,
-                                                        border: 0,
-                                                        boxShadow: "none",
-                                                        cursor: "pointer",
-                                                        width: "100%",
-                                                    }),
-                                                    option: (base) => ({
-                                                        ...base,
-                                                        paddingLeft: "40px",
-                                                        backgroundColor: "white",
-                                                        color: "black",
-                                                    }),
-                                                    input: (base, { selectProps }) => ({
-                                                        ...base,
-                                                        display: "none",
-                                                        opacity: selectProps.menuIsOpen ? 0 : 1,
-                                                        pointerEvents: selectProps.menuIsOpen ? "none" : "auto",
-                                                    }),
-                                                }}
-                                                className=""
-                                                defaultValue={{ value: "male", label: "Male" }}
-                                                onChange={(value) => handleGender(value)}
-                                                options={[
-                                                    { value: "0", label: "Male" },
-                                                    { value: "1", label: "Female" },
-                                                    { value: "2", label: "Others" },
-                                                ]}
-                                                menuIsOpen={menuIsOpen}
-                                                onMenuOpen={handleMenu}
-                                                onMenuClose={handleMenu}
-                                                components={{
-                                                    IndicatorSeparator: null,
-
-                                                    SingleValue: ({ data }) => (
-                                                        <div className="flex items-center" onClick={handleMenu}>
-                                                            <FaTransgender className="text-xl mx-2" />
-                                                            <span className="">{data.label}</span>
-                                                        </div>
-                                                    ),
-                                                }}
-                                            />
-                                        </div>
+                                            <div className="flex">
+                                                <FaTransgender className="text-xl mr-3" />
+                                                <p>{genderSelected.label}</p>
+                                            </div>
+                                            <IoIosArrowDown className="hover:cursor-pointer text-[27px] px-1 font-extrabold text-[#38383844] dark:text-[#fff] hover:text-[#999]" />
+                                        </Dropdown>
                                         <DatePicker
-                                            classBirthday="border-[#52525233] border-2"
+                                            classBirthday="border-[#52525233] dark:border-[#9f9f9f] border-2"
                                             name="birthday"
                                             value={birthday}
                                             onChange={handleDateBirthday}
+                                            errorMessage={errors.birthday?.message}
                                         />
                                     </div>
 
@@ -227,12 +178,14 @@ export default function SignUp() {
                                 <div className="flex justify-start">
                                     <div className="flex justify-center items-center">
                                         <CheckboxInput />
-                                        <p className="px-2 dark:text-black">Do you want to save the password?</p>
+                                        <p className="px-2 text-black dark:text-white">
+                                            Do you want to save the password?
+                                        </p>
                                     </div>
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full font-bold text-[20px] bg-primary mt-4 text-white bg-black hover:bg-[#3d3d3d] px-5 py-3 rounded-xl"
+                                    className="w-full font-bold text-[20px] mt-4 text-white bg-black border-2 dark:bg-[#1C1C1C] hover:bg-[#3d3d3d] dark:hover:bg-[#3b3b3b] px-5 py-3 rounded-xl"
                                 >
                                     Sign up
                                 </button>
@@ -241,7 +194,7 @@ export default function SignUp() {
                         <div className="">
                             <div className="flex justify-center py-5">
                                 <p className="font-medium pr-2 text-[#888585] text-[13px]">Already have an account?</p>
-                                <Link href="signin" className="font-bold pr-2 text-[13px] dark:text-black">
+                                <Link href="signin" className="font-bold pr-2 text-[13px] text-black dark:text-white">
                                     Sign in
                                 </Link>
                             </div>

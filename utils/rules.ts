@@ -11,17 +11,21 @@ export const schema = yup.object({
     password: yup
         .string()
         .required("Password is required !")
-        .min(6, "Length from 6-160 characters !")
-        .max(160, "Length from 6-160 characters !"),
+        .min(6, "Length from 6-100 characters !")
+        .max(100, "Length from 6-100 characters !"),
     confirm_password: yup
         .string()
         .required("Re-entering password is required")
-        .min(6, "Length from 6-160 characters")
-        .max(160, "Length from 6-160 characters")
+        .min(6, "Length from 6-100 characters")
+        .max(100, "Length from 6-100 characters")
         .oneOf([yup.ref("password")], "Password does not match"),
-    birthday: yup.string(),
+    birthday: yup.string().required("Birthday is required"),
     gender: yup.number().required("Gender is required"),
-    fullName: yup.string().required("FullName is required"),
+    fullName: yup
+        .string()
+        .required("FullName is required")
+        .min(4, "Length from 4-50 characters")
+        .max(50, "Length from 4-50 characters"),
 });
 
 export const schemaCourse = yup.object({

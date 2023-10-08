@@ -130,3 +130,9 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
     background-color: white;
     z-index: 5;
 }
+
+/* ---------------------svg-custom------------------------- */
+.customInputRect {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+}

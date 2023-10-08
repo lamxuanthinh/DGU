@@ -1,78 +1,75 @@
-import { useState } from "react";
-import { IconType } from "react-icons";
-import Select from "react-select";
+import { IDropdownOption } from "@/model";
+import { useEffect, useRef, useState } from "react";
 
 interface IDropdownProps {
-    valueSelected: any;
-    setValueSelected: React.Dispatch<React.SetStateAction<string>>;
-    Icon?: IconType;
-    options: {
-        value: string;
-        label: string;
-    }[];
-    classNameLabel?: string;
-    setValue?: any;
+    classOptions?: string;
+    className?: string;
+    classDropdown?: string;
+    menuItems: Array<IDropdownOption>;
+    children: string | React.ReactNode;
+    setItemSelected: (item: IDropdownOption) => void;
 }
 
-export default function Dropdown({ setValueSelected, Icon, options, classNameLabel = "", setValue }: IDropdownProps) {
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
+export default function Dropdown({
+    menuItems,
+    children,
+    classOptions,
+    className,
+    classDropdown,
+    setItemSelected,
+}: IDropdownProps) {
+    const [isDropdown, setIsDropdown] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const handleMenu = () => {
-        setMenuIsOpen(!menuIsOpen);
+    const handleDropdown = () => {
+        setIsDropdown(!isDropdown);
     };
 
-    const handleValue = (value: any) => {
-        setValueSelected(value.value);
-        setValue && setValue("classify", value.value);
+    const handleItemSelected = (item: IDropdownOption) => {
+        setItemSelected(item);
+        setIsDropdown(false);
     };
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdown(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
-        <Select
-            styles={{
-                container: (base) => ({
-                    ...base,
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                }),
-                control: (base) => ({
-                    ...base,
-                    border: 0,
-                    boxShadow: "none",
-                    cursor: "pointer",
-                    width: "100%",
-                }),
-                option: (base) => ({
-                    ...base,
-                    paddingLeft: "40px",
-                    backgroundColor: "white",
-                    color: "black",
-                }),
-                input: (base, { selectProps }) => ({
-                    ...base,
-                    display: "none",
-                    opacity: selectProps.menuIsOpen ? 0 : 1,
-                    pointerEvents: selectProps.menuIsOpen ? "none" : "auto",
-                }),
-            }}
-            className=""
-            defaultValue={{ value: options[0].value, label: options[0].label }}
-            onChange={(value) => handleValue(value)}
-            options={options}
-            menuIsOpen={menuIsOpen}
-            onMenuOpen={handleMenu}
-            onMenuClose={handleMenu}
-            components={{
-                IndicatorSeparator: null,
-
-                SingleValue: ({ data }) => (
-                    <div className="flex items-center justify-start" onClick={handleMenu}>
-                        {Icon && <Icon className="text-xl mx-2" />}
-                        <span className={classNameLabel}>{data.label}</span>
-                    </div>
-                ),
-            }}
-        />
+        <div className={`relative ${className}`} ref={dropdownRef}>
+            <div
+                className={`select-none hover:cursor-pointer bg-white dark:bg-[#1a1a1a] flex justify-between items-center px-[20px] sm:mr-0 h-[48px] rounded-xl text-[14px] border-[#52525233] dark:border-[#9f9f9f] border-2 ${classDropdown}`}
+                onClick={handleDropdown}
+            >
+                {children}
+            </div>
+            {isDropdown && (
+                <ul
+                    className={`bg-white dark:bg-[#2C2C2C] flex flex-col gap-2 absolute top-[55px] left-0 w-full  shadow-menu z-50 rounded-[10px] py-[10px] px-[20px] max-h-[60vh] overflow-y-scroll no-scrollbar  ${classOptions}`}
+                >
+                    {menuItems?.map((item, index) => {
+                        return (
+                            <li
+                                key={index}
+                                className="hover:cursor-pointer"
+                                onClick={() => {
+                                    handleItemSelected(item);
+                                }}
+                            >
+                                {item.label}
+                            </li>
+                        );
+                    })}
+                </ul>
+            )}
+        </div>
     );
 }
