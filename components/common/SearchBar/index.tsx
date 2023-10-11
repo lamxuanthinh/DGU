@@ -60,7 +60,7 @@ function SearchBar() {
     };
 
     return (
-        <div className="relative w-[50vw] bg-white dark:bg-[#2C2C2C]" ref={searchInputRef}>
+        <div className="relative w-[70vw] lg:w-[50vw] bg-white dark:bg-[#2C2C2C]" ref={searchInputRef}>
             <div className="flex px-7 py-1 relative">
                 <Button className="text-base text-[#909090]">
                     <BsSearch />
