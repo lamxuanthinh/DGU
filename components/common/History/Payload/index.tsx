@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "../../Button";
+import Button from "@/components/common/Button";
 import avt from "@/public/Images/Profile/Infomation/boy_thoi_trang.png";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import React, { useState } from "react";

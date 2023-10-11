@@ -1,6 +1,6 @@
 import { AiOutlineCloseCircle, AiOutlineGlobal } from "react-icons/ai";
-import Button from "../../Button";
-import CheckboxInput from "../../CheckboxInput";
+import Button from "@/components/common/Button";
+import CheckboxInput from "@/components/common/CheckboxInput";
 import Image from "next/image";
 import React from "react";
 import { dataHistorySearch } from "./constants";

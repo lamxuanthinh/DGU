@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "../../Button";
+import Button from "@/components/common/Button";
 import { courseData } from "./constants";
 
 function Watched() {
