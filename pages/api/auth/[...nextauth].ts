@@ -21,8 +21,12 @@ const authOption: NextAuthOptions = {
                         if (code !== 200) return null;
                         return metaData;
                     }
+                    //@ts-ignore
+                    const { code, metaData, stack } = await authServices.signIn({ email, password });
+                    console.log(":::CODE:::", code);
+                    console.log(":::STACK:::", stack);
+                    console.log(":::DATA:::", metaData);
 
-                    const { code, metaData } = await authServices.signIn({ email, password });
                     if (code !== 200) return null;
                     return metaData;
                 } catch (error) {
