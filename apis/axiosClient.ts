@@ -1,8 +1,7 @@
-import axios, {AxiosInstance} from "axios";
-
+import axios, { AxiosInstance } from "axios";
 
 const axiosClient: AxiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    baseURL: "https://services.dgu.io.vn/api/v1",
     headers: {
         "Content-Type": "application/json",
     },
@@ -16,7 +15,6 @@ axiosClient.interceptors.request.use(
         return Promise.reject(error);
     },
 );
-
 
 axiosClient.interceptors.response.use(
     async (response) => {
