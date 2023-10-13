@@ -14,6 +14,10 @@ const authOption: NextAuthOptions = {
             credentials: {},
             async authorize(credentials): Promise<any> {
                 const { email, password, token } = credentials as ISignInPayload;
+                console.log("::EMAIL::", email);
+                console.log("::PASSWORD::", password);
+                console.log("::TOKEN::", token);
+
                 try {
                     if (token && email) {
                         const payload = { email };
