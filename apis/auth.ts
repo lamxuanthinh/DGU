@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
     IVerifyEmailApiResponse,
     ISignInPayload,
@@ -28,7 +29,7 @@ export const authServices = {
     },
 
     signIn: async (payload: ISignInPayload): Promise<ISignInApiResponse> => {
-        return await axiosClient.post("/signin", payload);
+        return axios.post("https://services.dgu.io.vn/api/v1/signin", payload).then((res) => res.data);
     },
 
     logout: async (config: IConfigAuth): Promise<ILogoutApiResponse> => {
