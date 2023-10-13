@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import icon404 from "@/public/Images/404/icon-404.png";
 import image404 from "@/public/Images/404/404.png";
+import ImageCustom from "@/components/common/ImageCustom";
 
 const Page404 = () => {
     return (
@@ -25,12 +25,12 @@ const Page404 = () => {
                         </div>
                     </div>
                     <div className="opacity-50">
-                        <Image alt="icon 404" src={image404} />
+                        <ImageCustom alt="icon 404" src={image404} />
                     </div>
                 </div>
             </div>
             <div className="opacity-50">
-                <Image alt="icon 404" src={icon404} />
+                <ImageCustom alt="icon 404" src={icon404} />
             </div>
         </div>
     );

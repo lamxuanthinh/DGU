@@ -80,11 +80,11 @@ export default function SignUp() {
                 return;
             }
             if (emailSent) {
-                setIsLoading(false);
                 await router.push({
                     pathname: "/verifyemail/notification",
                     query: { emailSent },
                 } as { query: IQueryNotification });
+                setIsLoading(false);
             }
         } catch (error) {
             console.log("Error during sign-up API call :", error);

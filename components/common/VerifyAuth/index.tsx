@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import { BiArrowBack } from "react-icons/bi";
 import Button from "../Button";
-import Image from "next/image";
+import ImageCustom from "../ImageCustom";
 
 interface IVerifyAuthProps {
     heading: string;
@@ -19,7 +19,7 @@ function VerifyAuth({ heading, srcImage, description, isVerifySuccess, isVerifyE
                 <BiArrowBack />
             </Button>
             <div className="flex flex-col items-center justify-center gap-y-5">
-                <Image className="max-w-[340px]" src={srcImage} alt="image notification" priority={true} />
+                <ImageCustom className="max-w-[340px]" src={srcImage} alt="image notification" priority={true} />
                 <h1 className={`font-bold text-3xl lg:text-5xl ${isVerifyError ? "text-[#FF0000]" : ""}`}>{heading}</h1>
                 <p
                     className={`max-w-[700px] text-center text-base text-[#565656] dark:text-white lg:text-xl ${
