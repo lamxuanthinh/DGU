@@ -33,26 +33,26 @@ const authOption: NextAuthOptions = {
                         body: JSON.stringify({ email, password }),
                     });
                     const resData = await resFetch.json();
-                    console.log(":::resFetch:::", resData);
-                    const res = await authServices.signIn({ email, password });
-                    console.log(":::RES:::", res);
+                    console.log(":::resFetch:::", resData.metaData);
+                    // const res = await authServices.signIn({ email, password });
+                    // console.log(":::RES:::", res);
 
-                    const check = {
-                        user: {
-                            userId: "65180cbaf043610beed8f8b6",
-                            avatar: "https://res.cloudinary.com/dqa5ffq01/image/upload/v1692901773/Public/Avatar%20Default%20User/male.png",
-                        },
-                        tokens: {
-                            accessToken:
-                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE4MGNiYWYwNDM2MTBiZWVkOGY4YjYiLCJhdmF0YXIiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kcWE1ZmZxMDEvaW1hZ2UvdXBsb2FkL3YxNjkyOTAxNzczL1B1YmxpYy9BdmF0YXIlMjBEZWZhdWx0JTIwVXNlci9tYWxlLnBuZyIsImlhdCI6MTY5NzE5Nzg4NiwiZXhwIjoxNjk3MjE1ODg2fQ.LzR7v4gVBLuc1ir3NNtxseI-HP0sQ3lTlXNCjD1_J8k",
-                            refreshToken:
-                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE4MGNiYWYwNDM2MTBiZWVkOGY4YjYiLCJhdmF0YXIiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kcWE1ZmZxMDEvaW1hZ2UvdXBsb2FkL3YxNjkyOTAxNzczL1B1YmxpYy9BdmF0YXIlMjBEZWZhdWx0JTIwVXNlci9tYWxlLnBuZyIsImlhdCI6MTY5NzE5Nzg4NiwiZXhwIjoxNjk3ODAyNjg2fQ.ENkx2MXvvlXb2HfPPW_AmyI1KD68kD7W4sLM73LaAg8",
-                        },
-                        expiresIn: 1697215886229,
-                    };
+                    // const check = {
+                    //     user: {
+                    //         userId: "65180cbaf043610beed8f8b6",
+                    //         avatar: "https://res.cloudinary.com/dqa5ffq01/image/upload/v1692901773/Public/Avatar%20Default%20User/male.png",
+                    //     },
+                    //     tokens: {
+                    //         accessToken:
+                    //             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE4MGNiYWYwNDM2MTBiZWVkOGY4YjYiLCJhdmF0YXIiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kcWE1ZmZxMDEvaW1hZ2UvdXBsb2FkL3YxNjkyOTAxNzczL1B1YmxpYy9BdmF0YXIlMjBEZWZhdWx0JTIwVXNlci9tYWxlLnBuZyIsImlhdCI6MTY5NzE5Nzg4NiwiZXhwIjoxNjk3MjE1ODg2fQ.LzR7v4gVBLuc1ir3NNtxseI-HP0sQ3lTlXNCjD1_J8k",
+                    //         refreshToken:
+                    //             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE4MGNiYWYwNDM2MTBiZWVkOGY4YjYiLCJhdmF0YXIiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kcWE1ZmZxMDEvaW1hZ2UvdXBsb2FkL3YxNjkyOTAxNzczL1B1YmxpYy9BdmF0YXIlMjBEZWZhdWx0JTIwVXNlci9tYWxlLnBuZyIsImlhdCI6MTY5NzE5Nzg4NiwiZXhwIjoxNjk3ODAyNjg2fQ.ENkx2MXvvlXb2HfPPW_AmyI1KD68kD7W4sLM73LaAg8",
+                    //     },
+                    //     expiresIn: 1697215886229,
+                    // };
 
                     // if (code !== 200) return null;
-                    return check;
+                    return resData.metaData;
                 } catch (error) {
                     console.log("Error during authentication API call :", error);
                 }
