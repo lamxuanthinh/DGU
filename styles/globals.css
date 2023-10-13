@@ -100,7 +100,11 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text {
 
 .dgu-course-card:hover {
     transform: scale(1.03);
-    background-color: white;
+    z-index: 5;
+}
+
+.dark .dgu-course-card:hover {
+    transform: scale(1.03);
     z-index: 5;
 }
 

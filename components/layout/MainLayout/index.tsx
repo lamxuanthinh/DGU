@@ -7,12 +7,19 @@ import NavigationTablet from "@/components/common/NavigationTablet";
 import { LayoutProps } from "@/model";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { HiMenu } from "react-icons/hi";
+import { FiSearch } from "react-icons/fi";
+import { AiFillHome } from "react-icons/ai";
+import { FaGripfire } from "react-icons/fa";
+import { SlSettings } from "react-icons/sl";
+import { MdOutlineHistory } from "react-icons/md";
+import { BiVideoPlus } from "react-icons/bi";
 
 const MainLayout = (props: LayoutProps) => {
     const [isTabletLayout, setIsTabletLayout] = useState(false);
     const { isLoading } = useAppContext();
     const [mounted, setMounted] = useState(false);
+    const [followingSelected, setFollowingSelected] = useState<boolean>(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -46,22 +53,47 @@ const MainLayout = (props: LayoutProps) => {
                                         <div className="h-full flex justify-center">{props.children}</div>
                                     </div>
                                 </div>
-                                <div className="fixed sm:hidden top-0 left-0 w-full p-2 bg-[#9999996f] flex justify-between items-center">
-                                    <div className="mx-3">
-                                        <Link
-                                            href="/"
-                                            className="w-full h-full rounded-l-[5px] flex items-center justify-center cursor-pointer "
-                                        >
-                                            <Image
-                                                className="w-[30px]"
-                                                width={60}
-                                                src={require("@/public/Images/logoDark.png")}
-                                                alt="logo"
-                                            />
-                                        </Link>
+                                <div className="flex justify-between items-center sm:hidden text-[25px] py-3 px-5 bg-[#000000] text-white">
+                                    <Link href="/">
+                                        <AiFillHome />
+                                    </Link>
+                                    <Link href="/">
+                                        <FaGripfire />
+                                    </Link>
+                                    <div className="flex justify-center items-center">
+                                        <BiVideoPlus fontSize={35} className="text-[#7fcffc]" />
                                     </div>
-                                    <div className="bg-[#ff4545] rounded-md text-white px-4 py-2 font-semibold">
-                                        Open app...
+                                    <Link href="/">
+                                        <SlSettings />
+                                    </Link>
+                                    <Link href="/">
+                                        <MdOutlineHistory />
+                                    </Link>
+                                </div>
+                                <div className="fixed sm:hidden top-0 left-0 w-full p-2 bg-[#9999990b] flex justify-between items-center">
+                                    <div className="mx-3">
+                                        <HiMenu fontSize={24} className="text-white" />
+                                    </div>
+                                    <div className="flex gap-5 text-[18px] font-semibold">
+                                        <div
+                                            className={`${followingSelected == true ? "text-white" : "text-[#7a7a7a]"}`}
+                                            onClick={() => {
+                                                setFollowingSelected(true);
+                                            }}
+                                        >
+                                            Following
+                                        </div>
+                                        <div
+                                            className={`${followingSelected == true ? "text-[#7a7a7a]" : "text-white"}`}
+                                            onClick={() => {
+                                                setFollowingSelected(false);
+                                            }}
+                                        >
+                                            For you
+                                        </div>
+                                    </div>
+                                    <div className="rounded-md text-white px-4 py-2 font-semibold">
+                                        <FiSearch fontSize={24} />
                                     </div>
                                 </div>
                             </div>
