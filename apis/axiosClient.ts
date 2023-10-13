@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 
 const axiosClient: AxiosInstance = axios.create({
-    baseURL: "https://services.dgu.io.vn/api/v1",
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     headers: {
         "Content-Type": "application/json",
     },
