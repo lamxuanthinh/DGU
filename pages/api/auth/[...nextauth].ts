@@ -3,6 +3,7 @@ import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authServices } from "@/apis";
 import { ISignInPayload } from "@/model";
+import axios from "axios";
 
 const authOption: NextAuthOptions = {
     session: {
@@ -21,12 +22,14 @@ const authOption: NextAuthOptions = {
                         if (code !== 200) return null;
                         return metaData;
                     }
-                    const res = await authServices.signIn({ email, password });
-                    const { code, metaData } = res || {};
-                    console.log(":::CHECK:::", res);
+                    const response = await axios.post("https://services.dgu.io.vn/api/v1/signin", { email, password });
+                    const data = response.data;
+                    // const res = await authServices.signIn({ email, password });
+                    // const { code, metaData } = res || {};
+                    console.log(":::CHECK:::", data.metaData);
 
-                    if (code !== 200) return null;
-                    return metaData;
+                    // if (code !== 200) return null;
+                    return data.metaData;
                 } catch (error) {
                     console.log("Error during authentication API call :", error);
                 }
