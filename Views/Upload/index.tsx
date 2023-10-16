@@ -35,9 +35,9 @@ export default function Upload() {
         }
     }
 
-    const onOk = () => {
+    const onOk = async () => {
         setIsLoading(true);
-        push("/editvideo");
+        await push("/editvideo");
         setIsLoading(false);
     };
 

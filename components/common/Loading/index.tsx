@@ -9,7 +9,7 @@ const Loading = ({ isIcon = true }: ILoadingProps) => {
     return (
         <div
             className={`fixed left-0 top-0 w-full h-full z-1 flex items-center justify-center bg-black z-[50] ${
-                isIcon ? "opacity-70" : "opacity-5"
+                isIcon ? "opacity-100" : "opacity-5"
             }`}
         >
             {isIcon && <Image src={loadingSetting} alt="loading icon" />}

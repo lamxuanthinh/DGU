@@ -1,18 +1,25 @@
-import loadingIcon from "public/Images/loadingSetting.svg";
-import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "@/Context";
 import { IDataSplitVideo } from "@/model/editVideo";
 import { useRouter } from "next/router";
 import courseApi from "@/apis/course";
 import { configAuth } from "@/apis/configAuth";
 import { useSession } from "next-auth/react";
+import imageError from "public/Images/image-error.png";
+import ImageCustom from "../../ImageCustom";
 
 const Release = () => {
-    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setRenderSelectCourse } =
-        useAppContext();
+    const {
+        courseSelected,
+        listDataSplitVideo,
+        fileVideoUpload,
+        fileThumbVideoUpload,
+        setRenderSelectCourse,
+        setIsLoading,
+    } = useAppContext();
     const router = useRouter();
     const { data: session } = useSession();
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         const handleUploadVideo = async () => {
@@ -49,18 +56,20 @@ const Release = () => {
                 formData.append("video", fileVideoUpload);
             }
             if (session) {
+                setIsLoading(true);
                 await courseApi
                     .updateCourse(formData, configAuth(session))
-                    .then((res) => {
-                        console.log(res);
+                    .then(async (res) => {
                         if (res.code === 201) {
-                            router.push("/");
+                            await router.push("/");
                             setRenderSelectCourse(false);
+                            setIsLoading(false);
                         } else {
-                            console.log("lỗi");
+                            setIsError(true);
+                            setIsLoading(false);
                         }
                     })
-                    .catch((err) => console.log(err));
+                    .catch((err) => console.log("Error during upload video:", err));
             }
         };
 
@@ -70,12 +79,16 @@ const Release = () => {
     }, []);
 
     return (
-        <div className="flex flex-col justify-center items-center h-full">
-            <Image src={loadingIcon} alt="loading" />
-            {/* <div className="bg-[#A1A1A1] w-[300px] h-2.5 rounded relative mt-10">
-                <div className="bg-primary w-[10%] h-full rounded absolute"></div>
-            </div> */}
-        </div>
+        <>
+            {isError && (
+                <div className="h-full flex flex-col justify-center items-center relative">
+                    <div className="">
+                        <ImageCustom className="w-[300px] h-[300px]" src={imageError} alt="image error" />
+                    </div>
+                    <h2 className="text-center text-red-500 text-3xl mt-5">An error occurred, please try again!</h2>
+                </div>
+            )}
+        </>
     );
 };
 export default Release;
