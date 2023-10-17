@@ -1,4 +1,5 @@
 import { useAppContext } from "@/Context";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { BiLogIn, BiVideoPlus } from "react-icons/bi";
@@ -8,6 +9,7 @@ import SearchBar from "../SearchBar";
 
 const SidebarHeader: React.FC<{ active: boolean }> = ({ active }) => {
     const { session } = useAppContext();
+    const { theme } = useTheme();
 
     return (
         <>
@@ -19,15 +21,29 @@ const SidebarHeader: React.FC<{ active: boolean }> = ({ active }) => {
                 >
                     <Link
                         href="/"
-                        className="w-full h-full rounded-l-[5px] bg-[#fff] flex items-center justify-center cursor-pointer "
+                        className="w-full h-full rounded-l-[5px] bg-[#fff] dark:bg-[#2C2C2C] flex items-center justify-center cursor-pointer "
                     >
-                        <Image className="w-[40px]" width={60} src={require("@/public/Images/logo.png")} alt="logo" />
+                        {theme == "light" ? (
+                            <Image
+                                width={40}
+                                className="cursor-pointer"
+                                src={require("@/public/Images/logo.png")}
+                                alt="logo"
+                            />
+                        ) : (
+                            <Image
+                                width={40}
+                                className="cursor-pointer"
+                                src={require("@/public/Images/logoDark.png")}
+                                alt="logo"
+                            />
+                        )}
                     </Link>
                 </div>
                 <div
                     className={`${
                         active ? "active" : ""
-                    } flex items-center justify-end bg-[#fff] py-3 pr-3 h-[65px] sm:w-[calc(100%-115px)]`}
+                    } flex items-center justify-end bg-[#fff] dark:bg-[#2C2C2C] py-3 pr-3 h-[65px] sm:w-[calc(100%-115px)]`}
                 >
                     <div className="flex flex-nowrap items-center sm:justify-between w-full justify-start">
                         <SearchBar />
@@ -36,9 +52,12 @@ const SidebarHeader: React.FC<{ active: boolean }> = ({ active }) => {
                             <div className="flex justify-end w-full">
                                 <div className="w-[182px] h-full justify-center items-center hidden sm:flex">
                                     <Link href="/upload" className="cursor-pointer">
-                                        <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] flex justify-center">
+                                        <div className="py-2 px-4 rounded-[20px] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center">
                                             <div className="flex justify-center items-center pr-3">
-                                                <BiVideoPlus color="#000000" fontSize={"25px"} />
+                                                <BiVideoPlus
+                                                    fontSize={"25px"}
+                                                    className="text-[#000] dark:text-[#fff]"
+                                                />
                                             </div>
                                             <div className="flex justify-center items-center">
                                                 <p className="font-bold w-[100px]">Create Video</p>

@@ -77,7 +77,7 @@ export default function NormalVideo({ data }: INormalVideo) {
     };
 
     const setTimePlayer = (value: any) => {
-        if (videoRef && videoRef.current && isFinite(value)) {
+        if (videoRef.current && isFinite(value)) {
             videoRef.current.currentTime = value;
         }
     };
@@ -91,12 +91,15 @@ export default function NormalVideo({ data }: INormalVideo) {
     const handleCloseModal = () => {
         setOpenModalVideo(false);
 
-        if (window.history.length > 2) {
-            window.history.back();
-        }
-        const timeUpdate = Math.round(currentTimeModal * 100) / 100 - data.controlData.point;
+        const currentPathname = window.location.pathname;
+        let newPath = currentPathname.replace(`video/${dataFullVideo._id}`, "");
 
-        setTimePlayer(timeUpdate);
+        if (currentPathname.includes("video/")) {
+            window.history.pushState(null, "", newPath);
+            const timeUpdate = Math.round(currentTimeModal * 100) / 100 - data.controlData.point;
+
+            setTimePlayer(timeUpdate);
+        }
     };
 
     const handleOpenModal = () => {
@@ -157,8 +160,6 @@ export default function NormalVideo({ data }: INormalVideo) {
                     caption={data.description}
                 />
 
-                <Comments isComment={comment} setComment={setComment} currentUserId="1" />
-
                 <ControlsNormalVideo
                     setComment={setComment}
                     controlData={data.controlData}
@@ -182,6 +183,8 @@ export default function NormalVideo({ data }: INormalVideo) {
                     commentCount={93}
                     shareCount={57}
                 />
+
+                <Comments isComment={comment} setComment={setComment} currentUserId="1" />
 
                 {isProcessPlayVideo === "NA" && (
                     <div

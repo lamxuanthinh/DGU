@@ -27,20 +27,20 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
 
     return (
         <div
-            className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
+            className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[12%] sm:bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
             onClick={() => {
                 setComment(false);
             }}
         >
-            <div className={`${isClose ? "hidden" : "w-[420px] py-3 px-4"}`}>
+            <div className={`${isClose ? "hidden" : "w-[260px] sm:w-[420px] py-3 px-4"}`}>
                 <div className="flex items-center mb-2">
                     <div>
-                        <FaSwatchbook fontSize={"20px"} />
+                        <FaSwatchbook className="text-[15px] sm:text-[20px]" />
                     </div>
-                    <h2 className="px-2 text-[23px] font-bold">{title}</h2>
+                    <h2 className="px-2 text-[15px] sm:text-[23px] font-bold">{title}</h2>
                 </div>
                 <div>
-                    <p className="text-[14px] font-medium pb-2">
+                    <p className="text-[13px] sm:text-[14px] font-medium pb-2">
                         {showFullCaption ? (
                             caption
                         ) : (
@@ -56,12 +56,11 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                     </p>
                 </div>
                 <div className="flex items-center pb-2">
-                    <div className="text-[15px] font-semibold pr-2">Chi tiết khóa học:</div>
                     <div className="flex items-center">
                         <div>
                             <FaExternalLinkAlt fontSize={"12px"} />
                         </div>
-                        <p className="px-2 text-[15px] font-semibold">{title}</p>
+                        <p className="px-2 text-[10px] sm:text-[15px] font-semibold">{title}</p>
                     </div>
                 </div>
                 <div className="flex">

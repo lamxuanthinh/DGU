@@ -39,18 +39,22 @@ export default function ModalNormalVideo({
 
     const handleTimeUpdate = (event: React.SyntheticEvent<HTMLVideoElement, Event>) => {
         const videoElement = event.currentTarget;
+
         setCurrentTime(videoElement.currentTime);
     };
 
     useEffect(() => {
-        // const handleKeyDown = (event: KeyboardEvent) => {
-        //     if (event.code === "Space") {
-        //         event.preventDefault();
-        //     }
-        //     if (event.key === "Escape") {
-        //         handleCloseModal();
-        //     }
-        // };
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.code === "Space") {
+                event.preventDefault();
+                console.log(currentTime);
+            }
+
+            if (event.key === "Escape") {
+                event.preventDefault();
+                handleCloseModal();
+            }
+        };
 
         const handleMouseMove = () => {
             if (!isHovered) {
@@ -69,12 +73,12 @@ export default function ModalNormalVideo({
 
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseleave", handleMouseLeave);
-        // document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("keydown", handleKeyDown);
 
         return () => {
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseleave", handleMouseLeave);
-            // document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("keydown", handleKeyDown);
             clearTimeout(hoverTimeoutRef.current);
         };
     }, []); // eslint-disable-line react-hooks/exhaustive-deps

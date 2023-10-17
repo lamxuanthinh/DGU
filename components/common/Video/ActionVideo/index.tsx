@@ -26,7 +26,7 @@ export default function ActionVideo({
     const [share, setShare] = useState(false);
 
     return (
-        <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[25%] right-6 flex flex-col">
+        <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[18%] sm:top-[25%] right-6 flex flex-col">
             <div className="mb-5 flex justify-center relative">
                 <div className="w-[40px] h-[40px] rounded-[50%] overflow-hidden flex justify-center bg-[#b7b7b7]">
                     <Image width={40} height={40} alt="" src={pathAvatar} />
