@@ -6,20 +6,16 @@ import courseApi from "@/apis/course";
 import { configAuth } from "@/apis/configAuth";
 import { useSession } from "next-auth/react";
 import imageError from "public/Images/image-error.png";
-import ImageCustom from "../../ImageCustom";
+import ImageCustom from "@/components/common/ImageCustom";
+import Loading from "@/components/common/Loading";
 
 const Release = () => {
-    const {
-        courseSelected,
-        listDataSplitVideo,
-        fileVideoUpload,
-        fileThumbVideoUpload,
-        setRenderSelectCourse,
-        setIsLoading,
-    } = useAppContext();
+    const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setRenderSelectCourse } =
+        useAppContext();
     const router = useRouter();
     const { data: session } = useSession();
     const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const handleUploadVideo = async () => {
@@ -88,6 +84,7 @@ const Release = () => {
                     <h2 className="text-center text-red-500 text-3xl mt-5">An error occurred, please try again!</h2>
                 </div>
             )}
+            {isLoading && <Loading isFullOpacity/>}
         </>
     );
 };
