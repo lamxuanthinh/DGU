@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Image from "next/image";
 import CourseItemForm from "@/components/common/ModalSelectCourse/CourseItemForm";
 import SelectCourseLayout from "@/components/layout/SelectCourseLayout";
 import { SchemaCourse } from "@/utils/rules";
@@ -15,6 +14,8 @@ import LessonFillForm from "./LessonFillForm";
 import { ItemCardCourse } from "@/components";
 import { useSession } from "next-auth/react";
 import { configAuth } from "@/apis/configAuth";
+import ImageCustom from "../ImageCustom";
+import Button from "../Button";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,6 +44,7 @@ export default function ModalSelectCourse({
         setStepSelected,
     } = useAppContext();
 
+    const [isLoading, setIsLoading] = useState(false);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
     const { data: session } = useSession();
     const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Release"];
@@ -79,6 +81,7 @@ export default function ModalSelectCourse({
         const { userId } = session?.user || {};
 
         if (session) {
+            setIsLoading(true);
             await courseApi.createCourse(
                 {
                     title: data.title,
@@ -99,6 +102,7 @@ export default function ModalSelectCourse({
         }
 
         setStepCreateCourse(0);
+        setIsLoading(false);
 
         resetCourseData({
             author: "",
@@ -167,7 +171,7 @@ export default function ModalSelectCourse({
                                                         "border-[3px] border-[#7FCFFC] transition-all duration-200"
                                                     }`}
                                                 >
-                                                    <Image
+                                                    <ImageCustom
                                                         alt=""
                                                         width={300}
                                                         height={300}
@@ -202,7 +206,11 @@ export default function ModalSelectCourse({
                         <div className="flex justify-between">
                             <div className="w-[50%] flex flex-nowrap rounded-2xl p-2">
                                 <div className="w-[50px] flex justify-center items-center ">
-                                    <BsSearch className="text-[#909090] dark:text-white" fontSize={"15px"} fontWeight={700} />
+                                    <BsSearch
+                                        className="text-[#909090] dark:text-white"
+                                        fontSize={"15px"}
+                                        fontWeight={700}
+                                    />
                                 </div>
                                 <div className="w-full flex justify-center items-center">
                                     <input
@@ -251,13 +259,13 @@ export default function ModalSelectCourse({
                                 >
                                     <p className="pl-2 font-bold">Previous</p>
                                 </div>
-
-                                <button
+                                <Button
+                                    isLoading={isLoading}
                                     type="submit"
                                     className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded-sm min-w-[100px] justify-center dark:text-white dark:bg-primary"
                                 >
                                     <p className="font-bold">Next</p>
-                                </button>
+                                </Button>
                             </div>
                         </form>
                         <div className="w-[40%] flex justify-center items-center relative bg-upload-video">

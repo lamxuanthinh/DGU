@@ -5,12 +5,12 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 import Button from "@/components/common/Button";
+import Loading from "@/components/common/Loading";
 
 export default function Upload() {
     const {
         setSrcVideoEdit,
         setThumbVideoEdit,
-        setIsLoading,
         isRenderSelectCourse,
         setRenderSelectCourse,
         setFileVideoUpload,
@@ -20,6 +20,7 @@ export default function Upload() {
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
+    const [isLoading,setIsLoading] = useState<boolean>(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,9 +36,9 @@ export default function Upload() {
         }
     }
 
-    const onOk = () => {
+    const onOk = async () => {
         setIsLoading(true);
-        push("/editvideo");
+        await push("/editvideo");
         setIsLoading(false);
     };
 
@@ -173,7 +174,7 @@ export default function Upload() {
                     onCancel={handleCancelCloseModal}
                 />
             )}
-
+            {isLoading && <Loading  isFullOpacity/>}
             {isRenderSelectCourse && (
                 <ModalSelectCourse
                     setRenderSelectCourse={setRenderSelectCourse}

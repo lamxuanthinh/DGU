@@ -1,10 +1,7 @@
 import React, { Dispatch, SetStateAction, memo } from 'react'
-import Image from 'next/image';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { GrUndo, GrRedo } from "react-icons/gr"
-import Menu from '@/components/common/Menu';
 import Button from '@/components/common/Button';
-import { dataMenuNav } from '@/components/common/Menu/constants';
 
 interface INavbarProps {
   onUndo: () => void;
@@ -15,7 +12,6 @@ interface INavbarProps {
 }
 
 function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
-
   const handleNextEdit = () => {
     setIsModal(true)
   }
@@ -47,17 +43,6 @@ function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
         </div>
         <div>
           <div className="flex">
-            <Menu menuItems={dataMenuNav} theme="black" className="!top-[47px] !right-[-164px]">
-              <div className='rounded-[50%] border-[#fff] border-solid border-[4px] '>
-                <Image
-                  src={require("@/public/Images/Profile/Mycourse/boy_thoi_trang.png")}
-                  width={34}
-                  height={34}
-                  className="rounded-full cursor-pointer"
-                  alt="logo"
-                />
-              </div>
-            </Menu>
             <Button className="py-1 w-[150px]" type='text' rightIcon=
               {<IoIosArrowForward className="text-2xl" />}
               onClick={handleNextEdit}

@@ -7,7 +7,7 @@ interface IModalVideoProps {
 
 export default function Modal({ title, onOk, onCancel }: IModalVideoProps) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center transition-opacity z-50 bg-modal-gradient backdrop-blur-sm font-semibold select-none">
+    <div className="fixed inset-0 flex items-center justify-center transition-opacity z-[30] bg-modal-gradient backdrop-blur-sm font-semibold select-none">
       <div className="">
         <p className="text-3xl text-[#DBDBDB]  mb-14 text-center">{title}</p>
         <div className="flex justify-center text-[26px] text-black ">
