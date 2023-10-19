@@ -96,7 +96,7 @@ function SearchBar() {
                 )}
             </div>
             {isSearchResult && (
-                <div className="bg-white  dark:bg-[#2C2C2C] absolute top-[61px] left-[-20px] w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 px-[30px] z-[1]">
+                <div className="bg-white  dark:bg-[#2C2C2C] absolute top-[61px] left-[-20px] w-full sm:w-[500px] lg:w-[400px] xl:w-full shadow-md shadow-[#000]/20 rounded-[5px] py-3 px-[30px] z-[1]">
                     <div className="overflow-y-scroll no-scrollbar max-h-[60vh] pb-8">
                         {isFilter && (
                             <>

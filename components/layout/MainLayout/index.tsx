@@ -117,7 +117,7 @@ const MainLayout = (props: LayoutProps) => {
                     <div className="w-[calc(100%-10px)] h-[calc(100%-10px)] m-1 flex justify-center items-center">
                         <div className="w-full h-full flex justify-between rounded-[10px]">
                             <Sidebar active={false} />
-                            <div className="w-[calc(100%-290px)] flex flex-col">
+                            <div className="w-[calc(100%-290px)] lg:w-[calc(100%-245px)] xl:w-[calc(100%-290px)] flex flex-col">
                                 <Header />
                                 <div className="h-[calc(100%-70px)] mt-[5px] rounded-[5px]">
                                     <div className="w-full h-full overflow-y-auto scrollbar-none rounded-[10px] bg-white dark:bg-[#2C2C2C]">
