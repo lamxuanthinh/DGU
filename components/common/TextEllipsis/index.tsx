@@ -2,13 +2,10 @@ import { useState } from "react";
 
 interface ITextEllipsis {
     content: string;
-    styleContent: {
-        maxHeight: string;
-        textSize: string;
-    };
+    className: string;
 }
 
-export default function TextEllipsis({ content, styleContent }: ITextEllipsis) {
+export default function TextEllipsis({ content, className }: ITextEllipsis) {
     const MAX_CAPTION_LENGTH = 50;
     const truncatedCaption =
         content && content.length > MAX_CAPTION_LENGTH ? content.slice(0, MAX_CAPTION_LENGTH) + "...  " : content;
@@ -21,9 +18,7 @@ export default function TextEllipsis({ content, styleContent }: ITextEllipsis) {
 
     return (
         <div className="w-full flex justify-start items-center">
-            <p
-                className={`max-h-[${styleContent.maxHeight}] overflow-hidden text-[${styleContent.textSize}] font-bold break-all`}
-            >
+            <p className={`overflow-hidden break-all ${className}`}>
                 {showFullCaption ? (
                     content
                 ) : (

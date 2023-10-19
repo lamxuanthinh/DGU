@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { MdZoomOutMap } from "react-icons/md";
 import { SlOptions } from "react-icons/sl";
@@ -18,6 +18,18 @@ export default function Message({ dataMessage, className, children }: IMessagePr
     const handleToggleMessage = () => {
         setIsMessage(!isMessage);
     };
+
+    useEffect(() => {
+        function handleClickOutside(event: any) {
+            if (messageRef.current && !messageRef.current.contains(event.target)) {
+                setIsMessage(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     const truncateString = (str: any, num: any) => {
         if (str.length <= num) {

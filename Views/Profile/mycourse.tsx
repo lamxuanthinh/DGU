@@ -20,7 +20,7 @@ export default function MyCourse() {
                     const { metaData } = (await profile.getAllMyCourse(userId)) || {};
                     setMyCourseData(metaData.courseList);
                 } catch (error) {
-                    console.log("Error during profile:", error)
+                    console.log("Error during profile:", error);
                 }
             };
             fetchMyCourseApi();
@@ -75,7 +75,7 @@ export default function MyCourse() {
                                                 <div className="w-[calc(100%-3rem)] h-[calc(100%-10px)] flex flex-col justify-evenly items-center">
                                                     <TextEllipsis
                                                         content={item.title}
-                                                        styleContent={{ maxHeight: "48px", textSize: "16px" }}
+                                                        className="max-h-[48px] text-[16px] font-bold"
                                                     />
                                                     <div className="w-full flex justify-between">
                                                         {item.price === "0" ? (

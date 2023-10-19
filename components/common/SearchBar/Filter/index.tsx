@@ -29,7 +29,7 @@ function Filter() {
                          <Button className="font-semibold px-2 border border-solid border-[#8F8F8F]/[0.66] rounded-[5px] w-[84px] h-[30px] mr-3">
                               Shorts
                          </Button>
-                         <Button className="font-semibold px-2 bg-[#C9C0C0]/[.42] rounded-[5px] w-[84px] h-[30px] mr-3 text-[#605F5F]" >
+                         <Button className="font-semibold px-2 bg-[#C9C0C0]/[.42] rounded-[5px] w-[84px] h-[30px] mr-3 text-[#605F5F] dark:text-[#fff]" >
                               Course
                          </Button>
                     </div>

@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaExternalLinkAlt, FaSwatchbook } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import TextEllipsis from "../../TextEllipsis";
 
 interface IDescriptionVideo {
     title: string;
@@ -17,10 +18,6 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
     const truncatedCaption =
         caption.length > MAX_CAPTION_LENGTH ? caption.slice(0, MAX_CAPTION_LENGTH) + "...  " : caption;
 
-    const handleSeeMoreClick = () => {
-        setShowFullCaption(true);
-    };
-
     const handleClick = () => {
         setClose(!isClose);
     };
@@ -32,26 +29,19 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                 setComment(false);
             }}
         >
-            <div className={`${isClose ? "hidden" : "w-[260px] sm:w-[420px] py-3 px-4"}`}>
+            <div className={`${isClose ? "hidden" : "w-[260px] sm:w-[420px] my-3 mx-4 overflow-hidden"}`}>
                 <div className="flex items-center mb-2">
                     <div>
                         <FaSwatchbook className="text-[15px] sm:text-[20px]" />
                     </div>
-                    <h2 className="px-2 text-[15px] sm:text-[23px] font-bold">{title}</h2>
+                    <TextEllipsis content={title} className="px-2 text-[15px] sm:text-[23px] font-bold" />
                 </div>
                 <div>
                     <p className="text-[13px] sm:text-[14px] font-medium pb-2">
                         {showFullCaption ? (
                             caption
                         ) : (
-                            <>
-                                {truncatedCaption}
-                                {caption.length > MAX_CAPTION_LENGTH && (
-                                    <span onClick={handleSeeMoreClick} className="font-bold cursor-pointer">
-                                        See More
-                                    </span>
-                                )}
-                            </>
+                            <TextEllipsis className="text-[13px]" content={truncatedCaption} />
                         )}
                     </p>
                 </div>
@@ -60,7 +50,7 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                         <div>
                             <FaExternalLinkAlt fontSize={"12px"} />
                         </div>
-                        <p className="px-2 text-[10px] sm:text-[15px] font-semibold">{title}</p>
+                        <TextEllipsis content={title} className="px-2 text-[10px] sm:text-[15px] font-semibold" />
                     </div>
                 </div>
                 <div className="flex">
