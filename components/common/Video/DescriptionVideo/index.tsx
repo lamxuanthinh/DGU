@@ -12,11 +12,6 @@ interface IDescriptionVideo {
 
 export default function DescriptionVideo({ title, caption = "", hashtags = [], setComment }: IDescriptionVideo) {
     const [isClose, setClose] = useState(false);
-    const [showFullCaption, setShowFullCaption] = useState(false);
-
-    const MAX_CAPTION_LENGTH = 150;
-    const truncatedCaption =
-        caption.length > MAX_CAPTION_LENGTH ? caption.slice(0, MAX_CAPTION_LENGTH) + "...  " : caption;
 
     const handleClick = () => {
         setClose(!isClose);
@@ -38,11 +33,7 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                 </div>
                 <div>
                     <p className="text-[13px] sm:text-[14px] font-medium pb-2">
-                        {showFullCaption ? (
-                            caption
-                        ) : (
-                            <TextEllipsis className="text-[13px]" content={truncatedCaption} />
-                        )}
+                        <TextEllipsis className="text-[13px]" content={caption} />
                     </p>
                 </div>
                 <div className="flex items-center pb-2">
