@@ -9,6 +9,7 @@ import "@/styles/common/override.css";
 import "@/styles/common/animation.css";
 import "@/styles/common/comments.css";
 import "@/styles/common/shadow.css";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const Layout = Component.Layout ?? EmptyLayout;
@@ -27,4 +28,4 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
