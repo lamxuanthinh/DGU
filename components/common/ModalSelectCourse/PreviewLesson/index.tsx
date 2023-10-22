@@ -19,7 +19,12 @@ export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
 
             <div className="w-full h-[160px] flex justify-center items-center">
                 <div className="w-[calc(100%-3rem)] h-[calc(100%-10px)] flex flex-col justify-around items-center">
-                    <TextEllipsis content={lessonDataInput.title} className="max-h-[48px] text-[16px] font-bold" />
+                    <TextEllipsis
+                        content={lessonDataInput.title}
+                        className="max-h-[48px] text-[16px] font-bold"
+                        isSeeMore
+                        MAX_CONTENT_LENGTH={150}
+                    />
 
                     <div className="w-full flex flex-wrap justify-start items-center">
                         <Image

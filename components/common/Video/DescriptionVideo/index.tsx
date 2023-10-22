@@ -12,9 +12,12 @@ interface IDescriptionVideo {
 
 export default function DescriptionVideo({ title, caption = "", hashtags = [], setComment }: IDescriptionVideo) {
     const [isClose, setClose] = useState(false);
+    const MAX_CONTENT_LENGTH = 100;
+    const [isSeeMore, setSeeMore] = useState<boolean>(title.length > MAX_CONTENT_LENGTH ? false : true);
 
-    const handleClick = () => {
+    const handleClose = () => {
         setClose(!isClose);
+        setSeeMore(false);
     };
 
     return (
@@ -24,42 +27,81 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                 setComment(false);
             }}
         >
-            <div className={`${isClose ? "hidden" : "w-[260px] sm:w-[420px] my-3 mx-4 overflow-hidden"}`}>
-                <div className="flex items-center mb-2">
-                    <div>
-                        <FaSwatchbook className="text-[15px] sm:text-[20px]" />
-                    </div>
-                    <TextEllipsis content={title} className="px-2 text-[15px] sm:text-[23px] font-bold" />
+            <div
+                className={`${
+                    isClose ? "hidden" : "w-[260px] sm:w-[420px] my-3 mx-4 max-h-[350px] overflow-auto scrollbar-none"
+                }`}
+            >
+                <div className="flex items-center mb-2 text-[15px] font-bold">
+                    <FaSwatchbook className="text-[15px] sm:text-[20px]" />
+                    {title.length >= MAX_CONTENT_LENGTH && isSeeMore == false && (
+                        <TextEllipsis
+                            content={title}
+                            className="px-2 text-[15px] sm:text-[20px] font-bold"
+                            MAX_CONTENT_LENGTH={MAX_CONTENT_LENGTH}
+                            isSeeMore={true}
+                            handleOpenSeeMore={() => {
+                                setSeeMore(true);
+                            }}
+                        />
+                    )}
+                    {title.length >= MAX_CONTENT_LENGTH && isSeeMore == true && (
+                        <TextEllipsis
+                            content={title}
+                            className="px-2 text-[15px] sm:text-[20px] font-bold"
+                            isShowFull
+                        />
+                    )}
+                    {title.length < MAX_CONTENT_LENGTH && (
+                        <TextEllipsis
+                            content={title}
+                            className="px-2 text-[15px] sm:text-[20px] font-bold"
+                            isShowFull
+                        />
+                    )}
                 </div>
-                <div>
-                    <p className="text-[13px] sm:text-[14px] font-medium pb-2">
-                        <TextEllipsis className="text-[13px]" content={caption} />
-                    </p>
-                </div>
-                <div className="flex items-center pb-2">
-                    <div className="flex items-center">
-                        <div>
-                            <FaExternalLinkAlt fontSize={"12px"} />
+                {title.length >= MAX_CONTENT_LENGTH && isSeeMore == true && (
+                    <TextEllipsis
+                        content={caption}
+                        className="text-[13px]"
+                        handleOpenSeeMore={() => {
+                            setSeeMore(false);
+                        }}
+                        isShowFull
+                        isHideLess
+                    />
+                )}
+                {title.length < MAX_CONTENT_LENGTH && (
+                    <TextEllipsis className="text-[13px]" content={caption} isSeeMore isHideLess />
+                )}
+
+                {hashtags.length > 0 && (
+                    <div className="flex items-center pb-2">
+                        <div className="flex items-center">
+                            <div>
+                                <FaExternalLinkAlt fontSize={"12px"} />
+                            </div>
+                            <div className="flex">
+                                {hashtags.map((item: any, index: any) => {
+                                    return (
+                                        <p key={index} className="font-bold text-[15px]">
+                                            #{item.name}
+                                            {`${hashtags.length - 1 == index ? "." : ","}`}
+                                        </p>
+                                    );
+                                })}
+                            </div>
                         </div>
-                        <TextEllipsis content={title} className="px-2 text-[10px] sm:text-[15px] font-semibold" />
                     </div>
-                </div>
-                <div className="flex">
-                    {hashtags.map((item: any, index: any) => {
-                        return (
-                            <p key={index} className="font-bold text-[15px]">
-                                #{item.name}
-                                {`${hashtags.length - 1 == index ? "." : ","}`}
-                            </p>
-                        );
-                    })}
-                </div>
+                )}
             </div>
             <div
                 className={`${
                     isClose ? "bg-[#515151b1]" : ""
                 } rounded-xl flex items-center px-1 hover:cursor-pointer hover:bg-[#9696966f] duration-300`}
-                onClick={handleClick}
+                onClick={() => {
+                    handleClose();
+                }}
             >
                 {isClose ? <IoIosArrowForward /> : <IoIosArrowBack />}
             </div>

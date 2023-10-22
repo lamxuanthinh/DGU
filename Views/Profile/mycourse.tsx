@@ -76,6 +76,8 @@ export default function MyCourse() {
                                                     <TextEllipsis
                                                         content={item.title}
                                                         className="max-h-[48px] text-[16px] font-bold"
+                                                        isSeeMore
+                                                        MAX_CONTENT_LENGTH={150}
                                                     />
                                                     <div className="w-full flex justify-between">
                                                         {item.price === "0" ? (
