@@ -17,7 +17,6 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
 
     const handleClose = () => {
         setClose(!isClose);
-        setSeeMore(false);
     };
 
     return (
