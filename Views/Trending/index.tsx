@@ -10,6 +10,7 @@ import { GiFilmStrip } from "react-icons/gi";
 
 import { DATA_TRENDING_PEOPLE, DATA_FEATURED_VIDEOS, DATA_TOP_FEATURED_VIDEOS, DATA_SHORTS } from "./constants";
 import { ItemCardCourse, ItemCardVideo, ItemCardShort } from "@/components";
+import ImageCustom from "@/components/common/ImageCustom";
 
 const Trending = () => {
     const [courseShowArray, setCourseShowArray] = useState<Array<any>>(DATA_SHORTS.slice(0, 5));
@@ -65,14 +66,10 @@ const Trending = () => {
                                 key={index}
                                 className="flex-1 text-center flex flex-col items-center border border-solid border-black/[.13] pb-2 rounded-md min-w-[125px] max-w-[200px] cursor-pointer hover:-translate-y-2 transition-transform duration-500"
                             >
-                                <Image
-                                    width={200}
-                                    height={200}
-                                    className="w-full h-[150px] rounded-md object-cover"
-                                    src={item.srcImage}
-                                    alt="avatar"
-                                />
-                                <h4 className="text-[#010101] dark:text-white dark:shadow-2xl text-lg font-semibold">{item.name}</h4>
+                                <ImageCustom className="w-full h-[150px] rounded-md" src={item.srcImage} alt="avatar" />
+                                <h4 className="text-[#010101] dark:text-white dark:shadow-2xl text-lg font-semibold">
+                                    {item.name}
+                                </h4>
                                 <span className="text-[#7E7E7E] text-[15px] font-medium">{item.views}</span>
                             </div>
                         ))}
