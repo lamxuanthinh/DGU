@@ -46,7 +46,9 @@ export default function Input({
         <div className={`relative cursor-pointer mb-8`}>
             <div
                 className={`flex items-center h-[52px] rounded-xl overflow-hidden p-1 ${
-                    !animationBorder ? "border-2 border-opacity-50 border-[#52525233] focus-within:border-black" : ""
+                    !animationBorder
+                        ? "border-2 border-opacity-50 border-[#52525233] dark:border-[#adadad]"
+                        : ""
                 }`}
             >
                 {animationBorder && (
