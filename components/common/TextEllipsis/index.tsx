@@ -3,33 +3,35 @@ import { useState } from "react";
 interface ITextEllipsis {
     content: string;
     className: string;
-    MAX_CONTENT_LENGTH?: number;
+    characterLength?: number;
     isSeeMore?: boolean;
     isHideLess?: boolean;
     isShowFull?: boolean;
-    handleOpenSeeMore?: () => void;
+    handleExternalFunctions?: () => void;
 }
 
 export default function TextEllipsis({
     content,
     className,
-    MAX_CONTENT_LENGTH = 50,
-    handleOpenSeeMore,
+    characterLength = 50,
+    handleExternalFunctions,
     isSeeMore = false,
     isHideLess = false,
     isShowFull = false,
 }: ITextEllipsis) {
     const truncatedContent =
-        content && content.length > MAX_CONTENT_LENGTH ? content.slice(0, MAX_CONTENT_LENGTH) + "...  " : content;
+        content && content.length > characterLength ? content.slice(0, characterLength) + "...  " : content;
 
     const [showFullContent, setShowFullContent] = useState(isShowFull);
 
     const handleSeeMore = () => {
         setShowFullContent(true);
+        handleExternalFunctions && handleExternalFunctions();
     };
 
     const handleHideLess = () => {
         setShowFullContent(false);
+        handleExternalFunctions && handleExternalFunctions();
     };
 
     return (
@@ -42,7 +44,6 @@ export default function TextEllipsis({
                         <span
                             onClick={() => {
                                 handleHideLess();
-                                handleOpenSeeMore && handleOpenSeeMore();
                             }}
                             className="font-bold cursor-pointer underline"
                         >
@@ -53,11 +54,10 @@ export default function TextEllipsis({
                 {!showFullContent && isSeeMore && (
                     <>
                         {truncatedContent}
-                        {content && content.length > MAX_CONTENT_LENGTH && (
+                        {content && content.length > characterLength && (
                             <span
                                 onClick={() => {
                                     handleSeeMore();
-                                    handleOpenSeeMore && handleOpenSeeMore();
                                 }}
                                 className="font-bold cursor-pointer underline"
                             >

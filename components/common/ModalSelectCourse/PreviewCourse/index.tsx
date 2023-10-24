@@ -36,7 +36,7 @@ export default function PreviewCourse({ courseDataInput }: IPreviewCourse) {
                         content={courseDataInput.title}
                         className="max-h-[48px] text-[16px] font-bold"
                         isSeeMore
-                        MAX_CONTENT_LENGTH={150}
+                        characterLength={150}
                     />
 
                     <div className="w-full h-[25px] flex flex-wrap justify-start ">

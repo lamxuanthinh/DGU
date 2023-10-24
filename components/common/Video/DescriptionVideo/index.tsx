@@ -37,9 +37,9 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                         <TextEllipsis
                             content={title}
                             className="px-2 text-[15px] sm:text-[20px] font-bold"
-                            MAX_CONTENT_LENGTH={MAX_CONTENT_LENGTH}
+                            characterLength={MAX_CONTENT_LENGTH}
                             isSeeMore={true}
-                            handleOpenSeeMore={() => {
+                            handleExternalFunctions={() => {
                                 setSeeMore(true);
                             }}
                         />
@@ -63,7 +63,7 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                     <TextEllipsis
                         content={caption}
                         className="text-[13px]"
-                        handleOpenSeeMore={() => {
+                        handleExternalFunctions={() => {
                             setSeeMore(false);
                         }}
                         isShowFull

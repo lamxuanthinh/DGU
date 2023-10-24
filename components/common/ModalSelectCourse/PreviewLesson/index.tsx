@@ -23,7 +23,7 @@ export default function PreviewLesson({ lessonDataInput }: IPreviewCourse) {
                         content={lessonDataInput.title}
                         className="max-h-[48px] text-[16px] font-bold"
                         isSeeMore
-                        MAX_CONTENT_LENGTH={150}
+                        characterLength={150}
                     />
 
                     <div className="w-full flex flex-wrap justify-start items-center">
