@@ -12,7 +12,9 @@ function ImageCustom({ src, alt, className, priority }: IImageCustomProps) {
 
     return (
         <div className={`overflow-hidden relative ${className}`}>
-            {isLoading && <div className=" absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse "></div>}
+            {isLoading && (
+                <div className=" absolute inset-0 bg-[#E4E6EB] dark:bg-[#8A8D91] opacity-25 animate-pulse "></div>
+            )}
             <Image
                 fill
                 onLoad={() => {
