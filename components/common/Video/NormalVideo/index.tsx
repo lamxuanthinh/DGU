@@ -116,6 +116,24 @@ export default function NormalVideo({ data }: INormalVideo) {
     };
 
     useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.code === "Space") {
+                event.preventDefault();
+            }
+
+            if (event.key === "Escape") {
+                event.preventDefault();
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
         if (isVisibile) {
             handlePlay();
         } else if (!isVisibile) {

@@ -47,7 +47,12 @@ export default function ModalNormalVideo({
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.code === "Space") {
                 event.preventDefault();
-                console.log(currentTime);
+
+                if (statusModal == "Playing") {
+                    handlePauseByPlayerModal();
+                } else if (statusModal == "Paused") {
+                    handlePlayByPlayerModal();
+                }
             }
 
             if (event.key === "Escape") {
@@ -81,7 +86,7 @@ export default function ModalNormalVideo({
             document.removeEventListener("keydown", handleKeyDown);
             clearTimeout(hoverTimeoutRef.current);
         };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [statusModal]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div
