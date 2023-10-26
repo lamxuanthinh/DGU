@@ -16,7 +16,7 @@ interface CommentProps {
     currentUserId: string;
 }
 
-const Comment: React.FC<CommentProps> = ({
+export default function Comment({
     comment,
     replies,
     setActiveComment,
@@ -26,7 +26,7 @@ const Comment: React.FC<CommentProps> = ({
     addComment,
     parentId = null,
     currentUserId,
-}) => {
+}: CommentProps) {
     const [isReplying, setIsReplying] = useState(false);
     const fiveMinutes = 300000;
     const timePassed = new Date().getTime() - new Date(comment.createdAt).getTime() > fiveMinutes;
@@ -169,6 +169,4 @@ const Comment: React.FC<CommentProps> = ({
             </div>
         </div>
     );
-};
-
-export default Comment;
+}

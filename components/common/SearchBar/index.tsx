@@ -16,8 +16,10 @@ function SearchBar() {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        function handleClickOutside(event: any) {
-            if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        function handleClickOutside(event: MouseEvent) {
+            const targetElement = event.target as HTMLElement;
+
+            if (searchInputRef.current && !searchInputRef.current.contains(targetElement)) {
                 setIsSearchResult(false);
             }
         }

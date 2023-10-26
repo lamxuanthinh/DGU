@@ -26,8 +26,10 @@ function Menu({ menuItems, children, theme, className }: IMenuProps) {
     };
 
     useEffect(() => {
-        function handleClickOutside(event: any) {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
+        function handleClickOutside(event: MouseEvent) {
+            const targetElement = event.target as HTMLElement;  
+
+            if (menuRef.current && !menuRef.current.contains(targetElement)) {
                 setIsMenu(false);
             }
         }

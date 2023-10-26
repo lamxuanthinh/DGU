@@ -10,14 +10,14 @@ interface CommentFormProps {
     initialText?: string;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({
+export default function CommentForm({
     handleSubmit,
     submitLabel,
     hasCancelButton = false,
     handleCancel,
     initialText = "",
     isEditing,
-}) => {
+}: CommentFormProps) {
     const [text, setText] = useState(initialText);
     const isTextareaDisabled = text.length === 0;
 
@@ -27,7 +27,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
         setText("");
     };
 
-    const onTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const onTextChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setText(event.target.value);
     };
 
@@ -52,7 +52,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
             <input
                 className="text-black text-[14px] sm:text-[16px] w-[75%] dark:text-white rounded-xl p-3 border border-solid border-green-500 dark:border-white"
                 value={text}
-                onChange={(e: any) => {
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     onTextChange(e);
                 }}
                 placeholder="Add a comment…"
@@ -71,6 +71,4 @@ const CommentForm: React.FC<CommentFormProps> = ({
             )}
         </form>
     );
-};
-
-export default CommentForm;
+}

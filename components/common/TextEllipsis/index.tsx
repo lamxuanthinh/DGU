@@ -7,6 +7,7 @@ interface ITextEllipsis {
     isSeeMore?: boolean;
     isHideLess?: boolean;
     isShowFull?: boolean;
+    isThreeDots?: boolean;
     handleExternalFunctions?: () => void;
 }
 
@@ -15,6 +16,7 @@ export default function TextEllipsis({
     className,
     characterLength = 50,
     handleExternalFunctions,
+    isThreeDots = false,
     isSeeMore = false,
     isHideLess = false,
     isShowFull = false,
@@ -66,6 +68,7 @@ export default function TextEllipsis({
                         )}
                     </>
                 )}
+                {!showFullContent && isThreeDots && <>{truncatedContent}</>}
             </p>
         </div>
     );

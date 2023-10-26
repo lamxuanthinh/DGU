@@ -146,13 +146,13 @@ export default function Video({ data }: IVideo) {
         }
     };
 
-    const setTimePlayerModal = (value: any) => {
+    const setTimePlayerModal = (value: number | string) => {
         if (player && playerModal.video) {
             playerModal.video.currentTime = value;
         }
     };
 
-    const setTimePlayer = (value: any) => {
+    const setTimePlayer = (value: number | string) => {
         if (player && player.video) {
             player.video.currentTime = value;
         }

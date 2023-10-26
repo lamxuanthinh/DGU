@@ -4,6 +4,7 @@ import { MdZoomOutMap } from "react-icons/md";
 import { SlOptions } from "react-icons/sl";
 import Image from "next/image";
 import { IMessageItems } from "@/model/message";
+import TextEllipsis from "../TextEllipsis";
 
 interface IMessageProps {
     className?: string;
@@ -20,8 +21,10 @@ export default function Message({ dataMessage, className, children }: IMessagePr
     };
 
     useEffect(() => {
-        function handleClickOutside(event: any) {
-            if (messageRef.current && !messageRef.current.contains(event.target)) {
+        function handleClickOutside(event: MouseEvent) {
+            const targetElement = event.target as HTMLElement;
+
+            if (messageRef.current && !messageRef.current.contains(targetElement)) {
                 setIsMessage(false);
             }
         }
@@ -30,13 +33,6 @@ export default function Message({ dataMessage, className, children }: IMessagePr
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
-
-    const truncateString = (str: any, num: any) => {
-        if (str.length <= num) {
-            return str;
-        }
-        return str.slice(0, num) + "...";
-    };
 
     return (
         <div className="relative" ref={messageRef}>
@@ -72,9 +68,12 @@ export default function Message({ dataMessage, className, children }: IMessagePr
                                         </div>
                                         <div className="font-semibold">
                                             <h2>{item.name}</h2>
-                                            <p className="text-[#868585] text-[15px]">
-                                                {truncateString(item.lastMessageLine, 40)}
-                                            </p>
+                                            <TextEllipsis
+                                                content={item.lastMessageLine}
+                                                className="text-[#868585] text-[15px]"
+                                                isThreeDots
+                                                characterLength={40}
+                                            />
                                         </div>
                                     </div>
                                     <div className="text-[#868585] text-[13px]">{item.time}</div>
