@@ -60,8 +60,8 @@ export default function ControlsNormalVideo({
                 setComment(false);
             }}
         >
-            <div className="py-1 px-4">
-                <div className="hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
+            <div className="px-4">
+                <div className="py-2 hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
                     <div className="relative bg-opacity-50 flex items-center justify-between">
                         {Array.isArray(controlData) ? (
                             controlData.map((item: any) => {

@@ -48,7 +48,7 @@ const MainLayout = (props: LayoutProps) => {
                             <div className="absolute w-full h-[1px] bg-black/[0.1] top-[70px]"></div>
                             <div className="w-full flex flex-col relative">
                                 <SidebarHeader active={false} />
-                                <div className="sm:hidden top-0 left-0 w-full p-2 bg-[#000] flex justify-between items-center">
+                                <div className="sm:hidden top-0 left-0 h-[65px] w-full p-2 bg-[#000] flex justify-between items-center">
                                     <div className="mx-3">
                                         <Image
                                             className="ml-[10px] cursor-pointer"
@@ -79,7 +79,7 @@ const MainLayout = (props: LayoutProps) => {
                                         <FiSearch fontSize={24} />
                                     </div>
                                 </div>
-                                <div className="h-full sm:h-[calc(100%-70px)] sm:mt-[5px] rounded-[5px]">
+                                <div className="h-[calc(100%-70px)] sm:h-[calc(100%-70px)] sm:mt-[5px] rounded-[5px]">
                                     <div className="w-full h-full overflow-y-auto scrollbar-none sm:rounded-[10px]">
                                         <div className="h-full flex justify-center">{props.children}</div>
                                     </div>
