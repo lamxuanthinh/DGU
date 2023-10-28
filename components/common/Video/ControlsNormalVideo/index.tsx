@@ -7,14 +7,14 @@ interface IControlsVideo {
     totalTime: number;
     statusVideo: string;
     currentTime: number;
+    modalVideoRef: React.RefObject<HTMLVideoElement>;
     setCurrentTime: Dispatch<SetStateAction<number>>;
     setComment: Dispatch<SetStateAction<boolean>>;
     handlePlayByPlayer: () => void;
     handlePauseByPlayer: () => void;
-    setTimePlayerModal: (value: string | number) => void;
     isOpenModalVideo: boolean;
-    handleCloseModal: () => void;
-    handleOpenModal: () => void;
+    handleCloseModal?: () => void;
+    handleOpenModal?: () => void;
 }
 
 export default function ControlsNormalVideo({
@@ -26,7 +26,7 @@ export default function ControlsNormalVideo({
     setComment,
     handlePlayByPlayer,
     handlePauseByPlayer,
-    setTimePlayerModal,
+    modalVideoRef,
     isOpenModalVideo,
     handleCloseModal,
     handleOpenModal,
@@ -45,6 +45,12 @@ export default function ControlsNormalVideo({
         const time = (calcPercentProgress(event) / 100) * totalTime;
         setCurrentTime(time);
         setTimePlayerModal(time);
+    };
+
+    const setTimePlayerModal = (value: any) => {
+        if (modalVideoRef.current && isFinite(value)) {
+            modalVideoRef.current.currentTime = value;
+        }
     };
 
     return (
@@ -130,12 +136,16 @@ export default function ControlsNormalVideo({
                 >
                     {statusVideo === "Playing" ? <FaPause /> : <FaPlay />}
                 </div>
-                <div
-                    className="p-2 hover:cursor-pointer"
-                    onClick={isOpenModalVideo ? handleCloseModal : handleOpenModal}
-                >
-                    <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
-                </div>
+                {isOpenModalVideo && handleCloseModal && (
+                    <div className="p-2 hover:cursor-pointer" onClick={handleCloseModal}>
+                        <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
+                    </div>
+                )}
+                {!isOpenModalVideo && handleOpenModal && (
+                    <div className="p-2 hover:cursor-pointer" onClick={handleOpenModal}>
+                        <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -16,15 +16,14 @@ interface INormalVideo {
 
 export default function NormalVideo({ data }: INormalVideo) {
     const { isProcessPlayVideo, setProcessPlayVideo } = useAppContext();
-    const [comment, setComment] = useState(false);
     const [status, setStatus] = useState("NA");
     const [statusModal, setStatusModal] = useState("NA");
+    const [comment, setComment] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [isOpenModalVideo, setOpenModalVideo] = useState(false);
     const dataFullVideo = data.fullVideoInfo;
     const videoRef = React.useRef<HTMLVideoElement>(null);
     const modalVideoRef = React.useRef<HTMLVideoElement>(null);
-    const [currentTimeModal, setCurrentTimeModal] = useState(0);
 
     const options = {
         root: null,
@@ -76,32 +75,6 @@ export default function NormalVideo({ data }: INormalVideo) {
         }
     };
 
-    const setTimePlayer = (value: any) => {
-        if (videoRef.current && isFinite(value)) {
-            videoRef.current.currentTime = value;
-        }
-    };
-
-    const setTimePlayerModal = (value: any) => {
-        if (modalVideoRef.current && isFinite(value)) {
-            modalVideoRef.current.currentTime = value;
-        }
-    };
-
-    const handleCloseModal = () => {
-        setOpenModalVideo(false);
-
-        const currentPathname = window.location.pathname;
-        let newPath = currentPathname.replace(`video/${dataFullVideo._id}`, "");
-
-        if (currentPathname.includes("video/")) {
-            window.history.pushState(null, "", newPath);
-            const timeUpdate = Math.round(currentTimeModal * 100) / 100 - data.controlData.point;
-
-            setTimePlayer(timeUpdate);
-        }
-    };
-
     const handleOpenModal = () => {
         setOpenModalVideo(!isOpenModalVideo);
 
@@ -109,29 +82,7 @@ export default function NormalVideo({ data }: INormalVideo) {
         if (!currentPathname.includes("video/")) {
             window.history.pushState(null, "", `video/${dataFullVideo._id}`);
         }
-
-        const timeUpdate = Math.round(currentTime * 100) / 100 + data.controlData.point;
-
-        setTimePlayerModal(timeUpdate);
     };
-
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.code === "Space") {
-                event.preventDefault();
-            }
-
-            if (event.key === "Escape") {
-                event.preventDefault();
-            }
-        };
-
-        document.addEventListener("keydown", handleKeyDown);
-
-        return () => {
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (isVisibile) {
@@ -179,6 +130,7 @@ export default function NormalVideo({ data }: INormalVideo) {
                 />
 
                 <ControlsNormalVideo
+                    modalVideoRef={videoRef}
                     setComment={setComment}
                     controlData={data.controlData}
                     totalTime={videoRef.current ? videoRef.current.duration : 0}
@@ -187,9 +139,7 @@ export default function NormalVideo({ data }: INormalVideo) {
                     setCurrentTime={setCurrentTime}
                     handlePlayByPlayer={handlePlay}
                     handlePauseByPlayer={handlePause}
-                    setTimePlayerModal={setTimePlayer}
                     isOpenModalVideo={isOpenModalVideo}
-                    handleCloseModal={handleCloseModal}
                     handleOpenModal={handleOpenModal}
                 />
 
@@ -218,19 +168,18 @@ export default function NormalVideo({ data }: INormalVideo) {
                 )}
             </div>
 
-            <ModalNormalVideo
-                dataVideo={dataFullVideo}
-                modalVideoRef={modalVideoRef}
-                statusModal={statusModal}
-                handlePlayByPlayerModal={handlePlayModal}
-                handlePauseByPlayerModal={handlePauseModal}
-                currentTime={currentTimeModal}
-                setCurrentTime={setCurrentTimeModal}
-                setTimePlayerModal={setTimePlayerModal}
-                isOpenModalVideo={isOpenModalVideo}
-                handleCloseModal={handleCloseModal}
-                handleOpenModal={handleOpenModal}
-            />
+            {isOpenModalVideo && (
+                <ModalNormalVideo
+                    data={data}
+                    videoRef={videoRef}
+                    modalVideoRef={modalVideoRef}
+                    statusModal={statusModal}
+                    handlePlayByPlayerModal={handlePlayModal}
+                    handlePauseByPlayerModal={handlePauseModal}
+                    isOpenModalVideo={isOpenModalVideo}
+                    setOpenModalVideo={setOpenModalVideo}
+                />
+            )}
         </div>
     );
 }
