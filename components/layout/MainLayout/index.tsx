@@ -42,7 +42,7 @@ const MainLayout = (props: LayoutProps) => {
         <>
             {isLoading && <Loading />}
             {isTabletLayout ? (
-                <div className="w-screen h-screen bg-[#DBDBDB] dark:bg-[#494949] flex justify-center items-center ">
+                <div className="w-screen h-[calc(100vh-56px)] bg-[#DBDBDB] dark:bg-[#494949] flex justify-center items-center ">
                     <div className="w-full sm:w-[calc(100%-10px)] h-full sm:h-[calc(100%-10px)] sm:m-[5px] flex justify-center items-center">
                         <div className="w-full h-full bg-white sm:bg-[#DBDBDB] dark:sm:bg-[#494949] flex justify-between rounded-[10px] relative">
                             <div className="absolute w-full h-[1px] bg-black/[0.1] top-[70px]"></div>
