@@ -78,10 +78,9 @@ export default function Studying() {
                                     <div className="flex flex-row justify-start items-center w-[150px] h-[20px] bg-[#f1f1f1] rounded-[20px] ">
                                         <div
                                             className={`flex flex-row justify-end items-center w-[${process}] h-[20px] bg-[#85daff] text-[#448ab3] font-bold text-[15px] rounded-[20px] `}
-                                        >
-                                            {process}
-                                        </div>
+                                        ></div>
                                     </div>
+                                    <p className="text-black dark:text-white px-3 text-[13px]">{process}</p>
                                 </div>
 
                                 <div className="w-[60px] h-full flex justify-center items-center">

@@ -8,6 +8,7 @@ import {
     deleteComment as deleteCommentApi,
 } from "@/apis/api";
 import { IComment } from "@/model/comment";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface IComments {
     currentUserId: string;
@@ -15,7 +16,7 @@ interface IComments {
     setComment: Dispatch<SetStateAction<boolean>>;
 }
 
-const Comments: React.FC<IComments> = ({ currentUserId, isComment }: IComments) => {
+export default function Comments({ currentUserId, isComment, setComment }: IComments) {
     const [backendComments, setBackendComments] = useState<IComment[]>([]);
     const [activeComment, setActiveComment] = useState<Comment | null>(null);
     const rootComments = backendComments.filter((backendComment) => backendComment.parentId === null);
@@ -66,10 +67,20 @@ const Comments: React.FC<IComments> = ({ currentUserId, isComment }: IComments) 
         <div
             className={`${
                 isComment ? "flex" : "hidden"
-            } overflow-hidden flex justify-end fixed rounded-xl top-[20%] right-[8%] w-[50%] h-[65%] bg-[#F5F6FA] dark:bg-[#2C2C2C]`}
+            } overflow-hidden fixed rounded-t-xl sm:rounded-xl bottom-0 sm:bottom-auto sm:top-[20%] left-0 sm:left-auto sm:right-[10%] w-full md:w-[80%] lg:w-[50%] bg-[#F5F6FA] dark:bg-[#2C2C2C]`}
         >
-            <div className="w-full h-full">
-                <div className="py-4 px-4 max-h-[82%] snap-y w-full h-full overflow-auto snap-mandatory scrollbar-none">
+            <div className="w-full h-full flex flex-col justify-between">
+                <div className="flex justify-end py-2 px-6">
+                    <div
+                        className="px-3 py-1 bg-[#f0f0f0] dark:bg-[#474747] rounded-md hover:cursor-pointer hover:bg-[#e6e6e6] dark:hover:bg-[#3c3c3c]"
+                        onClick={() => {
+                            setComment(false);
+                        }}
+                    >
+                        <AiOutlineClose className="text-[#333] dark:text-[#fff] text-[18px] sm:text-[22px]" />
+                    </div>
+                </div>
+                <div className="px-3 sm:px-4 lg:mb-4 snap-y w-full h-[400px] sm:h-[500px] lg:h-[350px] overflow-auto snap-mandatory scrollbar-none">
                     <div className="overflow-y-auto">
                         {rootComments.map((rootComment) => (
                             <Comment
@@ -90,6 +101,4 @@ const Comments: React.FC<IComments> = ({ currentUserId, isComment }: IComments) 
             </div>
         </div>
     );
-};
-
-export default Comments;
+}

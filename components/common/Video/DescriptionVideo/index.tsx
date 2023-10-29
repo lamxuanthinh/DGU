@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaExternalLinkAlt, FaSwatchbook } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import TextEllipsis from "../../TextEllipsis";
 
 interface IDescriptionVideo {
     title: string;
@@ -11,75 +12,95 @@ interface IDescriptionVideo {
 
 export default function DescriptionVideo({ title, caption = "", hashtags = [], setComment }: IDescriptionVideo) {
     const [isClose, setClose] = useState(false);
-    const [showFullCaption, setShowFullCaption] = useState(false);
+    const MAX_CONTENT_LENGTH = 100;
+    const [isSeeMore, setSeeMore] = useState<boolean>(title.length > MAX_CONTENT_LENGTH ? false : true);
 
-    const MAX_CAPTION_LENGTH = 150;
-    const truncatedCaption =
-        caption.length > MAX_CAPTION_LENGTH ? caption.slice(0, MAX_CAPTION_LENGTH) + "...  " : caption;
-
-    const handleSeeMoreClick = () => {
-        setShowFullCaption(true);
-    };
-
-    const handleClick = () => {
+    const handleClose = () => {
         setClose(!isClose);
     };
 
     return (
         <div
-            className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
+            className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[12%] sm:bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
             onClick={() => {
                 setComment(false);
             }}
         >
-            <div className={`${isClose ? "hidden" : "w-[420px] py-3 px-4"}`}>
-                <div className="flex items-center mb-2">
-                    <div>
-                        <FaSwatchbook fontSize={"20px"} />
-                    </div>
-                    <h2 className="px-2 text-[23px] font-bold">{title}</h2>
+            <div
+                className={`${
+                    isClose ? "hidden" : "w-[260px] sm:w-[420px] my-3 mx-4 max-h-[350px] overflow-auto scrollbar-none"
+                }`}
+            >
+                <div className="flex items-center mb-2 text-[15px] font-bold">
+                    <FaSwatchbook className="text-[15px] sm:text-[20px]" />
+                    {title.length >= MAX_CONTENT_LENGTH && isSeeMore == false && (
+                        <TextEllipsis
+                            content={title}
+                            className="px-2 text-[15px] sm:text-[20px] font-bold"
+                            characterLength={MAX_CONTENT_LENGTH}
+                            isSeeMore={true}
+                            handleExternalFunctions={() => {
+                                setSeeMore(true);
+                            }}
+                        />
+                    )}
+                    {title.length >= MAX_CONTENT_LENGTH && isSeeMore == true && (
+                        <TextEllipsis
+                            content={title}
+                            className="px-2 text-[15px] sm:text-[20px] font-bold"
+                            isShowFull
+                        />
+                    )}
+                    {title.length < MAX_CONTENT_LENGTH && (
+                        <TextEllipsis
+                            content={title}
+                            className="px-2 text-[15px] sm:text-[20px] font-bold"
+                            isShowFull
+                        />
+                    )}
                 </div>
-                <div>
-                    <p className="text-[14px] font-medium pb-2">
-                        {showFullCaption ? (
-                            caption
-                        ) : (
-                            <>
-                                {truncatedCaption}
-                                {caption.length > MAX_CAPTION_LENGTH && (
-                                    <span onClick={handleSeeMoreClick} className="font-bold cursor-pointer">
-                                        See More
-                                    </span>
-                                )}
-                            </>
-                        )}
-                    </p>
-                </div>
-                <div className="flex items-center pb-2">
-                    <div className="text-[15px] font-semibold pr-2">Chi tiết khóa học:</div>
-                    <div className="flex items-center">
-                        <div>
-                            <FaExternalLinkAlt fontSize={"12px"} />
+                {title.length >= MAX_CONTENT_LENGTH && isSeeMore == true && (
+                    <TextEllipsis
+                        content={caption}
+                        className="text-[13px]"
+                        handleExternalFunctions={() => {
+                            setSeeMore(false);
+                        }}
+                        isShowFull
+                        isHideLess
+                    />
+                )}
+                {title.length < MAX_CONTENT_LENGTH && (
+                    <TextEllipsis className="text-[13px]" content={caption} isSeeMore isHideLess />
+                )}
+
+                {hashtags.length > 0 && (
+                    <div className="flex items-center pb-2">
+                        <div className="flex items-center">
+                            <div>
+                                <FaExternalLinkAlt fontSize={"12px"} />
+                            </div>
+                            <div className="flex">
+                                {hashtags.map((item: any, index: any) => {
+                                    return (
+                                        <p key={index} className="font-bold text-[15px]">
+                                            #{item.name}
+                                            {`${hashtags.length - 1 == index ? "." : ","}`}
+                                        </p>
+                                    );
+                                })}
+                            </div>
                         </div>
-                        <p className="px-2 text-[15px] font-semibold">{title}</p>
                     </div>
-                </div>
-                <div className="flex">
-                    {hashtags.map((item: any, index: any) => {
-                        return (
-                            <p key={index} className="font-bold text-[15px]">
-                                #{item.name}
-                                {`${hashtags.length - 1 == index ? "." : ","}`}
-                            </p>
-                        );
-                    })}
-                </div>
+                )}
             </div>
             <div
                 className={`${
                     isClose ? "bg-[#515151b1]" : ""
                 } rounded-xl flex items-center px-1 hover:cursor-pointer hover:bg-[#9696966f] duration-300`}
-                onClick={handleClick}
+                onClick={() => {
+                    handleClose();
+                }}
             >
                 {isClose ? <IoIosArrowForward /> : <IoIosArrowBack />}
             </div>

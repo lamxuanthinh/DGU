@@ -24,10 +24,16 @@ module.exports = {
                     "0%": { opacity: 0 },
                     "100%": { opacity: 1 },
                 },
+                likeAnim: {
+                    to: {
+                        backgroundPosition: "right",
+                    },
+                },
             },
             animation: {
                 pulse: "pulse 0.1s ease-in-out",
                 falseIn: "fadeIn 0.3s ease-in-out",
+                liked: "likeAnim 0.7s steps(28) forwards",
             },
             boxShadow: {
                 "inset-white": "0 0 0px 1000px white inset",
@@ -44,6 +50,7 @@ module.exports = {
                     "linear-gradient(180deg, rgba(0, 0, 0, 0.74) 7.29%, rgba(0, 0, 0, 0.9) 99.99%, rgba(0, 0, 0, 0) 100%)",
                 "upload-video":
                     "linear-gradient(139deg, rgba(225, 244, 255, 0.65) 8.55%, rgba(255, 255, 255, 0.09) 29.97%, rgba(229, 239, 255, 0.64) 50.65%, rgba(255, 255, 255, 0.64) 65.08%, rgba(254, 254, 255, 0.27) 78.54%, rgba(0, 163, 255, 0.07) 100.85%)",
+                heart: "url('/Images/heart.png')",
             },
             screens: {
                 zero: "300px",

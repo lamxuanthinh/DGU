@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <div className="flex items-center justify-between bg-[#fff] dark:bg-[#2C2C2C] rounded-[5px] py-3 px-3 h-[65px]">
-            <div className="relative w-[50%] flex flex-nowrap rounded-2xl p-2">
+            <div className="relative w-[50%] lg:w-[32%] xl:w-[45%] flex flex-nowrap rounded-2xl p-2">
                 <SearchBar />
             </div>
             <div className="flex flex-nowrap items-center text-black dark:text-white ">
