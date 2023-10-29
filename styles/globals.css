@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.h-screen-mobile {
+    height: calc(100 * var(--vh));
+}
+
 input[type="text"]:focus ~ .input-text,
 input[type="password"]:focus ~ .input-text,
 input[type="password"]:not(:placeholder-shown) ~ .input-text,
