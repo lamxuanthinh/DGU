@@ -1,19 +1,11 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
 import Head from "next/head";
-import { GetStaticProps } from "next";
-import { useTranslation } from "react-i18next";
 
-interface Props {}
-
-const HomePage = ({ posts }: any) => {
-    const { t } = useTranslation("common");
-
+const Index = ({ posts }: any) => {
     return (
         <>
-            {t("hello")}
             <Head>
                 <title>DGU</title>
                 <link rel="icon" href="/icon?<generated>" type="image/<generated>" sizes="<generated>" />
@@ -28,11 +20,11 @@ const HomePage = ({ posts }: any) => {
     );
 };
 
-HomePage.Layout = MainLayout;
+Index.Layout = MainLayout;
 
-export default HomePage;
+export default Index;
 
-export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => {
+export async function getStaticProps() {
     let posts: any;
 
     const extractVideoData = (data: any[]) => {
@@ -82,8 +74,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => {
     return {
         props: {
             posts,
-            ...(await serverSideTranslations(locale ?? "vi", ["common"])),
         },
         revalidate: 60,
     };
-};
+}

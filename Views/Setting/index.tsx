@@ -1,11 +1,34 @@
 import Button from "@/components/common/Button";
 import Image from "next/image";
-import { GrNotes } from "react-icons/gr";
 import avt from "@/public/Images/Profile/Infomation/cool_green.jpg";
 import { useState } from "react";
+import { MdOutlineLanguage } from "react-icons/md";
+import { BiUserPin } from "react-icons/bi";
+import { useTranslation } from "react-i18next";
+import { GrNotes } from "react-icons/gr";
 
 function Setting() {
+    const { i18n } = useTranslation();
+    const menu = [
+        {
+            id: 1,
+            lang: "vi",
+            name: "Tiếng Việt",
+        },
+        {
+            id: 2,
+            lang: "en",
+            name: "Tiếng Anh",
+        },
+    ];
+
     const [avtImageUpload, setAvtImageUpload] = useState<string>();
+    const [indexActiveMenu, setIndexActiveMenu] = useState<number>(1);
+
+    const handleActiveIndexMenu = (index: number, lang: string) => {
+        setIndexActiveMenu(index);
+        i18n.changeLanguage(lang);
+    };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileImage = e.target.files![0];
@@ -23,9 +46,11 @@ function Setting() {
             <div className="px-5">
                 <div className="flex items-center mb-1">
                     <h2 className="text-2xl font-bold mr-2">Account</h2>
-                    <GrNotes  className="dark:bg-white"/>
+                    <GrNotes className="dark:bg-white" />
                 </div>
-                <p className="text-[#ACA1A1] dark:text-[#dadada] mb-4 font-medium">Update your account and information</p>
+                <p className="text-[#ACA1A1] dark:text-[#dadada] mb-4 font-medium">
+                    Update your account and information
+                </p>
                 <div className="max-w-[780px] flex flex-wrap gap-y-4 mb-4">
                     <div className="w-1/2 px-2">
                         <label className="mb-2 font-medium text-lg text-[#777] dark:text-[#dadada] block" htmlFor="">
@@ -102,7 +127,7 @@ function Setting() {
             <div className="px-5">
                 <div className="flex items-center mb-1">
                     <h2 className="text-2xl font-bold mr-2">Personal Information</h2>
-                    <GrNotes className="dark:bg-white"/>
+                    <BiUserPin className="dark:text-white text-2xl" />
                 </div>
                 <p className="text-[#ACA1A1] dark:text-[#dadada] mb-4 font-medium">
                     This information will be displayed publicly so be careful what you are.
@@ -145,7 +170,36 @@ function Setting() {
                         />
                     </div>
                 </div>
-                <p className="text-[#9FA0A7] dark:text-[#c6c6c6] text-sm">This is account was created on Five 20, 2023 </p>
+                <p className="text-[#9FA0A7] dark:text-[#c6c6c6] text-sm">
+                    This is account was created on Five 20, 2023{" "}
+                </p>
+            </div>
+
+            <div className="w-full h-[2px] bg-[#EBECF0] dark:bg-[#ebecf0]/[.3] mb-6"></div>
+            <div className="px-5">
+                <div className="flex items-center mb-1">
+                    <h2 className="text-2xl font-bold mr-2">Language</h2>
+                    <MdOutlineLanguage className="dark:text-white text-[22px]" />
+                </div>
+                <p className="text-[#ACA1A1] dark:text-[#dadada] mb-4 font-medium">
+                    Chosen language determines which language you see on the website.
+                </p>
+                <div className="flex items-center pb-10">
+                    <p className="mr-4">Chosen language: </p>
+                    {menu.map((menuItem) => (
+                        <Button
+                            onClick={() => handleActiveIndexMenu(menuItem.id, menuItem.lang)}
+                            className={`text-base lg:text-lg xl:text-xl font-semibold px-5 xl:px-[34px] py-[11px] ${
+                                menuItem.id === indexActiveMenu
+                                    ? "text-[#3983AC] bg-[#7FCFFC] rounded-md dark:text-white"
+                                    : "text-[#5A5A5A] dark:text-white"
+                            }`}
+                            key={menuItem.id}
+                        >
+                            {menuItem.name}
+                        </Button>
+                    ))}
+                </div>
             </div>
         </section>
     );

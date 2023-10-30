@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import Router, { NextRouter } from "next/router";
@@ -13,11 +13,14 @@ import SlideSignIn from "@/components/common/SlideSignIn";
 import Input from "@/components/common/Input";
 import { useAppContext } from "@/Context";
 import { useTheme } from "next-themes";
+import { useTranslation } from "next-i18next";
 
 type FormData = Pick<Schema, "email" | "password">;
 const signInSchema = schema.pick(["email", "password"]);
 
 export default function SignIn() {
+    const { t } = useTranslation("auth");
+
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
@@ -74,8 +77,8 @@ export default function SignIn() {
                             </Link>
                         </div>
                         <div className="text-black dark:text-white">
-                            <h1 className="font-bold text-[32px] pb-5">Welcome Back!</h1>
-                            <p className="pb-7 text-[14px] font-semibold">Please enter sign in detail below</p>
+                            <h1 className="font-bold text-[32px] pb-5">{t("sign-in.heading")}</h1>
+                            <p className="pb-7 text-[14px] font-semibold">{t("sign-in.sub-heading")}</p>
                         </div>
                         <div className="pb-5">
                             <form onSubmit={onSubmit} className="w-full">
@@ -85,7 +88,7 @@ export default function SignIn() {
                                     type="text"
                                     autoComplete="on"
                                     placeholder="Email"
-                                    labelInput="Email"
+                                    labelInput={t("common.email")}
                                     animationBorder
                                     errorMessage={errors.email?.message}
                                     errorMessageUtils={errorEmail}
@@ -98,28 +101,28 @@ export default function SignIn() {
                                     type="password"
                                     autoComplete="on"
                                     placeholder="Password"
-                                    labelInput="Password"
+                                    labelInput={t("common.password")}
                                     animationBorder
                                     errorMessage={errors.password?.message}
                                     errorMessageUtils={errorPassword}
                                 />
                                 <div>
                                     <p className="pb-5 text-[14px] text-#6F6D6D text-right font-medium text-black dark:text-white">
-                                        Forget password?
+                                        {t("sign-in.forgot-password")}
                                     </p>
                                 </div>
                                 <button
                                     type="submit"
                                     className="w-full font-bold text-[20px] text-white bg-black border-2 dark:bg-[#1C1C1C] dark:border-[#adadad] hover:bg-[#3d3d3d] dark:hover:bg-[#3b3b3b] px-5 py-3 rounded-xl"
                                 >
-                                    Sign in
+                                    {t("common.sign-in")}
                                 </button>
                             </form>
                         </div>
                         <div className="">
                             <div className="flex items-center justify-around pb-5">
                                 <div className="bg-[#C5BCBC] h-[1px] w-[30%]"></div>
-                                <div className="text-[#888585]">or continute</div>
+                                <div className="text-[#888585]">{t("sign-in.continue-text")}</div>
                                 <div className="bg-[#C5BCBC] h-[1px] w-[30%]"></div>
                             </div>
                             <button
@@ -128,13 +131,13 @@ export default function SignIn() {
                             >
                                 <FcGoogle className="text-2xl" />
                                 <p className="font-bold text-[20px] px-0 sm:px-5 ml-2 text-black dark:text-white">
-                                    Sign in with Google
+                                    {t("sign-in.google")}
                                 </p>
                             </button>
                             <div className="flex justify-center py-3">
-                                <p className="font-medium pr-2 text-[#888585] text-[13px]">Don’t have on account? </p>
+                                <p className="font-medium pr-2 text-[#888585] text-[13px]">{t("sign-in.no-account")}</p>
                                 <Link href="signup" className="font-bold pr-2 text-[13px] text-black dark:text-white">
-                                    Sign up
+                                    {t("common.sign-up")}
                                 </Link>
                             </div>
                         </div>
