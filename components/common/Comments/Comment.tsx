@@ -16,7 +16,7 @@ interface CommentProps {
     currentUserId: string;
 }
 
-const Comment: React.FC<CommentProps> = ({
+export default function Comment({
     comment,
     replies,
     setActiveComment,
@@ -26,37 +26,19 @@ const Comment: React.FC<CommentProps> = ({
     addComment,
     parentId = null,
     currentUserId,
-}) => {
-    const [isEditing, setIsEditing] = useState(false);
+}: CommentProps) {
     const [isReplying, setIsReplying] = useState(false);
     const fiveMinutes = 300000;
     const timePassed = new Date().getTime() - new Date(comment.createdAt).getTime() > fiveMinutes;
     const canDelete = currentUserId === comment.userId && replies.length === 0 && !timePassed;
     const canReply = Boolean(currentUserId);
-    const canEdit = currentUserId === comment.userId && !timePassed;
     const replyId = parentId ? parentId : comment.id;
     const createdAt = new Date(comment.createdAt).toLocaleDateString();
     const [isLiked, setIsLiked] = useState(true);
 
-    const handleEdit = () => {
-        setActiveComment({ id: comment.id, type: "editing" });
-        setIsEditing(true);
-    };
-
     const handleReply = () => {
         setActiveComment({ id: comment.id, type: "replying" });
         setIsReplying(!isReplying);
-    };
-
-    const handleCancel = () => {
-        setActiveComment(null);
-        setIsEditing(false);
-        setIsReplying(false);
-    };
-
-    const handleUpdateComment = (text: string) => {
-        updateComment(text, comment.id);
-        setIsEditing(false);
     };
 
     const handleDeleteComment = () => {
@@ -80,8 +62,8 @@ const Comment: React.FC<CommentProps> = ({
     return (
         <div key={comment.id} className="flex my-2 select-none">
             <div className="w-full">
-                <div className="bg-white dark:bg-[#393939] text-[#5357B6] dark:text-white flex justify-start items-center p-6 rounded-2xl">
-                    <div className="w-[50px] p-3 rounded-2xl h-full">
+                <div className="bg-white dark:bg-[#393939] text-[#5357B6] dark:text-white flex justify-start items-center p-3 sm:p-6 rounded-2xl">
+                    <div className="w-[50px] p-3 rounded-2xl h-full hidden sm:block">
                         <p className="text-[20px] text-center hover:cussor-pointer">{comment.countLiked}</p>
                         {isLiked ? (
                             <AiOutlineLike
@@ -101,7 +83,7 @@ const Comment: React.FC<CommentProps> = ({
                             />
                         )}
                     </div>
-                    <div className="mx-6 w-full overflow-hidden">
+                    <div className="sm:mx-6 w-full overflow-hidden">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex justify-start">
                                 <Image
@@ -111,50 +93,48 @@ const Comment: React.FC<CommentProps> = ({
                                     className="rounded-2xl"
                                     src={require(`@/public/${comment.avatar}`)}
                                 />
-                                <div className="text-[16px] font-medium mx-3">{comment.username}</div>
+                                <div className="text-[14px] sm:text-[16px] font-medium mx-3">{comment.username}</div>
                             </div>
-                            <div className="text-[13px] font-medium">{createdAt}</div>
+                            <div className="text-[11px] sm:text-[13px] font-medium">{createdAt}</div>
                         </div>
-                        {!isEditing && (
-                            <div className="text-[16px] w-[95%] font-normal text-[#67727E] dark:text-white">
-                                {comment.body}
-                            </div>
-                        )}
-                        {isEditing && (
-                            <CommentForm
-                                isEditing={isEditing}
-                                submitLabel="Update"
-                                hasCancelButton
-                                initialText={comment.body}
-                                handleSubmit={handleUpdateComment}
-                                handleCancel={handleCancel}
-                            />
-                        )}
+
+                        <div className="text-[12px] sm:text-[16px] w-[95%] font-normal text-[#67727E] dark:text-white">
+                            {comment.body}
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-col text-sm text-gray-600 cursor-pointer mt-2 ml-[8%]">
-                    <div className="flex justify-between">
-                        <div>
-                            {canReply && (
-                                <div className="w-full">
-                                    <div
-                                        className="comment-action w-full text-[#6357b6] dark:text-white font-semibold"
-                                        onClick={handleReply}
-                                    >
-                                        Reply
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                        <div className="flex justify-center">
-                            {canEdit && (
+                    <div className="flex justify-between mb-2">
+                        {canReply && (
+                            <div className="w-full flex items-center justify-between gap-2 text-[#6357b6] dark:text-white">
                                 <div
                                     className="comment-action text-[#6357b6] dark:text-white font-semibold"
-                                    onClick={handleEdit}
+                                    onClick={handleReply}
                                 >
-                                    Edit
+                                    Reply
                                 </div>
-                            )}
+                                <div className="flex sm:hidden items-center mr-2">
+                                    {isLiked ? (
+                                        <AiOutlineLike
+                                            onClick={() => {
+                                                handleLikeButton();
+                                            }}
+                                            className="hover:cursor-pointer text-[23px]"
+                                        />
+                                    ) : (
+                                        <AiTwotoneLike
+                                            onClick={() => {
+                                                handleLikeButton();
+                                            }}
+                                            className="hover:cursor-pointer text-[23px]"
+                                        />
+                                    )}
+                                    <p className="mx-2">{comment.countLiked}</p>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="hidden sm:flex justify-center mx-4">
                             {canDelete && (
                                 <div
                                     className="comment-action text-[#6357b6] dark:text-white font-semibold"
@@ -189,6 +169,4 @@ const Comment: React.FC<CommentProps> = ({
             </div>
         </div>
     );
-};
-
-export default Comment;
+}

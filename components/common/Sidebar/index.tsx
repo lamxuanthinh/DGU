@@ -12,7 +12,7 @@ const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
         <div
             className={`${
                 active ? "active" : ""
-            } w-[285px] flex items-center flex-col bg-[#ffffff] dark:bg-[#2C2C2C] rounded-[5px]`}
+            } w-[285px] lg:w-[240px] xl:w-[285px] flex items-center flex-col bg-[#ffffff] dark:bg-[#2C2C2C] rounded-[5px]`}
         >
             <div className="h-[76px] w-[100%] p-[13px] flex justify-start items-center">
                 <Link href={"/"}>

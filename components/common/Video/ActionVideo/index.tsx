@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
-import { AiTwotoneHeart } from "react-icons/ai";
 import { FaCommentAlt, FaShare } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { TiPlus } from "react-icons/ti";
+import LikeButton from "../../LikeButton";
 
 interface IActionVideoProps {
     comment: boolean;
@@ -22,11 +22,10 @@ export default function ActionVideo({
     comment,
     setComment,
 }: IActionVideoProps) {
-    const [heart, setHeart] = useState(false);
     const [share, setShare] = useState(false);
 
     return (
-        <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[25%] right-6 flex flex-col">
+        <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[18%] sm:top-[25%] right-6 flex flex-col">
             <div className="mb-5 flex justify-center relative">
                 <div className="w-[40px] h-[40px] rounded-[50%] overflow-hidden flex justify-center bg-[#b7b7b7]">
                     <Image width={40} height={40} alt="" src={pathAvatar} />
@@ -37,15 +36,7 @@ export default function ActionVideo({
             </div>
             <div className="mb-5">
                 <div className="flex justify-center">
-                    <AiTwotoneHeart
-                        className="hover:cursor-pointer"
-                        onClick={() => {
-                            setHeart(!heart);
-                            setComment(false);
-                        }}
-                        fontSize={"30px"}
-                        fill={heart ? "rgb(254 44 85)" : "white"}
-                    />
+                    <LikeButton />
                 </div>
                 <p className="text-center select-none">{heartCount}K</p>
             </div>

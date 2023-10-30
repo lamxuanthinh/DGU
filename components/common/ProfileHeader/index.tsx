@@ -73,7 +73,7 @@ export default function ProfileHeader() {
                 </div>
             </div>
             <div className="h-[175px] flex flex-col justify-end">
-                <div className="flex items-center px-4 py-1 bg-[#F6F6F6] border rounded-md">
+                <div className="flex items-center px-4 py-1 bg-[#F6F6F6] dark:bg-[#333] border rounded-md">
                     <AiTwotoneEdit fontSize={20} className="mr-4" />
                     <p className="font-bold">Edit profile</p>
                 </div>

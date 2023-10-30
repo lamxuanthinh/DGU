@@ -2,40 +2,73 @@ import { useState } from "react";
 
 interface ITextEllipsis {
     content: string;
-    styleContent: {
-        maxHeight: string;
-        textSize: string;
-    };
+    className: string;
+    characterLength?: number;
+    isSeeMore?: boolean;
+    isHideLess?: boolean;
+    isShowFull?: boolean;
+    isThreeDots?: boolean;
+    handleExternalFunctions?: () => void;
 }
 
-export default function TextEllipsis({ content, styleContent }: ITextEllipsis) {
-    const MAX_CAPTION_LENGTH = 50;
-    const truncatedCaption =
-        content && content.length > MAX_CAPTION_LENGTH ? content.slice(0, MAX_CAPTION_LENGTH) + "...  " : content;
+export default function TextEllipsis({
+    content,
+    className,
+    characterLength = 50,
+    handleExternalFunctions,
+    isThreeDots = false,
+    isSeeMore = false,
+    isHideLess = false,
+    isShowFull = false,
+}: ITextEllipsis) {
+    const truncatedContent =
+        content && content.length > characterLength ? content.slice(0, characterLength) + "...  " : content;
 
-    const [showFullCaption, setShowFullCaption] = useState(false);
+    const [showFullContent, setShowFullContent] = useState(isShowFull);
 
-    const handleSeeMoreClick = () => {
-        setShowFullCaption(true);
+    const handleSeeMore = () => {
+        setShowFullContent(true);
+        handleExternalFunctions && handleExternalFunctions();
+    };
+
+    const handleHideLess = () => {
+        setShowFullContent(false);
+        handleExternalFunctions && handleExternalFunctions();
     };
 
     return (
         <div className="w-full flex justify-start items-center">
-            <p
-                className={`max-h-[${styleContent.maxHeight}] overflow-hidden text-[${styleContent.textSize}] font-bold break-all`}
-            >
-                {showFullCaption ? (
-                    content
-                ) : (
+            <p className={`overflow-hidden break-all ${className}`}>
+                {showFullContent && content}
+                {showFullContent && isHideLess && (
                     <>
-                        {truncatedCaption}
-                        {content && content.length > MAX_CAPTION_LENGTH && (
-                            <span onClick={handleSeeMoreClick} className="font-bold cursor-pointer">
-                                See More
+                        {content + `. `}
+                        <span
+                            onClick={() => {
+                                handleHideLess();
+                            }}
+                            className="font-bold cursor-pointer underline"
+                        >
+                            Hide less
+                        </span>
+                    </>
+                )}
+                {!showFullContent && isSeeMore && (
+                    <>
+                        {truncatedContent}
+                        {content && content.length > characterLength && (
+                            <span
+                                onClick={() => {
+                                    handleSeeMore();
+                                }}
+                                className="font-bold cursor-pointer underline"
+                            >
+                                see more
                             </span>
                         )}
                     </>
                 )}
+                {!showFullContent && isThreeDots && <>{truncatedContent}</>}
             </p>
         </div>
     );

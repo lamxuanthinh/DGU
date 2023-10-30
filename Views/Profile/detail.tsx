@@ -81,9 +81,9 @@ export default function Details() {
                     <div>
                         <div className="w-[50%] rounded-[5px] cursor-pointer flex justify-center items-center bg-[#fff] p-2">
                             <div>
-                                <BsFillEyeFill fontSize={20} />
+                                <BsFillEyeFill fontSize={20} className="text-black" />
                             </div>
-                            <h2 className="px-3 font-semibold">See More All</h2>
+                            <h2 className="px-3 font-semibold text-black">See More All</h2>
                         </div>
                     </div>
                 </div>

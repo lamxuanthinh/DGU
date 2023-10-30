@@ -7,14 +7,14 @@ interface IControlsVideo {
     totalTime: number;
     statusVideo: string;
     currentTime: number;
+    modalVideoRef: React.RefObject<HTMLVideoElement>;
     setCurrentTime: Dispatch<SetStateAction<number>>;
     setComment: Dispatch<SetStateAction<boolean>>;
     handlePlayByPlayer: () => void;
     handlePauseByPlayer: () => void;
-    setTimePlayerModal: (value: string | number) => void;
     isOpenModalVideo: boolean;
-    handleCloseModal: () => void;
-    handleOpenModal: () => void;
+    handleCloseModal?: () => void;
+    handleOpenModal?: () => void;
 }
 
 export default function ControlsNormalVideo({
@@ -26,7 +26,7 @@ export default function ControlsNormalVideo({
     setComment,
     handlePlayByPlayer,
     handlePauseByPlayer,
-    setTimePlayerModal,
+    modalVideoRef,
     isOpenModalVideo,
     handleCloseModal,
     handleOpenModal,
@@ -47,6 +47,12 @@ export default function ControlsNormalVideo({
         setTimePlayerModal(time);
     };
 
+    const setTimePlayerModal = (value: any) => {
+        if (modalVideoRef.current && isFinite(value)) {
+            modalVideoRef.current.currentTime = value;
+        }
+    };
+
     return (
         <div
             className="control_bar translate-y-[70%] transition duration-500 ease-in-out w-full absolute bottom-0"
@@ -54,8 +60,8 @@ export default function ControlsNormalVideo({
                 setComment(false);
             }}
         >
-            <div className="py-1 px-4">
-                <div className="hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
+            <div className="px-4">
+                <div className="py-2 hover:cursor-pointer" onClick={(e) => handleProgressBarClick(e)}>
                     <div className="relative bg-opacity-50 flex items-center justify-between">
                         {Array.isArray(controlData) ? (
                             controlData.map((item: any) => {
@@ -130,12 +136,16 @@ export default function ControlsNormalVideo({
                 >
                     {statusVideo === "Playing" ? <FaPause /> : <FaPlay />}
                 </div>
-                <div
-                    className="p-2 hover:cursor-pointer"
-                    onClick={isOpenModalVideo ? handleCloseModal : handleOpenModal}
-                >
-                    <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
-                </div>
+                {isOpenModalVideo && handleCloseModal && (
+                    <div className="p-2 hover:cursor-pointer" onClick={handleCloseModal}>
+                        <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
+                    </div>
+                )}
+                {!isOpenModalVideo && handleOpenModal && (
+                    <div className="p-2 hover:cursor-pointer" onClick={handleOpenModal}>
+                        <MdFullscreen className="text-[25px] hover:text-[#a9def9]" />
+                    </div>
+                )}
             </div>
         </div>
     );
