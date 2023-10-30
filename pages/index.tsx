@@ -1,6 +1,8 @@
 import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
+import { GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useEffect } from "react";
 
@@ -37,7 +39,7 @@ HomePage.Layout = MainLayout;
 
 export default HomePage;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
     let posts: any;
 
     const extractVideoData = (data: any[]) => {
@@ -87,7 +89,8 @@ export async function getStaticProps() {
     return {
         props: {
             posts,
+            ...(await serverSideTranslations(locale ?? "vi", ["home"])),
         },
         revalidate: 60,
     };
-}
+};

@@ -10,14 +10,14 @@ interface CommentFormProps {
     initialText?: string;
 }
 
-export default function CommentForm({
+const CommentForm: React.FC<CommentFormProps> = ({
     handleSubmit,
     submitLabel,
     hasCancelButton = false,
     handleCancel,
     initialText = "",
     isEditing,
-}: CommentFormProps) {
+}) => {
     const [text, setText] = useState(initialText);
     const isTextareaDisabled = text.length === 0;
 
@@ -27,7 +27,7 @@ export default function CommentForm({
         setText("");
     };
 
-    const onTextChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
     };
 
@@ -35,10 +35,10 @@ export default function CommentForm({
         <form
             onSubmit={onSubmit}
             className={`bg-white dark:bg-[#393939] ${
-                isEditing ? "" : "p-3"
-            } flex items-center justify-between  rounded-xl mb-1`}
+                isEditing ? "" : "my-4 p-3"
+            } flex items-center justify-between  rounded-xl`}
         >
-            <div className="h-full ml-3 hidden sm:block">
+            <div className="h-full ml-3">
                 {!isEditing && (
                     <Image
                         alt=""
@@ -50,18 +50,14 @@ export default function CommentForm({
                 )}
             </div>
             <input
-                className="text-black text-[14px] sm:text-[16px] w-[75%] dark:text-white rounded-xl p-3 border border-solid border-green-500 dark:border-white"
+                className="text-black w-[75%] dark:text-white rounded-xl p-3 border border-solid border-green-500 dark:border-white"
                 value={text}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e: any) => {
                     onTextChange(e);
                 }}
                 placeholder="Add a comment…"
             />
-            <button
-                className="comment-form-button mx-2 text-[14px] sm:text-[16px]"
-                disabled={isTextareaDisabled}
-                type="submit"
-            >
+            <button className="comment-form-button mx-2" disabled={isTextareaDisabled} type="submit">
                 {submitLabel}
             </button>
             {hasCancelButton && (
@@ -71,4 +67,6 @@ export default function CommentForm({
             )}
         </form>
     );
-}
+};
+
+export default CommentForm;

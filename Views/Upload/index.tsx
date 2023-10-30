@@ -6,8 +6,10 @@ import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 import Button from "@/components/common/Button";
 import Loading from "@/components/common/Loading";
+import { useTranslation } from "react-i18next";
 
 export default function Upload() {
+    const {t} = useTranslation("home")
     const {
         setSrcVideoEdit,
         setThumbVideoEdit,
@@ -149,8 +151,8 @@ export default function Upload() {
                     <div className="w-[140px]">
                         <FaCloudUploadAlt className="w-full h-full flex items-center justify-center opacity-60" />
                     </div>
-                    <h2 className="text-2xl font-bold">Drag your file here</h2>
-                    <h2 className="text-2xl font-bold">Or</h2>
+                    <h2 className="text-2xl font-bold">{t("upload.placeholder")}</h2>
+                    <h2 className="text-2xl font-bold">{}</h2>
                     <input
                         className="hidden"
                         type="file"
@@ -162,7 +164,7 @@ export default function Upload() {
                         onClick={handleButtonClick}
                         className="border-2 border-solid border-black dark:border-white w-[180px] h-[70px] text-[25px] font-bold"
                     >
-                        Browser
+                        {t("upload.browse")}
                     </Button>
                 </div>
             </div>
@@ -174,7 +176,7 @@ export default function Upload() {
                     onCancel={handleCancelCloseModal}
                 />
             )}
-            {isLoading && <Loading  isFullOpacity/>}
+            {isLoading && <Loading isFullOpacity />}
             {isRenderSelectCourse && (
                 <ModalSelectCourse
                     setRenderSelectCourse={setRenderSelectCourse}
