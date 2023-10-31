@@ -8,11 +8,11 @@ import ControlsVideo from "../ControlsVideo";
 import { IDRMVideoShortPayload } from "@/model/video";
 import Comments from "../../Comments/Comments";
 
-interface IVideo {
+interface IDRMVideo {
     data: IDRMVideoShortPayload;
 }
 
-export default function Video({ data }: IVideo) {
+export default function Video({ data }: IDRMVideo) {
     const [comment, setComment] = useState(false);
     const [status, setStatus] = useState("NA");
     const [statusModal, setStatusModal] = useState("NA");

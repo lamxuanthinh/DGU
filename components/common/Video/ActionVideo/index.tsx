@@ -25,13 +25,13 @@ export default function ActionVideo({
     const [share, setShare] = useState(false);
 
     return (
-        <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[18%] sm:top-[25%] right-6 flex flex-col">
+        <div className="actionVideo opacity-0 transition duration-500 ease-in-out absolute top-[18%] sm:top-[25%] right-6 flex flex-col scale-90 sm:scale-100">
             <div className="mb-5 flex justify-center relative">
                 <div className="w-[40px] h-[40px] rounded-[50%] overflow-hidden flex justify-center bg-[#b7b7b7]">
                     <Image width={40} height={40} alt="" src={pathAvatar} />
                 </div>
                 <div>
-                    <TiPlus fontSize={20} className="absolute top-[-5px] right-[-7px]" onClick={() => {}} />
+                    <TiPlus className="text-[20px] absolute top-[-5px] right-[-7px]" onClick={() => {}} />
                 </div>
             </div>
             <div className="mb-5">
@@ -43,11 +43,10 @@ export default function ActionVideo({
             <div className="mb-5">
                 <div className="flex justify-center">
                     <FaCommentAlt
-                        className="hover:cursor-pointer"
+                        className="text-[25px] hover:cursor-pointer"
                         onClick={() => {
                             setComment(!comment);
                         }}
-                        fontSize={"25px"}
                         fill={comment ? "#EEEEEE" : "white"}
                     />
                 </div>

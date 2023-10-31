@@ -122,6 +122,18 @@ export default function NormalVideo({ data }: INormalVideo) {
                     ></div>
                 )}
 
+                <div
+                    onClick={() => {
+                        if (status == "Playing") {
+                            handlePause();
+                        } else if (status == "Paused") {
+                            handlePlay();
+                        }
+                    }}
+                    onDoubleClick={handleOpenModal}
+                    className={`absolute top-0 w-[100%] h-[100%] sm:hidden`}
+                ></div>
+
                 <DescriptionVideo
                     setComment={setComment}
                     key={data._id}
