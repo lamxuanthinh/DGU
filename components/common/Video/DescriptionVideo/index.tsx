@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaExternalLinkAlt, FaSwatchbook } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import TextEllipsis from "../../TextEllipsis";
+import TextEllipsis from "@/components/common/TextEllipsis";
 
 interface IDescriptionVideo {
     title: string;
@@ -21,7 +21,7 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
 
     return (
         <div
-            className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[12%] sm:bottom-[10%] left-[2%] min-h-[160px] hover:bg-[#8a8a8a18] rounded-xl`}
+            className={`descriptionVideo opacity-0 transition duration-500 ease-in-out flex justify-between absolute bottom-[12%] sm:bottom-[12%] left-[1%] sm:left-[2%] min-h-[160px] bg-[#5959596f] sm:bg-[#5959591c] hover:bg-[#8a8a8a31] rounded-xl scale-90 sm:scale-100`}
             onClick={() => {
                 setComment(false);
             }}
@@ -98,9 +98,7 @@ export default function DescriptionVideo({ title, caption = "", hashtags = [], s
                 className={`${
                     isClose ? "bg-[#515151b1]" : ""
                 } rounded-xl flex items-center px-1 hover:cursor-pointer hover:bg-[#9696966f] duration-300`}
-                onClick={() => {
-                    handleClose();
-                }}
+                onClick={handleClose}
             >
                 {isClose ? <IoIosArrowForward /> : <IoIosArrowBack />}
             </div>

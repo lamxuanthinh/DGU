@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import Modal from "../../components/common/Modal";
+import Modal from "@/components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";

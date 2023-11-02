@@ -1,10 +1,10 @@
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import UploadImageFile from "../../UploadFile/UploadImageFile";
+import UploadImageFile from "@/components/common/UploadFile/UploadImageFile";
 import { SchemaCourse } from "@/utils/rules";
 import { useEffect, useState } from "react";
 import React from "react";
-import DropDownSelect from "../../DropDownSelect";
 import { useTranslation } from "next-i18next";
+import DropDownSelect from "@/components/common/DropDownSelect";
 
 type FormCourseData = Pick<
     SchemaCourse,

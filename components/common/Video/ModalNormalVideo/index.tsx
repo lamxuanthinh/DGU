@@ -1,7 +1,7 @@
 import { IShortVideoPayload } from "@/model/video";
 import { useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import Comments from "../../Comments/Comments";
+import Comments from "@/components/common/Comments/Comments";
 import ActionVideo from "../ActionVideo";
 import ControlsNormalVideo from "../ControlsNormalVideo";
 import DescriptionVideo from "../DescriptionVideo";

@@ -67,17 +67,13 @@ export default function Comment({
                         <p className="text-[20px] text-center hover:cussor-pointer">{comment.countLiked}</p>
                         {isLiked ? (
                             <AiOutlineLike
-                                onClick={() => {
-                                    handleLikeButton();
-                                }}
+                                onClick={handleLikeButton}
                                 className="my-2 hover:cursor-pointer"
                                 fontSize={25}
                             />
                         ) : (
                             <AiTwotoneLike
-                                onClick={() => {
-                                    handleLikeButton();
-                                }}
+                                onClick={handleLikeButton}
                                 className="my-2 hover:cursor-pointer"
                                 fontSize={25}
                             />
@@ -116,16 +112,12 @@ export default function Comment({
                                 <div className="flex sm:hidden items-center mr-2">
                                     {isLiked ? (
                                         <AiOutlineLike
-                                            onClick={() => {
-                                                handleLikeButton();
-                                            }}
+                                            onClick={handleLikeButton}
                                             className="hover:cursor-pointer text-[23px]"
                                         />
                                     ) : (
                                         <AiTwotoneLike
-                                            onClick={() => {
-                                                handleLikeButton();
-                                            }}
+                                            onClick={handleLikeButton}
                                             className="hover:cursor-pointer text-[23px]"
                                         />
                                     )}

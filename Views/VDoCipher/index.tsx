@@ -1,4 +1,4 @@
-import Video from "@/components/common/Video/DRMVideo";
+import DRMVideo from "@/components/common/Video/DRMVideo";
 import { IDRMVideoShortPayload } from "@/model/video";
 
 interface IVDoCipherProps {
@@ -14,7 +14,7 @@ export default function VDoCipher({ data }: IVDoCipherProps) {
         return (
             <div className="snap-start flex-shrink-0 mb-3 w-full h-full text-[#fff] overflow-hidden">
                 <div className="mb-4 relative h-full">
-                    <Video data={data} />
+                    <DRMVideo data={data} />
                 </div>
             </div>
         );

@@ -2,7 +2,7 @@ import { useAppContext } from "@/Context";
 import { IListDataSplitVideo } from "@/model/editVideo";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import Button from "../../Button";
+import Button from "@/components/common/Button";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
 const FillFormVideoShort = () => {
@@ -60,12 +60,7 @@ const FillFormVideoShort = () => {
         <div className="flex flex-col h-full">
             <div className="flex mb-5 xl:mb-10">
                 <div className="w-[55%] shadow-softGlow rounded-[5px] overflow-hidden mr-10 ">
-                    <video
-                        className="w-full max-h-[50vh]"
-                        ref={videoRef}
-                        src={srcVideoEdit}
-                        controls
-                    ></video>
+                    <video className="w-full max-h-[50vh]" ref={videoRef} src={srcVideoEdit} controls></video>
                 </div>
                 <div className="flex-1 mt-5">
                     <div className="mb-8">
@@ -77,7 +72,7 @@ const FillFormVideoShort = () => {
                             type="text"
                             value={listDataSplitVideo[indexActiveSplit].name}
                         />
-                    </div> 
+                    </div>
                     <div>
                         <textarea
                             placeholder="Enter the description . . ."
