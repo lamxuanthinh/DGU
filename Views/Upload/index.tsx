@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import Modal from "../../components/common/Modal";
+import Modal from "@/components/common/Modal";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
@@ -20,7 +20,7 @@ export default function Upload() {
     const { push } = useRouter();
     const [isModal, setIsModal] = useState<boolean>(false);
     const [isCloseModal, setIsCloseModal] = useState<boolean>(false);
-    const [isLoading,setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -174,7 +174,7 @@ export default function Upload() {
                     onCancel={handleCancelCloseModal}
                 />
             )}
-            {isLoading && <Loading  isFullOpacity/>}
+            {isLoading && <Loading isFullOpacity />}
             {isRenderSelectCourse && (
                 <ModalSelectCourse
                     setRenderSelectCourse={setRenderSelectCourse}

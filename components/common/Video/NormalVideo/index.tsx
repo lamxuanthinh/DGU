@@ -4,7 +4,7 @@ import { useElementOnScreen } from "@/utils/useElementOnScreen";
 import React from "react";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
-import Comments from "../../Comments/Comments";
+import Comments from "@/components/common/Comments/Comments";
 import ActionVideo from "../ActionVideo";
 import ControlsNormalVideo from "../ControlsNormalVideo";
 import DescriptionVideo from "../DescriptionVideo";
@@ -168,9 +168,7 @@ export default function NormalVideo({ data }: INormalVideo) {
 
                 {isProcessPlayVideo === "NA" && (
                     <div
-                        onClick={() => {
-                            handleStart();
-                        }}
+                        onClick={handleStart}
                         className="absolute top-0 w-[100%] h-[100%] hover:cursor-pointer flex justify-center items-center"
                     >
                         <div className="w-[85px] h-[85px] bg-[#00000029] hover:bg-[#0db7d5] rounded-[50%] flex items-center justify-center ">

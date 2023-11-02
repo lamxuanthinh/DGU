@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { BiCommentDetail } from "react-icons/bi";
-import TextEllipsis from "../../TextEllipsis";
+import TextEllipsis from "@/components/common/TextEllipsis";
 interface IPreviewCourse {
     courseDataInput: {
         title: string;

@@ -1,9 +1,9 @@
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import UploadImageFile from "../../UploadFile/UploadImageFile";
+import UploadImageFile from "@/components/common/UploadFile/UploadImageFile";
 import { SchemaCourse } from "@/utils/rules";
 import { useEffect, useState } from "react";
 import React from "react";
-import DropDownSelect from "../../DropDownSelect";
+import DropDownSelect from "@/components/common/DropDownSelect";
 
 type FormCourseData = Pick<
     SchemaCourse,
@@ -120,7 +120,9 @@ export default function CourseItemForm({ register, setValue, getValues }: ICours
                             </div>
                             <div
                                 className={`flex items-center w-[48%] border-[#F7E7E7] border border-solid rounded bg-[#7fcffc1c] ${
-                                    isFreeCourse == "Free" ? "bg-[#dadada] dark:bg-[#7fcffc1c] opacity-60" : "bg-[#7fcffc1c]"
+                                    isFreeCourse == "Free"
+                                        ? "bg-[#dadada] dark:bg-[#7fcffc1c] opacity-60"
+                                        : "bg-[#7fcffc1c]"
                                 } p-1`}
                             >
                                 <p className="text-[#000000] ml-[15px] dark:text-white">$</p>

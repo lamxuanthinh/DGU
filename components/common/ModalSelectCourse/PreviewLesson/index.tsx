@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TextEllipsis from "../../TextEllipsis";
+import TextEllipsis from "@/components/common/TextEllipsis";
 
 interface IPreviewCourse {
     lessonDataInput: {

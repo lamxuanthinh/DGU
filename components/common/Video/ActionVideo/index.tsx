@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FaCommentAlt, FaShare } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { TiPlus } from "react-icons/ti";
-import LikeButton from "../../LikeButton";
+import LikeButton from "@/components/common/LikeButton";
 
 interface IActionVideoProps {
     comment: boolean;
@@ -31,7 +31,7 @@ export default function ActionVideo({
                     <Image width={40} height={40} alt="" src={pathAvatar} />
                 </div>
                 <div>
-                    <TiPlus className="text-[20px] absolute top-[-5px] right-[-7px]" onClick={() => {}} />
+                    <TiPlus className="text-[20px] absolute top-[-5px] right-[-7px]" />
                 </div>
             </div>
             <div className="mb-5">
