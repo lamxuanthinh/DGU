@@ -10,14 +10,14 @@ interface CommentFormProps {
     initialText?: string;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({
+export default function CommentForm({
     handleSubmit,
     submitLabel,
     hasCancelButton = false,
     handleCancel,
     initialText = "",
     isEditing,
-}) => {
+}: CommentFormProps) {
     const [text, setText] = useState(initialText);
     const isTextareaDisabled = text.length === 0;
 
@@ -27,7 +27,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
         setText("");
     };
 
-    const onTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const onTextChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setText(event.target.value);
     };
 
@@ -35,10 +35,10 @@ const CommentForm: React.FC<CommentFormProps> = ({
         <form
             onSubmit={onSubmit}
             className={`bg-white dark:bg-[#393939] ${
-                isEditing ? "" : "my-4 p-3"
-            } flex items-center justify-between  rounded-xl`}
+                isEditing ? "" : "p-3"
+            } flex items-center justify-between  rounded-xl mb-1`}
         >
-            <div className="h-full ml-3">
+            <div className="h-full ml-3 hidden sm:block">
                 {!isEditing && (
                     <Image
                         alt=""
@@ -50,14 +50,18 @@ const CommentForm: React.FC<CommentFormProps> = ({
                 )}
             </div>
             <input
-                className="text-black w-[75%] dark:text-white rounded-xl p-3 border border-solid border-green-500 dark:border-white"
+                className="text-black text-[14px] sm:text-[16px] w-[75%] dark:text-white rounded-xl p-3 border border-solid border-green-500 dark:border-white"
                 value={text}
-                onChange={(e: any) => {
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     onTextChange(e);
                 }}
                 placeholder="Add a comment…"
             />
-            <button className="comment-form-button mx-2" disabled={isTextareaDisabled} type="submit">
+            <button
+                className="comment-form-button mx-2 text-[14px] sm:text-[16px]"
+                disabled={isTextareaDisabled}
+                type="submit"
+            >
                 {submitLabel}
             </button>
             {hasCancelButton && (
@@ -67,6 +71,4 @@ const CommentForm: React.FC<CommentFormProps> = ({
             )}
         </form>
     );
-};
-
-export default CommentForm;
+}
