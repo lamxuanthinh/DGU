@@ -10,7 +10,7 @@ export default function UploadPage() {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale ?? "vi", ["home"])),
+            ...(await serverSideTranslations(locale ?? "vi", ["layout", "upload", "common"])),
         },
     };
 };

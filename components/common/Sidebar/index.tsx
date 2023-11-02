@@ -12,40 +12,40 @@ import { useTranslation } from "next-i18next";
 const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
     const { theme } = useTheme();
     const router = useRouter();
-    const {t} = useTranslation("home")
+    const { t } = useTranslation("layout");
 
-     const navLink: NavLink[] = [
-         {
-             name: t("navigation.home"),
-             link: "/",
-             icon: <AiOutlineHome fontSize={"27px"} />,
-         },
-         {
-             name: t("navigation.trending"),
-             link: "/trending",
-             icon: <FaGripfire fontSize={"27px"} />,
-         },
-         {
-             name: t("navigation.setting"),
-             link: "/setting",
-             icon: <SlSettings fontSize={"25px"} />,
-         },
-         {
-             name: t("navigation.favorites"),
-             link: "/favorites",
-             icon: <MdOutlineFavoriteBorder fontSize={"25px"} />,
-         },
-         {
-             name: t("navigation.history"),
-             link: "/history",
-             icon: <MdOutlineHistory fontSize={"25px"} />,
-         },
-         {
-             name: t("navigation.follow"),
-             link: "/follow",
-             icon: <SlPeople fontSize={"25px"} />,
-         },
-     ];
+    const navLink: NavLink[] = [
+        {
+            name: t("navigation.home"),
+            link: "/",
+            icon: <AiOutlineHome fontSize={"27px"} />,
+        },
+        {
+            name: t("navigation.trending"),
+            link: "/trending",
+            icon: <FaGripfire fontSize={"27px"} />,
+        },
+        {
+            name: t("navigation.setting"),
+            link: "/setting",
+            icon: <SlSettings fontSize={"25px"} />,
+        },
+        {
+            name: t("navigation.favorites"),
+            link: "/favorites",
+            icon: <MdOutlineFavoriteBorder fontSize={"25px"} />,
+        },
+        {
+            name: t("navigation.history"),
+            link: "/history",
+            icon: <MdOutlineHistory fontSize={"25px"} />,
+        },
+        {
+            name: t("navigation.follow"),
+            link: "/follow",
+            icon: <SlPeople fontSize={"25px"} />,
+        },
+    ];
 
     return (
         <div

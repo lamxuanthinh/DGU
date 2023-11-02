@@ -10,10 +10,10 @@ import SearchBar from "../SearchBar";
 import { useAppContext } from "@/Context";
 import Message from "../Message";
 import { dataMessage } from "../Message/constants";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { IMenuItems } from "@/model/menuItems";
 import { CgProfile } from "react-icons/cg";
-import {  AiOutlineHistory, AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineHistory, AiOutlineSetting } from "react-icons/ai";
 import { FaGripfire } from "react-icons/fa";
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
-    const { t } = useTranslation("home");
+    const { t } = useTranslation("layout");
 
     const toggleTheme = () => {
         if (theme == "light") {

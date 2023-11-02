@@ -4,11 +4,12 @@ import avt from "@/public/Images/Profile/Infomation/cool_green.jpg";
 import { useState } from "react";
 import { MdOutlineLanguage } from "react-icons/md";
 import { BiUserPin } from "react-icons/bi";
-import { useTranslation } from "react-i18next";
 import { GrNotes } from "react-icons/gr";
+import { useRouter } from "next/router";
 
 function Setting() {
-    const { i18n } = useTranslation();
+    const router = useRouter();
+
     const menu = [
         {
             id: 1,
@@ -23,11 +24,11 @@ function Setting() {
     ];
 
     const [avtImageUpload, setAvtImageUpload] = useState<string>();
-    const [indexActiveMenu, setIndexActiveMenu] = useState<number>(1);
+    const [indexActiveMenu, setIndexActiveMenu] = useState<number>(router.locale === "vi" ? 1 : 2);
 
     const handleActiveIndexMenu = (index: number, lang: string) => {
         setIndexActiveMenu(index);
-        i18n.changeLanguage(lang);
+        router.push(`/${router.locale}/setting`, `/${lang}/setting`, { locale: lang });
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

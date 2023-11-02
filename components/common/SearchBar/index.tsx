@@ -9,7 +9,7 @@ import { BsSearch } from "react-icons/bs";
 import { useTranslation } from "next-i18next";
 
 function SearchBar() {
-    const {t} = useTranslation("home")
+    const { t } = useTranslation("layout");
     const searchInputRef = useRef<HTMLInputElement>(null);
     const [isFilter, setIsFilter] = useState<boolean>(false);
     const [valueInput, setValueInput] = useState<string>("");

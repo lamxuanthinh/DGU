@@ -1,0 +1,66 @@
+{
+    "heading": "Upload your file bellow",
+    "placeholder": "Drag your file here",
+    "or": "Or",
+    "browse": "Browse",
+    "cancel": "Cancel",
+    "save-draft": "Save draft",
+    "storage-draft": "Storage draft",
+    "select": "Select",
+    "previous": "Previous",
+    "next": "Next",
+    "course-card-preview": "Course Card preview",
+    "modal": {
+        "title": "Do you want to go to the video editing step?",
+        "title-reload" : "Do you want to reload, changes you made may not be saved.?",
+        "ok": "OK",
+        "cancel": "Cancel"
+    },
+    "navigation": {
+        "choose-course": "Choose course",
+        "fill-form": "Fill form",
+        "edit": "Edit",
+        "fill-form-video-short": "Fill form video short",
+        "release": "Release"
+    },
+    "create-course": {
+        "lesson": {
+            "title": "Lesson Title & Author",
+            "description": "Put an attention-grabbing title and shorten the video's content description.",
+            "placeholder-input": "Enter your title..."
+        },
+        "description-and-fee": {
+            "title": "Description & Fee",
+            "description": "Provide a detailed description of the video's content and goals.",
+            "placeholder-input": "Enter your description...",
+            "fee": "Fee",
+            "free": "Free",
+            "beginner": "Beginner"
+        },
+        "thumbnail": {
+            "title": "Thumbnail",
+            "description": "Create a compelling and interesting avatar to attract viewers."
+        }
+    },
+    "select-course": {
+        "label": "Add new video",
+        "add-course": "Add course",
+        "search-course": "Which course do you want to select ?"
+    },
+    "fill-form": {
+        "lesson": "Lesson Title & Description",
+        "lesson-description": "Put an attention-grabbing title and shorten the video's content description.",
+        "lesson-placeholder-input": "Enter your lesson title here",
+        "lesson-placeholder-text-area": "Enter your lesson title here",
+        "thumbnail": "Thumbnail",
+        "thumbnail-description": "Create a compelling and interesting avatar to attract viewers.",
+        "thumbnail-upload": "Upload avatar course"
+    },
+    "fill-form-video-short": {
+        "title": "Do you want choose type video upload ?",
+        "description": "Unlock the versatility of video uploads with our two distinct options: Public and Private. With the Public option, users can freely share their videos, fostering a sense of community and collaboration. Meanwhile, the Private option offers an added layer of security, ensuring that only authorized individuals have access to your valuable content.",
+        "public": "Public",
+        "private": "Private",
+        "action-needed": "Action needed"
+    }
+}

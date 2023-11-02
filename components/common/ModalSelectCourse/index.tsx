@@ -16,6 +16,7 @@ import { useSession } from "next-auth/react";
 import { configAuth } from "@/apis/configAuth";
 import ImageCustom from "../ImageCustom";
 import Button from "../Button";
+import { useTranslation } from "next-i18next";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,6 +35,7 @@ export default function ModalSelectCourse({
     setRenderSelectCourse,
     setIsCloseModal,
 }: IModalSelectCourse) {
+    const { t } = useTranslation("upload");
     const {
         courseSelected,
         setCourseSelected,
@@ -47,7 +49,13 @@ export default function ModalSelectCourse({
     const [isLoading, setIsLoading] = useState(false);
     const [stepCreateCourse, setStepCreateCourse] = useState(0);
     const { data: session } = useSession();
-    const titleSteps: string[] = ["Choose course", "Fill form", "Edit", "Fill form video short", "Release"];
+    const titleSteps: string[] = [
+        t("navigation.choose-course"),
+        t("navigation.fill-form"),
+        t("navigation.edit"),
+        t("navigation.fill-form-video-short"),
+        t("navigation.release"),
+    ];
 
     const {
         register: courseRegister,
@@ -192,7 +200,7 @@ export default function ModalSelectCourse({
                                             <div className="flex justify-center">
                                                 <MdOutlineAddchart fontSize={24} />
                                             </div>
-                                            <p>Add course</p>
+                                            <p>{t("select-course.add-course")}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -216,7 +224,7 @@ export default function ModalSelectCourse({
                                     <input
                                         type="text"
                                         name="search"
-                                        placeholder="Which course do you want to select ?"
+                                        placeholder={t("select-course.search-course")}
                                         className="w-[100%] bg-transparent border-none outline-none dark:placeholder-white"
                                     />
                                 </div>
@@ -231,7 +239,7 @@ export default function ModalSelectCourse({
                                     courseSelected && handleNextStep();
                                 }}
                             >
-                                <p className="font-bold">Select</p>
+                                <p className="font-bold">{t("select")}</p>
                             </button>
                         </div>
                     </div>
@@ -257,14 +265,14 @@ export default function ModalSelectCourse({
                                         setStepCreateCourse(0);
                                     }}
                                 >
-                                    <p className="pl-2 font-bold">Previous</p>
+                                    <p className="pl-2 font-bold">{t("previous")}</p>
                                 </div>
                                 <Button
                                     isLoading={isLoading}
                                     type="submit"
                                     className="flex items-center text-[16px] text-[#3983AC] bg-[#a8dfff] py-2 px-4 rounded-sm min-w-[100px] justify-center dark:text-white dark:bg-primary"
                                 >
-                                    <p className="font-bold">Next</p>
+                                    <p className="font-bold">{t("next")}</p>
                                 </Button>
                             </div>
                         </form>
@@ -272,7 +280,7 @@ export default function ModalSelectCourse({
                             <div className="w-[80%]">
                                 <div className="flex justify-center items-center mb-4">
                                     <BsEyeFill className="mr-3" />
-                                    <p className="font-semibold">Course Card preview</p>
+                                    <p className="font-semibold">{t("course-card-preview")}</p>
                                 </div>
                                 <ItemCardCourse
                                     className="max-w-[370px] mx-auto"
@@ -309,13 +317,13 @@ export default function ModalSelectCourse({
                                         handleBackStep();
                                     }}
                                 >
-                                    <p className="font-bold text-[#777] dark:text-white">Previous</p>
+                                    <p className="font-bold text-[#777] dark:text-white">{t("previous")}</p>
                                 </button>
                                 <button
                                     className="flex items-center text-[16px] text-[#3983AC] bg-[#7FCFFC]/[.3] py-2 px-4 rounded-sm justify-center min-w-[100px] dark:bg-primary dark:text-white"
                                     type="submit"
                                 >
-                                    <p className="font-bold">Next</p>
+                                    <p className="font-bold">{t("next")}</p>
                                 </button>
                             </div>
                         </form>
@@ -323,7 +331,7 @@ export default function ModalSelectCourse({
                             <div className="w-[70%]">
                                 <div className="flex justify-center items-center mb-4">
                                     <BsEyeFill className="mr-3" />
-                                    <p className="font-semibold">Course Card preview</p>
+                                    <p className="font-semibold">{t("course-card-preview")}</p>
                                 </div>
                                 <ItemCardCourse
                                     className="max-w-[370px] mx-auto"

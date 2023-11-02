@@ -1,0 +1,66 @@
+{
+    "heading": "Tải video của bạn dưới đây",
+    "placeholder": "Kéo tệp của bạn vào đây",
+    "or": "Hoặc",
+    "browse": "Duyệt",
+    "cancel": "Hủy",
+    "save-draft": "Lưu nháp",
+    "storage-draft": "Lưu nháp",
+    "select": "Chọn",
+    "previous": "Trước",
+    "next": "Tiếp theo",
+    "course-card-preview": "Xem trước Thẻ khóa học",
+    "modal": {
+        "title": "Bạn có muốn tiến đến bước chỉnh sửa video không?",
+        "title-reload":"Bạn có muốn tải lại trang? Những thay đổi bạn đã thực hiện có thể không được lưu.",
+        "ok": "Đồng ý",
+        "cancel": "Hủy"
+    },
+    "navigation": {
+        "choose-course": "Chọn khóa học",
+        "fill-form": "Điền thông tin",
+        "edit": "Chỉnh sửa",
+        "fill-form-video-short": "Điền thông tin video ngắn",
+        "release": "Xuất bản"
+    },
+    "create-course": {
+        "lesson": {
+            "title": "Tiêu đề Bài học & Tác giả",
+            "description": "Đặt một tiêu đề thu hút sự chú ý và viết mô tả ngắn về nội dung video.",
+            "placeholder-input": "Nhập tiêu đề của bạn..."
+        },
+        "description-and-fee": {
+            "title": "Mô tả & Phí",
+            "description": "Cung cấp mô tả chi tiết về nội dung và mục tiêu của video.",
+            "placeholder-input": "Nhập mô tả của bạn...",
+            "fee": "Phí",
+            "free": "Miễn phí",
+            "beginner": "Dành cho người mới"
+        },
+        "thumbnail": {
+            "title": "Ảnh đại diện",
+            "description": "Tạo một hình ảnh đại diện hấp dẫn và thú vị để thu hút người xem."
+        }
+    },
+    "select-course": {
+        "label": "Thêm video mới",
+        "add-course": "Thêm khóa học",
+        "search-course": "Bạn muốn chọn khóa học nào?"
+    },
+    "fill-form": {
+        "lesson": "Tiêu đề & Mô tả bài học",
+        "lesson-description": "Đặt một tiêu đề hấp dẫn và tóm tắt nội dung của video.",
+        "lesson-placeholder-input": "Nhập tiêu đề bài học của bạn ở đây",
+        "lesson-placeholder-text-area": "Nhập tiêu đề bài học của bạn ở đây",
+        "thumbnail": "Ảnh đại diện",
+        "thumbnail-description": "Tạo một ảnh đại diện hấp dẫn để thu hút người xem.",
+        "thumbnail-upload": "Tải ảnh đại diện khóa học"
+    },
+    "fill-form-video-short": {
+        "title": "Bạn muốn chọn loại video tải lên không?",
+        "description": "Mở khả năng tải lên video với hai tùy chọn riêng biệt: Công khai và Riêng tư. Với tùy chọn Công khai, người dùng có thể tự do chia sẻ video, tạo cộng đồng và sự hợp tác. Trong khi đó, tùy chọn Riêng tư mang đến một lớp bảo mật bổ sung, đảm bảo chỉ người được ủy quyền mới có quyền truy cập nội dung quý báu của bạn.",
+        "public": "Công khai",
+        "private": "Riêng tư",
+        "action-needed": "Cần thực hiện hành động"
+    }
+}

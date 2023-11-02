@@ -1,31 +1,7 @@
 {
-    "search": {
-        "placeholder": "Tìm kiếm"
-    },
-    "notification": {
-        "title": "Chat",
-        "see-all": "Xem tất cả trong tin nhắn"
-    },
-    "create-video": "Tạo Video",
-    "sign-in-now": "Đăng nhập",
-    "navigation": {
-        "home": "Trang chủ",
-        "trending": "Xu hướng",
-        "setting": "Cài đặt",
-        "favorites": "Yêu thích",
-        "history": "Lịch sử",
-        "follow": "Theo dõi",
-        "profile": "Cá nhân",
-        "logout": "Đăng xuất"
-    },
     "comment": {
         "reply": "Trả lời",
         "send": "Gửi",
         "placeholder": "Thêm bình luận..."
-    },
-    "upload": {
-        "placeholder": "Kéo tệp của bạn vào đây",
-        "or": "Hoặc",
-        "browse": "Duyệt"
     }
 }
