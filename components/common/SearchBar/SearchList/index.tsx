@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../Button";
+import Button from "@/components/common/Button";
 import SearchItem from "../SearchItem";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 

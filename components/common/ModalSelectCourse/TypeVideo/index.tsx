@@ -1,6 +1,6 @@
 import switchImage from "@/public/Images/switch.png";
 import Image from "next/image";
-import Button from "../../Button";
+import Button from "@/components/common/Button";
 import { IoMdAddCircle } from "react-icons/io";
 import { useState } from "react";
 import { BsFileEarmarkLock } from "react-icons/bs";

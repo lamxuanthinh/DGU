@@ -1,12 +1,12 @@
 import { IMyCourseData } from "@/model/course";
-import Button from "../../Button";
+import Button from "@/components/common/Button";
 import Image from "next/image";
 import imageNotFound from "@/public/Images/CreateCourse/image_not_found.png";
 import avt1 from "@/public/Images/Profile/Infomation/avt_quan_su.jpg";
 import avt2 from "@/public/Images/Profile/Infomation/boy_thanh_lich.png";
 import avt3 from "@/public/Images/Profile/Infomation/boy_thoi_trang.png";
 import avt4 from "@/public/Images/Profile/Infomation/cool_green.jpg";
-import ImageCustom from "../../ImageCustom";
+import ImageCustom from "@/components/common/ImageCustom";
 
 interface IItemCardCourseProps {
     dataCard: IMyCourseData;

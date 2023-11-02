@@ -1,6 +1,6 @@
 import { SchemaLesson } from "@/utils/rules";
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import UploadImageFile from "../../UploadFile/UploadImageFile";
+import UploadImageFile from "@/components/common/UploadFile/UploadImageFile";
 
 type FormLessonData = Pick<SchemaLesson, "title" | "description" | "image" | "author" | "image_blob">;
 

@@ -6,13 +6,12 @@ import ActionVideo from "../ActionVideo";
 import ModalVideo from "../ModalVideo";
 import ControlsVideo from "../ControlsVideo";
 import { IDRMVideoShortPayload } from "@/model/video";
-import Comments from "../../Comments/Comments";
-
-interface IVideo {
+import Comments from "@/components/common/Comments/Comments";
+interface IDRMVideoProps {
     data: IDRMVideoShortPayload;
 }
 
-export default function Video({ data }: IVideo) {
+export default function Video({ data }: IDRMVideoProps) {
     const [comment, setComment] = useState(false);
     const [status, setStatus] = useState("NA");
     const [statusModal, setStatusModal] = useState("NA");

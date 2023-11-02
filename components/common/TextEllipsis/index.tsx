@@ -43,12 +43,7 @@ export default function TextEllipsis({
                 {showFullContent && isHideLess && (
                     <>
                         {content + `. `}
-                        <span
-                            onClick={() => {
-                                handleHideLess();
-                            }}
-                            className="font-bold cursor-pointer underline"
-                        >
+                        <span onClick={handleHideLess} className="font-bold cursor-pointer underline">
                             Hide less
                         </span>
                     </>

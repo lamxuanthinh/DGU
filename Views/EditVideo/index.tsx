@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useAppContext } from "@/Context";
-import Modal from "../../components/common/Modal";
+import Modal from "@/components/common/Modal";
 import Navbar from "./Navbar";
 import Video from "./Video";
 import Toolbar from "./Toolbar";

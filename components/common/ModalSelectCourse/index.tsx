@@ -305,9 +305,7 @@ export default function ModalSelectCourse({
                             <div className="flex justify-between mr-[35px]">
                                 <button
                                     className="flex items-center text-[16px] text-[#a4a4a4] py-2 px-4 mx-3 border border-[#949494] rounded-sm justify-center min-w-[100px] dark:border-white"
-                                    onClick={() => {
-                                        handleBackStep();
-                                    }}
+                                    onClick={handleBackStep}
                                 >
                                     <p className="font-bold text-[#777] dark:text-white">Previous</p>
                                 </button>
