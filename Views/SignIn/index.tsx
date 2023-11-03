@@ -89,7 +89,6 @@ export default function SignIn() {
                                     autoComplete="on"
                                     placeholder="Email"
                                     labelInput={t("common.email")}
-                                    animationBorder
                                     errorMessage={errors.email?.message}
                                     errorMessageUtils={errorEmail}
                                 />
@@ -102,7 +101,6 @@ export default function SignIn() {
                                     autoComplete="on"
                                     placeholder="Password"
                                     labelInput={t("common.password")}
-                                    animationBorder
                                     errorMessage={errors.password?.message}
                                     errorMessageUtils={errorPassword}
                                 />

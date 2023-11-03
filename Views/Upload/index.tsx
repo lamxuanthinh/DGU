@@ -170,11 +170,7 @@ export default function Upload() {
             </div>
             {isModal && <Modal title={t("modal.title")} onOk={onOk} onCancel={onCancel} />}
             {isCloseModal && (
-                <Modal
-                    title={t('modal.title-reload')}
-                    onOk={onOpenCloseModal}
-                    onCancel={handleCancelCloseModal}
-                />
+                <Modal title={t("modal.title-reload")} onOk={onOpenCloseModal} onCancel={handleCancelCloseModal} />
             )}
             {isLoading && <Loading isFullOpacity />}
             {isRenderSelectCourse && (

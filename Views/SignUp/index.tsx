@@ -116,7 +116,6 @@ export default function SignUp() {
                                         labelInput={t("common.email")}
                                         errorMessage={errors.email?.message}
                                         errorMessageUtils={errorEmail}
-                                        animationBorder
                                     />
 
                                     <Input
@@ -127,7 +126,6 @@ export default function SignUp() {
                                         autoComplete="on"
                                         placeholder="full name"
                                         errorMessage={errors.fullName?.message}
-                                        animationBorder
                                     />
 
                                     <div className="flex justify-between">
@@ -161,7 +159,6 @@ export default function SignUp() {
                                         labelInput={t("common.password")}
                                         isShowPassword={true}
                                         errorMessage={errors.password?.message}
-                                        animationBorder
                                     />
 
                                     <Input
@@ -173,7 +170,6 @@ export default function SignUp() {
                                         labelInput={t("sign-up.confirm-password")}
                                         isShowPassword={true}
                                         errorMessage={errors.confirm_password?.message}
-                                        animationBorder
                                     />
                                 </div>
                                 <div className="flex justify-start">

@@ -12,7 +12,7 @@
     "course-card-preview": "Xem trước Thẻ khóa học",
     "modal": {
         "title": "Bạn có muốn tiến đến bước chỉnh sửa video không?",
-        "title-reload":"Bạn có muốn tải lại trang? Những thay đổi bạn đã thực hiện có thể không được lưu.",
+        "title-reload": "Bạn có muốn tải lại trang? Những thay đổi bạn đã thực hiện có thể không được lưu.",
         "ok": "Đồng ý",
         "cancel": "Hủy"
     },
@@ -61,6 +61,11 @@
         "description": "Mở khả năng tải lên video với hai tùy chọn riêng biệt: Công khai và Riêng tư. Với tùy chọn Công khai, người dùng có thể tự do chia sẻ video, tạo cộng đồng và sự hợp tác. Trong khi đó, tùy chọn Riêng tư mang đến một lớp bảo mật bổ sung, đảm bảo chỉ người được ủy quyền mới có quyền truy cập nội dung quý báu của bạn.",
         "public": "Công khai",
         "private": "Riêng tư",
-        "action-needed": "Cần thực hiện hành động"
+        "action-needed": "Cần thực hiện hành động",
+        "input-placeholder": "Nhập tiêu đề của bạn ở đây",
+        "textarea-placeholder": "Nhập mô tả của bạn ở đây"
+    },
+    "release": {
+        "error": "Đã xảy ra lỗi, vui lòng thử lại!"
     }
 }

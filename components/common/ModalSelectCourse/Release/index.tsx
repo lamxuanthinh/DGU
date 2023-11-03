@@ -8,8 +8,10 @@ import { useSession } from "next-auth/react";
 import imageError from "public/Images/image-error.png";
 import ImageCustom from "@/components/common/ImageCustom";
 import Loading from "@/components/common/Loading";
+import { useTranslation } from "next-i18next";
 
 const Release = () => {
+    const { t } = useTranslation("upload");
     const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setRenderSelectCourse } =
         useAppContext();
     const router = useRouter();
@@ -81,10 +83,10 @@ const Release = () => {
                     <div className="">
                         <ImageCustom className="w-[300px] h-[300px]" src={imageError} alt="image error" />
                     </div>
-                    <h2 className="text-center text-red-500 text-3xl mt-5">An error occurred, please try again!</h2>
+                    <h2 className="text-center text-red-500 text-3xl mt-5">{t("release.error")}</h2>
                 </div>
             )}
-            {isLoading && <Loading isFullOpacity/>}
+            {isLoading && <Loading isFullOpacity />}
         </>
     );
 };

@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, memo } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { GrUndo, GrRedo } from "react-icons/gr"
 import Button from '@/components/common/Button';
+import { useTranslation } from 'next-i18next';
 
 interface INavbarProps {
   onUndo: () => void;
@@ -12,6 +13,8 @@ interface INavbarProps {
 }
 
 function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
+  const {t} = useTranslation("editvideo")
+
   const handleNextEdit = () => {
     setIsModal(true)
   }
@@ -29,7 +32,7 @@ function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
       <nav className="flex items-center justify-between h-full">
         <div className="flex">
           <Button href="/upload" className="w-[150px] p-1" type='text' leftIcon={<IoIosArrowBack className="text-2xl" />}>
-            Back
+         {t('back')}
           </Button>
           <div className="text-2xl flex items-center">
             <Button className="mr-1 !min-w-[32px] !p-1" type="text" disabled={!isUndo} onClick={handleUndo}>
@@ -47,7 +50,7 @@ function Navbar({ onUndo, onRedu, setIsModal, isUndo, isRedo }: INavbarProps) {
               {<IoIosArrowForward className="text-2xl" />}
               onClick={handleNextEdit}
             >
-              Next
+              {t('next')}
             </Button>
           </div>
         </div>

@@ -61,6 +61,11 @@
         "description": "Unlock the versatility of video uploads with our two distinct options: Public and Private. With the Public option, users can freely share their videos, fostering a sense of community and collaboration. Meanwhile, the Private option offers an added layer of security, ensuring that only authorized individuals have access to your valuable content.",
         "public": "Public",
         "private": "Private",
-        "action-needed": "Action needed"
+        "action-needed": "Action needed",
+        "input-placeholder": "Enter your title here",
+        "textarea-placeholder": "Enter your description here"
+    },
+    "release": {
+        "error": "An error occurred, please try again!"
     }
 }

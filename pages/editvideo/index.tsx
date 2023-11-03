@@ -1,12 +1,16 @@
 import EditVideo from "@/Views/EditVideo";
-// import dynamic from "next/dynamic";
+import { GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 
-// const EditVideo = dynamic(
-//   () => import("@/Views/EditVideo"), {
-//   ssr: false,
-// });
-
 export default function EditVideoPage() {
-  return <EditVideo />;
+    return <EditVideo />;
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale ?? "vi", ["editvideo", "common"])),
+        },
+    };
+};

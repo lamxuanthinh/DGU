@@ -7,6 +7,7 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import { BsCursorText } from "react-icons/bs"
 import { GiMusicalNotes } from "react-icons/gi"
 import { MdOutlineInsertEmoticon } from "react-icons/md"
+import { useTranslation } from 'next-i18next'
 
 interface IToolbarProps {
   handleSplit: () => void;
@@ -14,6 +15,7 @@ interface IToolbarProps {
 }
 
 function Toolbar({ handleSplit, setSrcMp3 }: IToolbarProps) {
+  const {t} = useTranslation("editvideo")
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
@@ -38,31 +40,31 @@ function Toolbar({ handleSplit, setSrcMp3 }: IToolbarProps) {
     <div className="grid grid-cols-2 grid-rows-3 place-items-center gap-y-3 px-11 py-9 min-w-[280px] bg-[#121212] rounded-[5px] h-full">
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
         <IoMdCopy className="text-3xl" />
-        <span>Copy</span>
+        <span>{t('copy')}</span>
       </Button>
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60" onClick={handleSplit}>
         <BiCut className="text-3xl" />
-        <span>Split</span>
+        <span>{t('split')}</span>
       </Button>
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
         <TfiPencil className="text-3xl" />
-        <span>Effects</span>
+        <span>{t('effects')}</span>
       </Button>
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
         <RiDeleteBin6Line className="text-3xl" />
-        <span>Delete</span>
+        <span>{t('delete')}</span>
       </Button>
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
         <BsCursorText className="text-3xl" />
-        <span>Text</span>
+        <span>{t('text')}</span>
       </Button>
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60" onClick={handleClick}>
         <GiMusicalNotes className="text-3xl" />
-        <span>Music</span>
+        <span>{t('music')}</span>
       </Button>
       <Button className="flex flex-col gap-y-1 items-center text-white cursor-pointer px-3 hover:opacity-60">
         <MdOutlineInsertEmoticon className="text-3xl" />
-        <span>Sticker</span>
+        <span>{t('sticker')}</span>
       </Button>
       <input
         style={{ display: 'none' }}
