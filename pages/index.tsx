@@ -6,7 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // import Head from "next/head";
 // import { useEffect } from "react";
 
-const HomePage = ({ posts }: any) => {
+const HomePage = () => {
     // useEffect(() => {
     //     const setFullHeight = () => {
     //         const vh = window.innerHeight * 0.01;
