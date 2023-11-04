@@ -31,7 +31,6 @@ const HomePage = ({ posts }: any) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Home data={posts} />
-            <h1>home page</h1>
         </>
     );
 };
@@ -85,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
     return {
         props: {
-            // posts,
+            posts,
             ...(await serverSideTranslations(locale ?? "vi", ["layout"])),
         },
         revalidate: 60,
