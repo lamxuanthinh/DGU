@@ -5,6 +5,7 @@ import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useEffect } from "react";
+import nextI18NextConfig from "../next-i18next.config.js";
 
 const HomePage = ({ posts }: any) => {
     useEffect(() => {
@@ -85,6 +86,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
             posts,
+            locale,
+            nextI18NextConfig,
             ...(await serverSideTranslations(locale ?? "vi", ["layout"])),
         },
         revalidate: 60,
