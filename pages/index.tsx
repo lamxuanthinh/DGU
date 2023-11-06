@@ -38,6 +38,8 @@ const HomePage = ({ posts }: any) => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     let posts: any;
+    console.log("test locale");
+    console.log(locale);
 
     const extractVideoData = (data: any[]) => {
         return data.map((item) => {
