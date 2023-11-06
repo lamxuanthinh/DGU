@@ -10,7 +10,7 @@ import nextI18NextConfig from "../next-i18next.config.js";
 const HomePage = ({ posts, local }: any) => {
     console.log("test locale");
     console.log(local);
-    
+
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
             posts,
             locale,
             nextI18NextConfig,
-            ...(await serverSideTranslations(locale ?? "vi", ["layout"])),
+            ...(await serverSideTranslations("vi", ["layout"])),
         },
         revalidate: 60,
     };
