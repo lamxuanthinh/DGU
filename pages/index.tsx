@@ -7,7 +7,10 @@ import Head from "next/head";
 import { useEffect } from "react";
 import nextI18NextConfig from "../next-i18next.config.js";
 
-const HomePage = ({ posts }: any) => {
+const HomePage = ({ posts, local }: any) => {
+    console.log("test locale");
+    console.log(local);
+    
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -38,8 +41,6 @@ const HomePage = ({ posts }: any) => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     let posts: any;
-    console.log("test locale");
-    console.log(locale);
 
     const extractVideoData = (data: any[]) => {
         return data.map((item) => {
