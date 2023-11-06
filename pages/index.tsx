@@ -1,16 +1,12 @@
-import videoShortApi from "@/apis/videoshort";
+// import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
-import Home from "@/Views/Home";
+// import Home from "@/Views/Home";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useEffect } from "react";
-import nextI18NextConfig from "../next-i18next.config.js";
 
-const HomePage = ({ posts, local }: any) => {
-    console.log("test locale");
-    console.log(local);
-
+const HomePage = () => {
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -34,66 +30,64 @@ const HomePage = ({ posts, local }: any) => {
                 />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Home data={posts} />
+            {/* <Home data={posts} /> */}
         </>
     );
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-    let posts: any;
+    // let posts: any;
 
-    const extractVideoData = (data: any[]) => {
-        return data.map((item) => {
-            const numbers = item.split(":").map(Number);
-            const point = numbers[0];
-            const duration = numbers[1] - numbers[0];
+    // const extractVideoData = (data: any[]) => {
+    //     return data.map((item) => {
+    //         const numbers = item.split(":").map(Number);
+    //         const point = numbers[0];
+    //         const duration = numbers[1] - numbers[0];
 
-            return {
-                point,
-                duration,
-            };
-        });
-    };
+    //         return {
+    //             point,
+    //             duration,
+    //         };
+    //     });
+    // };
 
-    const extractStringVideoData = (item: string) => {
-        const numbers = item.split(":").map(Number);
-        const point = numbers[0];
-        const duration = numbers[1] - numbers[0];
+    // const extractStringVideoData = (item: string) => {
+    //     const numbers = item.split(":").map(Number);
+    //     const point = numbers[0];
+    //     const duration = numbers[1] - numbers[0];
 
-        return {
-            point,
-            duration,
-        };
-    };
+    //     return {
+    //         point,
+    //         duration,
+    //     };
+    // };
 
-    try {
-        const { metaData } = await videoShortApi.getAllVideoShort();
+    // try {
+    //     const { metaData } = await videoShortApi.getAllVideoShort();
 
-        posts = metaData.shortList.slice(0, 2);
+    //     posts = metaData.shortList.slice(0, 2);
 
-        for (let i = 0; i < posts.length; i++) {
-            const parentId = posts[i].videoPublicId;
-            posts[i].controlData = extractStringVideoData(posts[i].shortTimeLine);
+    //     for (let i = 0; i < posts.length; i++) {
+    //         const parentId = posts[i].videoPublicId;
+    //         posts[i].controlData = extractStringVideoData(posts[i].shortTimeLine);
 
-            const { metaData } = await videoShortApi.getVideoById(parentId);
+    //         const { metaData } = await videoShortApi.getVideoById(parentId);
 
-            posts[i].fullVideoInfo = metaData.publicVideo;
+    //         posts[i].fullVideoInfo = metaData.publicVideo;
 
-            posts[i].fullVideoInfo.controlData = extractVideoData(posts[i].fullVideoInfo.shortTimeLine);
-        }
-    } catch (error) {
-        console.log("Error during video home:", error);
-        posts = [];
-    }
+    //         posts[i].fullVideoInfo.controlData = extractVideoData(posts[i].fullVideoInfo.shortTimeLine);
+    //     }
+    // } catch (error) {
+    //     console.log("Error during video home:", error);
+    //     posts = [];
+    // }
 
     return {
         props: {
-            posts,
-            locale,
-            nextI18NextConfig,
-            ...(await serverSideTranslations("vi", ["layout"])),
+            // posts,
+            ...(await serverSideTranslations(locale ?? "vi", ["layout"])),
         },
-        revalidate: 60,
+        // revalidate: 60,
     };
 };
 
