@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { BiCopy } from "react-icons/bi";
 
@@ -7,7 +7,7 @@ interface ISelectCourseHeader {
 }
 
 export default function SelectCourseHeader({ setIsCloseModal }: ISelectCourseHeader) {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
 
     return (
         <div className="flex justify-between items-center w-full">

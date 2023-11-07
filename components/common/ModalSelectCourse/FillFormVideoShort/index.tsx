@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import Button from "@/components/common/Button";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 const FillFormVideoShort = () => {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const videoRef = useRef<HTMLVideoElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const { listDataSplitVideo, setListDataSplitVideo, srcVideoEdit, setStepSelected } = useAppContext();
@@ -77,7 +77,7 @@ const FillFormVideoShort = () => {
                     </div>
                     <div>
                         <textarea
-                            placeholder={t('fill-form-video-short.textarea-placeholder')}
+                            placeholder={t("fill-form-video-short.textarea-placeholder")}
                             onChange={handleChangeDescriptionShort}
                             className="border border-solid border-[#F7E7E7] outline-none w-full px-3 py-2 text-sm min-h-[200px] rounded dark:bg-[#2C2C2C]"
                             value={listDataSplitVideo[indexActiveSplit].description}
@@ -119,13 +119,13 @@ const FillFormVideoShort = () => {
                 <input className="hidden" ref={inputRef} type="file" onChange={handleChangeImage} />
                 <div className="flex justify-between mt-4">
                     <Button className="text-[#777777] border border-solid border-[#949494] text-sm font-bold p-2 min-w-[100px] dark:text-white dark:border-white rounded">
-                        {t('previous')}
+                        {t("previous")}
                     </Button>
                     <Button
                         className="text-[#3983AC] bg-[#7FCFFC]/[.3] text-sm font-bold p-2 min-w-[100px] dark:text-white dark:bg-primary rounded"
                         onClick={handleNext}
                     >
-                        {t('next')}
+                        {t("next")}
                     </Button>
                 </div>
             </div>

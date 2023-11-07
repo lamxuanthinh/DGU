@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Image from "next/image";
 import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 interface IUploadImagefile {
     setValue: UseFormSetValue<any>;
@@ -10,7 +10,7 @@ interface IUploadImagefile {
 }
 
 export default function UploadImageFile({ setValue, getValues }: IUploadImagefile) {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const inputRef = useRef<HTMLInputElement>(null);
     const [srcImageEdit, setSrcImageEdit] = useState<string | null>(null);
 

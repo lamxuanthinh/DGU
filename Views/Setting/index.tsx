@@ -12,19 +12,25 @@ function Setting() {
 
     const menu = [
         {
-            id: 1,
+            id: 0,
             lang: "vi",
             name: "Tiếng Việt",
         },
         {
-            id: 2,
+            id: 1,
             lang: "en",
             name: "Tiếng Anh",
         },
+        {
+            id: 2,
+            lang: "ja",
+            name: "Tiếng Nhật",
+        },
     ];
 
+    const indexActiveLanguage = menu.findIndex((item) => item.lang === router.locale);
     const [avtImageUpload, setAvtImageUpload] = useState<string>();
-    const [indexActiveMenu, setIndexActiveMenu] = useState<number>(router.locale === "vi" ? 1 : 2);
+    const [indexActiveMenu, setIndexActiveMenu] = useState<number>(indexActiveLanguage);
 
     const handleActiveIndexMenu = (index: number, lang: string) => {
         setIndexActiveMenu(index);

@@ -1,5 +1,5 @@
 import Button from "@/components/common/Button";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 interface IModalVideoProps {
     title: string;
@@ -8,7 +8,7 @@ interface IModalVideoProps {
 }
 
 export default function Modal({ title, onOk, onCancel }: IModalVideoProps) {
-    const { t } = useTranslation("common");
+    const t = useTranslations("common");
 
     return (
         <div className="fixed inset-0 flex items-center justify-center transition-opacity z-[30] bg-modal-gradient backdrop-blur-sm font-semibold select-none">

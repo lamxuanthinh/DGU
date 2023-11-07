@@ -7,10 +7,10 @@ import { BsFileEarmarkLock } from "react-icons/bs";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useAppContext } from "@/Context";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 const TypeVideo = () => {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const { setStepSelected } = useAppContext();
 
     const router = useRouter();

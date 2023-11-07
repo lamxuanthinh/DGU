@@ -16,14 +16,14 @@ import { useAppContext } from "@/Context";
 import { IDropdownOption, IGenderOption, IQueryNotification } from "@/model";
 import { IoIosArrowDown } from "react-icons/io";
 import Dropdown from "@/components/common/Dropdown";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
 const signUpSchema = schema.pick(["email", "password", "confirm_password", "birthday", "gender", "fullName"]);
 
 export default function SignUp() {
-    const { t } = useTranslation("auth");
+    const t = useTranslations("auth");
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");

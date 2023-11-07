@@ -7,12 +7,12 @@ import { AiOutlineHome } from "react-icons/ai";
 import { FaGripfire } from "react-icons/fa";
 import { SlPeople, SlSettings } from "react-icons/sl";
 import { MdOutlineFavoriteBorder, MdOutlineHistory } from "react-icons/md";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 const Sidebar: React.FC<{ active: boolean }> = ({ active }) => {
     const { theme } = useTheme();
     const router = useRouter();
-    const { t } = useTranslation("layout");
+    const t = useTranslations("layout");
 
     const navLink: NavLink[] = [
         {

@@ -1,0 +1,156 @@
+{
+    "layout": {
+        "search": {
+            "placeholder": "検索"
+        },
+        "notification": {
+            "title": "チャット",
+            "see-all": "メッセージ全般を見る"
+        },
+        "create-video": "ビデオを作成",
+        "sign-in-now": "今サインイン",
+        "navigation": {
+            "home": "ホーム",
+            "trending": "トレンド",
+            "setting": "設定",
+            "favorites": "お気に入り",
+            "history": "履歴",
+            "follow": "フォロー",
+            "profile": "プロフィール",
+            "logout": "ログアウト"
+        }
+    },
+    "auth": {
+        "common": {
+            "sign-in": "サインイン",
+            "sign-up": "サインアップ",
+            "email": "メール",
+            "password": "パスワード"
+        },
+        "sign-in": {
+            "heading": "おかえりなさい！",
+            "sub-heading": "以下にサインインの詳細を入力してください",
+            "forgot-password": "パスワードをお忘れですか？",
+            "continue-text": "または続行",
+            "google": "Googleでサインイン",
+            "no-account": "まだアカウントをお持ちでないですか？"
+        },
+        "sign-up": {
+            "heading": "DGUへようこそ！",
+            "sub-heading": "以下のフォームに記入してDGUのメンバーになりましょう。",
+            "full-name": "フルネーム",
+            "male": "男性",
+            "female": "女性",
+            "other": "その他",
+            "birthday": "生年月日",
+            "confirm-password": "パスワードを確認",
+            "save-password": "パスワードを保存しますか？",
+            "already-account": "すでにアカウントをお持ちですか？"
+        },
+        "slide": {
+            "card-1": {
+                "title": "知識は力です",
+                "description": "知識で心を強化することは無限の可能性につながります。"
+            },
+            "card-2": {
+                "title": "創造性が鍵です。",
+                "description": "反復の世界で、オリジナルな思考は比類のない潜在能力を解き放ちます。"
+            },
+            "card-3": {
+                "title": "成長のための変化。",
+                "description": "進化を受け入れることで、私たちは前進し、停滞を記憶に残します。"
+            },
+            "card-4": {
+                "title": "学び、輝き、昇ります。",
+                "description": "新しい知識を受け入れ、自身の強みを照らし、偉大さに昇ります。"
+            }
+        }
+    },
+    "upload": {
+        "heading": "ファイルをアップロードしてください",
+        "placeholder": "ファイルをここにドラッグアンドドロップ",
+        "or": "または",
+        "browse": "閲覧",
+        "cancel": "キャンセル",
+        "save-draft": "下書きを保存",
+        "storage-draft": "下書きを保存",
+        "select": "選択",
+        "previous": "前へ",
+        "next": "次へ",
+        "course-card-preview": "コースカードのプレビュー",
+        "modal": {
+            "title": "ビデオ編集ステップに進みますか？",
+            "title-reload": "再読み込みしますか？行った変更が保存されないかもしれません。",
+            "ok": "OK",
+            "cancel": "キャンセル"
+        },
+        "navigation": {
+            "choose-course": "コースを選択",
+            "fill-form": "フォームを記入",
+            "edit": "編集",
+            "fill-form-video-short": "短いビデオのフォームを記入",
+            "release": "公開"
+        },
+        "create-course": {
+            "lesson": {
+                "title": "レッスンタイトルと著者",
+                "description": "目を引くタイトルを付け、ビデオの内容の説明を短縮してください。",
+                "placeholder-input": "タイトルを入力してください..."
+            },
+            "description-and-fee": {
+                "title": "説明と料金",
+                "description": "ビデオの内容と目標の詳細な説明を提供してください。",
+                "placeholder-input": "説明を入力してください...",
+                "fee": "料金",
+                "free": "無料",
+                "beginner": "初心者"
+            },
+            "thumbnail": {
+                "title": "サムネイル",
+                "description": "魅力的で興味を引くアバターを作成して視聴者を引き寄せてください。"
+            }
+        },
+        "select-course": {
+            "label": "新しいビデオを追加",
+            "add-course": "コースを追加",
+            "search-course": "どのコースを選択しますか？"
+        },
+        "fill-form": {
+            "lesson": "レッスンタイトルと説明",
+            "lesson-description": "目を引くタイトルを付け、ビデオの内容の説明を短縮してください。",
+            "lesson-placeholder-input": "ここにレッスンタイトルを入力してください",
+            "lesson-placeholder-text-area": "ここにレッスン説明を入力してください",
+            "thumbnail": "サムネイル",
+            "thumbnail-description": "魅力的で興味を引くアバターを作成して視聴者を引き寄せてください。",
+            "thumbnail-upload": "コースアバターをアップロード"
+        },
+        "fill-form-video-short": {
+            "title": "ビデオアップロードのタイプを選択しますか？",
+            "description": "公開とプライベートの2つの異なるオプションを備えたビデオのアップロードの柔軟性を解き放ちます。パブリックオプションでは、ユーザーはビデオを自由に共有でき、コミュニティと協力の感覚を育みます。一方、プライベートオプションはセキュリティの追加レイヤーを提供し、権限のある個人だけが貴重なコンテンツにアクセスできるようにします。",
+            "public": "公開",
+            "private": "プライベート",
+            "action-needed": "必要なアクション",
+            "input-placeholder": "ここにタイトルを入力してください",
+            "textarea-placeholder": "ここに説明を入力してください"
+        },
+        "release": {
+            "error": "エラーが発生しました。もう一度お試しください！"
+        }
+    },
+    "editvideo": {
+        "back": "戻る",
+        "next": "次へ",
+        "copy": "コピー",
+        "split": "分割",
+        "effects": "エフェクト",
+        "delete": "削除",
+        "text": "テキスト",
+        "music": "音楽",
+        "sticker": "ステッカー",
+        "title-modal": "次のステップに進みますか？"
+    },
+    "common": {
+        "continue": "続行",
+        "cancel": "キャンセル"
+    }
+}

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import Router, { NextRouter } from "next/router";
@@ -13,13 +13,13 @@ import SlideSignIn from "@/components/common/SlideSignIn";
 import Input from "@/components/common/Input";
 import { useAppContext } from "@/Context";
 import { useTheme } from "next-themes";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 type FormData = Pick<Schema, "email" | "password">;
 const signInSchema = schema.pick(["email", "password"]);
 
 export default function SignIn() {
-    const { t } = useTranslation("auth");
+    const t = useTranslations("auth");
 
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();

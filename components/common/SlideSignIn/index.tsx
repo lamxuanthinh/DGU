@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 interface ISlideSignIn {
     keyCurrentSlide?: number;
 }
 
 export default function SlideSignIn({ keyCurrentSlide }: ISlideSignIn) {
-    const { t } = useTranslation("auth");
+    const t = useTranslations("auth");
 
     const dataSlideSignIn = [
         {

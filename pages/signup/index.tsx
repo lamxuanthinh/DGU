@@ -1,6 +1,5 @@
 import SignUp from "@/Views/SignUp";
 import { GetStaticProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function SignUpPage() {
     return <SignUp />;
@@ -9,7 +8,7 @@ export default function SignUpPage() {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale ?? "vi", ["auth"])),
+            messages: (await import(`../../messages/${locale}.json`)).default,
         },
     };
 };

@@ -3,7 +3,7 @@ import UploadImageFile from "@/components/common/UploadFile/UploadImageFile";
 import { SchemaCourse } from "@/utils/rules";
 import { useEffect, useState } from "react";
 import React from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import DropDownSelect from "@/components/common/DropDownSelect";
 
 type FormCourseData = Pick<
@@ -18,7 +18,7 @@ interface ICourseItemForm {
 }
 
 export default function CourseItemForm({ register, setValue, getValues }: ICourseItemForm) {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const authorRef = React.useRef<HTMLInputElement>(null);
     const [isFreeCourse, setIsFreeCourse] = useState("Free");
 

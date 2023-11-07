@@ -1,21 +1,156 @@
 {
-    "search": {
-        "placeholder": "Search"
+    "layout": {
+        "search": {
+            "placeholder": "Search"
+        },
+        "notification": {
+            "title": "Chat",
+            "see-all": "See all in messages"
+        },
+        "create-video": "Create Video",
+        "sign-in-now": "Sign in now",
+        "navigation": {
+            "home": "Home",
+            "trending": "Trending",
+            "setting": "Setting",
+            "favorites": "Favorites",
+            "history": "History",
+            "follow": "Follow",
+            "profile": "Profile",
+            "logout": "Logout"
+        }
     },
-    "notification": {
-        "title": "Chat",
-        "see-all": "See all in messages"
+    "auth": {
+        "common": {
+            "sign-in": "Sign In",
+            "sign-up": "Sign Up",
+            "email": "Email",
+            "password": "Password"
+        },
+        "sign-in": {
+            "heading": "Welcome Back!",
+            "sub-heading": "Please enter your sign in details below",
+            "forgot-password": "Forgot your password?",
+            "continue-text": "or continue",
+            "google": "Sign in with Google",
+            "no-account": "Don't have an account yet?"
+        },
+        "sign-up": {
+            "heading": "Welcome to DGU!",
+            "sub-heading": "Please fill in the form below to become a member of DGU.",
+            "full-name": "Full Name",
+            "male": "Male",
+            "female": "Female",
+            "other": "Other",
+            "birthday": "Date of Birth",
+            "confirm-password": "Confirm Password",
+            "save-password": "Do you want to save the password?",
+            "already-account": "Already have an account?"
+        },
+        "slide": {
+            "card-1": {
+                "title": "Knowledge is power",
+                "description": "Empowering minds with knowledge leads to endless possibilities."
+            },
+            "card-2": {
+                "title": "Creativity is key.",
+                "description": "In a world of repetition, original thought unlocks unparalleled potential."
+            },
+            "card-3": {
+                "title": "Change to grow.",
+                "description": "Embracing evolution propels us forward, making stagnation a memory."
+            },
+            "card-4": {
+                "title": "Learn, shine, rise.",
+                "description": "Embrace new knowledge, illuminate your strengths, and ascend to greatness."
+            }
+        }
     },
-    "create-video": "Create Video",
-    "sign-in-now": "Sign in now",
-    "navigation": {
-        "home": "Home",
-        "trending": "Trending",
-        "setting": "Setting",
-        "favorites": "Favorites",
-        "history": "History",
-        "follow": "Follow",
-        "profile": "Profile",
-        "logout": "Logout"
+    "upload": {
+        "heading": "Upload your file bellow",
+        "placeholder": "Drag your file here",
+        "or": "Or",
+        "browse": "Browse",
+        "cancel": "Cancel",
+        "save-draft": "Save draft",
+        "storage-draft": "Storage draft",
+        "select": "Select",
+        "previous": "Previous",
+        "next": "Next",
+        "course-card-preview": "Course Card preview",
+        "modal": {
+            "title": "Do you want to go to the video editing step?",
+            "title-reload": "Do you want to reload, changes you made may not be saved.?",
+            "ok": "OK",
+            "cancel": "Cancel"
+        },
+        "navigation": {
+            "choose-course": "Choose course",
+            "fill-form": "Fill form",
+            "edit": "Edit",
+            "fill-form-video-short": "Fill form video short",
+            "release": "Release"
+        },
+        "create-course": {
+            "lesson": {
+                "title": "Lesson Title & Author",
+                "description": "Put an attention-grabbing title and shorten the video's content description.",
+                "placeholder-input": "Enter your title..."
+            },
+            "description-and-fee": {
+                "title": "Description & Fee",
+                "description": "Provide a detailed description of the video's content and goals.",
+                "placeholder-input": "Enter your description...",
+                "fee": "Fee",
+                "free": "Free",
+                "beginner": "Beginner"
+            },
+            "thumbnail": {
+                "title": "Thumbnail",
+                "description": "Create a compelling and interesting avatar to attract viewers."
+            }
+        },
+        "select-course": {
+            "label": "Add new video",
+            "add-course": "Add course",
+            "search-course": "Which course do you want to select ?"
+        },
+        "fill-form": {
+            "lesson": "Lesson Title & Description",
+            "lesson-description": "Put an attention-grabbing title and shorten the video's content description.",
+            "lesson-placeholder-input": "Enter your lesson title here",
+            "lesson-placeholder-text-area": "Enter your lesson title here",
+            "thumbnail": "Thumbnail",
+            "thumbnail-description": "Create a compelling and interesting avatar to attract viewers.",
+            "thumbnail-upload": "Upload avatar course"
+        },
+        "fill-form-video-short": {
+            "title": "Do you want choose type video upload ?",
+            "description": "Unlock the versatility of video uploads with our two distinct options: Public and Private. With the Public option, users can freely share their videos, fostering a sense of community and collaboration. Meanwhile, the Private option offers an added layer of security, ensuring that only authorized individuals have access to your valuable content.",
+            "public": "Public",
+            "private": "Private",
+            "action-needed": "Action needed",
+            "input-placeholder": "Enter your title here",
+            "textarea-placeholder": "Enter your description here"
+        },
+        "release": {
+            "error": "An error occurred, please try again!"
+        }
+    },
+    "editvideo": {
+        "back": "Back",
+        "next": "Next",
+        "copy": "Copy",
+        "split": "Split",
+        "effects": "Effects",
+        "delete": "Delete",
+        "text": "Text",
+        "music": "Music",
+        "sticker": "Sticker",
+        "title-modal": "Are you want to next step?"
+    },
+    "common": {
+        "continue": "Continue",
+        "cancel": "Cancel"
     }
 }

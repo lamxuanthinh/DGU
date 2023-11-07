@@ -1,6 +1,6 @@
 import { SchemaLesson } from "@/utils/rules";
 import { UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 import UploadImageFile from "@/components/common/UploadFile/UploadImageFile";
 
 type FormLessonData = Pick<SchemaLesson, "title" | "description" | "image" | "author" | "image_blob">;
@@ -12,7 +12,7 @@ interface ILessonFillForm {
 }
 
 export default function LessonFillForm({ register, setValue, getValues }: ILessonFillForm) {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     return (
         <div className="pl-5 pr-[35px] pt-5 pb-2 h-full rounded">
             <div className="grid grid-cols-4 mb-4">

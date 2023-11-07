@@ -6,10 +6,10 @@ import { MdFilterList, MdOpenInNew } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 function SearchBar() {
-    const { t } = useTranslation("layout");
+    const t = useTranslations("layout");
     const searchInputRef = useRef<HTMLInputElement>(null);
     const [isFilter, setIsFilter] = useState<boolean>(false);
     const [valueInput, setValueInput] = useState<string>("");

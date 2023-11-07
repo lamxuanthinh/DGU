@@ -8,10 +8,10 @@ import { useSession } from "next-auth/react";
 import imageError from "public/Images/image-error.png";
 import ImageCustom from "@/components/common/ImageCustom";
 import Loading from "@/components/common/Loading";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 const Release = () => {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setRenderSelectCourse } =
         useAppContext();
     const router = useRouter();

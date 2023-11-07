@@ -7,7 +7,8 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import { BsCursorText } from "react-icons/bs"
 import { GiMusicalNotes } from "react-icons/gi"
 import { MdOutlineInsertEmoticon } from "react-icons/md"
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from "next-intl";
+
 
 interface IToolbarProps {
   handleSplit: () => void;
@@ -15,7 +16,7 @@ interface IToolbarProps {
 }
 
 function Toolbar({ handleSplit, setSrcMp3 }: IToolbarProps) {
-  const {t} = useTranslation("editvideo")
+  const t = useTranslations("editvideo");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {

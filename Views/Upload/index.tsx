@@ -6,10 +6,10 @@ import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 import Button from "@/components/common/Button";
 import Loading from "@/components/common/Loading";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 export default function Upload() {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const {
         setSrcVideoEdit,
         setThumbVideoEdit,

@@ -16,7 +16,7 @@ import { useSession } from "next-auth/react";
 import { configAuth } from "@/apis/configAuth";
 import ImageCustom from "../ImageCustom";
 import Button from "../Button";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 interface IModalSelectCourse {
     setRenderSelectCourse: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,7 +35,7 @@ export default function ModalSelectCourse({
     setRenderSelectCourse,
     setIsCloseModal,
 }: IModalSelectCourse) {
-    const { t } = useTranslation("upload");
+    const t = useTranslations("upload");
     const {
         courseSelected,
         setCourseSelected,
