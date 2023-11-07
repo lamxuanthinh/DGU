@@ -5,8 +5,10 @@ import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useEffect } from "react";
+import { useTranslation } from "next-i18next";
 
 const HomePage = ({ posts }: any) => {
+    const { t } = useTranslation("layout");
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -31,7 +33,7 @@ const HomePage = ({ posts }: any) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Home data={posts} />
-            <h1>home page</h1>
+            <h1>{t("search.placeholder")}</h1>
         </>
     );
 };
