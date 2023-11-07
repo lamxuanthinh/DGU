@@ -2,13 +2,12 @@ import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
 import { GetStaticProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useEffect } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl";
 
 const HomePage = ({ posts }: any) => {
-    const { t } = useTranslation("layout");
+    const t = useTranslations();
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -88,7 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
             posts,
-            ...(await serverSideTranslations(locale ?? "vi", ["layout"])),
+            messages: (await import(`../messages/${locale}.json`)).default,
         },
         revalidate: 60,
     };
