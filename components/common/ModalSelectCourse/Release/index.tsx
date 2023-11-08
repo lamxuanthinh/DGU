@@ -79,7 +79,7 @@ const Release = () => {
             {isError && (
                 <div className="h-full flex flex-col justify-center items-center relative">
                     <div className="">
-                        <ImageCustom className="w-[300px] h-[300px]" src={imageError} alt="image error" />
+                        <ImageCustom priority className="w-[300px] h-[300px]" src={imageError} alt="image error" />
                     </div>
                     <h2 className="text-center text-red-500 text-3xl mt-5">An error occurred, please try again!</h2>
                 </div>

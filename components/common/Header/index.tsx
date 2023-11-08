@@ -47,7 +47,7 @@ const Header = () => {
                 <div className="flex items-center ">
                     <div
                         className={`mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer ${
-                            isAnimating ? "animate-pulse" : ""
+                            isAnimating ? "animate-pulseCustom" : ""
                         }`}
                         onClick={toggleTheme}
                     >

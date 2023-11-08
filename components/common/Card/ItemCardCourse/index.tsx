@@ -20,8 +20,6 @@ export function ItemCardCourse({ dataCard, className }: IItemCardCourseProps) {
             <div className="flex flex-col shadow-lg rounded-[5px] overflow-hidden h-full dark:bg-[#454545]">
                 <div className="h-[50%] relative">
                     <ImageCustom
-                        width={400}
-                        height={400}
                         src={thumbnail || imageNotFound}
                         alt="course image"
                         className="w-full h-full xl:h-[200px] object-cover"
