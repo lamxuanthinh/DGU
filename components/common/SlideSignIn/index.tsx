@@ -151,6 +151,7 @@ export default function SlideSignIn({ keyCurrentSlide }: ISlideSignIn) {
             ],
         },
     ];
+    
     const [currentSlide, setCurrentSlide] = useState(keyCurrentSlide || dataSlideSignIn[0].key);
     useEffect(() => {
         const interval = setInterval(() => {

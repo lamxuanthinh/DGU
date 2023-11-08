@@ -10,7 +10,7 @@ export const getStaticPaths = async () => {
     try {
         const { metaData } = await videoShortApi.getAllPublicVideo();
         const paths =
-            metaData?.PublicVideoList.map((item) => {
+            metaData?.PublicVideoList.slice(0,5).map((item) => {
                 return {
                     params: { postId: item._id },
                 };
