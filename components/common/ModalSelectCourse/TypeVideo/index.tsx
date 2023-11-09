@@ -7,8 +7,10 @@ import { BsFileEarmarkLock } from "react-icons/bs";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useAppContext } from "@/Context";
+import { useTranslations } from "next-intl";
 
 const TypeVideo = () => {
+    const t = useTranslations("upload");
     const { setStepSelected } = useAppContext();
 
     const router = useRouter();
@@ -33,15 +35,12 @@ const TypeVideo = () => {
     return (
         <div className="flex flex-col justify-between h-full 2xl:justify-start 2xl:gap-y-4">
             <div className="flex flex-col items-center">
-                <h1 className="text-[26px] font-bold my-6">Do you want choose type video upload ?</h1>
+                <h1 className="text-[26px] font-bold my-6">{t("fill-form-video-short.title")}</h1>
                 <div className="mb-8">
                     <Image src={switchImage} alt="switch image" />
                 </div>
                 <p className="max-w-[680px] text-center mb-8 lg:mb-2 xl:mb-6 text-[#7A7A7A]/[.6] dark:text-white/[.8] line-clamp-3">
-                    Unlock the versatility of video uploads with our two distinct options: Public and Private. With the
-                    Public option, users can freely share their videos, fostering a sense of community and
-                    collaboration. Meanwhile, the Private option offers an added layer of security, ensuring that only
-                    authorized individuals have access to your valuable content.
+                    {t("fill-form-video-short.description")}
                 </p>
                 <div
                     className={`flex justify-between px-6 py-2 border-[3px] border-solid w-[512px] mb-5 cursor-pointer rounded ${
@@ -53,11 +52,11 @@ const TypeVideo = () => {
                 >
                     <div className="flex items-center">
                         <AiOutlineGlobal className="w-[26px] h-[26px]" />
-                        <h2 className="ml-2 text-[28px] font-semibold">Public</h2>
+                        <h2 className="ml-2 text-[28px] font-semibold">{t("fill-form-video-short.public")}</h2>
                     </div>
                     <div className="flex items-center">
                         <span className="text-[#616161]/[.62] font-bold text-[15px] mr-2 hover:text-black dark:text-white/[.9]">
-                            Action needed
+                            {t("fill-form-video-short.action-needed")}
                         </span>
                         <Button className="text-[28px]">
                             <IoMdAddCircle />
@@ -74,7 +73,7 @@ const TypeVideo = () => {
                 >
                     <div className="flex items-center">
                         <BsFileEarmarkLock className="w-[26px] h-[26px]" />
-                        <h2 className="ml-2 text-[28px] font-semibold ">Private</h2>
+                        <h2 className="ml-2 text-[28px] font-semibold ">{t("fill-form-video-short.private")}</h2>
                     </div>
                 </div>
             </div>
@@ -83,7 +82,7 @@ const TypeVideo = () => {
                     onClick={handleNext}
                     className="text-[#3983AC] bg-[#7FCFFC]/[.3] font-bold p-2 min-w-[100px] dark:text-white dark:bg-primary rounded-sm py-2.5"
                 >
-                    Next
+                    {t("next")}
                 </Button>
             </div>
         </div>

@@ -9,21 +9,24 @@ import "@/styles/common/override.css";
 import "@/styles/common/animation.css";
 import "@/styles/common/comments.css";
 import "@/styles/common/shadow.css";
+import { NextIntlClientProvider } from "next-intl";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const Layout = Component.Layout ?? EmptyLayout;
 
     return (
-        <SessionProvider session={pageProps.session}>
-            <AppProvider>
-                <ThemeProvider attribute="class">
-                    <Layout>
-                        <AOSInitializer />
-                        <Component {...pageProps} />
-                    </Layout>
-                </ThemeProvider>
-            </AppProvider>
-        </SessionProvider>
+        <NextIntlClientProvider messages={pageProps.messages}>
+            <SessionProvider session={pageProps.session}>
+                <AppProvider>
+                    <ThemeProvider attribute="class">
+                        <Layout>
+                            <AOSInitializer />
+                            <Component {...pageProps} />
+                        </Layout>
+                    </ThemeProvider>
+                </AppProvider>
+            </SessionProvider>
+        </NextIntlClientProvider>
     );
 }
 

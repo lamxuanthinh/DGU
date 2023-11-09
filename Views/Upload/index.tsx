@@ -6,8 +6,10 @@ import { useAppContext } from "@/Context";
 import ModalSelectCourse from "@/components/common/ModalSelectCourse";
 import Button from "@/components/common/Button";
 import Loading from "@/components/common/Loading";
+import { useTranslations } from "next-intl";
 
 export default function Upload() {
+    const t = useTranslations("upload");
     const {
         setSrcVideoEdit,
         setThumbVideoEdit,
@@ -141,7 +143,7 @@ export default function Upload() {
     return (
         <>
             <div className="px-36 py-14 w-full h-full flex flex-col">
-                <h1 className="text-[25px] font-bold mb-11">Upload your file bellow</h1>
+                <h1 className="text-[25px] font-bold mb-11">{t("heading")}</h1>
                 <div
                     onDrop={handleDrop}
                     className="relative flex flex-col items-center gap-y-5 w-full border border-black border-dashed dark:border-white h-full pt-[70px] pb-20"
@@ -149,8 +151,8 @@ export default function Upload() {
                     <div className="w-[140px]">
                         <FaCloudUploadAlt className="w-full h-full flex items-center justify-center opacity-60" />
                     </div>
-                    <h2 className="text-2xl font-bold">Drag your file here</h2>
-                    <h2 className="text-2xl font-bold">Or</h2>
+                    <h2 className="text-2xl font-bold">{t("placeholder")}</h2>
+                    <h2 className="text-2xl font-bold">{}</h2>
                     <input
                         className="hidden"
                         type="file"
@@ -162,17 +164,13 @@ export default function Upload() {
                         onClick={handleButtonClick}
                         className="border-2 border-solid border-black dark:border-white w-[180px] h-[70px] text-[25px] font-bold"
                     >
-                        Browser
+                        {t("browse")}
                     </Button>
                 </div>
             </div>
-            {isModal && <Modal title="Do you want to go to the video editing step?" onOk={onOk} onCancel={onCancel} />}
+            {isModal && <Modal title={t("modal.title")} onOk={onOk} onCancel={onCancel} />}
             {isCloseModal && (
-                <Modal
-                    title="Do you want to reload, changes you made may not be saved.?"
-                    onOk={onOpenCloseModal}
-                    onCancel={handleCancelCloseModal}
-                />
+                <Modal title={t("modal.title-reload")} onOk={onOpenCloseModal} onCancel={handleCancelCloseModal} />
             )}
             {isLoading && <Loading isFullOpacity />}
             {isRenderSelectCourse && (

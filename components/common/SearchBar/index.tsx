@@ -6,8 +6,10 @@ import { MdFilterList, MdOpenInNew } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+import { useTranslations } from "next-intl";
 
 function SearchBar() {
+    const t = useTranslations("layout");
     const searchInputRef = useRef<HTMLInputElement>(null);
     const [isFilter, setIsFilter] = useState<boolean>(false);
     const [valueInput, setValueInput] = useState<string>("");
@@ -70,7 +72,7 @@ function SearchBar() {
                 <input
                     ref={inputRef}
                     type="text"
-                    placeholder="Search..."
+                    placeholder={t("search.placeholder")}
                     className="outline-none w-full px-4 py-2 dark:bg-[#2C2C2C]"
                     onChange={onChangeValueInput}
                     value={valueInput}

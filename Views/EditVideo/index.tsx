@@ -7,10 +7,11 @@ import Video from "./Video";
 import Toolbar from "./Toolbar";
 import Progressbar from "./Progressbar";
 import { IDataSplitVideo, IValueVolumeVideo, IListDataSplitVideo, IThumbInfo } from "@/model";
-
+import { useTranslations } from "next-intl";
 import { VALUE_SPACING_PROGRESS, VALUE_WIDTH_POINTER } from "./constants";
 
 export default function EditVideo() {
+    const t = useTranslations("editvideo");
     const {
         thumbVideoEdit,
         setRenderSelectCourse,
@@ -19,6 +20,7 @@ export default function EditVideo() {
         srcVideoEdit,
         fileThumbVideoUpload,
     } = useAppContext();
+
     const router = useRouter();
 
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -366,7 +368,7 @@ export default function EditVideo() {
                     setDurationMp3={setDurationMp3}
                 />
             </div>
-            {isModal && <Modal title="Are you want to next step?" onOk={onOkModal} onCancel={onCancelModal} />}
+            {isModal && <Modal title={t("title-modal")} onOk={onOkModal} onCancel={onCancelModal} />}
             <video className="hidden" ref={videoRef} src={srcVideoEdit}></video>
         </>
     );

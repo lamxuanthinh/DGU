@@ -8,8 +8,10 @@ import { useSession } from "next-auth/react";
 import imageError from "public/Images/image-error.png";
 import ImageCustom from "@/components/common/ImageCustom";
 import Loading from "@/components/common/Loading";
+import { useTranslations } from "next-intl";
 
 const Release = () => {
+    const t = useTranslations("upload");
     const { courseSelected, listDataSplitVideo, fileVideoUpload, fileThumbVideoUpload, setRenderSelectCourse } =
         useAppContext();
     const router = useRouter();
@@ -79,13 +81,14 @@ const Release = () => {
             {isError && (
                 <div className="h-full flex flex-col justify-center items-center relative">
                     <div className="">
-                        <ImageCustom priority className="w-[300px] h-[300px]" src={imageError} alt="image error" />
+                        <ImageCustom className="w-[300px] h-[300px]" src={imageError} alt="image error" />
                     </div>
-                    <h2 className="text-center text-red-500 text-3xl mt-5">An error occurred, please try again!</h2>
+                    <h2 className="text-center text-red-500 text-3xl mt-5">{t("release.error")}</h2>
                 </div>
             )}
-            {isLoading && <Loading isFullOpacity/>}
+            {isLoading && <Loading isFullOpacity />}
         </>
     );
 };
 export default Release;
+

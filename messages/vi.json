@@ -1,0 +1,153 @@
+{
+    "layout": {
+        "search": {
+            "placeholder": "Tìm kiếm"
+        },
+        "notification": {
+            "title": "Chat",
+            "see-all": "Xem tất cả trong tin nhắn"
+        },
+        "create-video": "Tạo Video",
+        "sign-in-now": "Đăng nhập",
+        "navigation": {
+            "home": "Trang chủ",
+            "trending": "Xu hướng",
+            "setting": "Cài đặt",
+            "favorites": "Yêu thích",
+            "history": "Lịch sử",
+            "follow": "Theo dõi",
+            "profile": "Cá nhân",
+            "logout": "Đăng xuất"
+        }
+    },
+    "auth": {
+        "common": {
+            "sign-in": "Đăng nhập",
+            "sign-up": "Đăng ký",
+            "email": "Email",
+            "password": "Mật khẩu"
+        },
+        "sign-in": {
+            "heading": "Chào mừng trở lại!",
+            "sub-heading": "Vui lòng nhập thông tin đăng nhập bên dưới",
+            "forgot-password": "Quên mật khẩu?",
+            "continue-text": "hoặc tiếp tục",
+            "google": "Đăng nhập với Google",
+            "no-account": "Chưa có tài khoản?"
+        },
+        "sign-up": {
+            "heading": "Chào mừng bạn đến DGU!",
+            "sub-heading": "Vui lòng điền vào mẫu bên dưới để trở thành thành viên của DGU.",
+            "full-name": "Họ và tên",
+            "male": "Nam",
+            "female": "Nữ",
+            "other": "Khác",
+            "birthday": "Ngày sinh",
+            "confirm-password": "Xác nhận mật khẩu",
+            "save-password": "Bạn có muốn lưu mật khẩu?",
+            "already-account": "Bạn đã có tài khoản?"
+        },
+        "slide": {
+            "card-1": {
+                "title": "Kiến thức là sức mạnh",
+                "description": "Bổ sung tâm trí bằng kiến thức dẫn đến vô số khả năng."
+            },
+            "card-2": {
+                "title": "Sáng tạo là chìa khóa.",
+                "description": "Trong một thế giới lặp lại, suy nghĩ gốc mở khóa tiềm năng không giới hạn."
+            },
+            "card-3": {
+                "title": "Thay đổi để phát triển.",
+                "description": "Tiếp nhận sự tiến hóa thúc đẩy chúng ta tiến lên, biến sự trì trệ thành một ký ức."
+            },
+            "card-4": {
+                "title": "Học, tỏa sáng, nổi lên.",
+                "description": "Ôm kiến thức mới, soi sáng sức mạnh của bạn và thăng tiến vĩ đại."
+            }
+        }
+    },
+    "upload": {
+        "heading": "Tải video của bạn dưới đây",
+        "placeholder": "Kéo tệp của bạn vào đây",
+        "or": "Hoặc",
+        "browse": "Duyệt",
+        "cancel": "Hủy",
+        "save-draft": "Lưu nháp",
+        "storage-draft": "Lưu nháp",
+        "select": "Chọn",
+        "previous": "Trước",
+        "next": "Tiếp theo",
+        "course-card-preview": "Xem trước Thẻ khóa học",
+        "modal": {
+            "title": "Bạn có muốn tiến đến bước chỉnh sửa video không?",
+            "title-reload": "Bạn có muốn tải lại trang? Những thay đổi bạn đã thực hiện có thể không được lưu.",
+            "ok": "Đồng ý",
+            "cancel": "Hủy"
+        },
+        "navigation": {
+            "choose-course": "Chọn khóa học",
+            "fill-form": "Điền thông tin",
+            "edit": "Chỉnh sửa",
+            "fill-form-video-short": "Điền thông tin video ngắn",
+            "release": "Xuất bản"
+        },
+        "create-course": {
+            "lesson": {
+                "title": "Tiêu đề Bài học & Tác giả",
+                "description": "Đặt một tiêu đề thu hút sự chú ý và viết mô tả ngắn về nội dung video.",
+                "placeholder-input": "Nhập tiêu đề của bạn..."
+            },
+            "description-and-fee": {
+                "title": "Mô tả & Phí",
+                "description": "Cung cấp mô tả chi tiết về nội dung và mục tiêu của video.",
+                "placeholder-input": "Nhập mô tả của bạn...",
+                "fee": "Phí",
+                "free": "Miễn phí",
+                "beginner": "Dành cho người mới"
+            },
+            "thumbnail": {
+                "title": "Ảnh đại diện",
+                "description": "Tạo một hình ảnh đại diện hấp dẫn và thú vị để thu hút người xem."
+            }
+        },
+        "select-course": {
+            "label": "Thêm video mới",
+            "add-course": "Thêm khóa học",
+            "search-course": "Bạn muốn chọn khóa học nào?"
+        },
+        "fill-form": {
+            "lesson": "Tiêu đề & Mô tả bài học",
+            "lesson-description": "Đặt một tiêu đề hấp dẫn và tóm tắt nội dung của video.",
+            "lesson-placeholder-input": "Nhập tiêu đề bài học của bạn ở đây",
+            "lesson-placeholder-text-area": "Nhập tiêu đề bài học của bạn ở đây",
+            "thumbnail": "Ảnh đại diện",
+            "thumbnail-description": "Tạo một ảnh đại diện hấp dẫn để thu hút người xem.",
+            "thumbnail-upload": "Tải ảnh đại diện khóa học"
+        },
+        "fill-form-video-short": {
+            "title": "Bạn muốn chọn loại video tải lên không?",
+            "description": "Mở khả năng tải lên video với hai tùy chọn riêng biệt: Công khai và Riêng tư. Với tùy chọn Công khai, người dùng có thể tự do chia sẻ video, tạo cộng đồng và sự hợp tác. Trong khi đó, tùy chọn Riêng tư mang đến một lớp bảo mật bổ sung, đảm bảo chỉ người được ủy quyền mới có quyền truy cập nội dung quý báu của bạn.",
+            "public": "Công khai",
+            "private": "Riêng tư",
+            "action-needed": "Cần thực hiện hành động",
+            "input-placeholder": "Nhập tiêu đề của bạn ở đây",
+            "textarea-placeholder": "Nhập mô tả của bạn ở đây"
+        },
+        "release": {
+            "error": "Đã xảy ra lỗi, vui lòng thử lại!"
+        }
+    },
+    "editvideo": {
+        "back": "Quay lại",
+        "next": "Tiếp theo",
+        "copy": "Sao chép",
+        "split": "Chia tách",
+        "effects": "Hiệu ứng",
+        "delete": "Xóa",
+        "text": "Văn bản",
+        "music": "Âm nhạc",
+        "sticker": "Nhãn dán",
+        "title-modal": "Bạn có muốn tiến đến bước tiếp theo không?"
+    },
+    "common": { "continue": "Tiếp tục", "cancel": "Hủy bỏ" }
+}

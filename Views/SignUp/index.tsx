@@ -16,20 +16,22 @@ import { useAppContext } from "@/Context";
 import { IDropdownOption, IGenderOption, IQueryNotification } from "@/model";
 import { IoIosArrowDown } from "react-icons/io";
 import Dropdown from "@/components/common/Dropdown";
+import { useTranslations } from "next-intl";
 
 type FormData = Pick<Schema, "email" | "password" | "confirm_password" | "birthday" | "gender" | "fullName">;
 
 const signUpSchema = schema.pick(["email", "password", "confirm_password", "birthday", "gender", "fullName"]);
 
 export default function SignUp() {
+    const t = useTranslations("auth");
     const router: NextRouter = Router;
     const { setIsLoading } = useAppContext();
     const [errorEmail, setErrorEmail] = useState<string>("");
     const [birthday, setBirthday] = useState("");
     const genderOptions = [
-        { value: 0, label: "Male" },
-        { value: 1, label: "Female" },
-        { value: 2, label: "Other" },
+        { value: 0, label: t("sign-up.male") },
+        { value: 1, label: t("sign-up.female") },
+        { value: 2, label: t("sign-up.other") },
     ];
     const [genderSelected, setGenderSelected] = useState<IGenderOption>({ value: 0, label: "Male" });
 
@@ -98,11 +100,9 @@ export default function SignUp() {
                     <div className="w-[100%]">
                         <div className="py-4 lg:pb-8 text-black dark:text-white">
                             <h1 className="font-bold text-[27px] lg:text-[32px] text-center lg:text-left pb-3">
-                                Welcome you to DGU!
+                                {t("sign-up.heading")}
                             </h1>
-                            <p className="text-[14px] font-semibold hidden lg:flex">
-                                Please fill in form below to become member of DGU
-                            </p>
+                            <p className="text-[14px] font-semibold hidden lg:flex">{t("sign-up.sub-heading")}</p>
                         </div>
                         <div>
                             <form onSubmit={onSubmit} className="w-full">
@@ -113,21 +113,19 @@ export default function SignUp() {
                                         type="text"
                                         autoComplete="on"
                                         placeholder="Email"
-                                        labelInput="Email"
+                                        labelInput={t("common.email")}
                                         errorMessage={errors.email?.message}
                                         errorMessageUtils={errorEmail}
-                                        animationBorder
                                     />
 
                                     <Input
                                         name="fullName"
-                                        labelInput="Fullname"
+                                        labelInput={t("sign-up.full-name")}
                                         register={register}
                                         type="text"
                                         autoComplete="on"
                                         placeholder="full name"
                                         errorMessage={errors.fullName?.message}
-                                        animationBorder
                                     />
 
                                     <div className="flex justify-between">
@@ -143,6 +141,7 @@ export default function SignUp() {
                                             <IoIosArrowDown className="hover:cursor-pointer text-[27px] px-1 font-extrabold text-[#38383844] dark:text-[#fff] hover:text-[#999]" />
                                         </Dropdown>
                                         <DatePicker
+                                            label={t("sign-up.birthday")}
                                             classBirthday="border-[#52525233] dark:border-[#9f9f9f] border-2"
                                             name="birthday"
                                             value={birthday}
@@ -157,10 +156,9 @@ export default function SignUp() {
                                         type="password"
                                         autoComplete="on"
                                         placeholder="Password"
-                                        labelInput="Password"
+                                        labelInput={t("common.password")}
                                         isShowPassword={true}
                                         errorMessage={errors.password?.message}
-                                        animationBorder
                                     />
 
                                     <Input
@@ -169,33 +167,32 @@ export default function SignUp() {
                                         type="password"
                                         autoComplete="on"
                                         placeholder="Confirm password"
-                                        labelInput="Confirm password"
+                                        labelInput={t("sign-up.confirm-password")}
                                         isShowPassword={true}
                                         errorMessage={errors.confirm_password?.message}
-                                        animationBorder
                                     />
                                 </div>
                                 <div className="flex justify-start">
                                     <div className="flex justify-center items-center">
                                         <CheckboxInput />
-                                        <p className="px-2 text-black dark:text-white">
-                                            Do you want to save the password?
-                                        </p>
+                                        <p className="px-2 text-black dark:text-white">{t("sign-up.save-password")}</p>
                                     </div>
                                 </div>
                                 <button
                                     type="submit"
                                     className="w-full font-bold text-[20px] mt-4 text-white bg-black border-2 dark:bg-[#1C1C1C] hover:bg-[#3d3d3d] dark:hover:bg-[#3b3b3b] px-5 py-3 rounded-xl"
                                 >
-                                    Sign up
+                                    {t("common.sign-in")}
                                 </button>
                             </form>
                         </div>
                         <div className="">
                             <div className="flex justify-center py-5">
-                                <p className="font-medium pr-2 text-[#888585] text-[13px]">Already have an account?</p>
+                                <p className="font-medium pr-2 text-[#888585] text-[13px]">
+                                    {t("sign-up.already-account")}
+                                </p>
                                 <Link href="signin" className="font-bold pr-2 text-[13px] text-black dark:text-white">
-                                    Sign in
+                                    {t("common.sign-in")}
                                 </Link>
                             </div>
                         </div>

@@ -12,9 +12,10 @@ interface Props {
     onChange: (value: string) => void;
     name: string;
     classBirthday?: string;
+    label?: string;
 }
 
-export default function DatePicker({ className, errorMessage, classBirthday, value, onChange }: Props) {
+export default function DatePicker({ className, errorMessage, classBirthday, value, label, onChange }: Props) {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [internalValue, setInternalValue] = useState(value);
 
@@ -41,7 +42,7 @@ export default function DatePicker({ className, errorMessage, classBirthday, val
                 {...props}
                 ref={inputRef}
                 readOnly
-                value={internalValue ? moment(internalValue).format("YYYY-MM-DD") : "Enter date of birth"}
+                value={internalValue ? moment(internalValue).format("YYYY-MM-DD") : label}
                 className="dark:bg-[#1a1a1a] hover:cursor-pointer focus-visible:outline-none py-3 text-[14px] w-full"
             />
             <div onClick={handleIconClick} className="pr-2">

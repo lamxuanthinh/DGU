@@ -1,19 +1,23 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { BiLogIn, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
+import { BiLogIn, BiLogOut, BiMessageRounded, BiMoon, BiVideoPlus } from "react-icons/bi";
 import { FiSun } from "react-icons/fi";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import Menu from "../Menu";
-import { dataMenuNav } from "../Menu/constants";
-
 import SearchBar from "../SearchBar";
 import { useAppContext } from "@/Context";
 import Message from "../Message";
 import { dataMessage } from "../Message/constants";
+import { useTranslations } from "next-intl";
+import { IMenuItems } from "@/model/menuItems";
+import { CgProfile } from "react-icons/cg";
+import { AiOutlineHistory, AiOutlineSetting } from "react-icons/ai";
+import { FaGripfire } from "react-icons/fa";
 
 const Header = () => {
+    const t = useTranslations("layout");
     const { session } = useAppContext();
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -32,6 +36,39 @@ const Header = () => {
         }, 300);
     };
 
+    const dataMenuNav: Array<IMenuItems> = [
+        {
+            key: 1,
+            name: t("navigation.profile"),
+            href: "/profile/mycourse",
+            icon: CgProfile,
+        },
+        {
+            key: 2,
+            name: t("navigation.trending"),
+            href: "/trending",
+            icon: FaGripfire,
+        },
+        {
+            key: 3,
+            name: t("navigation.history"),
+            href: "/history",
+            icon: AiOutlineHistory,
+        },
+        {
+            key: 4,
+            name: t("navigation.setting"),
+            href: "/setting",
+            icon: AiOutlineSetting,
+        },
+        {
+            key: 5,
+            name: t("navigation.logout"),
+            href: "/signin",
+            icon: BiLogOut,
+        },
+    ];
+
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -47,7 +84,7 @@ const Header = () => {
                 <div className="flex items-center ">
                     <div
                         className={`mx-2 p-2 rounded-[50%] bg-[#F6F6F6] dark:bg-[#454545] flex justify-center items-center cursor-pointer ${
-                            isAnimating ? "animate-pulseCustom" : ""
+                            isAnimating ? "animate-pulse" : ""
                         }`}
                         onClick={toggleTheme}
                     >
@@ -73,7 +110,7 @@ const Header = () => {
                                 <BiVideoPlus fontSize={"25px"} />
                             </div>
                             <div className="flex justify-center items-center">
-                                <p className="font-bold">Create Video</p>
+                                <p className="font-bold">{t("create-video")}</p>
                             </div>
                         </div>
                     </Link>
@@ -97,7 +134,7 @@ const Header = () => {
                             className="bg-[#7FCFFC] rounded-[15px] flex justify-center items-cente py-2 px-4"
                         >
                             <div className="flex justify-center items-center pr-3">
-                                <p className="font-bold">Sign in now</p>
+                                <p className="font-bold">{t("sign-in-now")}</p>
                             </div>
                             <div className="flex justify-start items-center">
                                 <BiLogIn fontSize={"25px"} />
@@ -111,3 +148,4 @@ const Header = () => {
 };
 
 export default Header;
+

@@ -1,11 +1,11 @@
 import videoShortApi from "@/apis/videoshort";
 import MainLayout from "@/components/layout/MainLayout";
 import Home from "@/Views/Home";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 
-const Index = ({ posts }: any) => {
-    
+const HomePage = ({ posts }: any) => {
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -34,11 +34,7 @@ const Index = ({ posts }: any) => {
     );
 };
 
-Index.Layout = MainLayout;
-
-export default Index;
-
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
     let posts: any;
 
     const extractVideoData = (data: any[]) => {
@@ -88,7 +84,12 @@ export async function getStaticProps() {
     return {
         props: {
             posts,
+            messages: (await import(`../messages/${locale}.json`)).default,
         },
         revalidate: 60,
     };
-}
+};
+
+HomePage.Layout = MainLayout;
+
+export default HomePage;

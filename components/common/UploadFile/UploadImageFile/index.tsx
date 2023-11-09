@@ -2,12 +2,15 @@ import { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Image from "next/image";
 import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
+import { useTranslations } from "next-intl";
+
 interface IUploadImagefile {
     setValue: UseFormSetValue<any>;
     getValues: UseFormGetValues<any>;
 }
 
 export default function UploadImageFile({ setValue, getValues }: IUploadImagefile) {
+    const t = useTranslations("upload");
     const inputRef = useRef<HTMLInputElement>(null);
     const [srcImageEdit, setSrcImageEdit] = useState<string | null>(null);
 
@@ -72,7 +75,7 @@ export default function UploadImageFile({ setValue, getValues }: IUploadImagefil
                 <div className="flex justify-center">
                     <FaCloudUploadAlt size={30} />
                 </div>
-                <p className="font-semibold dark:text-white">Upload avatar course</p>
+                <p className="font-semibold dark:text-white">{t("fill-form.thumbnail-upload")}</p>
             </div>
         </div>
     );
