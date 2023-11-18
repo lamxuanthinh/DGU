@@ -29,11 +29,17 @@ module.exports = {
                         backgroundPosition: "right",
                     },
                 },
+                bounce: {
+                    "0%": { transform: "translateY(0px)" },
+                    "10%": { transform: "translateY(-10px)", background: "#818cf8" },
+                    "20%": { transform: "translateY(0px)" },
+                },
             },
             animation: {
                 pulseCustom: "pulse 0.1s ease-in-out",
                 falseIn: "fadeIn 0.3s ease-in-out",
                 liked: "likeAnim 0.7s steps(28) forwards",
+                bounce: "bounce 1.5s infinite ease-in-out",
             },
             boxShadow: {
                 "inset-white": "0 0 0px 1000px white inset",

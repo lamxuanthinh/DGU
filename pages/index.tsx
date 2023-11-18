@@ -4,8 +4,7 @@ import Home from "@/Views/Home";
 import Head from "next/head";
 import { useEffect } from "react";
 
-const Index = ({ posts }: any) => {
-    
+const HomePage = ({ posts }: any) => {
     useEffect(() => {
         const setFullHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -34,9 +33,9 @@ const Index = ({ posts }: any) => {
     );
 };
 
-Index.Layout = MainLayout;
+HomePage.Layout = MainLayout;
 
-export default Index;
+export default HomePage;
 
 export async function getStaticProps() {
     let posts: any;
