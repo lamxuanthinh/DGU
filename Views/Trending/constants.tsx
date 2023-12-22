@@ -7,12 +7,12 @@ import course6 from "@/public/Images/Profile/Mycourse/course6.jpg";
 import course7 from "@/public/Images/Trending/course/course-7.png";
 import course8 from "@/public/Images/Trending/course/course-8.png";
 import course9 from "@/public/Images/Trending/newCourse/docker.png";
-import avatar1 from "@/public/Images/Trending/avatar/avt1.jpg";
-import avatar2 from "@/public/Images/Trending/newCourse/image4.jpg";
+import avatar1 from "@/public/Images/Trending/avatar/avt1.png";
+import avatar2 from "@/public/Images/Trending/avatar/avt2.jpg";
 import avatar3 from "@/public/Images/Trending/avatar/avt3.jpg";
 import avatar4 from "@/public/Images/Trending/avt-trending-4.png";
 import avatar5 from "@/public/Images/Trending/newCourse/image1.jpg";
-import avatar6 from "@/public/Images/Trending/newCourse/image5.jpg";
+import avatar6 from "@/public/Images/Trending/newCourse/image4.jpg";
 import avatar7 from "@/public/Images/Trending/avatar/avt5.jpg";
 import video1 from "@/public/Images/Trending/newCourse/rails.jpg";
 import video2 from "@/public/Images/Trending/newCourse/digital-marketing-banner.png";
@@ -38,6 +38,11 @@ import { IListShort } from "@/model";
 
 export const DATA_TRENDING_PEOPLE = [
     {
+        srcImage: avatar4,
+        name: "Dr. Jean",
+        views: "300.000",
+    },
+    {
         srcImage: avatar1,
         name: "Thomas Tump",
         views: "1.003.234",
@@ -48,30 +53,26 @@ export const DATA_TRENDING_PEOPLE = [
         views: "100.000",
     },
     {
-        srcImage: avatar3,
-        name: "Kim Ji Won",
-        views: "140.000",
-    },
-    {
-        srcImage: avatar4,
-        name: "Dr. Jean",
-        views: "300.000",
-    },
-    {
         srcImage: avatar5,
         name: "Dan JR",
         views: "1200.000",
     },
 
     {
-        srcImage: avatar6,
-        name: "Thomas Tump",
-        views: "1.003.234",
-    },
-    {
         srcImage: avatar7,
         name: "Eira",
         views: "100.000",
+    },
+
+    {
+        srcImage: avatar3,
+        name: "Kim Ji Won",
+        views: "140.000",
+    },
+    {
+        srcImage: avatar6,
+        name: "Thomas Tump",
+        views: "1.003.234",
     },
 ];
 

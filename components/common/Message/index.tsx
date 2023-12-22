@@ -61,7 +61,7 @@ export default function Message({ dataMessage, className, children }: IMessagePr
                                     <div className="flex justify-start max-w-[90%]">
                                         <div className="py-2 pr-4 rounded-2xl">
                                             <Image
-                                                src={require("@/public/Images/Profile/Infomation/boy_thoi_trang.png")}
+                                                src={require(`@/public/Images/Profile/Mycourse/${item.avatar}`)}
                                                 className="w-9 h-9"
                                                 alt=""
                                             />

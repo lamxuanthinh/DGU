@@ -16,7 +16,6 @@ function ImageCustom({ src, alt, className, priority }: IImageCustomProps) {
                 <div className=" absolute inset-0 bg-[#E4E6EB] dark:bg-[#8A8D91] opacity-25 animate-pulse "></div>
             )}
             <Image
-                fill
                 onLoad={() => {
                     setIsLoading(false);
                 }}
