@@ -37,15 +37,13 @@ export function ItemCardCourse({ dataCard, className }: IItemCardCourseProps) {
                     </div>
                 </div>
                 <div className="px-3 py-4">
-                    <h3 className="text-base font-semibold mb-8">{title}</h3>
+                    <h3 className="text-base font-semibold my-4">{title}</h3>
                     <div className="flex mb-[25px]">
-                        <span className="mr-7">{level}</span>
+                        <span className="mr-7 font-semibold">{level}</span>
                         <ul className="flex items-center">
                             {[avt1, avt2, avt3, avt4].map((item, index) => (
                                 <li key={index} style={{ transform: `translateX(-${index * 12}px)` }}>
                                     <Image
-                                        width={50}
-                                        height={50}
                                         className="w-[30px] h-[30px] rounded-[50%]"
                                         src={item}
                                         alt="image avatar"
@@ -53,7 +51,7 @@ export function ItemCardCourse({ dataCard, className }: IItemCardCourseProps) {
                                 </li>
                             ))}
                             <li className="translate-x-[-40px]">
-                                <span className="p-2 text-center text-xs text-white rounded-[50%] bg-[#7D7979]">
+                                <span className="p-2 text-xs text-center text-white rounded-[50%] bg-[#7D7979]">
                                     +5
                                 </span>
                             </li>
