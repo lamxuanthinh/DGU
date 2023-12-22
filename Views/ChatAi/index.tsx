@@ -4,14 +4,13 @@ import Button from "@/components/common/Button";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { MdSend } from "react-icons/md";
 import { useRef, useState } from "react";
-import { sendMessage } from "@/apis";
-import { IChatMessage, IRequestMessage } from "@/model";
+import { IChatMessage } from "@/model";
 import Content from "./Content";
 import SideBar from "./SideBar";
 import Video from "./Video";
+import axios from "axios";
 
 const ROLE_CHAT = "user";
-const MODEL_CHAT = "gpt-3.5-turbo";
 
 interface IChatAiProps {
     onClose: () => void;
@@ -27,7 +26,6 @@ const ChatAi = ({ onClose }: IChatAiProps) => {
             content: "Hello, I'm DGU AI. How can I help you?",
         },
     ]);
-    console.log(listMessage);
 
     const onFetchChatAi = async () => {
         try {
@@ -44,24 +42,27 @@ const ChatAi = ({ onClose }: IChatAiProps) => {
             ]);
             setIsLoading(true);
 
-            const payload: IRequestMessage = {
-                messages: [
-                    ...listMessage,
-                    {
-                        role: ROLE_CHAT,
-                        content: valueInput,
+            const response: any = await axios.post(
+                "https://api.openai.com/v1/chat/completions",
+                {
+                    messages: [{ content: valueInput, role: "user" }],
+                    model: "gpt-3.5-turbo",
+                    stream: false,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer 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`,
                     },
-                ],
-                model: MODEL_CHAT,
-                stream: false,
-            };
-            const { metaData } = await sendMessage(payload);
+                },
+            );
+
             setIsLoading(false);
             setListMessage((prevState) => [
                 ...prevState,
                 {
                     role: "system",
-                    content: metaData.chatResponse.choices[0].message.content,
+                    content: response.data.choices[0].message.content,
                 },
             ]);
         } catch (error) {
