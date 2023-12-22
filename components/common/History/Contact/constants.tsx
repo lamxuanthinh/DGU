@@ -1,4 +1,4 @@
-import avatar1 from "@/public/Images/Trending/avatar/avt1.jpg";
+import avatar1 from "@/public/Images/Trending/avatar/avt1.png";
 import avatar2 from "@/public/Images/Trending/newCourse/image4.jpg";
 import avatar3 from "@/public/Images/Trending/avatar/avt3.jpg";
 import avatar4 from "@/public/Images/Trending/avt-trending-4.png";
