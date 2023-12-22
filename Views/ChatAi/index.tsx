@@ -52,7 +52,7 @@ const ChatAi = ({ onClose }: IChatAiProps) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer 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`,
+                        Authorization: `Bearer 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`,
                     },
                 },
             );
